@@ -1,0 +1,127 @@
+site_name: AE Raumklima Bootcamp
+site_description: Geführter Lernleitfaden für das IT-Bootcamp – Web-App Entwicklung für einen Raumklima-Monitor
+site_author: AE Bootcamp Team
+repo_url: https://github.com/ae-raumklima-bootcamp/ae-raumklima-bootcamp
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: de
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Dark Mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Light Mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - toc.follow
+    - toc.integrate
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ae-raumklima-bootcamp
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+plugins:
+  - search:
+      lang: de
+
+nav:
+  - Start:
+      - start/index.md
+      - "Willkommen": start/willkommen.md
+      - "Arbeitsweise": start/arbeitsweise.md
+      - "Setup & Tools": start/setup.md
+      - "Git Basics": start/git-basics.md
+  - Projekt:
+      - projekt/ueberblick.md
+      - "Backlog": projekt/backlog.md
+      - "Definition of Done": projekt/definition-of-done.md
+      - "Mockdaten": projekt/mockdaten.md
+      - "API-Vertrag": projekt/api-vertrag.md
+      - "Demo-Checkliste": projekt/demo-checkliste.md
+  - "Tag 1 – 06.08":
+      - tag-1/index.md
+      - "Theorie: Web-App Basics": tag-1/theorie-webapp-basics.md
+      - "Übung: Raumkarte": tag-1/uebung-raumkarte.md
+      - "Projekt: Dashboard": tag-1/projekt-dashboard.md
+      - "Checkpoint": tag-1/checkpoint.md
+  - "Tag 2 – 07.08":
+      - tag-2/index.md
+      - "Theorie: JSON / API / Fetch": tag-2/theorie-json-api-fetch.md
+      - "Übung: Daten laden": tag-2/uebung-daten-laden.md
+      - "Projekt: Statuslogik & Verlauf": tag-2/projekt-statuslogik-verlauf.md
+      - "Checkpoint": tag-2/checkpoint.md
+  - "Tag 3 – 10.08":
+      - tag-3/index.md
+      - "Retro": tag-3/retro.md
+      - "Schnittstellen klären": tag-3/schnittstellen.md
+      - "Projekt: Integration": tag-3/integration.md
+      - "Checkpoint": tag-3/checkpoint.md
+  - "Tag 4 – 11.08":
+      - tag-4/index.md
+      - "Pflichtumfang fertigstellen": tag-4/finish.md
+      - "Testen & Bugs fixen": tag-4/testen.md
+      - "Optionale Features": tag-4/optionale-features.md
+      - "Checkpoint": tag-4/checkpoint.md
+  - "Tag 5 – 12.08":
+      - tag-5/index.md
+      - "Demo & Abschluss": tag-5/demo-abschluss.md
+  - "Für Trainer":
+      - trainer/hinweise.md
+      - "Tagesplanung": trainer/tagesplanung.md
+      - "Risiken & Fallbacks": trainer/risiken-und-fallbacks.md
