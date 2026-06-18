@@ -22,7 +22,7 @@ mkdocs build
 
 ## GitHub Pages
 
-Die Website wird automatisch via GitHub Actions bei jedem Push auf `main` deployed.
+Die Website wird automatisch via GitHub Actions bei jedem Push auf `master` deployed.
 
 ### Aktivierung
 
