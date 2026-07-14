@@ -20,7 +20,7 @@ Dein Dashboard soll enthalten:
 
 ### 1. Projektdateien anlegen
 
-Erstelle im Projektordner:
+Erstelle im `app/`-Ordner des Codebase-Repositories (`ae-raumklima-bootcamp-codebase/app/`):
 
 - `index.html`
 - `style.css`

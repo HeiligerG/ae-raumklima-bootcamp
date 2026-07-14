@@ -6,7 +6,7 @@ Baue eine einfache «Karte», die einen Raum mit Temperatur und Luftfeuchtigkeit
 
 ## Schritt 1: HTML-Gerüst
 
-Erstelle eine neue Datei `uebung-raumkarte.html`:
+Erstelle eine neue Datei `uebung-raumkarte.html` im `app/`-Ordner deines Codebase-Repositories:
 
 ```html
 <!DOCTYPE html>

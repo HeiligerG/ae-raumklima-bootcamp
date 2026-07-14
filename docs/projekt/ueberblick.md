@@ -47,7 +47,7 @@ Keine Frameworks, kein Build-Tool – reines HTML, CSS und JavaScript.
 
 ## Datenquelle
 
-Die App nutzt Mock-Daten aus einer JSON-Datei:
+Die App lädt ihre Daten aus einem **lokalen Backend** (Node/Express), das im Schwester-Repo `ae-raumklima-bootcamp-codebase` unter `mock-api/` mitgeliefert wird. Es liefert die gleichen Mock-Daten wie der Lerninhalt unten – das gibt euch eine realistische Umgebung ohne Sensor-Hardware.
 
 ```json
 {
@@ -58,11 +58,10 @@ Die App nutzt Mock-Daten aus einer JSON-Datei:
 }
 ```
 
-Details: [Mockdaten](mockdaten.md) und [API-Vertrag](api-vertrag.md).
+Details: [Architektur](architektur.md), [Mockdaten](mockdaten.md), [API-Vertrag](api-vertrag.md).
 
-!!! info "Mock-Daten zuerst"
-    Wir starten mit Mock-Daten. Eine echte API ist ein optionales Ziel.  
-    So hat jedes Team garantiert etwas, das funktioniert.
+!!! info "Zwei Datenquellen – ein Vertrag"
+    Ab Tag 2 arbeitet ihr zusätzlich mit einer **lokalen `data.json`** als Fallback. Sie hat denselben Aufbau wie die API-Antwort. Wenn das Backend nicht läuft oder die API down ist, fällt eure App automatisch auf `data.json` zurück – so habt ihr immer Daten zum Arbeiten.
 
 ## Meilensteine
 

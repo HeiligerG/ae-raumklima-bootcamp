@@ -20,7 +20,7 @@ Das Backlog enthält alle Aufgaben, die im Projekt umgesetzt werden müssen.
 
 ## Epic 2: Daten & Logik (Tag 2)
 
-- :material-star: :material-head-cog: Mock-Daten als JSON-File anlegen
+- :material-star: :material-head-cog: `data.json` als lokalen Fallback anlegen
 - :material-star: :material-head-cog: Daten mit `fetch()` in die App laden
 - :material-star: :material-head-cog: Statuslogik implementieren (gut/kritisch/schlecht)
 - :material-star: :material-head-cog: Verlauf der letzten 10 Messungen anzeigen

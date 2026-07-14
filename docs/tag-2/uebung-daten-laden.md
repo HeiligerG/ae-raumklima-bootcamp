@@ -6,7 +6,7 @@ Lade Daten aus einer JSON-Datei und zeige sie dynamisch auf einer Webseite an.
 
 ## Schritt 1: JSON-Datei erstellen
 
-Erstelle `uebung-daten.json`:
+Erstelle `uebung-daten.json` im `app/`-Ordner deines Codebase-Repositories:
 
 ```json
 {
@@ -108,7 +108,7 @@ Erstelle `uebung-daten-laden.html`:
 
 ## Schritt 4: Mehrere Datensätze (Bonus)
 
-Erstelle `uebung-verlauf.json`:
+Erstelle `uebung-verlauf.json` im gleichen `app/`-Ordner:
 
 ```json
 [

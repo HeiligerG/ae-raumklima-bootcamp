@@ -11,7 +11,7 @@ Erweitere dein Dashboard um:
 
 ## Schritt 1: JSON-Datei mit Mock-Daten
 
-Erstelle `data.json` im Projektordner:
+Erstelle `data.json` im `app/`-Ordner des Codebase-Repositories (als Fallback, falls die API nicht läuft):
 
 ```json
 [
