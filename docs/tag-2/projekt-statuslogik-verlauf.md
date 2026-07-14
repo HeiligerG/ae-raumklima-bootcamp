@@ -1,13 +1,17 @@
-# Projekt: Statuslogik & Verlauf
+# Projekt: Statuslogik
+
+!!! info "Hinweis: Verlaufsliste wurde auf Tag 3 verschoben"
+    Diese Anleitung enthält ursprünglich auch den Bau der Verlaufsliste. Da Tag 2 Nachmittag jetzt für die **Schnittstellen-Klärung mit dem PE-Team** reserviert ist, bauen wir die Verlaufsliste am **Tag 3 morgens (09:00–10:00)**. Der Verlaufslisten-Code bleibt weiter unten in dieser Datei als Vorlage – ihr könnt ihn an Tag 3 direkt übernehmen.
 
 ## :material-target: Aufgabe
 
 Erweitere dein Dashboard um:
 
-1. Dynamische Daten aus einer JSON-Datei
-2. Korrekte Statusberechnung (gut/kritisch/schlecht)
-3. Eine Verlaufsliste der letzten Messungen
-4. Fehlerbehandlung
+1. Dynamische Daten aus einer JSON-Datei (oder der Mock-API)
+2. Korrekte Statusberechnung (gut / mittel / kritisch)
+3. Fehlerbehandlung
+
+Die Verlaufsliste ist Teil von Tag 3.
 
 ## Schritt 1: JSON-Datei mit Mock-Daten
 
@@ -227,10 +231,13 @@ loadDashboard();
 - [ ] `loadDashboard()` lädt Daten per `fetch()`
 - [ ] Dashboard zeigt echte Daten (nicht mehr statisch)
 - [ ] Statusfarbe ändert sich je nach Wert
-- [ ] Verlaufsliste zeigt mehrere Einträge
 - [ ] Bei fehlender Datei erscheint Fehlermeldung
 - [ ] Code ist committed und gepusht
 
+!!! tip "Vorbereitung für Tag 3"
+    Wenn du am Ende von Tag 2 noch Zeit hast: lies bereits die Schritte 4–6 dieser Anleitung durch, um ein Gefühl für die Verlaufsliste zu bekommen. Sie wird am Tag 3 morgens gebaut.
+
 ## Nächster Schritt
 
-[Checkpoint Tag 2](checkpoint.md)
+**Tag 2 Nachmittag:** [Schnittstellen klären (mit PE-Team)](schnittstellen.md)  
+**Tag 3:** [Projekt: Integration](integration.md) – dort wird auch die Verlaufsliste gebaut.

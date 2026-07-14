@@ -11,14 +11,18 @@ Am Ende des Tages ist der Pflichtumfang komplett, getestet, und die Demo sitzt. 
 | 08:00–08:15 | :material-weather-sunny: Daily | Stand-up im Team |
 | 08:15–10:00 | :material-hammer-wrench: Projekt | Pflichtumfang fertigstellen |
 | 10:00–10:15 | :material-coffee: Pause | |
-| 10:15–11:30 | :material-bug: Testen | Bugs finden und fixen |
-| 11:30–12:00 | :material-hammer-wrench: Projekt | Letzte Pflicht-Features |
+| 10:15–12:00 | :material-bug: Testen | Bugs finden und fixen |
 | 12:00–13:00 | :material-food: Mittag | |
-| 13:00–14:30 | :material-star-outline: Optional | Optionale Features |
-| 14:30–14:45 | :material-coffee: Pause | |
-| 14:45–15:45 | :material-presentation: Demo | Demo finalisieren & üben |
-| 15:45–16:30 | :material-check-all: Abschluss | Letzter Checkpoint |
-| 16:30–17:30 | :material-presentation: Demo-Show | **Projekt-Demo** |
+| 13:00–14:30 | :material-star-outline: Optional | Optionale Features *(nur wenn Pflicht fertig)* |
+| 14:30–15:00 | :material-presentation: Demo | Demo vorbereiten |
+| 15:15–16:00 | :material-check-all: Abschluss | Letzter Checkpoint |
+| **16:30–17:30** | **:material-presentation: Demo-Show** | **Gemeinsam mit PE-Team: alle Apps live vorstellen** |
+
+!!! warning "Bugfix-Phase hat Vorrang"
+    Wenn am Ende des Testens um 12:00 noch Bugs offen sind, **frisst die Bugfix-Phase den Optional-Block auf**, nicht die Demo-Vorbereitung. Lieber eine App ohne optionale Features, die sauber läuft, als eine mit Features, die im Demo crasht.
+
+!!! note "Joint-Demo mit PE um 16:30"
+    Die Demo-Show am Abend ist eine **gemeinsame Veranstaltung** mit dem PE-Team. Beide Teams präsentieren ihre Ergebnisse. AE-Teams zeigen die App live, PE-Teams zeigen die Sensoren und das Backend-Setup. Gesamtdauer: ca. 60 Minuten (5–10 Min pro Team).
 
 ## :material-school: Was lernst du heute?
 
@@ -31,8 +35,8 @@ Am Ende des Tages ist der Pflichtumfang komplett, getestet, und die Demo sitzt. 
 
 - Pflichtumfang fertigstellen und prüfen
 - Testen mit verschiedenen Werten
-- Optional: Dark Mode, Diagramm, Auto-Refresh, etc.
-- Demo finalisieren
+- Optional: Dark Mode, Diagramm, Auto-Refresh, weitere Sensoren, etc.
+- Demo vorbereiten (Skript, Demo-Daten, Präsentations-Modus)
 
 ## :material-check-all: Definition of Done
 

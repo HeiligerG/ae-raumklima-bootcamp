@@ -22,7 +22,9 @@ Heute wird nicht mehr programmiert. Nutze den Morgen für:
 - Entspannt ankommen
 - Auf die Präsentation freuen
 
-## :material-microphone: Deine Präsentation
+## :material-microphone: Präsentation
+
+Die Projektpräsentation um 10:30 ist **gemeinsam mit dem PE-Team**. Beide Tracks (AE + PE) präsentieren ihre Ergebnisse im selben Slot, vor gemischtem Publikum (beide Lernenden-Gruppen + Trainer + Gäste).
 
 | Dauer | Inhalt |
 |-------|--------|
