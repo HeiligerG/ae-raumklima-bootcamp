@@ -59,6 +59,9 @@ POST /api/v1/ingest
 
 Wird vom **Plattform-Team** (ESP-Firmware) aufgerufen, **nicht** von der Lernenden-App. Authentifizierung per Header `X-API-Key`. Vollständige Doku: [Ingest-Vertrag](ingest-vertrag.md).
 
+!!! warning "Protokoll: nur HTTP"
+    Diese Implementierung unterstützt **nur HTTP POST** als Transport. MQTT oder Datei-basierte Übergabe sind nicht im Scope – bei Bedarf muss das Backend erweitert werden.
+
 ### Request
 
 ```json
@@ -66,9 +69,18 @@ Wird vom **Plattform-Team** (ESP-Firmware) aufgerufen, **nicht** von der Lernend
   "room": "B101",
   "temperature": 22.5,
   "humidity": 52,
-  "timestamp": "2026-07-14T12:00:00Z"
+  "timestamp": "2026-07-14T12:00:00Z",
+  "extras": { "co2": 450, "light": 300 }
 }
 ```
+
+| Feld | Pflicht | Beschreibung |
+|------|---------|--------------|
+| `room` | ja | Eine der bekannten Raum-IDs |
+| `temperature` | ja | Grad Celsius |
+| `humidity` | ja | Relative Luftfeuchtigkeit 0–100 % |
+| `timestamp` | nein | ISO-8601; falls fehlend, wird Server-Zeit verwendet |
+| `extras` | nein | Beliebiges Objekt mit zusätzlichen Sensor-Werten (z. B. `co2`, `light`, `voc`) |
 
 ### Response
 
@@ -94,6 +106,45 @@ GET /api/v1/rooms
   { "id": "B102", "name": "Schulungsraum 102", "floor": 1 },
   { "id": "B103", "name": "Schulungsraum 103", "floor": 1 }
 ]
+```
+
+## Datenmodell
+
+### Measurement (garantierte Felder)
+
+```jsonc
+{
+  "room": "B101",            // string, Raum-ID
+  "temperature": 23.4,       // number, °C
+  "humidity": 51,            // number, 0–100 %
+  "timestamp": "2026-08-06T10:30:00"  // ISO-8601
+}
+```
+
+### Extras (optionale Felder für weitere Sensoren)
+
+Das Feld `extras` enthält beliebige Zusatz-Messwerte für Sensoren, die das PE-Team am ESP angeschlossen hat. Es ist `null`, wenn keine zusätzlichen Sensoren verfügbar sind.
+
+```jsonc
+{
+  "room": "B103",
+  "temperature": 17.2,
+  "humidity": 68,
+  "timestamp": "2026-08-06T10:30:00",
+  "extras": {                // optional, kann beliebige key-value Paare enthalten
+    "co2": 580,              // ppm
+    "light": 320,            // lux
+    "voc": 120               // ppb
+  }
+}
+```
+
+Welche Sensoren tatsächlich befüllt sind, hängt von der Hardware ab. Die Lernenden-App darf `extras` als **optionales Feature** anzeigen, falls vorhanden.
+
+### Room
+
+```jsonc
+{ "id": "B101", "name": "Schulungsraum 101", "floor": 1 }
 ```
 
 ## Fehlerfall
