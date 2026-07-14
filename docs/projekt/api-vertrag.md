@@ -81,7 +81,7 @@ Wenn ein Fehler auftritt, antwortet der Server mit einem HTTP-Fehlercode:
 ## Fetch mit API
 
 ```javascript
-const API_BASE = 'https://api.example.com/v1';
+const API_BASE = 'http://localhost:3000/api/v1'; // Mock-API während Bootcamp
 
 async function loadLatestMeasurement(roomId) {
   try {
@@ -97,6 +97,19 @@ async function loadLatestMeasurement(roomId) {
   }
 }
 ```
+
+!!! info "Mock-API im Schwester-Repo"
+    Die hier dokumentierte API wird während des Bootcamps durch eine kleine **Mock-API** simuliert, damit ihr ohne echte Sensor-Hardware entwickeln könnt. Sie liegt im Repository `ae-raumklima-bootcamp-codebase` unter `mock-api/` und liefert deterministische Daten für die Räume B101, B102 und B103.
+
+    Starten:
+
+    ```bash
+    cd ae-raumklima-bootcamp-codebase/mock-api
+    npm install
+    npm start
+    ```
+
+    Sobald die echte Sensor-API der Plattformentwickler dieselben Endpoints unter derselben URL anbietet, tauscht ihr nur die `API_BASE` in eurem `script.js` aus.
 
 ## Fallback-Strategie
 

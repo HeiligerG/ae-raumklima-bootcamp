@@ -5,12 +5,12 @@
 Entscheide, wie deine App Daten bezieht: Echte API oder Mock-Daten?  
 Implementiere eine stabile Fallback-Strategie.
 
-## Option A: Echte API
+## Option A: Echte API (Mock während des Bootcamps)
 
-Wenn eine API verfügbar ist und läuft:
+Während des Bootcamps läuft die **Mock-API** auf `http://localhost:3000`. Sie implementiert exakt diesen Vertrag und liefert deterministische Daten für die drei Räume B101, B102, B103.
 
 ```javascript
-const API_BASE = 'https://api.example.com/v1';
+const API_BASE = 'http://localhost:3000/api/v1';
 
 async function loadMeasurement(roomId) {
   try {
@@ -22,6 +22,16 @@ async function loadMeasurement(roomId) {
     return null;
   }
 }
+```
+
+Wenn die echte Sensor-API der Plattformentwickler bereitsteht, wird sie unter derselben URL und mit demselben Schema antworten. Ihr müsst am Frontend nichts anpassen – nur `API_BASE` einmal austauschen.
+
+**Starten der Mock-API** (einmal pro Bootcamp-Session, im separaten Terminal):
+
+```bash
+cd ae-raumklima-bootcamp-codebase/mock-api
+npm install   # nur beim ersten Mal
+npm start
 ```
 
 ## Option B: Mock-Daten (Fallback)

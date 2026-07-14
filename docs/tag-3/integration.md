@@ -8,8 +8,9 @@ Integriere deine App mit der gewählten Datenquelle und bereite die Demo vor.
 
 ```javascript
 // script.js – am Anfang der Datei
-const USE_API = false; // true, wenn eine echte API läuft
-const API_BASE = 'https://api.example.com/v1';
+const USE_API = true; // Echte API ist verfügbar (Mock läuft im Hintergrund)
+const API_BASE = 'http://localhost:3000/api/v1'; // lokal während des Bootcamps
+// const API_BASE = 'https://mock.raumklima-bootcamp.dev/api/v1'; // deployed
 
 async function getLatestMeasurement(roomId) {
   if (USE_API) {
@@ -42,6 +43,18 @@ async function getHistory(roomId, limit = 10) {
   return await response.json();
 }
 ```
+
+!!! info "Mock-API starten"
+    Die Mock-API liegt im Schwester-Repo `ae-raumklima-bootcamp-codebase/mock-api/`.
+    Bevor ihr eure App testet, startet sie einmal in einem zweiten Terminal:
+
+    ```bash
+    cd ../ae-raumklima-bootcamp-codebase/mock-api
+    npm install   # nur beim ersten Mal
+    npm start
+    ```
+
+    Die API läuft dann auf <http://localhost:3000>.
 
 ## Schritt 2: Admin-Seite einbauen
 
