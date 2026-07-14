@@ -78,3 +78,6 @@ fetch('data.json')
 !!! tip "Tipp"
     Lege die JSON-Datei im gleichen Ordner wie deine `index.html` ab.  
     Live Server muss laufen, sonst funktioniert `fetch` nicht.
+
+!!! info "Ab Tag 3: API statt Mock"
+    Sobald die [Mock-API](api-vertrag.md) verfügbar ist, ersetzt sie eure `data.json`. Die Fallback-Strategie aus dem Tag-3-Leitfaden kümmert sich darum, dass die App auch ohne API weiterläuft.

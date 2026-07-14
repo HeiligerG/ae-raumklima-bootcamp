@@ -16,7 +16,7 @@
 - [ ] Raum vorbereiten, Beamer testen
 - [ ] WLAN-Zugang prüfen
 - [ ] VS Code + Extensions bereit
-- [ ] Repository bereit
+- [ ] **Beide Repositories** bereit (Leitfaden-Repo + Codebase-Repo) – Lernende klonen beim Setup
 
 ### Während des Tages
 - Theorie (09:00): Klar und langsam erklären, viele Beispiele
@@ -25,6 +25,8 @@
 
 ### Worauf achten?
 - Hat jeder VS Code, Live Server, Git?
+- **Hat jeder beide Repositories geklont?**
+- **Hat jeder den `app/`-Ordner im Codebase-Repo gefunden?**
 - Versteht jeder HTML vs. CSS vs. JavaScript?
 - Erster Commit gemacht?
 
@@ -32,7 +34,7 @@
 
 ### Vor dem Start
 - [ ] Mock-Daten geprüft
-- [ ] API bereit (falls vorhanden)
+- [ ] (Optional) Mock-API für die Schnellen vorbereitet – läuft auf `localhost:3000`
 
 ### Während des Tages
 - Theorie (08:15): JSON erklären, `fetch()` live demonstrieren
@@ -40,7 +42,7 @@
 - Projekt (10:15): Statuslogik erklären, nicht vorkauen
 
 ### Worauf achten?
-- Versteht jeder den Unterschied synchon/asynchron?
+- Versteht jeder den Unterschied synchron/asynchron?
 - `catch` für Fehlerfall eingebaut?
 - Verlauf wird dynamisch gerendert?
 
@@ -48,17 +50,20 @@
 
 ### Vor dem Start
 - [ ] Retro-Partner-Teams festlegen
-- [ ] API-Endpunkte prüfen (falls vorhanden)
+- [ ] **Node.js ist bei allen installiert** (vorher an Tag-2-Abend ankündigen)
+- [ ] Mock-API läuft auf deinem Laptop vorzeigebereit (z. B. am Beamer)
+- [ ] (Optional) Docker-Variante mit MySQL + PHPMyAdmin vorbereitet für die Demo-Show
 
 ### Während des Tages
 - Retro (08:15): Teams zuweisen, Zeit tracken, Feedback-Regeln erklären
-- Schnittstellen (09:30): Fallback-Strategie erklären
+- Schnittstellen (09:30): Fallback-Strategie erklären, **zweites Terminal** für die API demonstrieren
 - Projekt (10:30): Integrationsprobleme lösen helfen
 
 ### Worauf achten?
 - Retro läuft konstruktiv?
-- Fallback funktioniert bei allen?
+- Fallback funktioniert bei allen (API aus, App läuft trotzdem)?
 - Erste Demo-Skizzen existieren?
+- **Läuft die API bei allen in einem zweiten Terminal?** (Platz für zwei Terminals einplanen)
 
 ## Tag 4 – Finish & Demo
 

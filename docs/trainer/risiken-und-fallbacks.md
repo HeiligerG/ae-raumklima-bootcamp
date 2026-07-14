@@ -4,11 +4,12 @@
 
 | Risiko | Wahrscheinlichkeit | Auswirkung | Massnahme |
 |--------|-------------------|-----------|-----------|
-| WLAN fällt aus | Mittel | Hoch | Mock-Daten funktionieren offline |
-| API nicht erreichbar | Mittel | Mittel | Fallback-Strategie ist Pflicht |
+| WLAN fällt aus | Mittel | Hoch | Mock-Daten funktionieren offline; Mock-API läuft im lokalen Terminal |
+| API nicht erreichbar | Mittel | Mittel | Fallback-Strategie ist Pflicht; `data.json` als Backup |
+| Node.js auf Laptop fehlt | Mittel | Mittel | Tag 2 Abend ankündigen; Installationsanleitung im Setup; Docker als Alternative |
 | Lernende überfordert | Mittel | Hoch | Aufgaben vereinfachen, Pair-Programming |
 | Lernende unterfordert | Mittel | Niedrig | Optionale Features, Peer-Teaching |
-| Git-Konflikte | Hoch | Niedrig | Teamweisung: oft pullen, kleine Commits |
+| Git-Konflikte | Hoch | Niedrig | Teamweisung: oft pullen, kleine Commits, Feature-Branches (siehe `CODE_OF_CONDUCT.md`) |
 | Laptop-Probleme | Niedrig | Hoch | Ersatz-Laptop bereit haben |
 | Zeit reicht nicht | Hoch | Mittel | MVP-Fokus, DoD rigoros anwenden |
 | Demo schlägt fehl | Niedrig | Hoch | Mock-Daten, vorher 2× durchlaufen |
@@ -19,15 +20,23 @@
 
 1. Ruhe bewahren – die App funktioniert komplett offline
 2. Mock-Daten sind lokal – kein Netzwerk nötig
-3. Git funktioniert nicht → lokale Commits, später pushen
-4. Präsentation offline halten (Mock-Daten zeigen)
+3. Mock-API läuft im lokalen Terminal, braucht kein WLAN
+4. Git funktioniert nicht → lokale Commits, später pushen
+5. Präsentation offline halten (Mock-Daten zeigen)
 
 ### Szenario 2: API nicht erreichbar
 
-1. `USE_API` auf `false` setzen
-2. Alle Daten kommen aus `data.json`
+1. `USE_API` auf `false` setzen in `script.js` → App fällt auf `data.json` zurück
+2. Alle Daten kommen aus `data.json` (im `app/`-Ordner)
 3. Fallback ist eingebaut und getestet
 4. Demo mit Mock-Daten ist genauso gültig
+
+### Szenario 2b: Mock-API startet nicht
+
+1. Terminal-Ausgabe lesen (oft fehlt `npm install` oder Port 3000 belegt)
+2. `npm install` im `mock-api/`-Ordner ausführen
+3. Anderen Prozess auf Port 3000 beenden oder `PORT=3001 npm start`
+4. Wenn nichts hilft: Lernende arbeiten temporär nur mit `data.json` (siehe Szenario 2)
 
 ### Szenario 3: Team hängt stark hinterher
 
@@ -74,11 +83,13 @@
 ## Checkliste vor dem Bootcamp
 
 - [ ] Mock-Daten sind vorbereitet (JSON validiert)
-- [ ] API ist getestet (falls vorhanden)
+- [ ] **Beide Repositories** sind lokal geklont und auf dem neusten Stand
+- [ ] **Mock-API wurde getestet** (`npm start` → <http://localhost:3000> zeigt Übersicht)
+- [ ] (Optional) **Docker-Variante** mit MySQL + PHPMyAdmin funktioniert (`docker compose up -d`)
+- [ ] API-Key ist festgelegt (für ESP-Demo, falls relevant)
 - [ ] WLAN ist stabil
 - [ ] Beamer funktioniert
 - [ ] Ersatz-Laptop ist bereit
-- [ ] Alle Repositories existieren
 - [ ] VS Code + Extensions sind auf dem neusten Stand
 - [ ] Grill ist organisiert (Tag 5)
 - [ ] Getränke sind organisiert

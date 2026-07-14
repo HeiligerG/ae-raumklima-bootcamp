@@ -51,6 +51,35 @@ GET /api/v1/rooms/{roomId}/measurements?limit=10
 ]
 ```
 
+## Endpunkt: Sensor-Daten senden (Plattform-Team / ESP)
+
+```
+POST /api/v1/ingest
+```
+
+Wird vom **Plattform-Team** (ESP-Firmware) aufgerufen, **nicht** von der Lernenden-App. Authentifizierung per Header `X-API-Key`. Vollständige Doku: [Ingest-Vertrag](ingest-vertrag.md).
+
+### Request
+
+```json
+{
+  "room": "B101",
+  "temperature": 22.5,
+  "humidity": 52,
+  "timestamp": "2026-07-14T12:00:00Z"
+}
+```
+
+### Response
+
+```
+201 Created
+```
+
+```json
+{ "status": "accepted", "room": "B101", "timestamp": "2026-07-14T12:00:00Z" }
+```
+
 ## Endpunkt: Räume
 
 ```
@@ -81,7 +110,7 @@ Wenn ein Fehler auftritt, antwortet der Server mit einem HTTP-Fehlercode:
 ## Fetch mit API
 
 ```javascript
-const API_BASE = 'https://api.example.com/v1';
+const API_BASE = 'http://localhost:3000/api/v1'; // lokale Mock-API
 
 async function loadLatestMeasurement(roomId) {
   try {
@@ -97,6 +126,19 @@ async function loadLatestMeasurement(roomId) {
   }
 }
 ```
+
+!!! info "Mock-API im Schwester-Repo"
+    Die hier dokumentierte API wird während des Bootcamps durch eine kleine **Mock-API** simuliert, damit ihr ohne echte Sensor-Hardware entwickeln könnt. Sie liegt im Repository `ae-raumklima-bootcamp-codebase` unter `mock-api/` und liefert deterministische Daten für die Räume B101, B102 und B103.
+
+    Starten (einmal pro Bootcamp-Session, im **zweiten Terminal**):
+
+    ```bash
+    cd ae-raumklima-bootcamp-codebase/mock-api
+    npm install
+    npm start
+    ```
+
+    Die API läuft dann auf <http://localhost:3000>. Falls dein Laptop kein Node.js hat oder die API zentral vom Trainer deployt wird, bekommst du eine andere `API_BASE` – der Rest deines Codes bleibt gleich.
 
 ## Fallback-Strategie
 

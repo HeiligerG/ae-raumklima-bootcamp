@@ -11,18 +11,20 @@ Schön, dass du da bist. In den nächsten fünf Tagen tauchst du in die Welt der
     - Du bekommst Hilfe von Trainern
     - Es gibt keine dummen Fragen
 
-## Was du mitbringen solltest
+## Was du brauchst
 
 - :material-laptop: Einen Laptop (Windows, macOS oder Linux)
 - :material-headphones: Kopfhörer (für Videos und Pair-Programming)
 - :material-notebook-outline: Etwas zum Notizen machen
 - :material-coffee: Gute Laune und Neugier
+- :material-microsoft-visual-studio-code: VS Code (Installationsanleitung im [Setup](setup.md))
+- :material-nodejs: Node.js (ab Tag 3, damit du das lokale Backend starten kannst)
 
 ## Was du nicht brauchst
 
 - :material-close: Vorkenntnisse in Programmierung
-- :material-close: Eigenes Hosting oder Server
 - :material-close: Spezielle Software-Lizenzen
+- :material-close: Cloud-Konto oder eigener Server – das Backend läuft lokal auf deinem Laptop
 
 ## Die Trainer
 

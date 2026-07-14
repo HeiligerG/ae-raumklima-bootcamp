@@ -8,8 +8,8 @@ Integriere deine App mit der gewählten Datenquelle und bereite die Demo vor.
 
 ```javascript
 // script.js – am Anfang der Datei
-const USE_API = false; // true, wenn eine echte API läuft
-const API_BASE = 'https://api.example.com/v1';
+const USE_API = true; // wir nutzen die lokale Mock-API
+const API_BASE = 'http://localhost:3000/api/v1';
 
 async function getLatestMeasurement(roomId) {
   if (USE_API) {
@@ -42,6 +42,23 @@ async function getHistory(roomId, limit = 10) {
   return await response.json();
 }
 ```
+
+!!! info "Mock-API starten – bevor du loslegst"
+    Die Mock-API liegt im Schwester-Repo `ae-raumklima-bootcamp-codebase/mock-api/`.
+    Öffne ein **zweites Terminal** in VS Code und führe aus:
+
+    ```bash
+    cd ae-raumklima-bootcamp-codebase/mock-api
+    npm install   # nur beim ersten Mal
+    npm start
+    ```
+
+    Die API läuft dann auf <http://localhost:3000>. Lass das Terminal offen – die App
+    kann nur Daten laden, solange die API läuft. Falls du sie stoppen willst: `Ctrl+C`.
+
+!!! tip "API läuft auf einem anderen Rechner im Bootcamp?"
+    Wenn dein Laptop kein Node.js installiert hat oder die API auf einem geteilten Schulungs-Laptop läuft,
+    kann der Trainer die API auch zentral deployen. Die URL bekommst du dann vom Trainer und setzt sie einmalig in `API_BASE` ein. Der Rest deines Codes bleibt gleich.
 
 ## Schritt 2: Admin-Seite einbauen
 

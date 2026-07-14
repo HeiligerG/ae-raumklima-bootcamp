@@ -22,12 +22,13 @@ Du bist Coach, nicht Dozent. Dein Ziel: Die Lernenden bauen ihre App selbst.
 
 ## Worauf achten?
 
-### Technisch
+### Technisch (am Tag 1)
 
-- [ ] Läuft Live Server bei allen?
-- [ ] Ist Git installiert und funktioniert es?
-- [ ] Können alle pushen und pullen?
-- [ ] Haben alle ein Repository?
+- [ ] VS Code + Live Server läuft bei allen
+- [ ] Git ist installiert
+- [ ] **Beide Repositories sind geklont** (`ae-raumklima-bootcamp` + `ae-raumklima-bootcamp-codebase`)
+- [ ] Lernende können Commits machen und pushen
+- [ ] (ab Tag 3) Node.js ist installiert und die Mock-API startet auf `localhost:3000`
 
 ### Lernfortschritt
 
@@ -50,6 +51,7 @@ Du bist Coach, nicht Dozent. Dein Ziel: Die Lernenden bauen ihre App selbst.
 | Live Server läuft nicht | VS Code neu starten, Extension prüfen |
 | Git-Konflikte | Gemeinsam im Team lösen, erklären warum |
 | `fetch()` funktioniert nicht | Pfad prüfen, Live Server muss laufen |
+| Mock-API liefert keine Daten | Prüfen ob `npm start` im zweiten Terminal läuft → <http://localhost:3000> im Browser öffnen |
 | JSON-Syntax-Fehler | JSON-Validator zeigen, Komma am Ende |
 | CSS wird nicht angewendet | Pfad prüfen, Browser-Cache leeren (Ctrl+Shift+R) |
 | Verzweiflung / Aufgeben | Kleine Erfolge feiern, Aufgabe aufteilen |
@@ -70,9 +72,16 @@ Du bist Coach, nicht Dozent. Dein Ziel: Die Lernenden bauen ihre App selbst.
 
 ### ...die API nicht funktioniert?
 
-- Mock-Daten sind immer der Fallback
-- Keine Panik – die App funktioniert auch ohne
-- Allen Teams erklären: Mock first, API nice-to-have
+- Lernende-App hat immer `data.json` als Fallback eingebaut
+- Bei API-Problemen: `USE_API = false` in `script.js` setzen (z. B. wenn Node.js auf einem Laptop nicht läuft)
+- Allen Teams erklären: Backend ist ideal, Mock-Daten funktionieren genauso
+- Wenn die API gar nicht startet: `http://localhost:3000` im Browser öffnen → Fehlermeldung lesen
+
+### ...Node.js nicht installiert ist?
+
+- Lernende installieren LTS-Version von <https://nodejs.org> (5 Min, «weiter, weiter, installieren»)
+- Alternativ die Mock-API per `docker compose up -d` aus dem Codebase-Repo starten (falls Docker verfügbar)
+- Im Notfall: Lernende zeigen, wie `data.json` direkt funktioniert (vorübergehender API-Verzicht)
 
 ### ...Lernende stark unterschiedlich schnell sind?
 
