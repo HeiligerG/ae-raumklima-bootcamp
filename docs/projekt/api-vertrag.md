@@ -51,6 +51,35 @@ GET /api/v1/rooms/{roomId}/measurements?limit=10
 ]
 ```
 
+## Endpunkt: Sensor-Daten senden (Plattform-Team / ESP)
+
+```
+POST /api/v1/ingest
+```
+
+Wird vom **Plattform-Team** (ESP-Firmware) aufgerufen, **nicht** von der Lernenden-App. Authentifizierung per Header `X-API-Key`. Vollständige Doku: [Ingest-Vertrag](ingest-vertrag.md).
+
+### Request
+
+```json
+{
+  "room": "B101",
+  "temperature": 22.5,
+  "humidity": 52,
+  "timestamp": "2026-07-14T12:00:00Z"
+}
+```
+
+### Response
+
+```
+201 Created
+```
+
+```json
+{ "status": "accepted", "room": "B101", "timestamp": "2026-07-14T12:00:00Z" }
+```
+
 ## Endpunkt: Räume
 
 ```

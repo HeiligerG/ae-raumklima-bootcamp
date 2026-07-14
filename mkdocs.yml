@@ -89,10 +89,12 @@ nav:
       - "Git Basics": start/git-basics.md
   - Projekt:
       - projekt/ueberblick.md
+      - "Architektur": projekt/architektur.md
       - "Backlog": projekt/backlog.md
       - "Definition of Done": projekt/definition-of-done.md
       - "Mockdaten": projekt/mockdaten.md
       - "API-Vertrag": projekt/api-vertrag.md
+      - "Ingest-Vertrag (Plattform-Team)": projekt/ingest-vertrag.md
       - "Demo-Checkliste": projekt/demo-checkliste.md
   - "Tag 1 – 06.08":
       - tag-1/index.md
