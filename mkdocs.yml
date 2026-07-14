@@ -111,7 +111,7 @@ nav:
   - "Tag 3 – 10.08":
       - tag-3/index.md
       - "Retro": tag-3/retro.md
-      - "Schnittstellen klären": tag-3/schnittstellen.md
+      - "Projekt: Verlaufsliste": tag-3/projekt-verlaufsliste.md
       - "Projekt: Integration": tag-3/integration.md
       - "Checkpoint": tag-3/checkpoint.md
   - "Tag 4 – 11.08":

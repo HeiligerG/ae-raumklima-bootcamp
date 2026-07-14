@@ -35,16 +35,19 @@
 ### Vor dem Start
 - [ ] Mock-Daten geprüft
 - [ ] (Optional) Mock-API für die Schnellen vorbereitet – läuft auf `localhost:3000`
+- [ ] **Raum für die Joint-Session mit PE um 13:00 vorbereiten** (Beamer, Sitzordnung, beide Teams an einem Ort)
 
 ### Während des Tages
 - Theorie (08:15): JSON erklären, `fetch()` live demonstrieren
 - Übung (09:00): Bei fetch()-Fehlern helfen
 - Projekt (10:15): Statuslogik erklären, nicht vorkauen
+- **Joint-Session 13:00–15:00 moderieren**: AE-Vertreter + PE-Vertreter klären den Schnittstellen-Vertrag. Trainer coacht, schreibt die finalen Werte mit (URL, Felder, Auth).
 
 ### Worauf achten?
 - Versteht jeder den Unterschied synchron/asynchron?
 - `catch` für Fehlerfall eingebaut?
-- Verlauf wird dynamisch gerendert?
+- **Ist die Schnittstelle spätestens um 15:00 final schriftlich festgehalten?** (Foto vom Flipchart oder Update von `ingest-vertrag.md`)
+- Verlaufsliste wird bewusst NICHT an Tag 2 gebaut (Verschiebung auf Tag 3 morgens)
 
 ## Tag 3 – Integration
 
@@ -53,34 +56,39 @@
 - [ ] **Node.js ist bei allen installiert** (vorher an Tag-2-Abend ankündigen)
 - [ ] Mock-API läuft auf deinem Laptop vorzeigebereit (z. B. am Beamer)
 - [ ] (Optional) Docker-Variante mit MySQL + PHPMyAdmin vorbereitet für die Demo-Show
+- [ ] **Schnittstellen-Vertrag vom Vortag nochmal kurz wiederholen** (was wurde Tag 2 festgelegt?)
 
 ### Während des Tages
+- Daily (08:00): Stand-up
 - Retro (08:15): Teams zuweisen, Zeit tracken, Feedback-Regeln erklären
-- Schnittstellen (09:30): Fallback-Strategie erklären, **zweites Terminal** für die API demonstrieren
-- Projekt (10:30): Integrationsprobleme lösen helfen
+- **Projekt Verlaufsliste (09:00–10:00)**: kurze Coach-Session, Code aus Tag-2-Anleitung übernehmen
+- **Joint-Session 13:00–15:00 moderieren**: AE testet App gegen API (oder Mock-Fallback), PE pusht ESP → Backend. Live-Verifikation des Vertrags. Trainer geht zwischen den Setups hin und her.
 
 ### Worauf achten?
 - Retro läuft konstruktiv?
-- Fallback funktioniert bei allen (API aus, App läuft trotzdem)?
-- Erste Demo-Skizzen existieren?
-- **Läuft die API bei allen in einem zweiten Terminal?** (Platz für zwei Terminals einplanen)
+- Verlaufsliste wird bei allen gebaut (das war's, was an Tag 2 fehlte)
+- **Läuft die Integration am Ende des Slots bei mindestens 1 Team live?** Wenn nicht: Fallback-Strategie (USE_API=false) als Plan B
+- Läuft die API bei allen in einem zweiten Terminal? (Platz für zwei Terminals einplanen)
 
 ## Tag 4 – Finish & Demo
 
 ### Vor dem Start
-- [ ] Demo-Zeitplan erstellt
+- [ ] Demo-Zeitplan erstellt (welches Team wann, PE- und AE-Slots gemischt)
 - [ ] Beamer für abends prüfen
+- [ ] **Mit PE-Trainer koordinieren**: gemeinsame Demo-Show um 16:30, wer moderiert?
 
 ### Während des Tages
 - Pflichtumfang (08:15): DoD-Checkliste durchgehen lassen
+- **Wenn um 12:00 noch Bugs offen: Bugfix-Phase hat Vorrang vor Optional-Block** (lieber eine App ohne Features, die sauber läuft)
 - Testen (10:15): Testfälle vorgeben, Konsole prüfen lassen
 - Optional (13:00): Nur wenn Pflicht fertig
-- Demo (14:45): Probe-Demo coachieren, Zeit nehmen
+- Demo (14:30): Probe-Demo coachieren, Zeit nehmen (max. 30 min für alle)
 
-### Abend-Demo (16:30)
-- Teams vorstellen lassen
+### Abend-Demo (16:30, gemeinsam mit PE)
+- Teams vorstellen lassen (Reihenfolge vorher mit PE-Trainer festlegen)
 - Positives Feedback geben
 - Fragen stellen («Wie habt ihr das gelöst?»)
+- **Optional: Sensor-Demo zeigen**, wenn die PE-Integration live ist (fasziniert das Publikum)
 
 ## Tag 5 – Abschluss
 

@@ -1,8 +1,11 @@
-# Projekt: Integration
+# Projekt: Integration (Joint-Session mit PE-Team)
 
 ## :material-target: Aufgabe
 
-Integriere deine App mit der gewählten Datenquelle und bereite die Demo vor.
+Integriere deine App mit dem Backend und teste sie **live** mit dem PE-Team. Diese Session läuft gemeinsam mit den Plattformentwicklern, die parallel ihre Sensoren testen.
+
+!!! info "Diese Session ist der entscheidende Integrationstest"
+    Was du am Tag 2 im Schnittstellen-Vertrag festgelegt hast, wird jetzt live validiert. Wenn etwas nicht passt, ist das der richtige Moment, es zu finden – nicht erst bei der Demo.
 
 ## Schritt 1: Fallback-Strategie implementieren
 

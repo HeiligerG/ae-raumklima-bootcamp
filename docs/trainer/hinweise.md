@@ -83,6 +83,13 @@ Du bist Coach, nicht Dozent. Dein Ziel: Die Lernenden bauen ihre App selbst.
 - Alternativ die Mock-API per `docker compose up -d` aus dem Codebase-Repo starten (falls Docker verfügbar)
 - Im Notfall: Lernende zeigen, wie `data.json` direkt funktioniert (vorübergehender API-Verzicht)
 
+### ...das PE-Team an Tag 2/3 nicht erscheint (Krankheit, Verzögerung)?
+
+- **Tag 2 Nachmittag**: Schnittstellen selbst anhand der `ingest-vertrag.md` definieren, PE holt später auf
+- **Tag 3 Nachmittag**: AE-only Integration mit Mock-Daten, Demo mit Mock-Fallback
+- **Im Notfall**: Sensor-Anbindung als «geplant für nächste Woche» in der Demo erwähnen, nicht als Bug framet
+- Die App selbst ist vollständig funktional ohne echte Sensoren
+
 ### ...Lernende stark unterschiedlich schnell sind?
 
 - Schnelle Teams: optionale Features, Peer-Teaching
