@@ -46,8 +46,12 @@
     - Status anzeigen (Tag 2)
     - Admin-Seite weglassen
     - Verlauf stark vereinfachen (nur 3 Einträge)
-2. Zusätzliches Coaching (Trainer setzt sich 20 Min. dazu)
-3. Code-Qualität nicht erzwingen – Hauptsache es funktioniert
+2. **Optional-Block an Tag 4 streichen**, stattdessen weiter am Pflichtumfang arbeiten
+3. Zusätzliches Coaching (Trainer setzt sich 20 Min. dazu)
+4. Code-Qualität nicht erzwingen – Hauptsache es funktioniert
+
+!!! warning "Bugfix-Phase hat Vorrang vor Optional-Block"
+    Wenn am Tag 4 um 12:00 (Ende Testen) noch offene Bugs in der Pflicht bestehen, wird der **Optional-Block gestrichen** und die Bugfix-Zeit verlängert. Lieber eine App ohne Charts/Dark-Mode, die im Demo nicht crasht, als eine App mit allem, die bei der Präsentation versagt. Die 30-min Demo-Vorbereitung um 14:30 ist nicht verhandelbar.
 
 ### Szenario 4: Team ist zu schnell fertig
 
@@ -64,6 +68,13 @@
 2. **Vorbeugen**: Jedes Team läuft 2× Probe-Demo
 3. Wenn doch: Trainer moderiert («zeigt uns einfach den Code»)
 4. Positiv bleiben: Beim nächsten Mal klappt's
+
+### Szenario 6: PE-Integration an Tag 3 funktioniert nicht
+
+1. AE-Lernende zeigen App gegen Mock-Fallback (`USE_API = false`) – Demo-tauglich
+2. PE-Team zeigt ESP + Sensor-Aufbau separat, ggf. mit Hard-Copy der Messwerte in PHPMyAdmin
+3. **Niemand muss «die eine Live-Integration» zeigen** – das ist ein Bonus, nicht die Pflicht
+4. Nach der Woche in Ruhe die echte Integration fertigstellen (ausserhalb Bootcamp-Scope)
 
 ## Kommunikation
 
