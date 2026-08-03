@@ -1,261 +1,142 @@
 # Projekt: Dashboard Grundlayout
 
+!!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
+    Diese Aufgabe gibt dir **Anforderungen und ein Skelett**, aber nicht den fertigen Code. Du baust das CSS selbst, wählst Farben und entscheidest über das Layout. Der Lerngewinn liegt im Ausprobieren, nicht im Abschreiben.
+
+    Wenn du nach 20 Minuten nicht weiterkommst, schau in
+    [`loesungen/tag-1/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-1/) –
+    aber bitte erst **nach** dem Versuch.
+
 ## :material-target: Aufgabe
 
-Erstelle das Grundlayout für das Raumklima-Dashboard deiner echten Projekt-App.
+Erstelle das Grundlayout für dein Raumklima-Dashboard. Es hat eine
+Kopfzeile, eine Sensorkarte (Name, Temperatur, Feuchte, Status) und
+einen leeren Bereich für den Verlauf (kommt Tag 2). Die Karte soll
+auf Desktop und Handy gut aussehen.
 
-## Anforderungen
+## :material-book-open-outline: Anforderungen
 
-Dein Dashboard soll enthalten:
+- [ ] Es gibt eine sichtbare Kopfzeile mit dem Titel "Raumklima Monitor"
+- [ ] Eine Karte zeigt vier Werte:
+    - Sensor-Name (z. B. "Sensor SN12345")
+    - Temperatur in Grad Celsius
+    - Luftfeuchtigkeit in Prozent
+    - Status (gut / kritisch / schlecht)
+- [ ] Es gibt einen leeren Bereich für den Verlauf mit dem
+      Platzhalter-Text "Lade Daten..."
+- [ ] Der Status hat eine **sichtbare Farbe** (gut = grünlich,
+      kritisch = orange, schlecht = rot – genaue Töne wählst du)
+- [ ] Eine Fusszeile mit Copyright-Hinweis
+- [ ] Das Layout funktioniert auf 600 px Bildschirmbreite (Werte
+      passen sich an, nichts wird abgeschnitten)
+- [ ] Code ist committed und auf einen eigenen Feature-Branch gepusht
+      (siehe `CODE_OF_CONDUCT.md`)
 
-1. Eine Kopfzeile mit dem Titel «Raumklima Monitor»
-2. Eine Karte mit:
-    - Raumname
-    - Temperatur (noch statisch)
-    - Luftfeuchtigkeit (noch statisch)
-    - Status-Anzeige (noch statisch)
-3. Einen Bereich für die Verlaufsliste (erstmal leer oder mit Platzhalter)
+## :material-hammer-wrench: Skelett (das musst du anlegen)
 
-## Schritt für Schritt
+Drei Dateien in `app/`: `index.html`, `style.css`, `script.js` (leer).
 
-### 1. Projektdateien anlegen
+### `index.html`
 
-Erstelle im `app/`-Ordner des Codebase-Repositories (`ae-raumklima-bootcamp-codebase/app/`):
+Die HTML muss diese **fünf IDs** enthalten – Tag 2 wird sie per
+JavaScript befüllen, also müssen sie exakt so heissen:
 
-- `index.html`
-- `style.css`
-- `script.js` (leer, kommt morgen)
+| ID | Wofür |
+|---|---|
+| `#serial-number` | Sensor-Name in der Karte |
+| `#temp-c` | Temperatur in °C |
+| `#hum-pct` | Luftfeuchtigkeit in % |
+| `#status` | Status-Badge (gut / kritisch / schlecht) |
+| `#history-list` | Container für die Verlaufsliste (Tag 2) |
 
-### 2. HTML-Grundstruktur
+Die HTML-Struktur braucht ausserdem diese **drei CSS-Klassen** am
+Status-Element, damit die Farben sichtbar werden:
 
-```html
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raumklima Monitor</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Raumklima Monitor</h1>
-    </header>
+- `class="status"` (Basis-Styling)
+- `class="status gut"` (guter Status, grün)
+- `class="status kritisch"` (kritisch, orange)
+- `class="status schlecht"` (schlecht, rot)
 
-    <main>
-        <section class="dashboard">
-            <!-- Sensor-Karte -->
-            <div class="card">
-                <h2 id="serial-number">Sensor SN12345</h2>
-                <div class="values">
-                    <div class="value-item">
-                        <span class="label">Temperatur</span>
-                        <span class="number" id="temp-c">23.4 °C</span>
-                    </div>
-                    <div class="value-item">
-                        <span class="label">Luftfeuchtigkeit</span>
-                        <span class="number" id="hum-pct">51 %</span>
-                    </div>
-                </div>
-                <div class="status gut" id="status">Gut</div>
-            </div>
+### `style.css`
 
-            <!-- Verlauf -->
-            <section class="history">
-                <h3>Verlauf</h3>
-                <p class="placeholder">Die Verlaufsliste wird morgen gebaut.</p>
-            </section>
-        </section>
-    </main>
+Du brauchst **kein vollständiges CSS-Framework** – nur diese
+Selektoren (Werte wählst du selbst):
 
-    <footer>
-        <p>Raumklima Bootcamp &copy; 2026</p>
-    </footer>
+- `body` (Hintergrund, Schriftart, Layout)
+- `header` (Hintergrundfarbe, Innenabstand, Schriftfarbe)
+- `.card` (weisser Hintergrund, runde Ecken, leichter Schatten)
+- `.values` (zwei Werte nebeneinander; auf Mobile untereinander)
+- `.value-item` (einzelner Wert)
+- `.label` (Beschriftung über dem Wert, klein und grau)
+- `.number` (grosser Wert)
+- `.status` (Basis-Styling für die Status-Pille)
+- `.status.gut`, `.status.kritisch`, `.status.schlecht` (Farben)
+- `.history` (Container für die Verlaufsliste)
+- `footer` (Hintergrund wie header, kleinerer Text)
+- `@media (max-width: 600px)` (Mobile-Anpassung)
 
-    <script src="script.js"></script>
-</body>
-</html>
-```
+### `script.js`
 
-### 3. CSS-Styling
+Leer anlegen – wird ab Tag 2 befüllt. Die Datei muss existieren und
+in der HTML eingebunden sein (`<script src="script.js"></script>`
+**vor** `</body>`).
 
-```css
-/* Grundlayout */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+## :material-lightbulb-on: Hinweise (verbal, kein Code)
 
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f5f7f7;
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+### Layout
 
-header {
-    background: #00695c;
-    color: white;
-    padding: 16px 24px;
-}
+- Eine "Karte" ist im Webdesign ein weisser Block mit etwas
+  Innenabstand (`padding`), abgerundeten Ecken (`border-radius`) und
+  oft einem dezenten Schatten (`box-shadow`).
+- Für die Kopf-zu-Fuss-Struktur eignet sich `display: flex` mit
+  `flex-direction: column` und `min-height: 100vh`. Der `<main>`
+  bekommt `flex: 1`, damit er den verbleibenden Platz füllt.
+- Zwei Werte nebeneinander → `display: grid` mit
+  `grid-template-columns: 1fr 1fr`.
+- **Mobile:** innerhalb von `@media (max-width: 600px)` das
+  Grid auf eine Spalte reduzieren.
 
-header h1 {
-    font-size: 22px;
-}
+### Farben
 
-main {
-    flex: 1;
-    padding: 24px;
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
-}
+- Teal (`#00695c`) eignet sich als Hauptfarbe, weil es ruhig und
+  seriös wirkt. Alternativ: ein dunkleres Blau oder Anthrazit.
+- Status-Farben müssen nicht perfekt sein – Hauptsache **semantisch
+  unterscheidbar**: grünlich, orange, rot. Beispiele:
+  - `gut`: Hintergrund `#e8f5e9`, Schrift `#2e7d32`
+  - `kritisch`: Hintergrund `#fff3e0`, Schrift `#e65100`
+  - `schlecht`: Hintergrund `#ffebee`, Schrift `#c62828`
+- Die Status-Pille bekommt `border-radius` und etwas
+  Innenabstand, damit sie wie ein Badge aussieht.
 
-/* Karte */
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    margin-bottom: 24px;
-}
+### Responsives Design
 
-.card h2 {
-    color: #00695c;
-    margin-bottom: 16px;
-    font-size: 20px;
-    border-bottom: 2px solid #e0f2f1;
-    padding-bottom: 8px;
-}
+- Teste im Browser, indem du das Fenster auf 600 px Breite
+  ziehst.
+- Falls Elemente abgeschnitten werden: `padding` reduzieren oder
+  `box-sizing: border-box` global setzen (`* { box-sizing:
+  border-box; }`).
+- Schriftgrössen nicht in `px`, sondern besser in `rem`, dann
+  passen sie sich an die Browser-Einstellung an. Für den Anfang
+  reicht aber `px`.
 
-.values {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-}
+## :material-check-all: Definition of Done (Selbst-Check)
 
-.value-item {
-    background: #f8fafa;
-    padding: 16px;
-    border-radius: 8px;
-    text-align: center;
-}
+- [ ] Alle 7 Anforderungen erfüllt
+- [ ] IDs und Klassen wie oben spezifiziert vorhanden
+- [ ] Konsole (F12) zeigt keine roten Fehler
+- [ ] Git-Commit und Push auf eigenen Feature-Branch
+- [ ] Commit-Message beschreibt, was du gebaut hast
 
-.label {
-    display: block;
-    font-size: 13px;
-    color: #777;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+## :material-help: Wenn du nicht weiterkommst
 
-.number {
-    display: block;
-    font-size: 28px;
-    font-weight: bold;
-    color: #333;
-}
+Nach 20 Min ohne nennenswerten Fortschritt:
 
-/* Status */
-.status {
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-weight: bold;
-    text-align: center;
-    font-size: 16px;
-}
+1. Schau in [`loesungen/tag-1/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-1/) für die Referenz-Implementierung
+2. **Verstehe zuerst**, was die Referenz anders macht als dein Ansatz
+3. **Schliesse das Browser-Tab der Referenz** und baue deine Version fertig
 
-.gut {
-    background: #e8f5e9;
-    color: #2e7d32;
-    border: 1px solid #c8e6c9;
-}
-
-.kritisch {
-    background: #fff3e0;
-    color: #e65100;
-    border: 1px solid #ffe0b2;
-}
-
-.schlecht {
-    background: #ffebee;
-    color: #c62828;
-    border: 1px solid #ffcdd2;
-}
-
-/* Verlauf */
-.history {
-    background: white;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.history h3 {
-    color: #00695c;
-    margin-bottom: 12px;
-}
-
-.placeholder {
-    color: #999;
-    font-style: italic;
-}
-
-/* Footer */
-footer {
-    background: #00695c;
-    color: rgba(255,255,255,0.7);
-    text-align: center;
-    padding: 12px;
-    font-size: 13px;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-    .values {
-        grid-template-columns: 1fr;
-    }
-}
-```
-
-### 4. Testen
-
-- Live Server starten
-- Seite im Browser öffnen
-- Prüfen: Sieht es gut aus?
-- Fenster verkleinern: Responsive?
-
-### 5. Committen
-
-```bash
-git add .
-git commit -m "Projekt: Dashboard Grundlayout erstellt"
-git push
-```
-
-## Tipps
-
-!!! tip "Farben"
-    Nutze die Teal-Farbfamilie (`#00695c`) für ein ruhiges, professionelles Design.
-
-!!! tip "CSS-Klassen vorbereiten"
-    Du hast jetzt schon `.gut`, `.kritisch` und `.schlecht` definiert.  
-    Morgen schaltest du diese Klassen per JavaScript um.
-
-## :material-check-all: Projekt-Checkliste Tag 1
-
-- [ ] `index.html` mit sauberem HTML erstellt
-- [ ] `style.css` mit allen Status-Farben erstellt
-- [ ] Dashboard zeigt Raumname, Temperatur und Luftfeuchtigkeit
-- [ ] Status-Bereich ist sichtbar (noch statisch)
-- [ ] Verlaufsbereich ist vorbereitet
-- [ ] Die Seite ist responsive (passt sich dem Fenster an)
-- [ ] Code ist committed und gepusht
+Die `loesungen/`-Seiten sind **nicht** Teil des Lernflusses und werden
+in der Navigation nicht prominent verlinkt.
 
 ## Nächster Schritt
 

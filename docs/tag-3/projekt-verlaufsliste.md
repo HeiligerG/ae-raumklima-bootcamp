@@ -1,159 +1,106 @@
 # Projekt: Verlaufsliste
 
+!!! info "Hinweis"
+    Die Verlaufsliste wurde von Tag 2 hierher verschoben, damit der
+    Tag-2-Nachmittag für die Datenvertrag-Diskussion mit dem PE-Team
+    frei bleibt. Wenn du Tag 2 sauber abgeschlossen hast, ist die
+    Verlaufsliste eigentlich schon fertig – kontrolliere kurz die
+    Checkliste am Ende dieser Seite.
+
+!!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
+    Diese Aufgabe gibt dir **Anforderungen und ein Skelett**. Wie
+    genau du die Liste renderst, ist deine Entscheidung. Wenn du nach
+    20 Min nicht weiterkommst: [`loesungen/tag-3/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-3/).
+
 ## :material-target: Aufgabe
 
-Erweitere dein Dashboard um eine **Verlaufsliste** der letzten Messungen. Die Push-Bundles aus der API oder dem Seed liefern bereits alles Nötige; du musst sie nur im HTML rendern.
+Stelle sicher, dass dein Dashboard die letzten Messungen in einer
+**Verlaufsliste** anzeigt. Die Daten kommen bereits aus
+`data.json` (Tag 2) oder von der SuvaSense-API (Tag 3). Du musst
+sie nur im HTML darstellen.
 
-Diese Aufgabe war ursprünglich Teil von Tag 2, ist aber auf **Tag 3 morgens** verschoben, damit der Tag-2-Nachmittag für die Datenvertrag-Klärung mit dem PE-Team frei bleibt.
+## :material-book-open-outline: Anforderungen
 
-## Voraussetzungen
+- [ ] Es gibt einen Container `<div class="history-list" id="history-list">` im `<main>`-Bereich
+- [ ] Pro Push-Bundle wird ein `<div class="history-item">` erzeugt
+- [ ] Jedes Item zeigt: Zeit (hh:mm), Temperatur (°C), Feuchte (%),
+      Status-Pille (mit der richtigen Farbe)
+- [ ] Maximal 10 Items werden angezeigt, neueste zuerst
+- [ ] Push-Bundles ohne `bme680` werden **übersprungen** (defensiv)
+- [ ] Bei API- oder Fetch-Fehler ist die Liste leer (kein Crash)
 
-- Tag 2 abgeschlossen: deine App lädt bereits einen einzelnen Push-Bundle per `fetch()`
-- Du hast Zugriff auf den Code aus [Tag 2 Projekt: Statuslogik](../tag-2/projekt-statuslogik-verlauf.md) (Schritte 4–6 enthalten den Verlaufslisten-Code als Vorlage)
+## :material-hammer-wrench: Skelett
 
-## Schritt 1: HTML-Container vorbereiten
+### Funktion
 
-Stelle sicher, dass du in `index.html` einen Container für die Verlaufsliste hast. Falls noch nicht vorhanden, füge ihn im `<main>`-Bereich ein:
-
-```html
-<section class="history">
-    <h3>Verlauf der letzten Messungen</h3>
-    <div class="history-list" id="history-list">
-        <p class="placeholder">Lade Daten...</p>
-    </div>
-</section>
+```text
+renderHistory(bundles)  // bundles: Array von Push-Bundles
 ```
 
-## Schritt 2: Verlaufsdaten laden
+### Ablauf in eigenen Worten
 
-Erweitere deine `loadDashboard()`-Funktion so, dass sie zusätzlich zum aktuellen Push-Bundle auch den Verlauf lädt:
+1. Hole dir das DOM-Element `#history-list`
+2. Leere seinen Inhalt (`innerHTML = ''`)
+3. Für jeden Bundle im Array:
+    a. Hole `bundle.readings.bme680` – falls fehlt, **überspringen**
+    b. Erstelle ein neues `<div>` mit `className = 'history-item'`
+    c. Setze den innerHTML mit Zeit, Werten und Status-Pille
+    d. Hänge es an die Liste an
+4. Die ersten 10 Items anzeigen (Rest ignorieren)
 
-```javascript
-async function loadDashboard() {
-  try {
-    // Aktuellster Push-Bundle
-    const latest = await getLatestBundle(currentSerial);
-    const bme = latest.readings.bme680;
+### Benötigte CSS-Selektoren
 
-    document.getElementById('serial-number').textContent = currentSerial;
-    document.getElementById('temp-c').textContent        = bme.temp_c + ' °C';
-    document.getElementById('hum-pct').textContent       = bme.hum_pct + ' %';
+(Stehen bereits in `style.css` aus Tag 2 – kontrolliere, ob sie da sind)
 
-    const status = getStatus(bme.temp_c, bme.hum_pct);
-    const statusEl = document.getElementById('status');
-    statusEl.textContent = getStatusText(status);
-    statusEl.className   = 'status ' + status;
+- `.history-list`
+- `.history-item`
+- `.history-time`, `.history-temp`, `.history-hum`
+- `.history-status`
+- `.history-status.gut`, `.history-status.kritisch`,
+  `.history-status.schlecht`
 
-    // Verlauf (max. 10 neueste Push-Bundles)
-    const bundles = await getBundles(currentSerial, 10);
-    renderHistory(bundles);
+## :material-lightbulb-on: Hinweise (verbal, kein Code)
 
-  } catch (error) {
-    showError();
-    console.error(error);
-  }
-}
-```
+### Zeitformat
 
-## Schritt 3: Verlaufsliste rendern
+`bundle.recorded_at` ist ISO-8601 (z. B. `"2026-08-06T10:30:00Z"`).
+Mit `new Date(string).toLocaleTimeString('de-CH', { hour: '2-digit',
+minute: '2-digit' })` bekommst du ein hübsches 24-h-Format.
 
-```javascript
-function renderHistory(bundles) {
-  const list = document.getElementById('history-list');
-  list.innerHTML = '';
+### Status-Pille pro Eintrag
 
-  bundles.forEach(bundle => {
-    const bme = bundle.readings.bme680;
-    if (!bme) return;                                  // BME680 nicht in diesem Bundle
+Für jeden Verlaufs-Eintrag berechnest du den Status **frisch** aus
+dessen `temp_c` und `hum_pct`. Die Schwellwerte sind dieselben wie
+im Dashboard oben. Ein Eintrag kann also z. B. "kritisch" sein,
+während das Dashboard "gut" zeigt – das ist realistisch.
 
-    const item = document.createElement('div');
-    item.className = 'history-item';
+### Reihenfolge
 
-    const status = getStatus(bme.temp_c, bme.hum_pct);
-    const time = new Date(bundle.recorded_at).toLocaleTimeString('de-CH', {
-      hour: '2-digit', minute: '2-digit'
-    });
+Das Array ist bereits **neueste zuerst** sortiert. Du brauchst
+kein `sort()` – nur `slice(0, 10)` oder eine `forEach` mit
+Counter.
 
-    item.innerHTML = `
-      <span class="history-time">${time}</span>
-      <span class="history-temp">${bme.temp_c}°C</span>
-      <span class="history-hum">${bme.hum_pct}%</span>
-      <span class="history-status ${status}">${getStatusText(status)}</span>
-    `;
+### Defensive Programmierung
 
-    list.appendChild(item);
-  });
-}
-```
+`if (!bme) return;` innerhalb der Schleife. Falls ein Bundle
+kein BME680 enthält (z. B. weil der Sensor dafür defekt ist),
+wird es sauber übersprungen statt dass die App crasht.
 
-## Schritt 4: CSS für die Verlaufsliste
+## :material-check-all: Definition of Done (Selbst-Check)
 
-```css
-.history-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.history-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 10px 12px;
-  background: #fafafa;
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-.history-time  { color: #999;  font-size: 13px; min-width: 50px; }
-.history-temp  { font-weight: bold; min-width: 50px; }
-.history-hum   { color: #666; min-width: 40px; }
-
-.history-status {
-  margin-left: auto;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.history-status.gut       { background: #e8f5e9; color: #2e7d32; }
-.history-status.kritisch  { background: #fff3e0; color: #e65100; }
-.history-status.schlecht  { background: #ffebee; color: #c62828; }
-```
-
-## Schritt 5: Testen
-
-1. Live Server läuft, Snapshot-Fallback funktioniert (Browser-DevTools zeigen `localStorage`)
-2. Seite öffnen – die Verlaufsliste zeigt 10 Einträge
-3. Im `mosquitto_pub` einen neuen Wert publishen → nach App-Refresh sichtbar
-4. `data.json` umbenennen + API-Snapshot löschen → App fällt auf nichts zurück, Fehlermeldung
-5. Snapshot zurückspielen (`localStorage.setItem('snapshot:SN12345', JSON.stringify([…]))`) → App zeigt wieder Werte
-
-## :material-check-all: Projekt-Checkliste Tag 3 (Vormittag)
-
-- [ ] HTML-Container `#history-list` existiert
-- [ ] `renderHistory()` wird aufgerufen
+- [ ] Alle 6 Anforderungen erfüllt
+- [ ] Konsole (F12) zeigt keine roten Fehler
 - [ ] Liste zeigt mindestens 5 Einträge
-- [ ] Statusfarbe pro Eintrag korrekt
 - [ ] Bei API-Fehler wird die Liste leer angezeigt (kein Crash)
 - [ ] Code ist committed und gepusht
 
 ## Optional: weitere Sensortypen anzeigen
 
-Wenn das Backend `veml7700` oder `system` mitliefert, kannst du sie in der Verlaufsliste oder im Dashboard anzeigen:
-
-```javascript
-if (latest.readings.veml7700) {
-  // z. B. "Lux: 245", "White: 199"
-}
-if (latest.readings.system) {
-  // z. B. "CPU: 42°C", "RSSI: -55 dBm"
-}
-```
-
-Welche Sensortypen vorhanden sind, hängt davon ab, was das PE-Team am ESP angeschlossen hat. Die Anzeige ist optional.
+Falls die Mock-API `extras` liefert (z. B. CO2, Licht), kannst du
+diese in der Verlaufsliste oder im Dashboard anzeigen. **Erst
+nachdem** der Pflichtumfang läuft.
 
 ## Nächster Schritt
 
-[Projekt: Integration (mit PE-Team)](integration.md) – ab 13:00 Uhr.
+[Projekt: Integration (mit PE-Team)](integration.md) – ab 13:00 Uhr, dort
+wird die Snapshot-Fallback-Strategie implementiert.

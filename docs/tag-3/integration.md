@@ -1,91 +1,84 @@
 # Projekt: Integration (Joint-Session mit PE-Team)
 
+!!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
+    Diese Aufgabe gibt dir das **Skelett** der Snapshot-Strategie,
+    aber nicht die komplette Implementierung. Die Reihenfolge der
+    Fallbacks (API → localStorage → Seed) und das Fehler-Handling
+    baust du selbst. Wenn du nach 20 Min nicht weiterkommst:
+    [`loesungen/tag-3/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-3/).
+
 ## :material-target: Aufgabe
 
-Integriere deine App mit dem **SuvaSense-Backend** und teste sie **live** mit dem PE-Team. Diese Session läuft gemeinsam mit den Plattformentwicklern, die parallel ihre Sensoren testen.
+Integriere deine App mit dem **SuvaSense-Backend** und sorge dafür,
+dass sie auch dann funktioniert, wenn das Backend nicht erreichbar
+ist. Das ist die **Snapshot-Fallback-Strategie**.
 
-!!! info "Diese Session ist der entscheidende Integrationstest"
-    Was du am Tag 2 im Datenvertrag festgelegt hast, wird jetzt live validiert. Wenn etwas nicht passt, ist das der richtige Moment, es zu finden – nicht erst bei der Demo.
+## :material-book-open-outline: Anforderungen
 
-## Schritt 1: Snapshot-Fallback implementieren
+- [ ] Deine App versucht **zuerst** die SuvaSense-API
+      (`GET /api/v1/sensors/{serial}/readings?page=1&page_size=10`)
+- [ ] Bei Erfolg: die Daten werden im `localStorage` unter
+      `snapshot:{serial}` gespeichert
+- [ ] Bei API-Fehler: die App greift auf den Snapshot zurück
+- [ ] Falls auch kein Snapshot existiert: `data.json` als
+      Initial-Seed
+- [ ] Im Admin-Panel kann der Nutzer den Sensor wechseln
+- [ ] Bei Sensor-Wechsel werden die **richtigen** Bundles
+      angezeigt (nicht die vom alten Sensor)
 
-Die App versucht in dieser Reihenfolge Daten zu holen:
+## :material-hammer-wrench: Skelett
 
-1. **Live:** `GET /api/v1/sensors/{serial}/readings?page=1&page_size=10`
-2. **Snapshot:** `localStorage.getItem('snapshot:' + serial)` (vom letzten Live-Erfolg)
-3. **Seed:** `fetch('data.json')` (Initial-Wert)
+### Konfiguration (oben in `script.js`)
 
 ```javascript
-// script.js – am Anfang der Datei
 const API_BASE = 'http://<vom-trainer-bekanntgegeben>:8080/api/v1';
-let currentSerial = 'SN12345'; // Demo-Seriennummer vom Trainer
+let currentSerial = 'SN12345';   // Demo-Seriennummer vom Trainer
 
 function snapshotKey(serial) { return `snapshot:${serial}`; }
-
-async function getBundles(serial, limit = 10) {
-  // 1. Versuch: Live-API
-  try {
-    const response = await fetch(`${API_BASE}/sensors/${serial}/readings?page=1&page_size=${limit}`);
-    if (!response.ok) throw new Error(`API-Fehler: ${response.status}`);
-    const data = await response.json();
-    const items = data.items || [];
-
-    // Erfolg: Snapshot in localStorage aktualisieren
-    try {
-      localStorage.setItem(snapshotKey(serial), JSON.stringify(items));
-    } catch (e) {
-      console.warn('Snapshot konnte nicht gespeichert werden:', e);
-    }
-    return items;
-  } catch (error) {
-    console.warn('API nicht erreichbar, nutze Snapshot:', error);
-  }
-
-  // 2. Versuch: Snapshot aus localStorage
-  const cached = localStorage.getItem(snapshotKey(serial));
-  if (cached) {
-    try { return JSON.parse(cached); }
-    catch (e) { console.warn('Snapshot kaputt:', e); }
-  }
-
-  // 3. Versuch: Initial-Seed
-  try {
-    const response = await fetch('data.json');
-    if (!response.ok) throw new Error('Seed nicht ladbar');
-    return await response.json();
-  } catch (error) {
-    console.error('Auch Seed nicht ladbar:', error);
-    return [];
-  }
-}
-
-async function getLatestBundle(serial) {
-  const bundles = await getBundles(serial, 10);
-  if (bundles.length === 0) throw new Error('Keine Daten verfügbar');
-  return bundles[0];   // neuester zuerst
-}
 ```
 
-!!! info "Was ist die Snapshot-Strategie?"
-    Beim **ersten** erfolgreichen API-Aufruf speichert die App das
-    Ergebnis im Browser (`localStorage`). Wenn die App später
-    geöffnet wird und die API nicht erreichbar ist, zeigt sie
-    stattdessen diesen Snapshot. Das ist robust gegen:
+### Drei Phasen in eigenen Worten
 
-    - WLAN-Ausfall im Schulungsraum
-    - Backend-Crash während Demo
-    - Server-Restart
+**Phase 1 – Live-API:**
 
-    Der Snapshot ist pro Seriennummer separat (`snapshot:SN12345`,
-    `snapshot:SN67890`). So bleiben mehrere Sensoren unabhängig.
+```
+URL = API_BASE + '/sensors/' + serial + '/readings?page=1&page_size=10'
+fetch(URL) → response
+wenn response.ok:
+    data = response.json()
+    items = data.items
+    localStorage.setItem(snapshotKey(serial), JSON.stringify(items))
+    return items
+sonst: wirf einen Fehler
+```
 
-!!! tip "API-URL und Seriennummer"
-    Die Werte für `API_BASE` und `currentSerial` bekommt ihr zu Tag 3
-    vom Trainer. Bis dahin funktioniert der Code mit den Platzhaltern.
+**Phase 2 – Snapshot (nur wenn Phase 1 fehlschlägt):**
 
-## Schritt 2: Admin-Seite einbauen
+```
+cached = localStorage.getItem(snapshotKey(serial))
+wenn cached:
+    return JSON.parse(cached)
+```
 
-Füge in `index.html` unterhalb des Dashboards ein:
+**Phase 3 – Initial-Seed (nur wenn 1 und 2 scheitern):**
+
+```
+fetch('data.json') → items
+return items
+```
+
+### Funktions-Signaturen
+
+| Funktion | Aufgabe |
+|---|---|
+| `getBundles(serial, limit)` | Die dreistufige Fallback-Funktion |
+| `getLatestBundle(serial)` | Ruft `getBundles` auf, gibt `items[0]` zurück |
+| `onSensorChange()` | Liest neuen Sensor aus Dropdown, ruft `loadDashboard` |
+| `loadDashboard()` | Hauptfunktion: lädt, rendert Dashboard + Verlauf |
+
+### HTML-Erweiterung (Admin-Panel)
+
+In `index.html` unter `<main>` einfügen:
 
 ```html
 <section class="admin-panel">
@@ -106,141 +99,81 @@ Füge in `index.html` unterhalb des Dashboards ein:
 </section>
 ```
 
-CSS für Admin-Panel:
+### CSS-Selektoren (Admin-Panel)
 
-```css
-.admin-panel {
-    background: white;
-    border-radius: 12px;
-    padding: 16px 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    margin-bottom: 24px;
-}
+- `.admin-panel`
+- `.admin-panel summary`
+- `.admin-content`
+- `.admin-content select`
+- `.admin-content button`
+- `.admin-content button:hover`
 
-.admin-panel summary {
-    font-weight: bold;
-    color: #00695c;
-    cursor: pointer;
-    padding: 4px 0;
-}
+(Werte wählst du selbst – Farbe passt zum Rest der App.)
 
-.admin-content {
-    margin-top: 12px;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
+## :material-lightbulb-on: Hinweise (verbal, kein Code)
 
-.admin-content select {
-    padding: 6px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+### try/catch um jede Phase
 
-.admin-content button {
-    padding: 6px 16px;
-    background: #00695c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+Jede der drei Phasen braucht ein eigenes `try/catch`. Wenn die
+API wirft, fängst du den Fehler in Phase 1 ab und gehst zu
+Phase 2 über. Phase 2 braucht ein `try` für `JSON.parse()`
+(kann kaputt sein). Phase 3 braucht ein `try` für `fetch` auf
+`data.json`.
 
-.admin-content button:hover {
-    background: #004d40;
-}
+### Reihenfolge im Code
+
+Pseudocode:
+
+```text
+async function getBundles(serial, limit):
+    try:    # Phase 1
+        ... API holen, Snapshot speichern
+        return items
+    catch:  # API fehlgeschlagen
+        pass
+
+    try:    # Phase 2
+        cached = localStorage.getItem(...)
+        if cached: return JSON.parse(cached)
+    catch:
+        pass
+
+    try:    # Phase 3
+        return await fetch('data.json').then(r => r.json())
+    catch:
+        return []    # Komplett gescheitert, leere Liste
 ```
 
-**Optional (für Fortgeschrittene):** Statt fixem Dropdown die Liste
-dynamisch aus `GET /api/v1/sensors` laden:
+### getLatestBundle als Wrapper
 
-```javascript
-async function populateSensorDropdown() {
-  try {
-    const r = await fetch(`${API_BASE}/sensors?page=1&page_size=50&status=online`);
-    if (!r.ok) throw new Error('Sensorliste nicht ladbar');
-    const data = await r.json();
-    const select = document.getElementById('sensor-select');
-    select.innerHTML = '';
-    data.items.forEach(s => {
-      const opt = document.createElement('option');
-      opt.value = s.serial_number;
-      opt.textContent = `${s.serial_number} (${s.status})`;
-      select.appendChild(opt);
-    });
-  } catch (e) { console.warn('Dropdown-Init fehlgeschlagen:', e); }
-}
+```text
+async function getLatestBundle(serial):
+    bundles = await getBundles(serial, 10)
+    if (bundles.length == 0): throw new Error('Keine Daten')
+    return bundles[0]
 ```
 
-## Schritt 3: `loadDashboard()` für mehrere Sensoren anpassen
+### Sensor-Wechsel
 
-```javascript
-function onSensorChange() {
-  currentSerial = document.getElementById('sensor-select').value;
-  loadDashboard();
-}
+`onSensorChange` liest den neuen Wert aus dem `<select>` und
+startet `loadDashboard()` neu. **Wichtig:** der Snapshot
+wechselt mit, weil `snapshotKey` den Serial enthält.
 
-async function loadDashboard() {
-  try {
-    const latest = await getLatestBundle(currentSerial);
-    const bme = latest.readings.bme680;
+### Optional-Fortgeschritten: dynamisches Dropdown
 
-    document.getElementById('serial-number').textContent = currentSerial;
-    document.getElementById('temp-c').textContent        = bme.temp_c + ' °C';
-    document.getElementById('hum-pct').textContent       = bme.hum_pct + ' %';
+Statt der festen drei Optionen kannst du `GET /api/v1/sensors`
+aufrufen und das Dropdown mit allen verfügbaren Sensoren
+befüllen. Das ist **Bonus**, nicht Pflicht.
 
-    const status = getStatus(bme.temp_c, bme.hum_pct);
-    const statusEl = document.getElementById('status');
-    statusEl.textContent = getStatusText(status);
-    statusEl.className   = 'status ' + status;
+## :material-check-all: Definition of Done (Selbst-Check)
 
-    const bundles = await getBundles(currentSerial, 10);
-    renderHistory(bundles);
-  } catch (error) {
-    showError();
-    console.error(error);
-  }
-}
-```
-
-## Schritt 4: Layout-Feinschliff
-
-Prüf und verbessere:
-
-- [ ] Einheitliche Abstände (Padding, Margin)
-- [ ] Lesbare Schriftgrössen
-- [ ] Statusfarben klar erkennbar
-- [ ] Footer sitzt am unteren Rand
-- [ ] Responsive: Auf Handy und Desktop gut
-- [ ] Header und Footer gleiche Farbe
-
-## Schritt 5: Demo vorbereiten
-
-Lies die [Demo-Checkliste](../projekt/demo-checkliste.md) und bereite vor:
-
-1. **Demo-Skript schreiben**
-    - Wer zeigt was?
-    - Welche Reihenfolge?
-    - Was sagen wir?
-
-2. **Test-Demo durchlaufen**
-    - Einmal komplett von Anfang bis Ende
-    - Zeit stoppen (Ziel: 5–7 Minuten)
-    - Snapshot-Fallback einmal vorzeigen (WLAN kurz trennen)
-
-3. **Technik prüfen**
-    - App läuft im Vollbild
-    - Schrift ist gross genug
-    - Snapshot in `localStorage` ist vorhanden (DevTools → Application)
-
-## :material-check-all: Projekt-Checkliste Tag 3
-
-- [ ] Snapshot-Fallback implementiert (API → localStorage → Seed)
-- [ ] Admin-Seite mit Sensor-Auswahl
-- [ ] Dashboard funktioniert für verschiedene Sensoren
-- [ ] Layout und Styling finalisiert
-- [ ] Demo-Skript geschrieben
-- [ ] Test-Demo durchgelaufen (inkl. Snapshot-Demo)
+- [ ] Alle 6 Anforderungen erfüllt
+- [ ] Snapshot-Fallback funktioniert: Backend stoppen → App
+      zeigt weiterhin Werte aus `localStorage`
+- [ ] `localStorage.clear()` + `data.json` umbenennen → App
+      zeigt Fehlermeldung
+- [ ] Sensor-Wechsel im Dropdown funktioniert
+- [ ] Konsole (F12) zeigt keine roten Fehler
 - [ ] Code ist committed und gepusht
 
 ## Nächster Schritt

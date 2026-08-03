@@ -129,3 +129,5 @@ nav:
       - "Tagesplanung": trainer/tagesplanung.md
       - "Demo-Sensor-Setup": trainer/demo-sensor.md
       - "Risiken & Fallbacks": trainer/risiken-und-fallbacks.md
+  - "Lösungen (nur bei Bedarf)":
+      - loesungen/index.md

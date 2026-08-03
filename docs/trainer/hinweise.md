@@ -108,6 +108,25 @@ Demo-Seriennummer bereit.
 - Auf das Wesentliche fokussieren (MVP-Ansatz: Dashboard + Status + Verlauf)
 - Nicht den ganzen Tag an einem Bug verbringen
 
+## Lösungen-Gate (für Lernende)
+
+Die `loesungen/`-Seite ist mit einem kleinen JavaScript-Gate
+geschützt. Das ist **kein Sicherheitsfeature**, sondern eine sanfte
+Hürde gegen vorzeitiges Anschauen der Lösungen.
+
+- **Passwort:** `snapshot-fallback` (alles klein, mit Bindestrich)
+- **Hinweis für Lernende:** sichtbar direkt auf der Gate-Seite
+- **Cracken:** View-Source zeigt das Passwort; im DOM sind die
+  Links zu den Lösungsdateien versteckt (`display: none`) und
+  werden nach Unlock eingeblendet
+- **Smart-Learner-Bonus:** Wer das Passwort durch Mitdenken
+  findet, soll gelobt werden – nicht getadelt
+
+Das Konzept "Snapshot-Fallback" ist den Lernenden ab Tag 3
+bekannt. Wer die Tag-3-Dokumentation aufmerksam liest, hat das
+Passwort nach 30 Sekunden. Wer es nicht liest, klickt einfach
+auf "Passwort vergessen" und bekommt einen weiteren Hinweis.
+
 ## Checkliste vor jedem Tag
 
 - [ ] Raum ist bereit (Stühle, Tische)
