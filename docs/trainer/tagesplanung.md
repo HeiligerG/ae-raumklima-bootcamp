@@ -5,9 +5,9 @@
 | Tag | Datum | Schwerpunkt | Deine Rolle |
 |-----|-------|-------------|-------------|
 | 1 | 06.08. | Einstieg & Basics | Führen, erklären, Setup helfen |
-| 2 | 07.08. | Daten & Logik | Coachen, bei fetch() helfen |
-| 3 | 10.08. | Integration & Demo | Retro moderieren, Fallback erklären |
-| 4 | 11.08. | Finish & Demo | Testen anleiten, Demo coachen |
+| 2 | 07.08. | Daten & Logik | Coachen, bei fetch() helfen, Joint-Session moderieren |
+| 3 | 10.08. | Integration & Demo | Retro moderieren, Snapshot-Fallback erklären, Joint-Session moderieren |
+| 4 | 11.08. | Finish & Demo | Testen anleiten, Demo coachieren |
 | 5 | 12.08. | Präsentation | Zuschauen, feiern |
 
 ## Tag 1 – Einstieg
@@ -16,7 +16,7 @@
 - [ ] Raum vorbereiten, Beamer testen
 - [ ] WLAN-Zugang prüfen
 - [ ] VS Code + Extensions bereit
-- [ ] **Beide Repositories** bereit (Leitfaden-Repo + Codebase-Repo) – Lernende klonen beim Setup
+- [ ] **Drei Repositories bereit** (Leitfaden, Codebase, SuvaSense für PE-Team) – Lernende klonen beim Setup
 
 ### Während des Tages
 - Theorie (09:00): Klar und langsam erklären, viele Beispiele
@@ -25,7 +25,7 @@
 
 ### Worauf achten?
 - Hat jeder VS Code, Live Server, Git?
-- **Hat jeder beide Repositories geklont?**
+- **Hat jeder beide Repositories geklont?** (Leitfaden + Codebase; SuvaSense nur für PE-Team)
 - **Hat jeder den `app/`-Ordner im Codebase-Repo gefunden?**
 - Versteht jeder HTML vs. CSS vs. JavaScript?
 - Erster Commit gemacht?
@@ -33,49 +33,50 @@
 ## Tag 2 – Daten & Logik
 
 ### Vor dem Start
-- [ ] Mock-Daten geprüft
-- [ ] (Optional) Mock-API für die Schnellen vorbereitet – läuft auf `localhost:3000`
+- [ ] Mock-Daten geprüft (Schema = Push-Bundle-Format)
+- [ ] **SuvaSense-Stack startklar machen** (kann auch erst Tag 3 hochgefahren werden, aber Stack-Status kennen)
 - [ ] **Raum für die Joint-Session mit PE um 13:00 vorbereiten** (Beamer, Sitzordnung, beide Teams an einem Ort)
 
 ### Während des Tages
 - Theorie (08:15): JSON erklären, `fetch()` live demonstrieren
 - Übung (09:00): Bei fetch()-Fehlern helfen
 - Projekt (10:15): Statuslogik erklären, nicht vorkauen
-- **Joint-Session 13:00–15:00 moderieren**: AE-Vertreter + PE-Vertreter klären den Schnittstellen-Vertrag. Trainer coacht, schreibt die finalen Werte mit (URL, Felder, Auth).
+- **Joint-Session 13:00–15:00 moderieren**: PE zeigt ESP-Firmware, Trainer zeigt `docker compose logs backend`, Lernende sehen wie der MQTT-Payload dem Push-Bundle entspricht. Trainer coacht, schreibt die finalen Werte mit (API-URL, Seriennummer, Topic-Format).
 
 ### Worauf achten?
 - Versteht jeder den Unterschied synchron/asynchron?
 - `catch` für Fehlerfall eingebaut?
-- **Ist die Schnittstelle spätestens um 15:00 final schriftlich festgehalten?** (Foto vom Flipchart oder Update von `ingest-vertrag.md`)
+- **Sind API-URL und Seriennummer spätestens um 15:00 an die Lernenden verteilt?**
 - Verlaufsliste wird bewusst NICHT an Tag 2 gebaut (Verschiebung auf Tag 3 morgens)
 
 ## Tag 3 – Integration
 
 ### Vor dem Start
 - [ ] Retro-Partner-Teams festlegen
-- [ ] **Node.js ist bei allen installiert** (vorher an Tag-2-Abend ankündigen)
-- [ ] Mock-API läuft auf deinem Laptop vorzeigebereit (z. B. am Beamer)
-- [ ] (Optional) Docker-Variante mit MySQL + PHPMyAdmin vorbereitet für die Demo-Show
-- [ ] **Schnittstellen-Vertrag vom Vortag nochmal kurz wiederholen** (was wurde Tag 2 festgelegt?)
+- [ ] **SuvaSense-Stack läuft und ist erreichbar** (`curl http://<host>:8080/health` und `docker compose ps`)
+- [ ] **Demo-Sensor publiziert** (entweder echtes ESP32 oder manueller `mosquitto_pub` – siehe [Demo-Sensor-Setup](demo-sensor.md))
+- [ ] API-URL und Demo-Seriennummer sind an die Lernenden verteilt (am besten schon Tag 2 Nachmittag, spätestens jetzt)
+- [ ] pgAdmin ist offen am Beamer vorbereitet (für die Live-Demo)
 
 ### Während des Tages
 - Daily (08:00): Stand-up
 - Retro (08:15): Teams zuweisen, Zeit tracken, Feedback-Regeln erklären
 - **Projekt Verlaufsliste (09:00–10:00)**: kurze Coach-Session, Code aus Tag-2-Anleitung übernehmen
-- **Joint-Session 13:00–15:00 moderieren**: AE testet App gegen API (oder Mock-Fallback), PE pusht ESP → Backend. Live-Verifikation des Vertrags. Trainer geht zwischen den Setups hin und her.
+- **Joint-Session 13:00–15:00 moderieren**: AE testet App gegen API (oder Snapshot-Fallback), PE publiziert via MQTT. Trainer überwacht `mosquitto_sub -t 'suva/+/data' -v` und zeigt den Datenstrom am Beamer.
 
 ### Worauf achten?
 - Retro läuft konstruktiv?
 - Verlaufsliste wird bei allen gebaut (das war's, was an Tag 2 fehlte)
-- **Läuft die Integration am Ende des Slots bei mindestens 1 Team live?** Wenn nicht: Fallback-Strategie (USE_API=false) als Plan B
-- Läuft die API bei allen in einem zweiten Terminal? (Platz für zwei Terminals einplanen)
+- **Snapshot-Fallback funktioniert bei jedem Team?** (WLAN kurz trennen als Test)
+- **Läuft die Integration am Ende des Slots bei mindestens 1 Team live?** Wenn nicht: Snapshot-Fallback ist Plan B, und der ist genauso gültig
 
 ## Tag 4 – Finish & Demo
 
 ### Vor dem Start
 - [ ] Demo-Zeitplan erstellt (welches Team wann, PE- und AE-Slots gemischt)
 - [ ] Beamer für abends prüfen
-- [ ] **Mit PE-Trainer koordinieren**: gemeinsame Demo-Show um 16:30, wer moderiert?
+- [ ] SuvaSense-Stack läuft stabil
+- [ ] Backup-Demo-Sensor bereit (z. B. zweites ESP32 oder `mosquitto_pub`-Skript)
 
 ### Während des Tages
 - Pflichtumfang (08:15): DoD-Checkliste durchgehen lassen
@@ -87,14 +88,16 @@
 ### Abend-Demo (16:30, gemeinsam mit PE)
 - Teams vorstellen lassen (Reihenfolge vorher mit PE-Trainer festlegen)
 - Positives Feedback geben
-- Fragen stellen («Wie habt ihr das gelöst?»)
-- **Optional: Sensor-Demo zeigen**, wenn die PE-Integration live ist (fasziniert das Publikum)
+- Fragen stellen («Wie habt ihr den Snapshot-Fallback gelöst?»)
+- **Optional: Live-Sensor-Demo zeigen**, wenn die MQTT-Integration live ist
+- **Snapshot-Demo zeigen**: kurz WLAN trennen → App bleibt funktional → das ist die eigentliche Demo-Heldentat
 
 ## Tag 5 – Abschluss
 
 ### Vor dem Start
 - [ ] Grill organisiert?
 - [ ] Kamera für Abschluss-Video bereit
+- [ ] SuvaSense-Stack herunterfahren (`docker compose down`) – nicht zwingend, aber nice
 
 ### Während des Tages
 - PV-Vorstellung (09:00): Einleiten, vorstellen
