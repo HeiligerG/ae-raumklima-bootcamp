@@ -4,8 +4,7 @@
     Diese Aufgabe gibt dir das **Skelett** der Snapshot-Strategie,
     aber nicht die komplette Implementierung. Die Reihenfolge der
     Fallbacks (API → localStorage → Seed) und das Fehler-Handling
-    baust du selbst. Wenn du nach 20 Min nicht weiterkommst:
-    [`loesungen/tag-3/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-3/).
+    baust du selbst.     Wenn du nach 20 Min nicht weiterkommst, **frag dein Trainer-Team**.
 
 ## :material-target: Aufgabe
 
