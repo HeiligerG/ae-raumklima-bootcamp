@@ -78,4 +78,4 @@ Jedes Team schreibt auf:
 ## Nächster Schritt
 
 Zurück ins eigene Team, Ergebnisse besprechen.  
-Dann: [Schnittstellen klären](schnittstellen.md)
+Danach: [Projekt: Verlaufsliste](projekt-verlaufsliste.md) bauen.

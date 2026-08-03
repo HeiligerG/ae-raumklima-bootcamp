@@ -75,4 +75,4 @@ Details siehe [API-Vertrag](../projekt/api-vertrag.md).
 
 ## Nächster Schritt
 
-[Projekt: Integration](integration.md)
+[Projekt: Integration](../tag-3/integration.md)

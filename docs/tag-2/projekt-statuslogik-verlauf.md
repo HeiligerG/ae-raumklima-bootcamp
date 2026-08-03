@@ -224,4 +224,4 @@ loadDashboard();
 ## Nächster Schritt
 
 **Tag 2 Nachmittag:** [Datenvertrag klären (mit PE-Team)](schnittstellen.md)  
-**Tag 3:** [Projekt: Integration](integration.md) – dort wird auch die Verlaufsliste gebaut.
+**Tag 3:** [Projekt: Integration](../tag-3/integration.md) – dort wird auch die Verlaufsliste gebaut.
