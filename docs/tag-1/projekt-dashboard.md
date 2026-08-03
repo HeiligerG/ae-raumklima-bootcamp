@@ -44,17 +44,17 @@ Erstelle im `app/`-Ordner des Codebase-Repositories (`ae-raumklima-bootcamp-code
 
     <main>
         <section class="dashboard">
-            <!-- Raumkarte -->
+            <!-- Sensor-Karte -->
             <div class="card">
-                <h2 id="room-name">Raum B101</h2>
+                <h2 id="serial-number">Sensor SN12345</h2>
                 <div class="values">
                     <div class="value-item">
                         <span class="label">Temperatur</span>
-                        <span class="number" id="temperature">23.4 °C</span>
+                        <span class="number" id="temp-c">23.4 °C</span>
                     </div>
                     <div class="value-item">
                         <span class="label">Luftfeuchtigkeit</span>
-                        <span class="number" id="humidity">51 %</span>
+                        <span class="number" id="hum-pct">51 %</span>
                     </div>
                 </div>
                 <div class="status gut" id="status">Gut</div>
