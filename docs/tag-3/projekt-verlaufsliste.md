@@ -2,13 +2,13 @@
 
 ## :material-target: Aufgabe
 
-Erweitere dein Dashboard um eine **Verlaufsliste** der letzten Messungen. Die JSON-Datei (oder die API) liefert bereits ein Array; du musst es nur noch im HTML rendern.
+Erweitere dein Dashboard um eine **Verlaufsliste** der letzten Messungen. Die Push-Bundles aus der API oder dem Seed liefern bereits alles Nötige; du musst sie nur im HTML rendern.
 
-Diese Aufgabe war ursprünglich Teil von Tag 2, ist aber auf **Tag 3 morgens** verschoben, damit der Tag-2-Nachmittag für die Schnittstellen-Klärung mit dem PE-Team frei bleibt.
+Diese Aufgabe war ursprünglich Teil von Tag 2, ist aber auf **Tag 3 morgens** verschoben, damit der Tag-2-Nachmittag für die Datenvertrag-Klärung mit dem PE-Team frei bleibt.
 
 ## Voraussetzungen
 
-- Tag 2 abgeschlossen: deine App lädt bereits einen einzelnen Messwert per `fetch()`
+- Tag 2 abgeschlossen: deine App lädt bereits einen einzelnen Push-Bundle per `fetch()`
 - Du hast Zugriff auf den Code aus [Tag 2 Projekt: Statuslogik](../tag-2/projekt-statuslogik-verlauf.md) (Schritte 4–6 enthalten den Verlaufslisten-Code als Vorlage)
 
 ## Schritt 1: HTML-Container vorbereiten
@@ -26,25 +26,27 @@ Stelle sicher, dass du in `index.html` einen Container für die Verlaufsliste ha
 
 ## Schritt 2: Verlaufsdaten laden
 
-Erweitere deine `loadDashboard()`-Funktion so, dass sie zusätzlich zum aktuellen Messwert auch den Verlauf lädt:
+Erweitere deine `loadDashboard()`-Funktion so, dass sie zusätzlich zum aktuellen Push-Bundle auch den Verlauf lädt:
 
 ```javascript
 async function loadDashboard() {
   try {
-    // Aktueller Messwert
-    const latest = await getLatestMeasurement(currentRoom);
-    document.getElementById('room-name').textContent = 'Raum ' + latest.room;
-    document.getElementById('temperature').textContent = latest.temperature + ' °C';
-    document.getElementById('humidity').textContent = latest.humidity + ' %';
+    // Aktuellster Push-Bundle
+    const latest = await getLatestBundle(currentSerial);
+    const bme = latest.readings.bme680;
 
-    const status = getStatus(latest.temperature, latest.humidity);
+    document.getElementById('serial-number').textContent = currentSerial;
+    document.getElementById('temp-c').textContent        = bme.temp_c + ' °C';
+    document.getElementById('hum-pct').textContent       = bme.hum_pct + ' %';
+
+    const status = getStatus(bme.temp_c, bme.hum_pct);
     const statusEl = document.getElementById('status');
     statusEl.textContent = getStatusText(status);
-    statusEl.className = 'status ' + status;
+    statusEl.className   = 'status ' + status;
 
-    // Verlauf
-    const history = await getHistory(currentRoom, 10);
-    renderHistory(history);
+    // Verlauf (max. 10 neueste Push-Bundles)
+    const bundles = await getBundles(currentSerial, 10);
+    renderHistory(bundles);
 
   } catch (error) {
     showError();
@@ -56,24 +58,26 @@ async function loadDashboard() {
 ## Schritt 3: Verlaufsliste rendern
 
 ```javascript
-function renderHistory(data) {
+function renderHistory(bundles) {
   const list = document.getElementById('history-list');
   list.innerHTML = '';
 
-  data.forEach(entry => {
+  bundles.forEach(bundle => {
+    const bme = bundle.readings.bme680;
+    if (!bme) return;                                  // BME680 nicht in diesem Bundle
+
     const item = document.createElement('div');
     item.className = 'history-item';
 
-    const status = getStatus(entry.temperature, entry.humidity);
-    const time = new Date(entry.timestamp).toLocaleTimeString('de-CH', {
-      hour: '2-digit',
-      minute: '2-digit'
+    const status = getStatus(bme.temp_c, bme.hum_pct);
+    const time = new Date(bundle.recorded_at).toLocaleTimeString('de-CH', {
+      hour: '2-digit', minute: '2-digit'
     });
 
     item.innerHTML = `
       <span class="history-time">${time}</span>
-      <span class="history-temp">${entry.temperature}°C</span>
-      <span class="history-hum">${entry.humidity}%</span>
+      <span class="history-temp">${bme.temp_c}°C</span>
+      <span class="history-hum">${bme.hum_pct}%</span>
       <span class="history-status ${status}">${getStatusText(status)}</span>
     `;
 
@@ -104,6 +108,7 @@ function renderHistory(data) {
 .history-time  { color: #999;  font-size: 13px; min-width: 50px; }
 .history-temp  { font-weight: bold; min-width: 50px; }
 .history-hum   { color: #666; min-width: 40px; }
+
 .history-status {
   margin-left: auto;
   padding: 2px 8px;
@@ -112,18 +117,18 @@ function renderHistory(data) {
   font-weight: bold;
 }
 
-.history-status.gut    { background: #e8f5e9; color: #2e7d32; }
-.history-status.mittel { background: #fff3e0; color: #e65100; }
-.history-status.kritisch { background: #ffebee; color: #c62828; }
+.history-status.gut       { background: #e8f5e9; color: #2e7d32; }
+.history-status.kritisch  { background: #fff3e0; color: #e65100; }
+.history-status.schlecht  { background: #ffebee; color: #c62828; }
 ```
 
 ## Schritt 5: Testen
 
-1. Live Server läuft, Mock-API läuft im zweiten Terminal
+1. Live Server läuft, Snapshot-Fallback funktioniert (Browser-DevTools zeigen `localStorage`)
 2. Seite öffnen – die Verlaufsliste zeigt 10 Einträge
-3. Im Mock-Backend (oder per `curl`) einen neuen Messwert posten → in der App nach Reload sichtbar
-4. `data.json` umbenennen → Fehlermeldung erscheint, Verlaufsliste ist leer
-5. Datei zurückbenennen → alles wieder da
+3. Im `mosquitto_pub` einen neuen Wert publishen → nach App-Refresh sichtbar
+4. `data.json` umbenennen + API-Snapshot löschen → App fällt auf nichts zurück, Fehlermeldung
+5. Snapshot zurückspielen (`localStorage.setItem('snapshot:SN12345', JSON.stringify([…]))`) → App zeigt wieder Werte
 
 ## :material-check-all: Projekt-Checkliste Tag 3 (Vormittag)
 
@@ -134,19 +139,20 @@ function renderHistory(data) {
 - [ ] Bei API-Fehler wird die Liste leer angezeigt (kein Crash)
 - [ ] Code ist committed und gepusht
 
-## Optional: weitere Sensoren anzeigen
+## Optional: weitere Sensortypen anzeigen
 
-Falls die Mock-API `extras` liefert (z. B. CO2, Licht), kannst du diese in der Verlaufsliste oder im Dashboard anzeigen:
+Wenn das Backend `veml7700` oder `system` mitliefert, kannst du sie in der Verlaufsliste oder im Dashboard anzeigen:
 
 ```javascript
-if (latest.extras) {
-  for (const [key, value] of Object.entries(latest.extras)) {
-    // z. B. "CO2: 580 ppm", "Licht: 320 lux"
-  }
+if (latest.readings.veml7700) {
+  // z. B. "Lux: 245", "White: 199"
+}
+if (latest.readings.system) {
+  // z. B. "CPU: 42°C", "RSSI: -55 dBm"
 }
 ```
 
-Welche Sensoren verfügbar sind, hängt davon ab, was die Plattformentwickler (PE-Team) am ESP angeschlossen haben. Die Anzeige ist optional.
+Welche Sensortypen vorhanden sind, hängt davon ab, was das PE-Team am ESP angeschlossen hat. Die Anzeige ist optional.
 
 ## Nächster Schritt
 
