@@ -1,227 +1,161 @@
 # Projekt: Statuslogik
 
-!!! info "Hinweis: Verlaufsliste wurde auf Tag 3 verschoben"
-    Diese Anleitung enthält ursprünglich auch den Bau der Verlaufsliste. Da Tag 2 Nachmittag jetzt für die **Datenvertrag-Klärung mit dem PE-Team** reserviert ist, bauen wir die Verlaufsliste am **Tag 3 morgens (09:00–10:00)**. Der Verlaufslisten-Code bleibt weiter unten in dieser Datei als Vorlage – ihr könnt ihn an Tag 3 direkt übernehmen.
+!!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
+    Diese Aufgabe gibt dir **Anforderungen und ein Skelett**, aber nicht den fertigen Code. Die Schwellwerte für die Statuslogik, die Fetch-Logik und das Error-Handling wählst du selbst. Der Lerngewinn liegt im Ausprobieren, nicht im Abschreiben.
+
+    Wenn du nach 20 Minuten nicht weiterkommst, schau in
+    [`loesungen/tag-2/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-2/) –
+    aber bitte erst **nach** dem Versuch.
 
 ## :material-target: Aufgabe
 
 Erweitere dein Dashboard um:
 
-1. Dynamische Daten aus einer JSON-Datei (oder später dem SuvaSense-Backend)
-2. Korrekte Statusberechnung (gut / mittel / kritisch)
-3. Fehlerbehandlung
+1. **Daten aus einer JSON-Datei laden** (im selben `app/`-Ordner)
+2. **Korrekte Statusberechnung** (gut / mittel / kritisch) aus
+   Temperatur und Feuchte
+3. **Verlaufsliste** der letzten 10 Messwerte
+4. **Fehlerbehandlung** ("Keine Daten verfügbar")
 
-Die Verlaufsliste ist Teil von Tag 3.
+Die Datenstruktur ist ein **Push-Bundle-Array** (siehe
+[API-Vertrag](../projekt/api-vertrag.md)). Jeder Eintrag hat
+`recorded_at` und ein `readings.bme680`-Objekt mit `temp_c` und
+`hum_pct`.
 
-## Schritt 1: JSON-Datei mit Seed-Daten
+## :material-book-open-outline: Anforderungen
 
-Erstelle `data.json` im `app/`-Ordner des Codebase-Repositories
-(gleiches Schema wie ein Push-Bundle-Array aus dem API-Vertrag):
+- [ ] `data.json` existiert im `app/`-Ordner mit mindestens 5
+      Push-Bundles (gleiches Format wie der API-Vertrag)
+- [ ] `loadDashboard()` lädt die Datei per `fetch()` und befüllt
+      das Dashboard mit den Werten des **neuesten** Eintrags
+- [ ] `getStatus(tempC, humPct)` gibt einen von drei Werten zurück:
+      `gut`, `kritisch`, `schlecht`
+- [ ] `getStatusText(status)` liefert den deutschen Text dazu
+- [ ] Die Status-Farbe der `.status`-Klasse passt zum berechneten
+      Wert (`gut` → grün, `kritisch` → orange, `schlecht` → rot)
+- [ ] Die Verlaufsliste zeigt bis zu 10 Einträge, neueste zuerst
+- [ ] Bei fehlender Datei oder Fehler erscheint "Keine Daten
+      verfügbar" und die Werte sind Platzhalter (`-- °C`, `-- %`)
+- [ ] Code ist committed und auf einen eigenen Feature-Branch gepusht
+
+## :material-hammer-wrench: Skelett
+
+### `data.json` (im selben `app/`-Ordner)
+
+Mindestens 5 Push-Bundles in dieser Struktur:
 
 ```json
 [
-  { "recorded_at": "2026-08-06T10:30:00Z",
-    "readings": { "bme680": { "temp_c": 23.4, "hum_pct": 51 } } },
-  { "recorded_at": "2026-08-06T10:15:00Z",
-    "readings": { "bme680": { "temp_c": 23.6, "hum_pct": 50 } } },
-  { "recorded_at": "2026-08-06T10:00:00Z",
-    "readings": { "bme680": { "temp_c": 23.2, "hum_pct": 52 } } },
-  { "recorded_at": "2026-08-06T09:45:00Z",
-    "readings": { "bme680": { "temp_c": 23.8, "hum_pct": 49 } } },
-  { "recorded_at": "2026-08-06T09:30:00Z",
-    "readings": { "bme680": { "temp_c": 24.1, "hum_pct": 47 } } },
-  { "recorded_at": "2026-08-06T09:15:00Z",
-    "readings": { "bme680": { "temp_c": 25.2, "hum_pct": 43 } } },
-  { "recorded_at": "2026-08-06T09:00:00Z",
-    "readings": { "bme680": { "temp_c": 26.0, "hum_pct": 40 } } },
-  { "recorded_at": "2026-08-06T08:45:00Z",
-    "readings": { "bme680": { "temp_c": 19.5, "hum_pct": 63 } } },
-  { "recorded_at": "2026-08-06T08:30:00Z",
-    "readings": { "bme680": { "temp_c": 18.2, "hum_pct": 68 } } },
-  { "recorded_at": "2026-08-06T08:15:00Z",
-    "readings": { "bme680": { "temp_c": 30.0, "hum_pct": 25 } } }
+  {
+    "recorded_at": "<ISO-8601-Zeitstempel>",
+    "readings": {
+      "bme680": {
+        "temp_c": <Zahl>,
+        "hum_pct": <Zahl>
+      }
+    }
+  }
 ]
 ```
 
-## Schritt 2: Statuslogik in `script.js`
+Die **exakten Werte** darfst du wählen – mische ruhig Werte aus
+allen drei Status-Bereichen (gut, kritisch, schlecht), damit du
+die Logik testen kannst.
 
-```javascript
-function getStatus(tempC, humPct) {
-  const tempOk = tempC >= 20 && tempC <= 24;
-  const humOk  = humPct >= 40 && humPct <= 60;
-  const tempWarn = tempC >= 18 && tempC <= 26;
-  const humWarn  = humPct >= 30 && humPct <= 70;
+### `script.js` – Funktions-Signaturen
 
-  if (tempOk && humOk) return 'gut';
-  if (tempWarn || humWarn) return 'kritisch';
-  return 'schlecht';
-}
+Du brauchst diese Funktionen. **Implementierung wählst du selbst.**
 
-function getStatusText(status) {
-  switch (status) {
-    case 'gut': return 'Gut';
-    case 'kritisch': return 'Kritisch';
-    case 'schlecht': return 'Schlecht';
-    default: return 'Unbekannt';
-  }
-}
-```
+| Funktion | Aufgabe |
+|---|---|
+| `getStatus(tempC, humPct)` | Berechnet Status aus Werten, gibt String zurück |
+| `getStatusText(status)` | Wandelt Status in Anzeige-Text um |
+| `loadDashboard()` | Lädt Daten, befüllt das DOM, ruft `renderHistory` |
+| `renderHistory(bundles)` | Baut die `.history-item`-Einträge im DOM |
+| `showError()` | Setzt Platzhalter und Fehlertext |
 
-## Schritt 3: Daten laden und Dashboard aktualisieren
+### `script.js` – Selektoren
 
-```javascript
-async function loadDashboard() {
-  try {
-    const response = await fetch('data.json');
-    if (!response.ok) throw new Error('Daten nicht verfügbar');
+- Lese: `document.getElementById('serial-number').textContent` (etc.)
+- Setze Status: `element.className = 'status ' + status`
+- Verlauf-Container leeren: `list.innerHTML = ''`
+- Verlauf-Item erstellen: `document.createElement('div')` mit
+  `className = 'history-item'`
 
-    const bundles = await response.json();
-    const latest = bundles[0];                       // neuester Push-Bundle
-    const bme = latest.readings.bme680;               // BME680-Block
+### `style.css` – Selektoren
 
-    document.getElementById('serial-number').textContent = 'SN12345';
-    document.getElementById('temp-c').textContent        = bme.temp_c + ' °C';
-    document.getElementById('hum-pct').textContent       = bme.hum_pct + ' %';
+Du brauchst zusätzlich zum Tag-1-CSS diese Selektoren (Werte
+wählst du selbst):
 
-    const status = getStatus(bme.temp_c, bme.hum_pct);
-    const statusEl = document.getElementById('status');
-    statusEl.textContent = getStatusText(status);
-    statusEl.className   = 'status ' + status;
+- `.history-list` (Container für Verlaufs-Einträge)
+- `.history-item` (eine Zeile)
+- `.history-time` (Zeit-Stempel)
+- `.history-temp` (Temperatur)
+- `.history-hum` (Feuchte)
+- `.history-status` (Status-Pille rechts)
+- `.history-status.gut`, `.history-status.kritisch`,
+  `.history-status.schlecht` (Farben)
 
-    renderHistory(bundles);
-  } catch (error) {
-    showError();
-    console.error(error);
-  }
-}
+## :material-lightbulb-on: Hinweise (verbal, kein Code)
 
-function showError() {
-  document.getElementById('serial-number').textContent = 'Keine Daten';
-  document.getElementById('temp-c').textContent        = '-- °C';
-  document.getElementById('hum-pct').textContent       = '-- %';
+### Schwellwerte für die Statuslogik
 
-  const statusEl = document.getElementById('status');
-  statusEl.textContent = 'Keine Daten verfügbar';
-  statusEl.className   = 'status schlecht';
+Sinnvolle Startwerte (alle in °C bzw. %):
 
-  document.getElementById('history-list').innerHTML =
-    '<p class="placeholder">Daten konnten nicht geladen werden.</p>';
-}
-```
+| Status | Temperatur | Feuchte |
+|---|---|---|
+| gut | 20–24 | 40–60 |
+| kritisch | 18–26 | 30–70 |
+| schlecht | alles ausserhalb | alles ausserhalb |
 
-## Schritt 4: Verlaufsliste (Vorlage für Tag 3)
+Du kannst die Werte selbst anpassen – diskutiere sie danach im
+Team. Begründe, **warum** du andere Schwellwerte gewählt hast.
 
-```javascript
-function renderHistory(bundles) {
-  const list = document.getElementById('history-list');
-  list.innerHTML = '';
+### Zeit-Format
 
-  const entries = bundles.slice(0, 10);
+`bundle.recorded_at` ist ISO-8601 (z. B. `"2026-08-06T10:30:00Z"`).
+Für die Anzeige nutzt du `new Date(string).toLocaleTimeString(...)`.
+Mit `de-CH` als Locale bekommst du 24-h-Format.
 
-  entries.forEach(bundle => {
-    const bme = bundle.readings.bme680;
-    if (!bme) return;                                  // BME680 nicht in diesem Bundle
+### Reihenfolge
 
-    const item = document.createElement('div');
-    item.className = 'history-item';
+`data[0]` ist der **neueste** Eintrag. Beim Sortieren nicht
+verwirren lassen – das Array kommt schon sortiert.
 
-    const status = getStatus(bme.temp_c, bme.hum_pct);
-    const time = new Date(bundle.recorded_at).toLocaleTimeString('de-CH', {
-      hour: '2-digit', minute: '2-digit'
-    });
+### Verlauf rendern
 
-    item.innerHTML = `
-      <span class="history-time">${time}</span>
-      <span class="history-temp">${bme.temp_c}°C</span>
-      <span class="history-hum">${bme.hum_pct}%</span>
-      <span class="history-status ${status}">${getStatusText(status)}</span>
-    `;
+Pro Eintrag ein `<div class="history-item">` mit:
+- Zeit (kurz, nur hh:mm)
+- Temperatur mit °C
+- Feuchte mit %
+- Status-Pille rechts (mit derselben Farbe wie im Dashboard)
 
-    list.appendChild(item);
-  });
-}
-```
+Wenn `bundle.readings.bme680` fehlt (defensiv), überspringe
+den Eintrag mit `if (!bme) return;`.
 
-## Schritt 5: Verlaufs-CSS ergänzen
+### Error-Handling
 
-```css
-.history-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+`try { ... } catch (error) { showError(); console.error(error); }`
+umgibt das gesamte `loadDashboard()`. So crasht die App nicht,
+wenn `data.json` fehlt.
 
-.history-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 10px 12px;
-  background: #fafafa;
-  border-radius: 6px;
-  font-size: 14px;
-}
+## :material-check-all: Definition of Done (Selbst-Check)
 
-.history-time { color: #999; font-size: 13px; min-width: 50px; }
-.history-temp { font-weight: bold; min-width: 50px; }
-.history-hum  { color: #666; min-width: 40px; }
+- [ ] Alle 8 Anforderungen erfüllt
+- [ ] Konsole (F12) zeigt keine roten Fehler
+- [ ] Status-Logik funktioniert mit allen 3 Werte-Bereichen
+- [ ] Bei umbenannter `data.json` erscheint die Fehlermeldung
+- [ ] Git-Commit und Push auf eigenen Feature-Branch
 
-.history-status {
-  margin-left: auto;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
-}
+## :material-help: Wenn du nicht weiterkommst
 
-.history-status.gut       { background: #e8f5e9; color: #2e7d32; }
-.history-status.kritisch  { background: #fff3e0; color: #e65100; }
-.history-status.schlecht  { background: #ffebee; color: #c62828; }
-```
+Nach 20 Min ohne nennenswerten Fortschritt:
 
-## Schritt 6: HTML für Verlauf anpassen
-
-Ersetze den Platzhalter in `index.html`:
-
-```html
-<section class="history">
-    <h3>Verlauf der letzten Messungen</h3>
-    <div class="history-list" id="history-list">
-        <p class="placeholder">Lade Daten...</p>
-    </div>
-</section>
-```
-
-## Schritt 7: `loadDashboard()` beim Seitenstart aufrufen
-
-```javascript
-// Am Ende von script.js
-loadDashboard();
-```
-
-## Schritt 8: Testen
-
-- Live Server starten
-- Seite öffnen
-- Temperatur und Luftfeuchtigkeit werden geladen
-- Statusfarbe passt zum Wert
-- Verlauf zeigt mehrere Einträge
-- `data.json` umbenennen → Fehlermeldung erscheint
-- Datei zurückbenennen → Seite neu laden → alles wieder da
-
-## :material-check-all: Projekt-Checkliste Tag 2
-
-- [ ] `data.json` mit Seed-Push-Bundles existiert
-- [ ] `getStatus()` berechnet den richtigen Status aus `temp_c` / `hum_pct`
-- [ ] `loadDashboard()` lädt Daten per `fetch()`
-- [ ] Dashboard zeigt echte Daten (nicht mehr statisch)
-- [ ] Statusfarbe ändert sich je nach Wert
-- [ ] Bei fehlender Datei erscheint Fehlermeldung
-- [ ] Code ist committed und gepusht
-
-!!! tip "Vorbereitung für Tag 3"
-    Wenn du am Ende von Tag 2 noch Zeit hast: lies bereits die Schritte 4–6 dieser Anleitung durch, um ein Gefühl für die Verlaufsliste zu bekommen. Sie wird am Tag 3 morgens gebaut.
+1. Schau in [`loesungen/tag-2/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-2/)
+2. **Vergleiche** deinen Ansatz mit der Referenz
+3. **Erkläre einem Teammitglied**, was die Referenz anders macht
 
 ## Nächster Schritt
 
 **Tag 2 Nachmittag:** [Datenvertrag klären (mit PE-Team)](schnittstellen.md)  
-**Tag 3:** [Projekt: Integration](../tag-3/integration.md) – dort wird auch die Verlaufsliste gebaut.
+**Tag 3:** [Projekt: Integration](../tag-3/integration.md) – dort wird die App live an die SuvaSense-API angebunden.
