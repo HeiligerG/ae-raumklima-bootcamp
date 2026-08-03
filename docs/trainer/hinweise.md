@@ -5,6 +5,10 @@
 Als Trainer begleitest du die Lernenden durch die Woche.  
 Du bist Coach, nicht Dozent. Dein Ziel: Die Lernenden bauen ihre App selbst.
 
+Du verwaltest zusätzlich den **SuvaSense-Stack** (Backend, Broker,
+Postgres, pgAdmin) und stellst den Lernenden die API-URL und die
+Demo-Seriennummer bereit.
+
 ## Grundhaltung
 
 - **Fragen stellen, statt Antworten geben**
@@ -26,9 +30,9 @@ Du bist Coach, nicht Dozent. Dein Ziel: Die Lernenden bauen ihre App selbst.
 
 - [ ] VS Code + Live Server läuft bei allen
 - [ ] Git ist installiert
-- [ ] **Beide Repositories sind geklont** (`ae-raumklima-bootcamp` + `ae-raumklima-bootcamp-codebase`)
+- [ ] **Drei Repositories sind geklont** (Leitfaden + Codebase + SuvaSense für PE-Team)
 - [ ] Lernende können Commits machen und pushen
-- [ ] (ab Tag 3) Node.js ist installiert und die Mock-API startet auf `localhost:3000`
+- [ ] (ab Tag 3) **SuvaSense-Stack läuft zentral** (dein Laptop oder Schulungs-Server) – URL und Demo-Seriennummer sind bereit
 
 ### Lernfortschritt
 
@@ -51,44 +55,46 @@ Du bist Coach, nicht Dozent. Dein Ziel: Die Lernenden bauen ihre App selbst.
 | Live Server läuft nicht | VS Code neu starten, Extension prüfen |
 | Git-Konflikte | Gemeinsam im Team lösen, erklären warum |
 | `fetch()` funktioniert nicht | Pfad prüfen, Live Server muss laufen |
-| Mock-API liefert keine Daten | Prüfen ob `npm start` im zweiten Terminal läuft → <http://localhost:3000> im Browser öffnen |
+| SuvaSense-API liefert keine Daten | `curl http://<host>:8080/health` und `docker compose -f SuvaSense/docker-compose.yml ps` |
+| Push-Bundle enthält kein BME680 | Mit PE-Team klären, ob BME680 angeschlossen ist |
 | JSON-Syntax-Fehler | JSON-Validator zeigen, Komma am Ende |
 | CSS wird nicht angewendet | Pfad prüfen, Browser-Cache leeren (Ctrl+Shift+R) |
+| Snapshot zeigt alte Daten | `localStorage.removeItem('snapshot:SN12345')` in DevTools-Konsole |
 | Verzweiflung / Aufgeben | Kleine Erfolge feiern, Aufgabe aufteilen |
 | Langeweile / Unterforderung | Optionale Features anbieten, Peer-Teaching |
 
 ## Wie helfen, ohne die Lösung vorzugeben?
 
 === "Schlecht :material-close:"
-    «Schreib einfach `element.textContent = data.temperature`»
+    «Schreib einfach `latest.readings.bme680.temp_c`»
     «Hier, ich zeig's dir» (und tippt selbst)
 
 === "Gut :material-check:"
-    «Was steht in `data.temperature` drin?»
+    «Was steht in `latest.readings.bme680` drin?»
     «Wie heisst das HTML-Element, das du ändern willst?»
-    «Schau mal in die Konsole, was zeigt `console.log`?»
+    «Schau mal in die Konsole, was zeigt `console.log(latest)`?»
 
 ## Was tun, wenn...
 
-### ...die API nicht funktioniert?
+### ...die SuvaSense-API nicht funktioniert?
 
-- Lernende-App hat immer `data.json` als Fallback eingebaut
-- Bei API-Problemen: `USE_API = false` in `script.js` setzen (z. B. wenn Node.js auf einem Laptop nicht läuft)
-- Allen Teams erklären: Backend ist ideal, Mock-Daten funktionieren genauso
-- Wenn die API gar nicht startet: `http://localhost:3000` im Browser öffnen → Fehlermeldung lesen
+1. `docker compose -f SuvaSense/docker-compose.yml ps` – laufen alle 4 Services?
+2. `curl http://localhost:8080/health` – antwortet das Backend?
+3. `docker compose -f SuvaSense/docker-compose.yml logs backend` – was sagt das Log?
+4. `docker compose -f SuvaSense/docker-compose.yml restart backend` – als schneller Fix
+5. Lernende können währenddessen mit `data.json` weiterarbeiten (Snapshot-Fallback greift nach erstem Erfolg)
 
-### ...Node.js nicht installiert ist?
+### ...der MQTT-Broker keine Messages sieht?
 
-- Lernende installieren LTS-Version von <https://nodejs.org> (5 Min, «weiter, weiter, installieren»)
-- Alternativ die Mock-API per `docker compose up -d` aus dem Codebase-Repo starten (falls Docker verfügbar)
-- Im Notfall: Lernende zeigen, wie `data.json` direkt funktioniert (vorübergehender API-Verzicht)
+1. `mosquitto_sub -h <host> -t 'suva/+/data' -v` – kommen Messages?
+2. ESP-Serial-Monitor zeigen, was er publiziert
+3. Topic exakt `suva/<serial>/data`? Letztes Segment muss `data` sein
 
-### ...das PE-Team an Tag 2/3 nicht erscheint (Krankheit, Verzögerung)?
+### ...PE-Team ESP32 nicht verbinden kann?
 
-- **Tag 2 Nachmittag**: Schnittstellen selbst anhand der `ingest-vertrag.md` definieren, PE holt später auf
-- **Tag 3 Nachmittag**: AE-only Integration mit Mock-Daten, Demo mit Mock-Fallback
-- **Im Notfall**: Sensor-Anbindung als «geplant für nächste Woche» in der Demo erwähnen, nicht als Bug framet
-- Die App selbst ist vollständig funktional ohne echte Sensoren
+- Trainer publiziert manuell via `mosquitto_pub` (Beispiel im
+  [Demo-Sensor-Setup](demo-sensor.md))
+- Demo läuft trotzdem, Daten sehen für die Lernenden identisch aus
 
 ### ...Lernende stark unterschiedlich schnell sind?
 
@@ -99,14 +105,16 @@ Du bist Coach, nicht Dozent. Dein Ziel: Die Lernenden bauen ihre App selbst.
 ### ...ein Team komplett feststeckt?
 
 - Kurzes 1:1-Coaching (5–10 Minuten)
-- Auf das Wesentliche fokussieren (MVP-Ansatz)
+- Auf das Wesentliche fokussieren (MVP-Ansatz: Dashboard + Status + Verlauf)
 - Nicht den ganzen Tag an einem Bug verbringen
 
 ## Checkliste vor jedem Tag
 
 - [ ] Raum ist bereit (Stühle, Tische)
 - [ ] Beamer funktioniert
-- [ ] WLAN läuft
+- [ ] WLAN läuft (Laptops der Lernenden erreichen den SuvaSense-Host)
 - [ ] Theorie-Folien sind bereit
 - [ ] Tagesplan ist im Kopf
 - [ ] GitHub-Repositories sind erreichbar
+- [ ] SuvaSense-Stack ist hochgefahren (ab Tag 3)
+- [ ] Demo-Sensor publiziert (ab Tag 3)

@@ -2,19 +2,27 @@
 
 ## :material-target: Ziel
 
-Lade Daten aus einer JSON-Datei und zeige sie dynamisch auf einer Webseite an.
+Lade Push-Bundles aus einer JSON-Datei und zeige sie dynamisch auf einer Webseite an.
 
 ## Schritt 1: JSON-Datei erstellen
 
 Erstelle `uebung-daten.json` im `app/`-Ordner deines Codebase-Repositories:
 
 ```json
-{
-  "room": "B101",
-  "temperature": 23.4,
-  "humidity": 51,
-  "timestamp": "2026-08-06T10:30:00"
-}
+[
+  {
+    "recorded_at": "2026-08-06T10:30:00Z",
+    "readings": {
+      "bme680": { "temp_c": 23.4, "hum_pct": 51 }
+    }
+  },
+  {
+    "recorded_at": "2026-08-06T10:29:50Z",
+    "readings": {
+      "bme680": { "temp_c": 23.3, "hum_pct": 51 }
+    }
+  }
+]
 ```
 
 ## Schritt 2: HTML-Seite erstellen
@@ -75,14 +83,17 @@ Erstelle `uebung-daten-laden.html`:
                 card.innerHTML = '<p class="laden">⏳ Lade Daten...</p>';
 
                 const response = await fetch('uebung-daten.json');
-                const data = await response.json();
+                const bundles = await response.json();
+
+                const latest = bundles[0];                    // neuester Push-Bundle
+                const bme    = latest.readings.bme680;        // BME680-Block
 
                 card.innerHTML = `
-                    <h2>Raum ${data.room}</h2>
-                    <div class="wert">🌡️ ${data.temperature} °C</div>
-                    <div class="wert">💧 ${data.humidity} %</div>
+                    <h2>Sensor SN12345</h2>
+                    <div class="wert">🌡️ ${bme.temp_c} °C</div>
+                    <div class="wert">💧 ${bme.hum_pct} %</div>
                     <p style="color: #999; font-size: 13px;">
-                        Letzte Messung: ${new Date(data.timestamp).toLocaleString()}
+                        Letzte Messung: ${new Date(latest.recorded_at).toLocaleString()}
                     </p>
                 `;
             } catch (error) {
@@ -108,38 +119,62 @@ Erstelle `uebung-daten-laden.html`:
 
 ## Schritt 4: Mehrere Datensätze (Bonus)
 
-Erstelle `uebung-verlauf.json` im gleichen `app/`-Ordner:
+Erweitere `uebung-daten.json` um einen dritten Push-Bundle:
 
 ```json
 [
-  { "room": "B101", "temperature": 23.4, "humidity": 51, "timestamp": "2026-08-06T10:30:00" },
-  { "room": "B101", "temperature": 23.1, "humidity": 52, "timestamp": "2026-08-06T10:15:00" },
-  { "room": "B101", "temperature": 22.9, "humidity": 53, "timestamp": "2026-08-06T10:00:00" }
+  {
+    "recorded_at": "2026-08-06T10:30:00Z",
+    "readings": { "bme680": { "temp_c": 23.4, "hum_pct": 51 } }
+  },
+  {
+    "recorded_at": "2026-08-06T10:29:50Z",
+    "readings": { "bme680": { "temp_c": 23.1, "hum_pct": 52 } }
+  },
+  {
+    "recorded_at": "2026-08-06T10:29:40Z",
+    "readings": { "bme680": { "temp_c": 22.9, "hum_pct": 53 } }
+  }
 ]
 ```
 
-Ergänze den Code, um eine Liste anzuzeigen:
+Zeige eine Liste aller Push-Bundles untereinander:
 
 ```javascript
-// Statt card.innerHTML für ein Objekt:
-data.forEach(messung => {
-    const item = document.createElement('div');
-    item.innerHTML = `
-        <p>${new Date(messung.timestamp).toLocaleTimeString()} –
-        ${messung.temperature} °C / ${messung.humidity} %</p>
-    `;
-    card.appendChild(item);
-});
+async function loadData() {
+    const card = document.getElementById('card');
+    card.innerHTML = '';
+
+    try {
+        const response = await fetch('uebung-daten.json');
+        const bundles = await response.json();
+
+        bundles.forEach(bundle => {
+            const bme = bundle.readings.bme680;
+            const item = document.createElement('div');
+            item.innerHTML = `
+                <p>
+                    ${new Date(bundle.recorded_at).toLocaleTimeString()} –
+                    ${bme.temp_c} °C / ${bme.hum_pct} %
+                </p>
+            `;
+            card.appendChild(item);
+        });
+    } catch (error) {
+        card.innerHTML = '<p class="error">Fehler: Daten konnten nicht geladen werden.</p>';
+        console.error(error);
+    }
+}
 ```
 
 ## :material-check-all: Übungs-Checkliste
 
-- [ ] JSON-Datei erstellt
+- [ ] JSON-Datei im Push-Bundle-Format erstellt
 - [ ] `loadData()`-Funktion mit `fetch()` geschrieben
 - [ ] Daten werden auf der Seite angezeigt
 - [ ] Bei fehlender Datei erscheint eine Fehlermeldung
 - [ ] «Neu laden»-Button funktioniert
-- [ ] Bonus: Verlaufsliste mit mehreren Einträgen
+- [ ] Bonus: Liste aller Push-Bundles
 
 !!! success "Geschafft!"
     Du kannst jetzt Daten aus JSON laden und anzeigen.  

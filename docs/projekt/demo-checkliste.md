@@ -12,53 +12,61 @@ Ihr zeigt am Ende der Woche eure App vor allen anderen Teams und Trainern.
 
 ### Vorbereitung
 
-- [ ] App läuft lokal und zeigt Daten an
-- [ ] Mock-Daten sind geladen und funktionieren
+- [ ] App läuft lokal und zeigt Live-Daten vom SuvaSense-Backend
+- [ ] Snapshot-Fallback funktioniert (Browser-Cache leeren, neu laden, prüfen ob Initial-Seed greift)
 - [ ] Alle Pflicht-Features sind umgesetzt
 - [ ] Es gibt keine offensichtlichen Bugs
 - [ ] Die App wurde mit verschiedenen Werten getestet (gut, kritisch, schlecht)
 - [ ] Der Browser ist im Vollbild-Modus
 - [ ] Die Schrift ist gross genug für den Beamer
 - [ ] Teammitglieder wissen, wer was zeigt
+- [ ] **Trainer hat den SuvaSense-Stack laufen** (oder ihr habt Backup-Daten im `localStorage`)
 
 ### Ablauf der Demo
 
 1. **Einleitung (1 Min.)**
     - Wer sind wir?
     - Was zeigt unsere App?
+    - Welche Sensoren sind im Schulungsraum verteilt? (Seriennummern)
 
 2. **Live-Demo (3–5 Min.)**
     - Dashboard zeigen
+    - Sensor-Auswahl erklären (welche Seriennummer zeigt was)
     - Status erklären (Farben)
-    - Verlauf zeigen
+    - Verlauf zeigen (Push-Bundle-Datenstruktur)
+    - Snapshot-Fallback demonstrieren (WLAN kurz aus, App bleibt funktional)
     - Admin-Seite zeigen (falls vorhanden)
-    - Optionales Feature zeigen (falls vorhanden)
+    - Optionales Feature zeigen (falls vorhanden, z. B. Lux aus VEML7700)
 
 3. **Herausforderungen & Learnings (1–2 Min.)**
-    - Was war schwierig?
-    - Was haben wir gelernt?
+    - Was war schwierig? (z. B. push-bundle-Struktur vs. einfaches Array)
+    - Was haben wir gelernt? (z. B. async/await, try/catch)
     - Was würden wir nächstes Mal anders machen?
 
-## Demo-Skript (Vorlage)
+### Demo-Skript (Vorlage)
 
 ```markdown
 ## Demo-Skript Team XY
 
 ### Person A – Dashboard
 - Seite öffnen
-- Raumname erklären
+- Sensor-Auswahl: "Wir zeigen den Sensor SN12345, der im Raum B101 steht"
 - Temperatur und Luftfeuchtigkeit zeigen
-- Auf Status-Farbe hinweisen
+- Auf Status-Farbe hinweisen (gut / kritisch / schlecht)
 
 ### Person B – Verlauf & Logik
 - Verlauf einblenden
-- Erklären, wie sich der Status berechnet
-- Zeigen, was bei kritischen Werten passiert
+- Erklären, wie sich der Status aus temp_c / hum_pct berechnet
+- Zeigen, was bei kritischen Werten passiert (Notification-Banner)
 
-### Person C – Technik
-- Kurz erklären, wie die Daten geladen werden
-- Zeigen, wo die Mock-Daten liegen
-- Optionales Feature demonstrieren
+### Person C – Live-Integration & Snapshot
+- WLAN kurz trennen → App fällt automatisch auf localStorage-Snapshot zurück
+- Wieder verbinden → Live-Daten sind zurück
+- Optional: pgAdmin zeigen (http://localhost:5050), wo die Daten in Postgres landen
+
+### Person D – Technik (optional)
+- Kurz erklären, wie die App das Push-Bundle rendert
+- Zeigen, wo der Snapshot im Browser gespeichert wird (DevTools → Application → LocalStorage)
 ```
 
 ## Tipps für die Präsentation
@@ -79,7 +87,7 @@ Ihr zeigt am Ende der Woche eure App vor allen anderen Teams und Trainern.
 
 ## Bewertung (falls zutreffend)
 
-- Funktioniert die App? (Pflichtumfang)
+- Funktioniert die App? (Pflichtumfang inkl. Live-Integration oder Fallback)
 - Ist die App verständlich?
 - Wurden eigene Ideen umgesetzt?
 - Teamarbeit sichtbar?

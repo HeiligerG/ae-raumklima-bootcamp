@@ -35,38 +35,32 @@ Du brauchst einen modernen Browser mit Entwickler-Tools:
 
 Die Entwickler-Tools öffnest du mit `F12`.
 
-### :material-nodejs: Node.js (ab Tag 3)
+!!! note "Node.js nicht mehr nötig"
+    Frühere Bootcamps hatten eine lokale Mock-API (Node/Express). Im
+    aktuellen Bootcamp läuft die Datenquelle zentral: das
+    **SuvaSense-Backend** wird vom Trainerteam über Docker gestartet.
+    Du brauchst **kein Node.js auf deinem Laptop**.
 
-Ab Tag 3 brauchst du zusätzlich **Node.js**, um die Mock-API lokal starten zu können.
-Die Mock-API liefert die Sensordaten, mit denen deine App arbeitet – sie simuliert die echten Sensoren.
+## Drei Repositories
 
-1. [Node.js LTS herunterladen](https://nodejs.org/)
-2. Installieren (Standard-Einstellungen sind ok)
-3. Prüfen:
+Das Bootcamp nutzt **drei Repositories**:
 
-```bash
-node --version
-npm --version
-```
+| Repo                                       | Inhalt                                                | Wer arbeitet hier |
+|--------------------------------------------|-------------------------------------------------------|-------------------|
+| `ae-raumklima-bootcamp`                     | Lernleitfaden (diese Dokumentation)                   | Trainer (Doku)    |
+| `ae-raumklima-bootcamp-codebase`           | Deine App (`app/`)                                    | **Lernende**      |
+| `SuvaSense`                                | Backend, Broker, Firmware, Hardware (nur Trainer)     | Trainer (Plattform) |
 
-!!! info "Wozu Node.js?"
-    Node.js ist eine JavaScript-Laufzeitumgebung – mit ihr kannst du JavaScript *ausserhalb* des Browsers ausführen. Unser Mock-Backend (`mock-api/`) ist ein kleines Node-Programm, das auf deinem Laptop einen Webserver startet.
-
-## Projekt einrichten
-
-Das Bootcamp nutzt **zwei Repositories**:
-
-| Repo                                       | Inhalt                                            |
-|--------------------------------------------|---------------------------------------------------|
-| `ae-raumklima-bootcamp`                     | Lernleitfaden (diese Dokumentation)               |
-| `ae-raumklima-bootcamp-codebase`           | Dein App-Code (`app/`) und die Mock-API (`mock-api/`) |
-
-### 1. Beide Repositories klonen
+### 1. Alle drei Repositories klonen
 
 ```bash
 git clone <url-leitfaden-repo>
 git clone <url-codebase-repo>
+git clone <url-suvasense-repo>     # nur falls ihr auch am Backend mitarbeitet
 ```
+
+Im Normalfall reichen die ersten zwei. Das `SuvaSense`-Repo brauchen
+nur die Plattformentwickler, die die ESPs flashen.
 
 ### 2. Codebase in VS Code öffnen
 
@@ -75,18 +69,17 @@ cd ae-raumklima-bootcamp-codebase
 code .
 ```
 
-### 3. Mock-API starten (ab Tag 3)
+### 3. Warten auf den SuvaSense-Stack
 
-```bash
-cd mock-api
-npm install      # nur beim ersten Mal
-npm start
-```
+Das **SuvaSense-Backend** läuft nicht auf deinem Laptop, sondern auf
+dem Trainer-Laptop oder einem Schulungs-Server. Du brauchst nichts zu
+installieren oder zu starten – der Trainer verteilt zu Tag 3 die URLs:
 
-Die API läuft anschliessend auf <http://localhost:3000>. Du kannst die URL im Browser öffnen – es erscheint eine Übersicht der verfügbaren Räume und Endpunkte.
+- API-Base-URL (z. B. `http://192.168.1.42:8080/api/v1`)
+- Demo-Seriennummer (z. B. `SN12345`)
 
-!!! tip "Zwei Terminals"
-    Lass das Terminal mit der laufenden API offen. Für deine App startest du **zusätzlich** den Live Server in VS Code. So hast du zwei Prozesse parallel – wie in einem echten Web-Projekt.
+Falls du schon vor Tag 3 stöbern willst, kannst du die API im Browser
+öffnen – die HTML-Übersichtsseite hilft beim Erkunden.
 
 ### 4. Erste App-Datei anlegen
 
@@ -119,12 +112,13 @@ Der Browser öffnet sich automatisch mit deiner Seite.
 - [ ] VS Code installiert
 - [ ] Live Server Extension installiert
 - [ ] Git installiert
-- [ ] Node.js installiert (ab Tag 3)
-- [ ] Beide Repositories geklont
+- [ ] Browser mit DevTools (Chrome/Firefox/Edge)
+- [ ] **Leitfaden-Repo** (`ae-raumklima-bootcamp`) geklont – zum Nachschlagen
+- [ ] **Codebase-Repo** (`ae-raumklima-bootcamp-codebase`) geklont
 - [ ] Codebase in VS Code geöffnet
 - [ ] `index.html` in `app/` erstellt
 - [ ] Live Server gestartet und Seite sichtbar
-- [ ] (ab Tag 3) Mock-API läuft auf `localhost:3000`
+- [ ] (ab Tag 3) SuvaSense-API-URL vom Trainer erhalten
 
 !!! success "Geschafft!"
     Deine Entwicklungsumgebung ist bereit.  

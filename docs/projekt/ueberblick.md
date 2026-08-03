@@ -2,25 +2,30 @@
 
 ## Raumklima-Monitor
 
-Du baust eine Web-App, die das Raumklima in Lernräumen überwacht. Aktuell zeigen wir **Temperatur und Luftfeuchtigkeit** (die garantierten Sensoren). Weitere Sensoren (z. B. CO2, Licht, Luftqualität) sind optional und werden vom PE-Team angeschlossen, sobald die Hardware bereitsteht.
+Du baust eine Web-App, die das Raumklima in Lernräumen überwacht. Die
+App greift live auf reale Sensoren zu, die im Schulungsraum verteilt
+sind, und zeigt deren **Temperatur** und **Luftfeuchtigkeit** an.
+Weitere Sensortypen (Licht, Bewegung, Gas-Widerstand) sind optional und
+können in der App als Bonus angezeigt werden.
 
 ### Was die App können muss (Pflichtumfang)
 
-- [ ] Dashboard mit Raumname, Temperatur, Luftfeuchtigkeit
+- [ ] Dashboard mit Seriennummer (oder Raumname), Temperatur, Luftfeuchtigkeit
 - [ ] Status-Anzeige: gut / mittel / kritisch (exakte Schwellwerte werden im Projekt evaluiert)
-- [ ] Daten aus JSON oder API laden
+- [ ] Daten vom **SuvaSense-Backend** laden
+- [ ] Snapshot-Fallback aus `localStorage`, wenn das Backend nicht erreichbar ist
 - [ ] Fehlerfall anzeigen (z. B. «Keine Daten verfügbar»)
-- [ ] Verlauf der letzten Messungen anzeigen
-- [ ] Einfache Admin-Seite für Räume oder Grenzwerte
+- [ ] Verlauf der letzten Messungen anzeigen (Push-Bundle-Modus)
+- [ ] Einfache Admin-Seite für Sensor-Auswahl oder Grenzwerte
 - [ ] Demo vorbereiten und präsentieren
 
 ### Was die App zusätzlich können kann (optional)
 
-- [ ] Weitere Sensoren anzeigen (z. B. CO2, Licht – kommen automatisch via `extras` aus der API)
+- [ ] Weitere Sensortypen anzeigen (`veml7700.lux`, `system.cpu_temp_c`, …)
 - [ ] Diagramm / Chart für Temperatur- und Feuchtigkeitsverlauf
 - [ ] Auto-Refresh der Daten
 - [ ] Dark Mode
-- [ ] Daten in LocalStorage speichern
+- [ ] Snapshot in LocalStorage persistieren
 - [ ] Benachrichtigungs-Banner bei kritischen Werten
 - [ ] Schönere UI (Animationen, Icons, Farben)
 - [ ] Präsentationsmodus (grosse Schrift, Vollbild)
@@ -39,7 +44,7 @@ Keine Frameworks, kein Build-Tool – reines HTML, CSS und JavaScript.
 
 ## Statuslogik
 
-Die genauen Schwellwerte werden im Projektlauf evaluiert (vom EDB-Team). Ein sinnvoller Startwert ist:
+Die genauen Schwellwerte werden im Projektlauf evaluiert. Ein sinnvoller Startwert ist:
 
 | Status | Bedingung |
 |--------|-----------|
@@ -47,57 +52,66 @@ Die genauen Schwellwerte werden im Projektlauf evaluiert (vom EDB-Team). Ein sin
 | :material-alert: Mittel | Temperatur 18–26 °C **oder** Luftfeuchtigkeit 30–70 % |
 | :material-close-circle: Kritisch | Alles ausserhalb |
 
+Diese Logik bleibt 1:1 wie bisher; die Eingabewerte kommen neu aus
+`readings.bme680.temp_c` und `readings.bme680.hum_pct`.
+
 ## Datenquelle
 
-Die App lädt ihre Daten aus einem **lokalen Backend** (Node/Express), das im Schwester-Repo `ae-raumklima-bootcamp-codebase` unter `mock-api/` mitgeliefert wird. Es liefert die gleichen Mock-Daten wie der Lerninhalt unten – das gibt euch eine realistische Umgebung ohne Sensor-Hardware.
+Die App lädt ihre Daten vom **SuvaSense-Backend** unter
+`http://<vom-trainer-bekanntgegeben>:8080/api/v1`. Die
+konkrete URL und die Demo-Seriennummer werden am Tag 3 vom Trainer
+bekanntgegeben. Vollständiger Vertrag: [API-Vertrag](api-vertrag.md),
+Architektur-Überblick: [Architektur](architektur.md).
 
-```json
+```jsonc
+// Antwort von GET /api/v1/sensors/SN12345/readings?page=1&page_size=10
 {
-  "room": "B101",
-  "temperature": 23.4,
-  "humidity": 51,
-  "timestamp": "2026-08-06T10:30:00"
+  "serial_number": "SN12345",
+  "mode": "push-bundles",
+  "items": [
+    {
+      "recorded_at": "2026-08-06T10:30:00Z",
+      "readings": {
+        "bme680": { "temp_c": 23.4, "hum_pct": 51 }
+      }
+    }
+    /* … weitere Push-Bundles, neueste zuerst … */
+  ]
 }
 ```
 
-Details: [Architektur](architektur.md), [Mockdaten](mockdaten.md), [API-Vertrag](api-vertrag.md).
+Im Bootcamp sind die **BME680-Werte** (`temp_c`, `hum_pct`) garantiert.
+Andere Sensortypen können vorhanden sein oder nicht – die App behandelt
+sie als optional.
 
-!!! info "Zwei Datenquellen – ein Vertrag"
-    Ab Tag 2 arbeitet ihr zusätzlich mit einer **lokalen `data.json`** als Fallback. Sie hat denselben Aufbau wie die API-Antwort. Wenn das Backend nicht läuft oder die API down ist, fällt eure App automatisch auf `data.json` zurück – so habt ihr immer Daten zum Arbeiten.
+!!! info "Snapshot-Fallback"
+    Beim ersten erfolgreichen API-Aufruf speichert die App das
+    aktuelle Daten-Array in `localStorage`. Wenn das Backend später
+    nicht erreichbar ist, fällt die App automatisch auf diesen
+    Snapshot zurück. So funktioniert die Demo auch bei WLAN-Ausfall.
 
-## Datenmodell
+## Datenmodell (App-Seite)
 
-Jede Messung hat diese garantierten Felder:
+Jede Messung, die die App anzeigt, hat diese Felder:
 
-```json
+```jsonc
 {
-  "room": "B101",
-  "temperature": 23.4,
-  "humidity": 51,
-  "timestamp": "2026-08-06T10:30:00"
+  "recorded_at": "2026-08-06T10:30:00Z",   // Zeitpunkt
+  "readings": {
+    "bme680": { "temp_c": 23.4, "hum_pct": 51 }
+    // weitere Typen möglich, aber nicht garantiert
+  }
 }
 ```
 
-Zusätzlich gibt es ein optionales Feld `extras`, das Werte für weitere Sensoren enthält (z. B. CO2, Licht). Es ist `null`, wenn keine zusätzlichen Sensoren verfügbar sind:
-
-```json
-{
-  "room": "B103",
-  "temperature": 17.2,
-  "humidity": 68,
-  "timestamp": "2026-08-06T10:30:00",
-  "extras": { "co2": 580, "light": 320 }
-}
-```
-
-Lernende-App-Code sollte `extras` als **optionales Feature** behandeln – wenn vorhanden, anzeigen, sonst ignorieren. Die Pflichtanzeige beschränkt sich auf Temperatur und Luftfeuchtigkeit.
+Optional können weitere Sensortypen vorhanden sein (`veml7700`, `mpu6050`, `system`). Die App behandelt sie als Bonus und zeigt sie nur an, wenn sie vorhanden sind.
 
 ## Meilensteine
 
 | Tag | Meilenstein |
 |-----|-------------|
-| Tag 1 | Dashboard-Grundlayout steht, erster Raum wird angezeigt |
+| Tag 1 | Dashboard-Grundlayout steht, ein Sensor wird statisch angezeigt |
 | Tag 2 | Daten werden geladen, Statuslogik funktioniert, Verlauf sichtbar |
-| Tag 3 | API-Integration oder Mock-Fallback, Layout finalisiert |
+| Tag 3 | Snapshot-Fallback implementiert, Layout finalisiert, Live-Integration mit SuvaSense |
 | Tag 4 | Pflichtumfang komplett, getestet, Demo vorbereitet |
 | Tag 5 | Präsentation & Abschluss |

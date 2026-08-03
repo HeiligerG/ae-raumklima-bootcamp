@@ -90,11 +90,12 @@ nav:
   - Projekt:
       - projekt/ueberblick.md
       - "Architektur": projekt/architektur.md
+      - "SuvaSense-Backend": projekt/suvasense-backend.md
       - "Backlog": projekt/backlog.md
       - "Definition of Done": projekt/definition-of-done.md
-      - "Mockdaten": projekt/mockdaten.md
+      - "Fallback-Daten & Snapshot": projekt/mockdaten.md
       - "API-Vertrag": projekt/api-vertrag.md
-      - "Ingest-Vertrag (Plattform-Team)": projekt/ingest-vertrag.md
+      - "MQTT-Ingest-Vertrag": projekt/ingest-vertrag.md
       - "Demo-Checkliste": projekt/demo-checkliste.md
   - "Tag 1 – 06.08":
       - tag-1/index.md
@@ -126,4 +127,5 @@ nav:
   - "Für Trainer":
       - trainer/hinweise.md
       - "Tagesplanung": trainer/tagesplanung.md
+      - "Demo-Sensor-Setup": trainer/demo-sensor.md
       - "Risiken & Fallbacks": trainer/risiken-und-fallbacks.md

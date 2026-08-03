@@ -12,7 +12,7 @@ Jede Aufgabe ist erst fertig, wenn **alle** Punkte zutreffen:
 - [ ] **Code geschrieben** – Der Code für die Aufgabe existiert
 - [ ] **Code committed** – Der Code ist mit `git commit` gespeichert
 - [ ] **Code gepusht** – Der Code ist mit `git push` auf GitHub
-- [ ] **Funktioniert** – Die Funktion wurde manuell getestet
+- [ ] **Funktioniert** – Die Funktion wurde manuell getestet – **idealerweise auch gegen die SuvaSense-API, nicht nur gegen `data.json`**
 - [ ] **Fehlerfrei** – Es gibt keine bekannten Bugs in der Aufgabe
 - [ ] **Team-Review** – Mindestens ein Teammitglied hat den Code gesehen
 - [ ] **Kein kaputter Code** – Bestehende Funktionen funktionieren immer noch
@@ -26,6 +26,7 @@ Jede Aufgabe ist erst fertig, wenn **alle** Punkte zutreffen:
     - [x] Manuell mit verschiedenen Werten getestet
     - [x] Status-Farben ändern sich korrekt
     - [x] Kollege hat Code angeschaut
+    - [x] Live mit SuvaSense-Backend verifiziert (Snapshot aus localStorage sichtbar)
     ```
 
 === "Nicht fertig :material-close:"
@@ -34,6 +35,7 @@ Jede Aufgabe ist erst fertig, wenn **alle** Punkte zutreffen:
     - [ ] Code ist nur lokal gespeichert (kein Commit)
     - [ ] Nur mit einem Wert getestet
     - [ ] Status-Farben noch nicht implementiert
+    - [ ] Nie mit dem SuvaSense-Backend ausprobiert
     ```
 
 ## Warum ist eine DoD wichtig?

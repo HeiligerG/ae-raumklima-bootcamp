@@ -2,66 +2,86 @@
 
 ## :material-target: Aufgabe
 
-Integriere deine App mit dem Backend und teste sie **live** mit dem PE-Team. Diese Session läuft gemeinsam mit den Plattformentwicklern, die parallel ihre Sensoren testen.
+Integriere deine App mit dem **SuvaSense-Backend** und teste sie **live** mit dem PE-Team. Diese Session läuft gemeinsam mit den Plattformentwicklern, die parallel ihre Sensoren testen.
 
 !!! info "Diese Session ist der entscheidende Integrationstest"
-    Was du am Tag 2 im Schnittstellen-Vertrag festgelegt hast, wird jetzt live validiert. Wenn etwas nicht passt, ist das der richtige Moment, es zu finden – nicht erst bei der Demo.
+    Was du am Tag 2 im Datenvertrag festgelegt hast, wird jetzt live validiert. Wenn etwas nicht passt, ist das der richtige Moment, es zu finden – nicht erst bei der Demo.
 
-## Schritt 1: Fallback-Strategie implementieren
+## Schritt 1: Snapshot-Fallback implementieren
+
+Die App versucht in dieser Reihenfolge Daten zu holen:
+
+1. **Live:** `GET /api/v1/sensors/{serial}/readings?page=1&page_size=10`
+2. **Snapshot:** `localStorage.getItem('snapshot:' + serial)` (vom letzten Live-Erfolg)
+3. **Seed:** `fetch('data.json')` (Initial-Wert)
 
 ```javascript
 // script.js – am Anfang der Datei
-const USE_API = true; // wir nutzen die lokale Mock-API
-const API_BASE = 'http://localhost:3000/api/v1';
+const API_BASE = 'http://<vom-trainer-bekanntgegeben>:8080/api/v1';
+let currentSerial = 'SN12345'; // Demo-Seriennummer vom Trainer
 
-async function getLatestMeasurement(roomId) {
-  if (USE_API) {
+function snapshotKey(serial) { return `snapshot:${serial}`; }
+
+async function getBundles(serial, limit = 10) {
+  // 1. Versuch: Live-API
+  try {
+    const response = await fetch(`${API_BASE}/sensors/${serial}/readings?page=1&page_size=${limit}`);
+    if (!response.ok) throw new Error(`API-Fehler: ${response.status}`);
+    const data = await response.json();
+    const items = data.items || [];
+
+    // Erfolg: Snapshot in localStorage aktualisieren
     try {
-      const response = await fetch(`${API_BASE}/rooms/${roomId}/measurements/latest`);
-      if (!response.ok) throw new Error(`API-Fehler: ${response.status}`);
-      return await response.json();
-    } catch (error) {
-      console.warn('API nicht erreichbar, nutze Mock-Daten');
+      localStorage.setItem(snapshotKey(serial), JSON.stringify(items));
+    } catch (e) {
+      console.warn('Snapshot konnte nicht gespeichert werden:', e);
     }
+    return items;
+  } catch (error) {
+    console.warn('API nicht erreichbar, nutze Snapshot:', error);
   }
 
-  const response = await fetch('data.json');
-  const data = await response.json();
-  return data[0];
+  // 2. Versuch: Snapshot aus localStorage
+  const cached = localStorage.getItem(snapshotKey(serial));
+  if (cached) {
+    try { return JSON.parse(cached); }
+    catch (e) { console.warn('Snapshot kaputt:', e); }
+  }
+
+  // 3. Versuch: Initial-Seed
+  try {
+    const response = await fetch('data.json');
+    if (!response.ok) throw new Error('Seed nicht ladbar');
+    return await response.json();
+  } catch (error) {
+    console.error('Auch Seed nicht ladbar:', error);
+    return [];
+  }
 }
 
-async function getHistory(roomId, limit = 10) {
-  if (USE_API) {
-    try {
-      const response = await fetch(`${API_BASE}/rooms/${roomId}/measurements?limit=${limit}`);
-      if (!response.ok) throw new Error(`API-Fehler: ${response.status}`);
-      return await response.json();
-    } catch (error) {
-      console.warn('API nicht erreichbar, nutze Mock-Daten');
-    }
-  }
-
-  const response = await fetch('data.json');
-  return await response.json();
+async function getLatestBundle(serial) {
+  const bundles = await getBundles(serial, 10);
+  if (bundles.length === 0) throw new Error('Keine Daten verfügbar');
+  return bundles[0];   // neuester zuerst
 }
 ```
 
-!!! info "Mock-API starten – bevor du loslegst"
-    Die Mock-API liegt im Schwester-Repo `ae-raumklima-bootcamp-codebase/mock-api/`.
-    Öffne ein **zweites Terminal** in VS Code und führe aus:
+!!! info "Was ist die Snapshot-Strategie?"
+    Beim **ersten** erfolgreichen API-Aufruf speichert die App das
+    Ergebnis im Browser (`localStorage`). Wenn die App später
+    geöffnet wird und die API nicht erreichbar ist, zeigt sie
+    stattdessen diesen Snapshot. Das ist robust gegen:
 
-    ```bash
-    cd ae-raumklima-bootcamp-codebase/mock-api
-    npm install   # nur beim ersten Mal
-    npm start
-    ```
+    - WLAN-Ausfall im Schulungsraum
+    - Backend-Crash während Demo
+    - Server-Restart
 
-    Die API läuft dann auf <http://localhost:3000>. Lass das Terminal offen – die App
-    kann nur Daten laden, solange die API läuft. Falls du sie stoppen willst: `Ctrl+C`.
+    Der Snapshot ist pro Seriennummer separat (`snapshot:SN12345`,
+    `snapshot:SN67890`). So bleiben mehrere Sensoren unabhängig.
 
-!!! tip "API läuft auf einem anderen Rechner im Bootcamp?"
-    Wenn dein Laptop kein Node.js installiert hat oder die API auf einem geteilten Schulungs-Laptop läuft,
-    kann der Trainer die API auch zentral deployen. Die URL bekommst du dann vom Trainer und setzt sie einmalig in `API_BASE` ein. Der Rest deines Codes bleibt gleich.
+!!! tip "API-URL und Seriennummer"
+    Die Werte für `API_BASE` und `currentSerial` bekommt ihr zu Tag 3
+    vom Trainer. Bis dahin funktioniert der Code mit den Platzhaltern.
 
 ## Schritt 2: Admin-Seite einbauen
 
@@ -73,11 +93,11 @@ Füge in `index.html` unterhalb des Dashboards ein:
         <summary>Einstellungen</summary>
         <div class="admin-content">
             <label>
-                Raum:
-                <select id="room-select" onchange="onRoomChange()">
-                    <option value="B101">B101</option>
-                    <option value="B102">B102</option>
-                    <option value="B103">B103</option>
+                Sensor:
+                <select id="sensor-select" onchange="onSensorChange()">
+                    <option value="SN12345">SN12345</option>
+                    <option value="SN67890">SN67890</option>
+                    <option value="DEMO-001">DEMO-001</option>
                 </select>
             </label>
             <button onclick="loadDashboard()">Aktualisieren</button>
@@ -131,31 +151,51 @@ CSS für Admin-Panel:
 }
 ```
 
-## Schritt 3: `loadDashboard()` für mehrere Räume anpassen
+**Optional (für Fortgeschrittene):** Statt fixem Dropdown die Liste
+dynamisch aus `GET /api/v1/sensors` laden:
 
 ```javascript
-let currentRoom = 'B101';
+async function populateSensorDropdown() {
+  try {
+    const r = await fetch(`${API_BASE}/sensors?page=1&page_size=50&status=online`);
+    if (!r.ok) throw new Error('Sensorliste nicht ladbar');
+    const data = await r.json();
+    const select = document.getElementById('sensor-select');
+    select.innerHTML = '';
+    data.items.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.serial_number;
+      opt.textContent = `${s.serial_number} (${s.status})`;
+      select.appendChild(opt);
+    });
+  } catch (e) { console.warn('Dropdown-Init fehlgeschlagen:', e); }
+}
+```
 
-function onRoomChange() {
-  currentRoom = document.getElementById('room-select').value;
+## Schritt 3: `loadDashboard()` für mehrere Sensoren anpassen
+
+```javascript
+function onSensorChange() {
+  currentSerial = document.getElementById('sensor-select').value;
   loadDashboard();
 }
 
 async function loadDashboard() {
   try {
-    const latest = await getLatestMeasurement(currentRoom);
-    const history = await getHistory(currentRoom);
+    const latest = await getLatestBundle(currentSerial);
+    const bme = latest.readings.bme680;
 
-    document.getElementById('room-name').textContent = 'Raum ' + latest.room;
-    document.getElementById('temperature').textContent = latest.temperature + ' °C';
-    document.getElementById('humidity').textContent = latest.humidity + ' %';
+    document.getElementById('serial-number').textContent = currentSerial;
+    document.getElementById('temp-c').textContent        = bme.temp_c + ' °C';
+    document.getElementById('hum-pct').textContent       = bme.hum_pct + ' %';
 
-    const status = getStatus(latest.temperature, latest.humidity);
+    const status = getStatus(bme.temp_c, bme.hum_pct);
     const statusEl = document.getElementById('status');
     statusEl.textContent = getStatusText(status);
-    statusEl.className = 'status ' + status;
+    statusEl.className   = 'status ' + status;
 
-    renderHistory(history);
+    const bundles = await getBundles(currentSerial, 10);
+    renderHistory(bundles);
   } catch (error) {
     showError();
     console.error(error);
@@ -186,20 +226,21 @@ Lies die [Demo-Checkliste](../projekt/demo-checkliste.md) und bereite vor:
 2. **Test-Demo durchlaufen**
     - Einmal komplett von Anfang bis Ende
     - Zeit stoppen (Ziel: 5–7 Minuten)
+    - Snapshot-Fallback einmal vorzeigen (WLAN kurz trennen)
 
 3. **Technik prüfen**
     - App läuft im Vollbild
     - Schrift ist gross genug
-    - Mock-Daten sind geladen
+    - Snapshot in `localStorage` ist vorhanden (DevTools → Application)
 
 ## :material-check-all: Projekt-Checkliste Tag 3
 
-- [ ] Fallback-Strategie implementiert
-- [ ] Admin-Seite mit Raumauswahl
-- [ ] Dashboard funktioniert für verschiedene Räume
+- [ ] Snapshot-Fallback implementiert (API → localStorage → Seed)
+- [ ] Admin-Seite mit Sensor-Auswahl
+- [ ] Dashboard funktioniert für verschiedene Sensoren
 - [ ] Layout und Styling finalisiert
 - [ ] Demo-Skript geschrieben
-- [ ] Test-Demo durchgelaufen
+- [ ] Test-Demo durchgelaufen (inkl. Snapshot-Demo)
 - [ ] Code ist committed und gepusht
 
 ## Nächster Schritt
