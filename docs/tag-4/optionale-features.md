@@ -8,7 +8,7 @@ Wenn der Pflichtumfang fertig und getestet ist, kannst du deine App mit Bonus-Fu
 
 ### :material-theme-light-dark: Dark Mode
 
-Ein Toggle-Button zum Umschalten zwischen hellem und dunklem Design.
+Ein Toggle-Button zum Umschalten zwischen hellem und dunklen Design.
 
 ```html
 <button id="theme-toggle" onclick="toggleTheme()">Dark Mode</button>
@@ -21,7 +21,6 @@ function toggleTheme() {
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
-// Beim Laden wiederherstellen
 if (localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark');
 }
@@ -43,7 +42,7 @@ body.dark .admin-panel {
 
 ### :material-chart-line: Diagramm
 
-Ein einfaches Balkendiagramm mit reinem CSS/HTML:
+Ein einfaches Balkendiagramm mit reinem CSS/HTML (aus den `temp_c`-Werten):
 
 ```html
 <div class="chart">
@@ -81,26 +80,30 @@ Ein einfaches Balkendiagramm mit reinem CSS/HTML:
 Daten automatisch alle 30 Sekunden neu laden:
 
 ```javascript
-// Nach loadDashboard() aufrufen
 setInterval(() => {
   loadDashboard();
 }, 30000); // 30000 ms = 30 Sekunden
 ```
 
-### :material-content-save: LocalStorage
+### :material-content-save: Snapshot-Persistenz
 
-Gewählten Raum oder Grenzwerte speichern:
+Beim ersten API-Erfolg wird der Snapshot automatisch gespeichert (das
+passiert bereits in `getBundles()` aus dem Tag-3-Leitfaden). Wer mehr
+will, kann zusätzlich einen "Manuell speichern"-Button anbieten:
 
 ```javascript
-function saveSettings() {
-  localStorage.setItem('currentRoom', currentRoom);
-  localStorage.setItem('thresholds', JSON.stringify(thresholds));
+function saveSnapshot() {
+  const data = JSON.stringify(currentBundles);
+  localStorage.setItem(`snapshot:${currentSerial}`, data);
+  alert('Snapshot gespeichert');
 }
 
-function loadSettings() {
-  currentRoom = localStorage.getItem('currentRoom') || 'B101';
-  const saved = localStorage.getItem('thresholds');
-  if (saved) thresholds = JSON.parse(saved);
+function loadSnapshotOnly() {
+  const cached = localStorage.getItem(`snapshot:${currentSerial}`);
+  if (cached) {
+    const bundles = JSON.parse(cached);
+    renderHistory(bundles);
+  }
 }
 ```
 
@@ -167,14 +170,71 @@ body.presentation .number {
 }
 ```
 
+### :material-access-point: Online-Indikator (SuvaSense-spezifisch)
+
+SuvaSense liefert im Sensor-Objekt einen `status: online | offline`.
+Zeige im Dashboard einen kleinen Indikator:
+
+```javascript
+async function showOnlineStatus(serial) {
+  try {
+    const r = await fetch(`${API_BASE}/sensors/${serial}`);
+    if (!r.ok) return;
+    const sensor = await r.json();
+    const dot = document.getElementById('online-dot');
+    dot.className = sensor.status === 'online' ? 'dot dot-online' : 'dot dot-offline';
+    dot.title = `${serial} ist ${sensor.status}`;
+  } catch (e) { /* still ok */ }
+}
+```
+
+```css
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot-online  { background: #2e7d32; }
+.dot-offline { background: #c62828; }
+```
+
+### :material-eye: Weitere Sensortypen anzeigen
+
+Wenn das Backend `veml7700`, `system` oder `mpu6050` mitliefert:
+
+```javascript
+const extraBox = document.getElementById('extras');
+
+if (latest.readings.veml7700) {
+  const lux = latest.readings.veml7700.lux;
+  extraBox.innerHTML += `<p>💡 Licht: ${lux.toFixed(0)} Lux</p>`;
+}
+if (latest.readings.system && latest.readings.system.cpu_temp_c != null) {
+  const cpu = latest.readings.system.cpu_temp_c;
+  extraBox.innerHTML += `<p>🖥️ CPU-Temperatur: ${cpu.toFixed(1)} °C</p>`;
+}
+if (latest.readings.system && latest.readings.system.rssi_dbm != null) {
+  const rssi = latest.readings.system.rssi_dbm;
+  extraBox.innerHTML += `<p>📶 WLAN: ${rssi} dBm</p>`;
+}
+```
+
+!!! info "Optionale Felder prüfen"
+    Diese Werte sind nur vorhanden, wenn das PE-Team die Sensoren
+    angeschlossen und im MQTT-Payload mitgesendet hat. Im Code immer
+    auf `!= null` prüfen.
+
 ## :material-check-all: Checkliste Optionale Features
 
 - [ ] Dark Mode
 - [ ] Diagramm
 - [ ] Auto-Refresh
-- [ ] LocalStorage
+- [ ] Snapshot-Persistenz
 - [ ] Benachrichtigungs-Banner
 - [ ] Präsentationsmodus
+- [ ] Online-Indikator (SuvaSense-spezifisch)
+- [ ] Weitere Sensortypen (veml7700, system, mpu6050)
 - [ ] Weitere eigene Ideen: …
 
 !!! tip "Nicht übertreiben"

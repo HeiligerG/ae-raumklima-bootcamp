@@ -16,16 +16,17 @@ Geh jeden Bereich deiner App durch:
 
 ### 2. Daten-Test
 
-- [ ] Richtige Temperatur und Luftfeuchtigkeit?
+- [ ] Richtige `temp_c` und `hum_pct` werden angezeigt?
 - [ ] Status passt zu den Werten?
-- [ ] Verlaufsliste zeigt mehrere Einträge?
+- [ ] Verlaufsliste zeigt mehrere Push-Bundles?
+- [ ] Snapshot ist im LocalStorage gespeichert (DevTools → Application)?
 
 ### 3. Status-Test
 
-Setze in `data.json` verschiedene Werte und prüfe:
+Setze in `data.json` verschiedene BME680-Werte und prüfe:
 
-| Temperatur | Luftfeuchtigkeit | Soll-Status |
-|-----------|-----------------|-------------|
+| `temp_c` | `hum_pct` | Soll-Status |
+|---|---|---|
 | 22.0 | 50 | Gut |
 | 23.0 | 41 | Gut |
 | 25.5 | 45 | Kritisch |
@@ -33,16 +34,16 @@ Setze in `data.json` verschiedene Werte und prüfe:
 | 30.0 | 20 | Schlecht |
 | 15.0 | 80 | Schlecht |
 
-### 4. Fehlerfall-Test
+### 4. Snapshot-Fallback-Test
 
-- [ ] `data.json` temporär umbenennen → Fehlermeldung erscheint?
-- [ ] Nach Umbenennung: App stürzt nicht ab?
-- [ ] Fehlermeldung ist verständlich?
-- [ ] Datei zurückbenennen → Daten wieder da?
+- [ ] App frisch laden (Cache leeren) → Seed aus `data.json` greift
+- [ ] WLAN trennen → App zeigt weiterhin Werte (aus `localStorage`)
+- [ ] WLAN wieder verbinden → App holt neue Daten
+- [ ] `localStorage.clear()` + `data.json` umbenennen → Fehlermeldung erscheint
 
 ### 5. Admin-Test
 
-- [ ] Raum wechseln → Daten ändern sich?
+- [ ] Sensor wechseln → Daten ändern sich?
 - [ ] Grenzwerte ändern → Status reagiert?
 
 ### 6. Responsive-Test
@@ -71,17 +72,25 @@ Alles, was **rot** ist, ist ein Fehler. Alles, was **gelb** ist, ist eine Warnun
 
 ??? bug "Status bleibt immer gleich"
     **Ursache**: `getStatus()` wird mit falschen oder keinen Werten aufgerufen.  
-    **Lösung**: `console.log(temp, humidity)` in `getStatus()` einbauen.
+    **Lösung**: `console.log(tempC, humPct)` in `getStatus()` einbauen.
 
 ??? bug "element.textContent is null"
     **Ursache**: HTML-Element mit der ID existiert nicht.  
     **Lösung**: IDs in HTML und JavaScript abgleichen.
 
+??? bug "Snapshot zeigt alte Werte"
+    **Ursache**: API liefert nicht, App greift auf alten Snapshot zurück.  
+    **Lösung**: `localStorage.removeItem('snapshot:SN12345')` in der Konsole, dann Reload.
+
+??? bug "Push-Bundle enthält kein BME680"
+    **Ursache**: PE-Team publiziert nur `veml7700` und `system`, kein `bme680`.  
+    **Lösung**: Mit Trainer klären; App sollte das mit `if (!bme) return` abfangen.
+
 ## Checkliste Testen
 
 - [ ] Alle 6 Testbereiche geprüft
 - [ ] Status-Test mit 6 verschiedenen Wertepaaren
-- [ ] Fehlerfall getestet
+- [ ] Snapshot-Fallback einmal mit und ohne API getestet
 - [ ] Browser-Konsole ist sauber (keine roten Fehler)
 - [ ] Gefundene Bugs sind behoben oder dokumentiert
 
