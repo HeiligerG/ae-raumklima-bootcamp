@@ -5,21 +5,34 @@
 JSON (JavaScript Object Notation) ist ein Format zum Speichern und Austauschen von Daten.  
 Es ist für Menschen lesbar und für Maschinen einfach zu verarbeiten.
 
+Im Bootcamp arbeiten wir mit dem **Push-Bundle-Format** des SuvaSense-Backends:
+
 ```json
 {
-  "room": "B101",
-  "temperature": 23.4,
-  "humidity": 51,
-  "timestamp": "2026-08-06T10:30:00"
+  "recorded_at": "2026-08-06T10:30:00Z",
+  "readings": {
+    "bme680": {
+      "temp_c": 23.4,
+      "hum_pct": 51
+    }
+  }
 }
 ```
+
+| Feld | Bedeutung |
+|---|---|
+| `recorded_at` | Zeitpunkt der Messung (ISO-8601) |
+| `readings.bme680.temp_c` | Temperatur in °C |
+| `readings.bme680.hum_pct` | Relative Feuchte in % |
+
+Weitere Sensortypen können vorkommen (`veml7700`, `mpu6050`, `system`), sind aber optional.
 
 ### JSON-Regeln
 
 | Regel | Beispiel |
 |-------|----------|
-| Geschweifte Klammern `{}` für Objekte | `{ "name": "B101" }` |
-| Eckige Klammern `[]` für Listen | `[1, 2, 3]` |
+| Geschweifte Klammern `{}` für Objekte | `{ "name": "SN12345" }` |
+| Eckige Klammern `[]` für Listen | `[{...}, {...}]` |
 | Schlüssel immer in doppelten Anführungszeichen | `"name"` |
 | Werte: String, Number, Boolean, null, Objekt, Array | `"text"`, `42`, `true` |
 | Kein Komma nach dem letzten Element | `{ "a": 1, "b": 2 }` :material-check: |
@@ -28,11 +41,11 @@ Es ist für Menschen lesbar und für Maschinen einfach zu verarbeiten.
 
 ```javascript
 // JSON (String)
-const jsonString = '{"room": "B101", "temperature": 23.4}';
+const jsonString = '{"recorded_at":"2026-08-06T10:30:00Z","readings":{"bme680":{"temp_c":23.4,"hum_pct":51}}}';
 
 // In JavaScript-Objekt umwandeln
 const data = JSON.parse(jsonString);
-console.log(data.room); // "B101"
+console.log(data.readings.bme680.temp_c); // 23.4
 
 // Zurück in JSON
 const jsonAgain = JSON.stringify(data);
@@ -44,7 +57,7 @@ Eine API (Application Programming Interface) ist eine Schnittstelle zwischen Pro
 
 ```mermaid
 graph LR
-    A[Deine App] -->|fetch| B[API-Server]
+    A[Deine App] -->|fetch| B[SuvaSense-API]
     B -->|JSON| A
 ```
 
@@ -97,7 +110,7 @@ loadData();
 ??? info "Was ist async/await?"
     `async` markiert eine Funktion als asynchron.  
     `await` wartet, bis ein Promise fertig ist – der Code darunter läuft erst danach.  
-    `try/catch` fängt Fehler ab, z. B. wenn die Datei nicht existiert.
+    `try/catch` fängt Fehler ab, z. B. wenn die Datei nicht existiert.
 
 ## Daten im HTML anzeigen
 
@@ -107,10 +120,13 @@ async function loadData() {
     const response = await fetch('data.json');
     const data = await response.json();
 
-    // HTML-Elemente befüllen
-    document.getElementById('room-name').textContent = data.room;
-    document.getElementById('temperature').textContent = data.temperature + ' °C';
-    document.getElementById('humidity').textContent = data.humidity + ' %';
+    // Push-Bundle ist ein Array; das neueste ist [0]
+    const latest = data[0];
+    const bme = latest.readings.bme680;
+
+    document.getElementById('recorded-at').textContent = latest.recorded_at;
+    document.getElementById('temp-c').textContent       = bme.temp_c + ' °C';
+    document.getElementById('hum-pct').textContent      = bme.hum_pct + ' %';
   } catch (error) {
     document.getElementById('status').textContent = 'Keine Daten verfügbar';
   }
@@ -119,17 +135,25 @@ async function loadData() {
 
 ## Statuslogik
 
+Die Logik bleibt dieselbe wie immer – sie bekommt nur neue Eingabewerte:
+
 ```javascript
-function getStatus(temp, humidity) {
-  const tempOk = temp >= 20 && temp <= 24;
-  const humOk = humidity >= 40 && humidity <= 60;
-  const tempWarn = temp >= 18 && temp <= 26;
-  const humWarn = humidity >= 30 && humidity <= 70;
+function getStatus(tempC, humPct) {
+  const tempOk = tempC >= 20 && tempC <= 24;
+  const humOk  = humPct >= 40 && humPct <= 60;
+  const tempWarn = tempC >= 18 && tempC <= 26;
+  const humWarn  = humPct >= 30 && humPct <= 70;
 
   if (tempOk && humOk) return 'gut';
   if (tempWarn || humWarn) return 'kritisch';
   return 'schlecht';
 }
+```
+
+Die App ruft die Funktion mit den **BME680-Werten** auf:
+
+```javascript
+const status = getStatus(bme.temp_c, bme.hum_pct);
 ```
 
 ## Fehlerbehandlung
@@ -161,7 +185,7 @@ function showError(message) {
 - JSON ist ein Datenformat
 - `fetch()` lädt Daten von einem Server oder einer Datei
 - `async/await` macht asynchronen Code lesbar
-- `getStatus()` berechnet den Status aus Werten
+- `getStatus()` berechnet den Status aus `temp_c` und `hum_pct`
 - Immer einen Fehlerfall einbauen
 
 ## Weiter
