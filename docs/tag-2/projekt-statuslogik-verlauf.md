@@ -3,9 +3,8 @@
 !!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
     Diese Aufgabe gibt dir **Anforderungen und ein Skelett**, aber nicht den fertigen Code. Die Schwellwerte für die Statuslogik, die Fetch-Logik und das Error-Handling wählst du selbst. Der Lerngewinn liegt im Ausprobieren, nicht im Abschreiben.
 
-    Wenn du nach 20 Minuten nicht weiterkommst, schau in
-    [`loesungen/tag-2/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-2/) –
-    aber bitte erst **nach** dem Versuch.
+    Wenn du nach 20 Minuten nicht weiterkommst, **frag dein
+    Trainer-Team** – sie zeigen dir live, wo's hakt.
 
 ## :material-target: Aufgabe
 
@@ -151,9 +150,11 @@ wenn `data.json` fehlt.
 
 Nach 20 Min ohne nennenswerten Fortschritt:
 
-1. Schau in [`loesungen/tag-2/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-2/)
-2. **Vergleiche** deinen Ansatz mit der Referenz
-3. **Erkläre einem Teammitglied**, was die Referenz anders macht
+1. **Frag dein Trainer-Team.** Sie zeigen dir den nächsten Schritt
+   live und helfen beim Debugging.
+2. **Pair-Programming mit einem Mitlernenden.**
+3. **Browser DevTools (F12) → Console** – die meisten Fehler
+   stehen dort in roter Schrift.
 
 ## Nächster Schritt
 

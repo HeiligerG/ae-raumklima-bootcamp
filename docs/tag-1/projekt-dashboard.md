@@ -3,9 +3,8 @@
 !!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
     Diese Aufgabe gibt dir **Anforderungen und ein Skelett**, aber nicht den fertigen Code. Du baust das CSS selbst, wählst Farben und entscheidest über das Layout. Der Lerngewinn liegt im Ausprobieren, nicht im Abschreiben.
 
-    Wenn du nach 20 Minuten nicht weiterkommst, schau in
-    [`loesungen/tag-1/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-1/) –
-    aber bitte erst **nach** dem Versuch.
+    Wenn du nach 20 Minuten nicht weiterkommst, **frag dein
+    Trainer-Team** – sie zeigen dir live, wo's hakt.
 
 ## :material-target: Aufgabe
 
@@ -131,12 +130,15 @@ in der HTML eingebunden sein (`<script src="script.js"></script>`
 
 Nach 20 Min ohne nennenswerten Fortschritt:
 
-1. Schau in [`loesungen/tag-1/`](https://ae-raumklima-bootcamp.readthedocs.io/loesungen/tag-1/) für die Referenz-Implementierung
-2. **Verstehe zuerst**, was die Referenz anders macht als dein Ansatz
-3. **Schliesse das Browser-Tab der Referenz** und baue deine Version fertig
+1. **Frag dein Trainer-Team.** Sie zeigen dir den nächsten Schritt
+   live – direkt am Code, mit Erklärungen zu **warum**.
+2. **Pair-Programming mit einem Mitlernenden.** Zwei Augen sehen
+   mehr als eine.
+3. **MDN durchsuchen** – `fetch`, `localStorage`, `JSON.parse`
+   haben dort gute Beispiele.
 
-Die `loesungen/`-Seiten sind **nicht** Teil des Lernflusses und werden
-in der Navigation nicht prominent verlinkt.
+Es gibt **keine Lösungen zum Nachschauen** im Lernmaterial. Das ist
+Absicht: die Auseinandersetzung mit dem Problem ist der Lerngewinn.
 
 ## Nächster Schritt
 

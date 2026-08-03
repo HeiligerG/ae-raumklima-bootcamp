@@ -108,24 +108,35 @@ Demo-Seriennummer bereit.
 - Auf das Wesentliche fokussieren (MVP-Ansatz: Dashboard + Status + Verlauf)
 - Nicht den ganzen Tag an einem Bug verbringen
 
-## Lösungen-Gate (für Lernende)
+## Lösungs-Workflow (für Trainer)
 
-Die `loesungen/`-Seite ist mit einem kleinen JavaScript-Gate
-geschützt. Das ist **kein Sicherheitsfeature**, sondern eine sanfte
-Hürde gegen vorzeitiges Anschauen der Lösungen.
+Es gibt **keine** Lösungen im Lernmaterial. Lernende lernen besser,
+wenn sie selbst knobeln und fragen statt Lösungen abzuschreiben.
 
-- **Passwort:** `snapshot-fallback` (alles klein, mit Bindestrich)
-- **Hinweis für Lernende:** sichtbar direkt auf der Gate-Seite
-- **Cracken:** View-Source zeigt das Passwort; im DOM sind die
-  Links zu den Lösungsdateien versteckt (`display: none`) und
-  werden nach Unlock eingeblendet
-- **Smart-Learner-Bonus:** Wer das Passwort durch Mitdenken
-  findet, soll gelobt werden – nicht getadelt
+**Wenn ein Lernender fragt "Wie geht das?":**
 
-Das Konzept "Snapshot-Fallback" ist den Lernenden ab Tag 3
-bekannt. Wer die Tag-3-Dokumentation aufmerksam liest, hat das
-Passwort nach 30 Sekunden. Wer es nicht liest, klickt einfach
-auf "Passwort vergessen" und bekommt einen weiteren Hinweis.
+1. **Frag zuerst zurück:** "Was hast du schon versucht? Was
+   zeigt die Konsole?" (CoC: nicht die Lösung vorgeben)
+2. **Zeig live am Code:** Öffne parallel den Lösungs-Ordner
+   `Test-Frontend/loesungen/tag-N/` (lokal, nicht im Lernrepo)
+   und geh den relevanten Abschnitt durch
+3. **Erkläre das _Warum_, nicht nur das _Was_:** Die
+   `NOTIZEN.md` pro Tag im Lösungs-Ordner helfen dabei
+4. **Lass den Lernenden selbst tippen:** Nach der Erklärung
+   geht der Lernende zurück an den eigenen Code – nicht
+   kopieren, sondern umsetzen
+
+**Lösungs-Inhalt (lokal, nicht in Git):**
+
+- `Test-Frontend/loesungen/tag-1/` – HTML, CSS, NOTIZEN
+- `Test-Frontend/loesungen/tag-2/` – data.json, script.js, NOTIZEN
+- `Test-Frontend/loesungen/tag-3/` – script.js, NOTIZEN
+- `Test-Frontend/loesungen/index.md` – Konzept-Übersicht
+
+**Smart-Learner-Hinweis:** Wenn ein Lernender fragt "Gibt es hier
+irgendwo Lösungen?" – das ist ein gutes Zeichen. Antworte
+ehrlich: "Nein, die sind im Trainer-Ordner. Ich zeig sie dir,
+wenn du 20 Min selbst probiert hast."
 
 ## Checkliste vor jedem Tag
 
