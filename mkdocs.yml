@@ -44,7 +44,7 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/ae-raumklima-bootcamp
+      link: https://github.com/HeiligerG/ae-raumklima-bootcamp
 
 markdown_extensions:
   - admonition
