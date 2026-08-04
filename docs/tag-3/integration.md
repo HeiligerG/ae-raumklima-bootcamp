@@ -6,6 +6,51 @@
     Fallbacks (API → localStorage → Seed) und das Fehler-Handling
     baust du selbst.     Wenn du nach 20 Min nicht weiterkommst, **frag dein Trainer-Team**.
 
+## End-to-End-Datenfluss
+
+Deine App ist Teil einer grösseren Kette. Hier der gesamte
+Datenfluss von der Realität bis in deinen Browser:
+
+```mermaid
+sequenceDiagram
+    participant R as Realität<br/>(Temperatur)
+    participant ESP as ESP32<br/>(Sensor-Board)
+    participant BR as Mosquitto<br/>(MQTT-Broker)
+    participant BE as Backend<br/>(Go-Service)
+    participant DB as Postgres<br/>(Datenbank)
+    participant APP as Deine App<br/>(Browser)
+
+    loop Alle 10 Sekunden
+        R->>ESP: Sensor misst
+        ESP->>BR: PUBLISH suva/SN12345/data
+        Note over BR: Message im RAM,<br/>QoS 1 mit Retry
+        BR->>BE: notify (Subscriber)
+        BE->>DB: INSERT INTO readings
+        DB-->>BE: OK
+    end
+
+    Note over APP: Deine App kommuniziert nur mit BE<br/>(über REST), nicht mit BR oder DB
+
+    rect rgb(240, 248, 255)
+        Note over APP: Tag 3 Joint-Session:<br/>PE-Team publiziert,<br/>ihr holt aktiv ab
+        APP->>BE: GET /api/v1/sensors/SN12345/readings?page_size=10
+        BE->>DB: SELECT readings
+        DB-->>BE: Push-Bundles
+        BE-->>APP: 200 OK + JSON
+        APP->>APP: snapshot:{serial} in localStorage
+    end
+
+    Note over APP,BE: Später, wenn BE down:<br/>App nutzt snapshot aus localStorage
+```
+
+**Drei Beobachtungen:**
+
+1. **Du siehst nur die rechte Seite** – alles links ist PE-Verantwortung.
+2. **Deine App ist Pull-basiert** – sie macht HTTP GETs, sie wartet nicht
+   auf Push vom Backend. Das ist klassisches HTTP.
+3. **Snapshot-Fallback ist deine Verantwortung** – wenn dein `fetch()`
+   fehlschlägt, musst du auf `localStorage` zurückfallen.
+
 ## :material-target: Aufgabe
 
 Integriere deine App mit dem **SuvaSense-Backend** und sorge dafür,
