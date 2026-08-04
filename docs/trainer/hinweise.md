@@ -24,6 +24,45 @@ Demo-Seriennummer bereit.
     - Hilf beim Denken, nicht beim Tippen
     - Zeig, wie man die Lösung findet, nicht die Lösung selbst
 
+## Frag-Hierarchie
+
+Wenn Lernende nicht weiterkommen, soll die Reihenfolge der
+Hilfe-Anfragen klar sein:
+
+```mermaid
+flowchart TD
+    Start[Lernender hat ein Problem] --> Q{Selbst<br/>versucht?}
+    Q -->|Nein| A1[Zuerst selbst<br/>probieren:<br/>Konsole,<br/>Logs,<br/>DevTools]
+    Q -->|Ja| Q2{Team-Mitglied<br/>gefragt?}
+    Q2 -->|Nein| A2[Zuerst Team fragen<br/>Pair-Debug,<br/>4-Augen-Prinzip]
+    Q2 -->|Ja| Q3{Trainer<br/>gefragt?}
+    Q3 -->|Nein| A3[Erst jetzt<br/>Trainer fragen<br/>Konzept-Frage]
+    Q3 -->|Ja| A4[Notfall:<br/>direkt helfen]
+
+    A1 -.-> Q2
+    A2 -.-> Q3
+    A3 -.-> A4
+
+    style Start fill:#ffe1e1
+    style A1 fill:#fff4e1
+    style A2 fill:#fff4e1
+    style A3 fill:#fff4e1
+    style A4 fill:#ffdddd
+```
+
+**Wann gilt welche Stufe?**
+
+| Stufe | Beispiel-Frage | Reaktion |
+|---|---|---|
+| Selbst | "Warum zeigt meine App keine Daten?" | Schau in DevTools-Konsole, lies Logs |
+| Team | "Mein Status-Update funktioniert nicht" | Mit-PE-Mitglied debuggen, frische Augen |
+| Trainer | "Was bedeutet JSON-Push-Bundle?" | Konzept-Erklärung, Hinweis auf Theorie-Seite |
+| Notfall | "Plattform ist down, morgen ist Demo" | Direkt helfen, Stack restarten |
+
+**Ausnahmen:**
+- Notfall (Plattform down, Demo crasht) → direkt zum Trainer
+- Tag-3-Joint-Session → Trainer ist ohnehin involviert
+
 ## Worauf achten?
 
 ### Technisch (am Tag 1)
