@@ -135,7 +135,7 @@ Den Stack startet und überwacht der Trainer.
 ## Verwandte Seiten
 
 - [API-Vertrag](api-vertrag.md) – die REST-API im Detail
-- [MQTT-Ingest-Vertrag](mqtt-vertrag.md) – der Topic- und
+- [MQTT-Ingest-Vertrag](ingest-vertrag.md) – der Topic- und
   Payload-Vertrag (Schwester zum API-Vertrag)
 - [Schnittstellen klären](../tag-2/schnittstellen.md) – wie der
   Datenvertrag mit den PE-Teams entsteht

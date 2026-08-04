@@ -16,7 +16,7 @@ sind.
 - [Architektur](architektur.md) – 4 Schichten (PE ↔ AE Sicht)
 - [API-Vertrag](api-vertrag.md) – REST-Endpoints, Push-Bundles,
   Felder
-- [MQTT-Ingest-Vertrag](mqtt-vertrag.md) – Topic, Payload,
+- [MQTT-Ingest-Vertrag](ingest-vertrag.md) – Topic, Payload,
   Pflichtfelder (Schwester-Vertrag im AE-Format)
 - [Definition of Done](definition-of-done.md) – wann ist eine
   Aufgabe fertig?
