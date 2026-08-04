@@ -4,6 +4,57 @@
 
 Finde und behebe alle Fehler in deiner App, bevor du die Demo zeigst.
 
+## Diagnose-Baum: was tun, wenn X nicht funktioniert?
+
+```mermaid
+flowchart TD
+    Start[App zeigt<br/>nicht die<br/>erwarteten Daten] --> Q1{API-Request<br/>erfolgreich?}
+    Q1 -->|Nein| Q2{Server<br/>erreichbar?}
+    Q2 -->|Nein| A1[Snapshot aus<br/>localStorage<br/>verwenden]
+    Q2 -->|Ja| A2[curl manuell<br/>probieren<br/>welche URL?]
+    A2 --> Q3{JSON in<br/>Antwort?}
+    Q3 -->|Nein| A3[Backend-Log<br/>pruefen<br/>mgmt docker logs]
+    Q3 -->|Ja| A4[CORS-Problem?<br/>DevTools-<br/>Console]
+    Q1 -->|Ja| Q4{Richtige<br/>Sensor-ID<br/>gewahlt?}
+    Q4 -->|Nein| A5[Admin-Panel<br/>oeffnen,<br/>Sensor waehlen]
+    Q4 -->|Ja| Q5{Temperature<br/>im richtigen<br/>Range?}
+    Q5 -->|Nein| A6[Statuslogik<br/>pruefen,<br/>Schwellen]
+    Q5 -->|Ja| Q6{Status-Farbe<br/>korrekt?}
+    Q6 -->|Nein| A7[CSS-Klassen<br/>.gut/.kritisch/<br/>.schlecht]
+    Q6 -->|Ja| Done[Alles OK,<br/>Demo ready]
+
+    A1 -.->|Fallback<br/>zeigt| Done
+    A3 -.->|gefixt| Done
+    A4 -.->|gefixt| Done
+    A5 -.->|korrigiert| Done
+    A6 -.->|korrigiert| Done
+    A7 -.->|gefixt| Done
+
+    style Start fill:#ffe1e1
+    style Done fill:#e1ffe1
+    style A1 fill:#fff4e1
+    style A2 fill:#fff4e1
+    style A3 fill:#fff4e1
+    style A4 fill:#fff4e1
+    style A5 fill:#fff4e1
+    style A6 fill:#fff4e1
+    style A7 fill:#fff4e1
+```
+
+**Wie du den Baum benutzt:**
+
+1. Fang oben an mit "App zeigt nicht die erwarteten Daten"
+2. Folge den Fragen (`{ja/nein}`-Diamanten) basierend auf dem,
+   was du beobachtest
+3. Jeder Endpunkt (`A1`–`A7`) ist eine konkrete Aktion
+4. Wenn der Fix klappt, kommst du zurück zum grünen "Demo ready"
+
+**Was NICHT im Baum steht:**
+
+- Performance-Probleme (eigene Kategorie)
+- Browser-Kompatibilität (jeder Browser ist heute OK für Basics)
+- Mobile-Ansicht (separater Test, nicht kritisch)
+
 ## Systematisch testen
 
 Geh jeden Bereich deiner App durch:
