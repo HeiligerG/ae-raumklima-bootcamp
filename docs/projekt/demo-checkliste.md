@@ -8,6 +8,44 @@ Ihr zeigt am Ende der Woche eure App vor allen anderen Teams und Trainern.
 - Format: Live-Demo der App + kurze Erklärung
 - Jedes Teammitglied zeigt einen Teil
 
+## Demo-Ablauf auf einen Blick
+
+```mermaid
+flowchart TD
+    V[15:15<br/>Probe-Demo<br/>alleine/im Team] --> Q{Backup<br/>fertig?}
+    Q -->|Nein| V2[Backup-Video<br/>aufnehmen<br/>30-60 s]
+    V2 --> Q
+    Q -->|Ja| D[16:30<br/>Live-Demo]
+    D --> T1[Person A:<br/>App starten,<br/>Daten erklaeren]
+    T1 --> T2[Person B:<br/>Verlauf zeigen,<br/>Snapshot-Fallback]
+    T2 --> T3[Person C:<br/>Admin-Panel,<br/>Sensor-Wechsel]
+    T3 --> T4[Person D:<br/>Technik-Intro<br/>optional]
+    T4 --> Q2[Q&A]
+
+    style V fill:#e1f5ff
+    style V2 fill:#fff4e1
+    style D fill:#ffe1e1
+    style T1 fill:#fff4e1
+    style T2 fill:#fff4e1
+    style T3 fill:#fff4e1
+    style T4 fill:#fff4e1
+    style Q2 fill:#e1ffe1
+```
+
+**Was passiert in welcher Phase:**
+
+| Zeit | Phase | Wer | Inhalt |
+|---|---|---|---|
+| 15:15 | Probe-Demo | Alle | Backup-Video aufnehmen |
+| 16:30 | Live-Demo startet | Alle | Backup-Video bereit, Ruhe |
+| 16:30–16:31 | Begruessung | Person A | "Wir sind AE-Team XY, wir zeigen ..." |
+| 16:31–16:35 | App + Live-Daten | Person A | App im Browser, Dashboard zeigen |
+| 16:35–16:38 | Verlauf + Snapshot | Person B | 10 letzte Messungen, dann WLAN kurz trennen, Snapshot zeigt sich |
+| 16:38–16:40 | Admin-Panel | Person C | Sensor-Wechsel demonstrieren |
+| 16:40–16:45 | Q&A | Alle | Fragen beantworten |
+
+**Total: ~7-10 Min pro Team.** Nicht überziehen, das Publikum wird unruhig.
+
 ## Checkliste für die Demo
 
 ### Vorbereitung
