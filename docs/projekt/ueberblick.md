@@ -8,6 +8,33 @@ sind, und zeigt deren **Temperatur** und **Luftfeuchtigkeit** an.
 Weitere Sensortypen (Licht, Bewegung, Gas-Widerstand) sind optional und
 können in der App als Bonus angezeigt werden.
 
+### Wie die Daten zu deiner App kommen
+
+```mermaid
+flowchart LR
+    subgraph PE[PE-Team: baut die Plattform]
+        ESP[ESP32 mit Sensoren]
+        BR[MQTT-Broker<br/>Mosquitto]
+        BE[Backend<br/>Go-Service]
+        DB[(PostgreSQL)]
+        ESP -->|publish<br/>suva/serial/data| BR
+        BR -->|subscribe| BE
+        BE -->|INSERT| DB
+    end
+
+    subgraph DU[AE-Team: baut die App]
+        APP[Deine Web-App]
+    end
+
+    BE -->|REST API<br/>/api/v1/sensors/...| APP
+    APP -->|HTTP GET| BE
+```
+
+**Was du als AE-Lernender baust:** die Web-App rechts (das grosse
+Rechteck "Deine Web-App"). Die Plattform links ist vom
+PE-Team vorgegeben – du **konsumierst** sie nur über die
+REST-API.
+
 ### Was die App können muss (Pflichtumfang)
 
 - [ ] Dashboard mit Seriennummer (oder Raumname), Temperatur, Luftfeuchtigkeit
