@@ -7,6 +7,59 @@ Datenfluss haben: Sensor → MQTT → Backend → App. In dieser Session
 wird das Vertragspapier **empirisch** validiert (eine reale Message
 fliegt durch den Stack).
 
+## Ablauf der Joint-Session
+
+```mermaid
+sequenceDiagram
+    participant PE as PE-Team<br/>(Plattformentwickler)
+    participant TR as Trainer<br/>(Moderator)
+    participant AE as AE-Teams<br/>(Lernende)
+
+    Note over PE,TR,AE: Phase 1: PE-Team präsentiert (20 Min)
+
+    PE->>TR: Zeigt ESP-Firmware, Seriennummer
+    PE->>TR: Zeigt Live-Serial-Monitor
+    PE->>AE: Erklärt MQTT-Topic-Format
+    PE->>AE: Zeigt JSON-Payload-Format
+
+    Note over PE,TR,AE: Phase 2: AE-Teams zeigen Anforderungen (20 Min)
+
+    AE->>TR: Was brauchen wir?
+    AE->>TR: "Liste der Sensoren, aktueller Wert, Verlauf"
+    AE->>PE: "Wir wollen 10 letzte Messungen anzeigen"
+
+    Note over PE,TR,AE: Phase 3: Verhandlung offener Fragen (30 Min)
+
+    PE->>AE: Welche Sensor-Typen sind Pflicht?
+    AE->>PE: Wie heissen die Felder im JSON?
+    PE->>AE: Was passiert bei Sensorausfall?
+    TR->>TR,PE,AE: Authentifizierung nötig?
+
+    Note over PE,TR,AE: Phase 4: Vertrag festhalten (20 Min)
+
+    AE->>TR: Schreibt Vertrag mit
+    PE->>TR: - Topic-Format
+    AE->>TR: - Payload-Felder
+    TR->>AE: - REST-Endpoints
+    TR->>PE: - Demo-Seriennummer
+
+    Note over PE,TR,AE: Phase 5: Empirische Validierung (10 Min)
+
+    PE->>PE: Publish mit mosquitto_pub
+    AE->>PE: GET /api/v1/sensors/SN12345/readings
+    AE->>AE: Daten sind da – Vertrag gilt
+```
+
+**Was jede Phase macht:**
+
+| Phase | Dauer | Wer leitet | Ergebnis |
+|-------|-------|-----------|----------|
+| 1. PE-Team zeigt Plattform | 20 Min | PE-Vertreter | AE-Teams verstehen Topic + Payload |
+| 2. AE-Teams zeigen Anforderungen | 20 Min | AE-Vertreter | PE-Team versteht UX-Anforderungen |
+| 3. Verhandlung | 30 Min | Trainer | Offene Fragen geklärt |
+| 4. Vertrag festhalten | 20 Min | Alle zusammen | Markdown-Datei mit finalen Werten |
+| 5. Empirischer Test | 10 Min | Trainer | Live-Test, Vertrag gilt |
+
 ## Ablauf (90–120 Minuten, gemeinsam mit PE-Team)
 
 ### 1. PE-Team zeigt ESP-Firmware (20 Min)
