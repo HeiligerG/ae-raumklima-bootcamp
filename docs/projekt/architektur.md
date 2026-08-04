@@ -2,35 +2,71 @@
 
 Das Bootcamp-Projekt besteht aus vier klar getrennten Schichten, die unabhängig voneinander gebaut und gewartet werden. Verbindendes Element ist die **SuvaSense-Plattform** im gleichnamigen Repo.
 
+## 4 Schichten aus AE-Sicht
+
+```mermaid
+flowchart TB
+    subgraph S1[Schicht 1: Sensor / Hardware<br/>Plattformentwickler]
+        ESP[ESP32 DevKitC<br/>+ BME680, MPU6050, VEML7700]
+    end
+
+    subgraph S2[Schicht 2: MQTT-Broker<br/>Trainerteam]
+        BR[Mosquitto<br/>tcp://0.0.0.0:1883]
+    end
+
+    subgraph S3[Schicht 3: Backend + DB<br/>Trainerteam]
+        BE[Go-Service<br/>HTTP :8080]
+        DB[(PostgreSQL)]
+        BE -.persistiert.-> DB
+    end
+
+    subgraph S4[Schicht 4: Web-App<br/>== DU BAUST DIESE ==]
+        APP[Deine Web-App<br/>HTML/CSS/JS]
+    end
+
+    ESP -->|"MQTT publish<br/>suva/serial/data"| BR
+    BR -->|"subscribe"| BE
+    BE -->|"REST API<br/>GET /api/v1/..."| APP
 ```
-┌─────────────────────────┐
-│ Sensor (Hardware)        │  ← Plattformentwickler
-│ ESP32 + BME680/MPU6050/  │     SuvaSense-Firmware
-│ VEML7700 (SuvaSense-     │     publish alle 10 s
-│  Board)                  │
-└──────────┬──────────────┘
-           │ suva/<serial>/data  (MQTT, QoS 1, JSON)
-           ▼
-┌─────────────────────────┐
-│ MQTT-Broker              │  ← Trainerteam
-│ (eclipse-mosquitto)      │     docker compose service
-│ :1883 TCP, :9001 WS      │
-└──────────┬──────────────┘
-           │ subscribe  suva/+/data
-           ▼
-┌─────────────────────────┐
-│ SuvaSense-Backend        │  ← Trainerteam
-│ Go (chi)                 │     schreibt nach Postgres
-│ HTTP REST :8080/api/v1   │     http://localhost:8080
-└──────────┬──────────────┘
-           │ GET
-           ▼
-┌─────────────────────────┐
-│ Web-App (HTML/CSS/JS)    │  ← Lernende
-│ /ae-raumklima-bootcamp-  │     app/index.html …
-│  codebase/app            │
-└─────────────────────────┘
+
+**Die 4 Schichten aus AE-Sicht:**
+
+- **Schicht 1 + 2 + 3** baust du **nicht** – die sind vorgegeben
+- **Schicht 4** ist deine Aufgabe: die Web-App, die die REST-API konsumiert
+
+## Datenfluss: vom Sensor zu deiner App
+
+```mermaid
+sequenceDiagram
+    participant ESP as ESP32
+    participant BR as Mosquitto-Broker
+    participant BE as Backend (Go)
+    participant DB as Postgres
+    participant APP as Deine Web-App
+
+    loop Alle 10 Sekunden
+        ESP->>BR: PUBLISH suva/SN12345/data (JSON, QoS 1)
+        BR->>BE: notify (Subscriber)
+        BE->>BE: JSON parsen, Topic → serial_number
+        BE->>DB: INSERT INTO readings ...
+        DB-->>BE: OK
+    end
+
+    Note over APP: Deine App holt aktiv Daten
+    APP->>BE: GET /api/v1/sensors/SN12345/readings?page_size=10
+    BE->>DB: SELECT ...
+    DB-->>BE: rows
+    BE-->>APP: 200 OK + JSON (Push-Bundles)
 ```
+
+**Drei wichtige Eigenschaften:**
+
+1. **Push vom Sensor zum Server:** deine App sieht das nie direkt.
+   Sensoren publishen, Backend speichert.
+2. **Pull von deiner App:** du machst `GET /api/v1/sensors/...`
+   wenn du Daten brauchst (z. B. bei Page-Load oder Auto-Refresh).
+3. **Asynchron:** Sensor und App sind **entkoppelt**. Sensor
+   pusht, wann er will; App pullt, wann sie will.
 
 ## Verantwortlichkeiten
 
@@ -49,6 +85,17 @@ Das Bootcamp-Projekt besteht aus vier klar getrennten Schichten, die unabhängig
 - Jede Schicht kann unabhängig ersetzt werden, solange Topic- und JSON-Schema eingehalten werden
 
 ## Drei Repositories
+
+```mermaid
+flowchart LR
+    DOK[ae-raumklima-bootcamp<br/>== Diese Doku hier ==]
+    CB[ae-raumklima-bootcamp-codebase<br/>== Dein Code hier ==]
+    SU[SuvaSense<br/>== Plattform vom Trainer ==]
+
+    DOK -.dokumentiert.-> CB
+    DOK -.referenziert.-> SU
+    CB -.konsumiert.-> SU
+```
 
 | Repo                                     | Inhalt                                         | Wer arbeitet hier               |
 |------------------------------------------|------------------------------------------------|---------------------------------|
@@ -84,3 +131,11 @@ Den Stack startet und überwacht der Trainer.
 - **API-URL**: vom Trainer zu Tag 3 mitgeteilt (typisch `http://192.168.1.42:8080/api/v1`)
 - **Demo-Seriennummer**: vom Trainer zu Tag 3 mitgeteilt (typisch `SN12345` oder `DEMO-001`)
 - **Codebase-Repo `mock-api/`**: bleibt als pädagogisches Beispiel im Repo, ist aber **nicht** Bootcamp-Wahrheit. Das SuvaSense-Backend ist die einzige Quelle.
+
+## Verwandte Seiten
+
+- [API-Vertrag](api-vertrag.md) – die REST-API im Detail
+- [MQTT-Ingest-Vertrag](mqtt-vertrag.md) – der Topic- und
+  Payload-Vertrag (Schwester zum API-Vertrag)
+- [Schnittstellen klären](../tag-2/schnittstellen.md) – wie der
+  Datenvertrag mit den PE-Teams entsteht
