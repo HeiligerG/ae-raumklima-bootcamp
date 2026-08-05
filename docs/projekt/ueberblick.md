@@ -22,7 +22,7 @@ flowchart LR
         BE -->|INSERT| DB
     end
 
-    subgraph DU[AE-Team: baut die App]
+    subgraph DU[AE-Lernende: bauen die App]
         APP[Deine Web-App]
     end
 
@@ -76,8 +76,8 @@ Die genauen Schwellwerte werden im Projektlauf evaluiert. Ein sinnvoller Startwe
 | Status | Bedingung |
 |--------|-----------|
 | :material-check-circle: Gut | Temperatur 20–24 °C **und** Luftfeuchtigkeit 40–60 % |
-| :material-alert: Mittel | Temperatur 18–26 °C **oder** Luftfeuchtigkeit 30–70 % |
-| :material-close-circle: Kritisch | Alles ausserhalb |
+| :material-alert: Kritisch | Temperatur 18–26 °C **oder** Luftfeuchtigkeit 30–70 % |
+| :material-close-circle: Schlecht | Alles ausserhalb |
 
 Diese Logik bleibt 1:1 wie bisher; die Eingabewerte kommen neu aus
 `readings.bme680.temp_c` und `readings.bme680.hum_pct`.

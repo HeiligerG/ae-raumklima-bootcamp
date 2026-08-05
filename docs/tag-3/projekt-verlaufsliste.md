@@ -92,7 +92,7 @@ wird es sauber übersprungen statt dass die App crasht.
 - [ ] Konsole (F12) zeigt keine roten Fehler
 - [ ] Liste zeigt mindestens 5 Einträge
 - [ ] Bei API-Fehler wird die Liste leer angezeigt (kein Crash)
-- [ ] Code ist committed und gepusht
+- [ ] Code ist committed und auf deinen Branch gepusht
 
 ## Optional: weitere Sensortypen anzeigen
 

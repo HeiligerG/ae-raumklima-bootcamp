@@ -170,7 +170,7 @@ keine E-Mail, kein Ticketsystem. EDB ist vor Ort.
 !!! info "Im Tag-3-Projekt erweitert"
     Ab Tag 3 wird die EDB-Benachrichtigung über die
     Backend-API rausgeschickt (kein alert() mehr). Details in
-    [Tag 3 Integration](integration.md).
+    [Tag 3 Integration](../tag-3/integration.md).
 
 ## :material-check-all: Definition of Done (Selbst-Check)
 

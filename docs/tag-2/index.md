@@ -2,13 +2,13 @@
 
 ## :material-target: Tagesziel
 
-Am Ende des Tages lädt deine App Daten aus dem SuvaSense-Push-Bundle-Format (oder dem `data.json`-Seed), zeigt den korrekten Status an und stellt eine Verlaufsliste dar. Du kennst den Datenvertrag zwischen Sensor und App.
+Am Ende des Tages lädt deine App Daten aus dem SuvaSense-Push-Bundle-Format (oder dem `data.json`-Seed), zeigt den korrekten Status an und behandelt Fehler sauber. Du kennst den Datenvertrag zwischen Sensor und App.
 
 ## :material-clock-outline: Ablauf
 
 | Zeit | Phase | Inhalt |
 |------|-------|--------|
-| 08:00–08:15 | :material-weather-sunny: Daily | Stand-up im Team |
+| 08:00–08:15 | :material-weather-sunny: Daily | Kurzer Tagesstart |
 | 08:15–09:00 | :material-book-open-outline: Theorie | JSON, API, Fetch |
 | 09:00–10:00 | :material-pencil-outline: Übung | Daten laden |
 | 10:00–10:15 | :material-coffee: Pause | |
@@ -20,7 +20,7 @@ Am Ende des Tages lädt deine App Daten aus dem SuvaSense-Push-Bundle-Format (od
 !!! warning "Wichtig: Joint-Session mit PE um 13:00"
     Von 13:00–15:00 ist eine **gemeinsame Session** mit dem PE-Team (Plattformentwickler). Hier wird der **Datenfluss live durchgespielt**: das PE-Team zeigt die ESP-Firmware, die auf `suva/<serial>/data` publiziert; das Trainer-Team zeigt im Backend (`docker compose logs backend`) wie die Messages ankommen;     die Lernenden sehen, dass dein App-Datenmodell (Push-Bundle) genau dem MQTT-Payload entspricht. So wird der Vertrag aus dem API-Vertrag **empirisch** validiert.
 
-    **Vorbereitung:** bis 13:00 sollten alle Teams Seed-Daten + Statuslogik fertig haben, damit sie an der Datenvertrag-Diskussion teilnehmen können.
+    **Vorbereitung:** bis 13:00 sollten alle Lernenden Seed-Daten + Statuslogik fertig haben, damit sie an der Datenvertrag-Diskussion teilnehmen können.
 
 ## :material-school: Was lernst du heute?
 
@@ -49,7 +49,7 @@ Am Ende des Tages lädt deine App Daten aus dem SuvaSense-Push-Bundle-Format (od
 - [ ] Der Status wird korrekt berechnet
 - [ ] Bei fehlenden Daten wird eine Fehlermeldung angezeigt
 - [ ] Datenvertrag mit PE-Team ist durchgespielt
-- [ ] Code ist committed und gepusht
+- [ ] Code ist committed und auf deinen Branch gepusht
 
 ## :material-arrow-right: Weiter
 

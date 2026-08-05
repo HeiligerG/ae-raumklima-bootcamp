@@ -115,13 +115,14 @@ Wenn du offline testen willst, nutzt du die mitgelieferte
 ### Schritt 6: Wenn du fertig bist
 
 ```bash
+git switch -c tag-1-dashboard
 git add .
 git commit -m "Mein Dashboard Tag 1 fertig"
-git push
+git push -u origin tag-1-dashboard
 ```
 
-Das war's. **Kein Pull Request, kein Branch-Workflow** – du
-arbeitest direkt auf `main` in deinem Fork. Einfacher geht's nicht.
+Du arbeitest **alleine**, aber nicht direkt auf `main`. Nutze fuer
+deine Aufgaben immer einen eigenen Branch.
 
 ## :material-help: Was ist mit den anderen Repos?
 

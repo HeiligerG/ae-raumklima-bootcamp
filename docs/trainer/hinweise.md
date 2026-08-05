@@ -168,8 +168,7 @@ abgestempelt.** Jede/r arbeitet im eigenen Tempo.
       Sessions)
     - **KI ist verboten** – W3Schools und MDN sind die Quellen
     - Jede/r hat einen **eigenen Fork** des Codebase-Repos
-    - Commits gehen **direkt auf main** im Fork (kein Branch-
-      Workflow)
+    - Jede/r arbeitet auf einem **eigenen Branch** im Fork
 
 ## Checkliste nach jedem Tag
 

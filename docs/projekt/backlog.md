@@ -8,7 +8,7 @@ Das Backlog enthält alle Aufgaben, die im Projekt umgesetzt werden müssen.
 |--------|-----------|
 | :material-star: | Pflichtaufgabe |
 | :material-star-outline: | Optionale Aufgabe |
-| :material-head-cog: | Empfohlen für Anfänger-Teams |
+| :material-head-cog: | Empfohlen für Anfänger |
 
 ## Epic 1: Grundgerüst (Tag 1)
 
@@ -49,6 +49,6 @@ Das Backlog enthält alle Aufgaben, die im Projekt umgesetzt werden müssen.
 
 ## Epic 5: Abschluss (Tag 5)
 
-- :material-star: Projektpräsentation (ca. 5–10 Minuten pro Team)
+- :material-star: Projektpräsentation (ca. 5 Minuten pro Person)
 - :material-star: Live-Demo der App zeigen
 - :material-star: Reflexion: Was habe ich gelernt?
