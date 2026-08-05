@@ -3,187 +3,186 @@
 ## Deine Rolle
 
 Als Trainer begleitest du die Lernenden durch die Woche.  
-Du bist Coach, nicht Dozent. Dein Ziel: Die Lernenden bauen ihre App selbst.
+Du bist Coach, nicht Dozent. Dein Ziel: Jede/r Lernende baut
+**alleine** eine funktionierende Web-App.
 
-Du verwaltest zusätzlich den **SuvaSense-Stack** (Backend, Broker,
-Postgres, pgAdmin) und stellst den Lernenden die API-URL und die
-Demo-Seriennummer bereit.
+Du verwaltest zusätzlich:
+
+- **Die gemeinsame Infrastruktur** (SuvaSense-Backend, WLAN-AP,
+  Sensoren) für die Live-Integration
+- **Die Joint-Sessions** mit dem PE-Team (Schnittstellen klären,
+  Live-Integration) – diese sind **terminliche Veranstaltungen**,
+  kein Team-Work
+- **Den Notfall-Backstop** (wenn etwas crasht, bist du die
+  Hotline)
+
+!!! warning "Wichtig: Einzelarbeit + KI-Verbot"
+    Im aktuellen Bootcamp arbeiten die Lernenden **alleine** in
+    ihrem eigenen Fork. Es gibt keine Teams, kein Pair-Programming.
+    Und **KI ist verboten** – siehe
+    [Quellen und KI-Verbot](../projekt/quellen.md).
+
+    Deine Aufgabe ist es, das **durchzusetzen**:
+    - Bei Tag 1 kurz ansagen, dass KI nicht erlaubt ist
+    - Auf W3Schools und MDN als Quellen hinweisen
+    - Bei Verdacht auf KI-Nutzung: ansprechen, nicht blossstellen
 
 ## Grundhaltung
 
 - **Fragen stellen, statt Antworten geben**
-    - «Was hast du schon probiert?»
-    - «Was zeigt die Konsole?»
-    - «Was müsste passieren, damit es funktioniert?»
+    - "Was hast du schon probiert?"
+    - "Was zeigt die Konsole?"
+    - "Was müsste passieren, damit es funktioniert?"
 
 - **Ermutigen, nicht loben für falsche Sachen**
-    - «Gute Idee, probier es aus» statt «Nein, so geht das nicht»
+    - "Gute Idee, probier es aus" statt "Nein, so geht das nicht"
     - Fehler sind Lernchancen
 
 - **Nicht die Lösung vorgeben**
     - Hilf beim Denken, nicht beim Tippen
     - Zeig, wie man die Lösung findet, nicht die Lösung selbst
 
-## Frag-Hierarchie
-
-Wenn Lernende nicht weiterkommen, soll die Reihenfolge der
-Hilfe-Anfragen klar sein:
-
-```mermaid
-flowchart TD
-    Start[Lernender hat ein Problem] --> Q{Selbst<br/>versucht?}
-    Q -->|Nein| A1[Zuerst selbst<br/>probieren:<br/>Konsole,<br/>Logs,<br/>DevTools]
-    Q -->|Ja| Q2{Team-Mitglied<br/>gefragt?}
-    Q2 -->|Nein| A2[Zuerst Team fragen<br/>Pair-Debug,<br/>4-Augen-Prinzip]
-    Q2 -->|Ja| Q3{Trainer<br/>gefragt?}
-    Q3 -->|Nein| A3[Erst jetzt<br/>Trainer fragen<br/>Konzept-Frage]
-    Q3 -->|Ja| A4[Notfall:<br/>direkt helfen]
-
-    A1 -.-> Q2
-    A2 -.-> Q3
-    A3 -.-> A4
-
-    style Start fill:#ffe1e1
-    style A1 fill:#fff4e1
-    style A2 fill:#fff4e1
-    style A3 fill:#fff4e1
-    style A4 fill:#ffdddd
-```
-
-**Wann gilt welche Stufe?**
-
-| Stufe | Beispiel-Frage | Reaktion |
-|---|---|---|
-| Selbst | "Warum zeigt meine App keine Daten?" | Schau in DevTools-Konsole, lies Logs |
-| Team | "Mein Status-Update funktioniert nicht" | Mit-PE-Mitglied debuggen, frische Augen |
-| Trainer | "Was bedeutet JSON-Push-Bundle?" | Konzept-Erklärung, Hinweis auf Theorie-Seite |
-| Notfall | "Plattform ist down, morgen ist Demo" | Direkt helfen, Stack restarten |
-
-**Ausnahmen:**
-- Notfall (Plattform down, Demo crasht) → direkt zum Trainer
-- Tag-3-Joint-Session → Trainer ist ohnehin involviert
-
 ## Worauf achten?
 
 ### Technisch (am Tag 1)
 
-- [ ] VS Code + Live Server läuft bei allen
+- [ ] VS Code und Live Server laufen bei allen
 - [ ] Git ist installiert
-- [ ] **Drei Repositories sind geklont** (Leitfaden + Codebase + SuvaSense für PE-Team)
-- [ ] Lernende können Commits machen und pushen
-- [ ] (ab Tag 3) **SuvaSense-Stack läuft zentral** (dein Laptop oder Schulungs-Server) – URL und Demo-Seriennummer sind bereit
+- [ ] **Jede/r hat einen eigenen Fork** des Codebase-Repos
+- [ ] Lernende können committen und pushen (direkt auf main)
+- [ ] (ab Tag 3) **SuvaSense-Stack läuft zentral** (Trainer-Box) – URL und Demo-Seriennummer sind bereit
 
-### Lernfortschritt
+### Lernfortschritt (Einzelperson!)
 
-- [ ] Verstehen alle die Grundkonzepte?
-- [ ] Kommen alle mit dem Tempo mit?
+- [ ] Versteht jede/r die Grundkonzepte?
+- [ ] Kommt jede/r mit dem Tempo mit?
 - [ ] Gibt es jemanden, der abgehängt wird?
 - [ ] Gibt es jemanden, der sich langweilt?
 
 ### Sozial
 
-- [ ] Arbeiten die Teams gut zusammen?
+- [ ] Arbeiten alle konzentriert?
 - [ ] Gibt es Konflikte?
 - [ ] Trauen sich alle zu fragen?
-- [ ] Reden alle gleich viel im Team?
+- [ ] Unterhalten sich die Lernenden untereinander (optional)?
 
-## Häufige Stolpersteine
+## Frag-Hierarchie (für Lernende)
 
-| Problem | Lösung |
-|---------|--------|
-| Live Server läuft nicht | VS Code neu starten, Extension prüfen |
-| Git-Konflikte | Gemeinsam im Team lösen, erklären warum |
-| `fetch()` funktioniert nicht | Pfad prüfen, Live Server muss laufen |
-| SuvaSense-API liefert keine Daten | `curl http://<host>:8080/health` und `docker compose -f SuvaSense/docker-compose.yml ps` |
-| Push-Bundle enthält kein BME680 | Mit PE-Team klären, ob BME680 angeschlossen ist |
-| JSON-Syntax-Fehler | JSON-Validator zeigen, Komma am Ende |
-| CSS wird nicht angewendet | Pfad prüfen, Browser-Cache leeren (Ctrl+Shift+R) |
-| Snapshot zeigt alte Daten | `localStorage.removeItem('snapshot:SN12345')` in DevTools-Konsole |
-| Verzweiflung / Aufgeben | Kleine Erfolge feiern, Aufgabe aufteilen |
-| Langeweile / Unterforderung | Optionale Features anbieten, Peer-Teaching |
+1. **Selbst** – DevTools, Konsole, Logs lesen
+2. **W3Schools** – die zentrale Quelle (siehe [Quellen](../projekt/quellen.md))
+3. **MDN** – für Tiefergehende
+4. **Trainer** – bei Konzept-Fragen, wenn das Debugging feststeckt
 
-## Wie helfen, ohne die Lösung vorzugeben?
+Diese Hierarchie gilt **nicht** in Notfällen (z. B. "Plattform
+ist down, morgen ist Demo"). Dann direkt zum Trainer.
 
-=== "Schlecht :material-close:"
-    «Schreib einfach `latest.readings.bme680.temp_c`»
-    «Hier, ich zeig's dir» (und tippt selbst)
+## Trainer-Werkzeuge (lokal, nicht im Lern-Repo)
 
-=== "Gut :material-check:"
-    «Was steht in `latest.readings.bme680` drin?»
-    «Wie heisst das HTML-Element, das du ändern willst?»
-    «Schau mal in die Konsole, was zeigt `console.log(latest)`?»
+Lösungen und Referenz-Material liegen im
+**Test-Frontend/loesungen/** (lokal auf deinem Laptop, nicht in Git).
+
+```
+Test-Frontend/loesungen/
+├── README.md              # Konzept
+├── tag-1/                 # Tag-1-Referenz
+├── tag-2/                 # Tag-2-Referenz
+├── tag-3/                 # Tag-3-Referenz
+└── tag-4/                 # Tag-4-Referenz
+```
+
+!!! info "Nicht im Lern-Repo"
+    Lösungen sind **nicht** im `ae-raumklima-bootcamp`-Repo
+    (siehe Diskussion mit dem User). Sie leben nur im
+    `Test-Frontend/loesungen/` als Trainer-Werkzeug.
+
+    **Niemand ausser dir** sollte diesen Ordner sehen. Lernende
+    bekommen sie **nur**, wenn du sie explizit im 1:1-Coaching
+    zeigst.
 
 ## Was tun, wenn...
 
-### ...die SuvaSense-API nicht funktioniert?
+### ...die Lernenden nicht weiterkommen?
 
-1. `docker compose -f SuvaSense/docker-compose.yml ps` – laufen alle 4 Services?
-2. `curl http://localhost:8080/health` – antwortet das Backend?
-3. `docker compose -f SuvaSense/docker-compose.yml logs backend` – was sagt das Log?
-4. `docker compose -f SuvaSense/docker-compose.yml restart backend` – als schneller Fix
-5. Lernende können währenddessen mit `data.json` weiterarbeiten (Snapshot-Fallback greift nach erstem Erfolg)
+1. Erst die Lernenden fragen, was sie schon probiert haben
+2. Konsole zeigen lassen (DevTools → Console)
+3. W3Schools-Checkliste durchgehen (siehe [Quellen](../projekt/quellen.md))
+4. Erst dann: selbst am Code arbeiten, aber **gemeinsam**, nicht "ich mach das mal eben"
 
-### ...der MQTT-Broker keine Messages sieht?
+### ...die Lernenden stark unterschiedlich schnell sind?
 
-1. `mosquitto_sub -h <host> -t 'suva/+/data' -v` – kommen Messages?
-2. ESP-Serial-Monitor zeigen, was er publiziert
-3. Topic exakt `suva/<serial>/data`? Letztes Segment muss `data` sein
+- **Schnelle Lernende:** optionale Features anbieten (Diagramm,
+  Dark Mode, Chart.js)
+- **Langsame Lernende:** Fokus auf Pflichtumfang, weniger Features.
+  Du kannst auch bei 5 von 7 Anforderungen ankommen.
+- **Völlig feststeckend:** 1:1-Coaching (5–10 Min), MVP-Fokus
 
-### ...PE-Team ESP32 nicht verbinden kann?
+Wichtig: **Keine Lernende wird wegen anderer Geschwindigkeit
+abgestempelt.** Jede/r arbeitet im eigenen Tempo.
 
-- Trainer publiziert manuell via `mosquitto_pub` (Beispiel im
-  [Demo-Sensor-Setup](demo-sensor.md))
-- Demo läuft trotzdem, Daten sehen für die Lernenden identisch aus
+### ...jemand die KI nutzt?
 
-### ...Lernende stark unterschiedlich schnell sind?
+1. Ruhig ansprechen, nicht blossstellen
+2. Auf W3Schools und MDN verweisen (die haben alle Antworten)
+3. Erklären, warum KI den Lerngewinn zerstört (siehe
+   [Quellen](../projekt/quellen.md))
+4. Beim nächsten Mal: kontrollieren, ob sie aus W3Schools zitieren
+   statt aus KI
 
-- Schnelle Teams: optionale Features, Peer-Teaching
-- Langsame Teams: Pflichtumfang reduzieren? Nein – lieber helfen und Tempo anpassen
-- Paar-Programming: Schnell + Langsam kann gut funktionieren
+### ...der Plattform in der Joint-Session nicht funktioniert?
 
-### ...ein Team komplett feststeckt?
+1. Erst die AE-Lernenden beruhigen: "Wir schauen das gleich an"
+2. Im Hintergrund prüfen: `docker compose ps`, Backend-Log, pgAdmin
+3. Falls Bug: gemeinsam debuggen, Demo fortsetzen
+4. Falls Hard-Crash: Backup-Video zeigen, nach der Session beheben
 
-- Kurzes 1:1-Coaching (5–10 Minuten)
-- Auf das Wesentliche fokussieren (MVP-Ansatz: Dashboard + Status + Verlauf)
-- Nicht den ganzen Tag an einem Bug verbringen
+### ...die Demo-Show katastrophal läuft?
 
-## Lösungs-Workflow (für Trainer)
+1. Ruhe bewahren
+2. Backup-Video zeigen
+3. "Live-Systeme sind live" – entschuldige dich nicht
+4. Nach der Show: gemeinsam debuggen, ggf. Snapshot der VM wiederherstellen
 
-Es gibt **keine** Lösungen im Lernmaterial. Lernende lernen besser,
-wenn sie selbst knobeln und fragen statt Lösungen abzuschreiben.
+### ...jemand nicht mit dem Tempo mithält?
 
-**Wenn ein Lernender fragt "Wie geht das?":**
-
-1. **Frag zuerst zurück:** "Was hast du schon versucht? Was
-   zeigt die Konsole?" (CoC: nicht die Lösung vorgeben)
-2. **Zeig live am Code:** Öffne parallel den Lösungs-Ordner
-   `Test-Frontend/loesungen/tag-N/` (lokal, nicht im Lernrepo)
-   und geh den relevanten Abschnitt durch
-3. **Erkläre das _Warum_, nicht nur das _Was_:** Die
-   `NOTIZEN.md` pro Tag im Lösungs-Ordner helfen dabei
-4. **Lass den Lernenden selbst tippen:** Nach der Erklärung
-   geht der Lernende zurück an den eigenen Code – nicht
-   kopieren, sondern umsetzen
-
-**Lösungs-Inhalt (lokal, nicht in Git):**
-
-- `Test-Frontend/loesungen/tag-1/` – HTML, CSS, NOTIZEN
-- `Test-Frontend/loesungen/tag-2/` – data.json, script.js, NOTIZEN
-- `Test-Frontend/loesungen/tag-3/` – script.js, NOTIZEN
-- `Test-Frontend/loesungen/index.md` – Konzept-Übersicht
-
-**Smart-Learner-Hinweis:** Wenn ein Lernender fragt "Gibt es hier
-irgendwo Lösungen?" – das ist ein gutes Zeichen. Antworte
-ehrlich: "Nein, die sind im Trainer-Ordner. Ich zeig sie dir,
-wenn du 20 Min selbst probiert hast."
+- **Schnelle Lernende:** optionale Features anbieten, in der
+  1:1-Session Tipps geben für Fortgeschrittene
+- **Langsame Lernende:** mehr 1:1-Coaching, Fokus auf Pflichtumfang
+- **Völlig feststeckend:** 1:1-Coaching (5–10 Min), MVP-Fokus
 
 ## Checkliste vor jedem Tag
 
-- [ ] Raum ist bereit (Stühle, Tische)
+- [ ] Raum vorbereitet (Stühle, Tische, Beamer)
 - [ ] Beamer funktioniert
-- [ ] WLAN läuft (Laptops der Lernenden erreichen den SuvaSense-Host)
-- [ ] Theorie-Folien sind bereit
-- [ ] Tagesplan ist im Kopf
-- [ ] GitHub-Repositories sind erreichbar
-- [ ] SuvaSense-Stack ist hochgefahren (ab Tag 3)
-- [ ] Demo-Sensor publiziert (ab Tag 3)
+- [ ] WLAN läuft
+- [ ] Laptops der Lernenden sind im WLAN
+- [ ] SuvaSense-Stack läuft (ab Tag 3, Trainer-Box)
+- [ ] Theorie-Folien bereit (oder Link zur Doku)
+- [ ] Tagesplan im Kopf
+- [ ] GitHub erreichbar (Lernende forken und pushen)
+- [ ] KI-Verbot nochmal erwähnt (vor allem Tag 1, dann bei Bedarf)
+- [ ] (Tag 4) Backup-Video der Demo bereit
+
+!!! tip "Wichtig für Tag 1"
+    Am Tag 1 nochmal klar ansagen:
+    - Jede/r arbeitet **alleine** (keine Teams, keine Pair-Programming-
+      Sessions)
+    - **KI ist verboten** – W3Schools und MDN sind die Quellen
+    - Jede/r hat einen **eigenen Fork** des Codebase-Repos
+    - Commits gehen **direkt auf main** im Fork (kein Branch-
+      Workflow)
+
+## Checkliste nach jedem Tag
+
+- [ ] Tagesabschluss mit den Lernenden gemacht (Selbst-Check)
+- [ ] Offene Fragen notiert (für morgen)
+- [ ] Snapshot der VM (vor grösseren Änderungen)
+- [ ] `pg_dump` der DB (vor destruktiven Änderungen)
+
+## Weiterführend
+
+- [Tagesplanung](tagesplanung.md) – Tag-für-Tag-Schritte für
+  den Trainer
+- [Risiken & Fallbacks](risiken-und-fallbacks.md) – was tun,
+  wenn etwas schiefläuft
+- `Test-Frontend/loesungen/` – Referenz-Lösungen (lokal,
+  nur Trainer)
