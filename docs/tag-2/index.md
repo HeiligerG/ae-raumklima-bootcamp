@@ -36,7 +36,7 @@ Am Ende des Tages lädt deine App Daten aus dem SuvaSense-Push-Bundle-Format (od
 - `data.json` als Initial-Seed (gleiches Schema wie API-Push-Bundle)
 - Daten per `fetch()` laden
 - Dynamische Anzeige von `readings.bme680.temp_c` und `hum_pct`
-- Statuslogik: gut / mittel / kritisch
+- Statuslogik: gut / kritisch / schlecht (Schwellenwerte von EDB vorgegeben)
 - Fehlerfall: «Keine Daten verfügbar»
 
 !!! note "Verlaufsliste verschoben auf Tag 3"
