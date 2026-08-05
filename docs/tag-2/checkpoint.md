@@ -52,7 +52,7 @@ Probier diese Werte in `data.json` (im ersten Eintrag) und prüf die Statusfarbe
 
 ## Vorschau Tag 3
 
-Morgen tauscht ihr euch mit anderen Teams aus und integriert eure App mit einer echten API (oder bleibt bei Mock-Daten). Ausserdem startet die Demo-Vorbereitung.
+Morgen tauschst du dich mit anderen Lernenden aus und integrierst deine App mit einer echten API (oder bleibst bei Mock-Daten). Ausserdem startet die Demo-Vorbereitung.
 
 !!! success "Halbzeit!"
     Zwei Tage geschafft! Deine App kann schon richtig was.  

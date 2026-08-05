@@ -4,7 +4,7 @@
     Diese Aufgabe gibt dir **Anforderungen und ein Skelett**, aber nicht den fertigen Code. Du baust das CSS selbst, wählst Farben und entscheidest über das Layout. Der Lerngewinn liegt im Ausprobieren, nicht im Abschreiben.
 
     Wenn du nach 20 Minuten nicht weiterkommst, **frag dein
-    Trainer-Team** – sie zeigen dir live, wo's hakt.
+    Trainer** – sie zeigen dir live, wo's hakt.
 
 ## :material-target: Aufgabe
 
