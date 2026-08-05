@@ -10,7 +10,7 @@
 !!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
     Diese Aufgabe gibt dir **Anforderungen und ein Skelett**. Wie
     genau du die Liste renderst, ist deine Entscheidung. Wenn du nach
-    20 Min nicht weiterkommst, frag dein Trainer-Team.
+    20 Min nicht weiterkommst, frag deinen Trainer.
 
 ## :material-target: Aufgabe
 
