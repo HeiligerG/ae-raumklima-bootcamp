@@ -24,3 +24,5 @@ sind.
 - [Fallback-Daten & Snapshot](mockdaten.md) – `data.json` als
   Initial-Fallback
 - [Demo-Checkliste](demo-checkliste.md) – Showtime am Tag 4
+- [Quellen und KI-Verbot](quellen.md) – W3Schools, MDN, **keine KI**
+  erlaubt
