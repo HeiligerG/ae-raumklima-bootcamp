@@ -24,7 +24,7 @@ Heute wird nicht mehr programmiert. Nutze den Morgen für:
 
 ## :material-microphone: Präsentation
 
-Die Projektpräsentation um 10:30 ist **gemeinsam mit dem PE-Team**. Beide Tracks (AE + PE) präsentieren ihre Ergebnisse im selben Slot, vor gemischtem Publikum (beide Lernenden-Gruppen + Trainer + Gäste).
+Die Projektpräsentation um 10:30 ist **gemeinsam mit dem PE-Team**. AE-Lernende zeigen ihre Apps einzeln (5–10 Min pro Person), PE präsentiert die Plattform. Vor gemischtem Publikum (alle Lernenden + Trainer + Gäste).
 
 | Dauer | Inhalt |
 |-------|--------|
