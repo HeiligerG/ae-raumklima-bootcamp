@@ -53,7 +53,7 @@
 ## Tag 3 – Integration
 
 ### Vor dem Start
-- [ ] Retro-Partner-Teams festlegen
+- [ ] **Selbst-Reflexion-Material** für die Lernenden vorbereitet (siehe [Retro](retro.md))
 - [ ] **SuvaSense-Stack läuft und ist erreichbar** (`curl http://<host>:8080/health` und `docker compose ps`)
 - [ ] **Demo-Sensor publiziert** (entweder echtes ESP32 oder manueller `mosquitto_pub` – siehe [Demo-Sensor-Setup](demo-sensor.md))
 - [ ] API-URL und Demo-Seriennummer sind an die Lernenden verteilt (am besten schon Tag 2 Nachmittag, spätestens jetzt)
@@ -61,7 +61,7 @@
 
 ### Während des Tages
 - Daily (08:00): Stand-up
-- Retro (08:15): Teams zuweisen, Zeit tracken, Feedback-Regeln erklären
+- Selbst-Reflexion (08:15): Jede/r Lernende für sich, 30 Min
 - **Projekt Verlaufsliste (09:00–10:00)**: kurze Coach-Session, Code aus Tag-2-Anleitung übernehmen
 - **Joint-Session 13:00–15:00 moderieren**: AE testet App gegen API (oder Snapshot-Fallback), PE publiziert via MQTT. Trainer überwacht `mosquitto_sub -t 'suva/+/data' -v` und zeigt den Datenstrom am Beamer.
 
@@ -74,7 +74,7 @@
 ## Tag 4 – Finish & Demo
 
 ### Vor dem Start
-- [ ] Demo-Zeitplan erstellt (welches Team wann, PE- und AE-Slots gemischt)
+- [ ] Demo-Reihenfolge erstellt (welche/r Lernende wann, einzelne Slots)
 - [ ] Beamer für abends prüfen
 - [ ] SuvaSense-Stack läuft stabil
 - [ ] Backup-Demo-Sensor bereit (z. B. zweites ESP32 oder `mosquitto_pub`-Skript)
@@ -87,9 +87,9 @@
 - Demo (14:30): Probe-Demo coachieren, Zeit nehmen (max. 30 min für alle)
 
 ### Abend-Demo (16:30, gemeinsam mit PE)
-- Teams vorstellen lassen (Reihenfolge vorher mit PE-Trainer festlegen)
+- Lernende einzeln vorstellen lassen (Reihenfolge vorher mit PE-Trainer festlegen)
 - Positives Feedback geben
-- Fragen stellen («Wie habt ihr den Snapshot-Fallback gelöst?»)
+- Fragen stellen («Wie hast du den Snapshot-Fallback gelöst?»)
 - **Optional: Live-Sensor-Demo zeigen**, wenn die MQTT-Integration live ist
 - **Snapshot-Demo zeigen**: kurz WLAN trennen → App bleibt funktional → das ist die eigentliche Demo-Heldentat
 
@@ -102,5 +102,5 @@
 
 ### Während des Tages
 - PV-Vorstellung (09:00): Einleiten, vorstellen
-- Präsentation (10:30): Zeit tracken, Teams ankündigen
+- Präsentation (10:30): Zeit tracken, Lernende einzeln ankündigen
 - Ab 12:00: Geniessen und feiern!
