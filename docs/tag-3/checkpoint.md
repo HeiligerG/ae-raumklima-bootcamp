@@ -13,7 +13,7 @@ Heute war Integrationstag. Prüf deinen Fortschritt.
 
 ## Was habe ich heute gebaut?
 
-- [ ] Feedback von anderen Teams eingearbeitet
+- [ ] Feedback von anderen Lernenden eingeholt (optional)
 - [ ] App ist mit API verbunden ODER Mock-Fallback funktioniert stabil
 - [ ] Admin-Seite existiert (Raumauswahl oder Grenzwerte)
 - [ ] Layout und Styling sind aufgeräumt
