@@ -16,19 +16,20 @@
 - [ ] Raum vorbereiten, Beamer testen
 - [ ] WLAN-Zugang prüfen
 - [ ] VS Code + Extensions bereit
-- [ ] **Drei Repositories bereit** (Leitfaden, Codebase, SuvaSense für PE-Team) – Lernende klonen beim Setup
+- [ ] **Jede/r Lernende hat einen eigenen Fork** des Codebase-Repos
+- [ ] **KI-Verbot kurz ansagen** (1 Min, mit Verweis auf W3Schools)
 
 ### Während des Tages
 - Theorie (09:00): Klar und langsam erklären, viele Beispiele
 - Übung (10:15): Herumgehen, bei Setup-Problemen helfen
-- Projekt (13:00): Teams beobachten, nur bei Blockaden eingreifen
+- Projekt (13:00): Jede/n einzeln betreuen, nur bei Blockaden eingreifen
 
 ### Worauf achten?
-- Hat jeder VS Code, Live Server, Git?
-- **Hat jeder beide Repositories geklont?** (Leitfaden + Codebase; SuvaSense nur für PE-Team)
-- **Hat jeder den `app/`-Ordner im Codebase-Repo gefunden?**
-- Versteht jeder HTML vs. CSS vs. JavaScript?
-- Erster Commit gemacht?
+- Hat jede/r VS Code, Live Server, Git?
+- **Hat jede/r den Fork erfolgreich geklont?**
+- **Hat jede/r den `app/`-Ordner im Codebase-Repo gefunden?**
+- Versteht jede/r HTML vs. CSS vs. JavaScript?
+- Erster Commit auf main im Fork gemacht?
 
 ## Tag 2 – Daten & Logik
 
