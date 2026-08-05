@@ -1,104 +1,119 @@
 # Git Basics
 
+!!! info "Wichtig: Im Bootcamp kein Branch-Workflow"
+    Du arbeitest **alleine** in deinem **eigenen Fork**. Es gibt
+    keinen Branch-Workflow, keine Pull Requests, keine Code-Reviews.
+
+    **Nur 3 Git-Befehle brauchst du:**
+    `git add`, `git commit`, `git push`.
+
+    That's it.
+
 ## Was ist Git?
 
-Git merkt sich jede Änderung an deinem Code.  
-Du kannst jederzeit zu einer früheren Version zurückkehren.  
-So geht nie Code verloren.
+Git merkt sich jede Änderung an deinem Code. Du kannst
+jederzeit zu einer früheren Version zurückkehren. So geht
+nie Code verloren.
 
-## Wichtige Begriffe
+## Die 3 Befehle (die du wirklich brauchst)
 
-| Begriff | Bedeutung |
-|---------|-----------|
-| Repository | Dein Projektordner mit Git-Versionierung |
-| Commit | Ein gespeicherter Schnappschuss deines Codes |
-| Push | Commits auf GitHub hochladen |
-| Pull | Commits von GitHub herunterladen |
-| Branch | Ein eigener Entwicklungszweig |
-
-## Grundbefehle
-
-### Status anzeigen
+### 1. Status anzeigen
 
 ```bash
 git status
 ```
 
-Zeigt, welche Dateien geändert wurden.
+Zeigt: welche Dateien geändert wurden, welche bereit zum
+Commit sind.
 
-### Änderungen speichern
+### 2. Änderungen speichern
 
 ```bash
 git add .
-git commit -m "Beschreibung der Änderung"
+git commit -m "Was ich gemacht habe"
 ```
 
-Der Punkt `.` nimmt alle geänderten Dateien.  
-Die Nachricht beschreibt, was du gemacht hast.
+- `git add .` nimmt alle geänderten Dateien
+- Der Commit ist ein "Schnappschuss" mit einer Beschreibung
+- Die Commit-Message beschreibt, was du gemacht hast
 
-### Auf GitHub hochladen
+### 3. Auf deinen Fork hochladen
 
 ```bash
 git push
 ```
 
-### Änderungen von anderen holen
-
-```bash
-git pull
-```
+Lädt deine Commits auf GitHub (in deinen Fork).
 
 ## Typischer Arbeitsablauf
 
 ```bash
-# 1. Neuesten Stand holen
-git pull
+# 1. Im app/-Ordner arbeiten
+code app/
 
-# 2. Code schreiben ...
+# 2. Wenn du etwas fertig hast:
+cd /pfad/zu/ae-raumklima-bootcamp-codebase
 
-# 3. Änderungen anzeigen
+# 3. Status anschauen
 git status
 
 # 4. Änderungen speichern
 git add .
-git commit -m "Dashboard: Layout erstellt"
+git commit -m "Mein Dashboard Tag 1 fertig"
 
-# 5. Hochladen
+# 5. Hochladen (auf deinen Fork)
 git push
+
+# 6. Browser: dein Fork auf GitHub zeigt jetzt den neuen Commit
 ```
 
-## Gute Commit-Nachrichten
+## Gute Commit-Messages
 
-Schreibe, **was** du geändert hast und **warum** – nicht wie.
+Schreibe, **was** du geändert hast (nicht wie).
 
-=== "Gut :material-check:"
-    ```
-    Dashboard: Temperatur-Anzeige mit Farbcodierung hinzugefügt
-    ```
-
-=== "Schlecht :material-close:"
-    ```
-    Update
-    index.html geändert
-    ```
+!!! tip "Format"
+    Eine kurze, beschreibende Zeile. Beispiele:
+    - `feat(dashboard): Temperatur und Feuchte anzeigen`
+    - `fix(status): Farbe der Status-Pille korrigieren`
+    - `chore: data.json als Initial-Seed hinzugefügt`
 
 ## Häufige Fehler
 
-??? warning "Ich habe `git push` vergessen"
-    Kein Problem. Mach es einfach jetzt.  
-    Besser spät als nie.
+??? warning "'git push' geht nicht – 'no upstream'"
+    Beim ersten Push fragt Git nach dem Remote. Lösung:
+    ```bash
+    git push -u origin main
+    ```
+    Beim zweiten Push reicht dann `git push`.
 
-??? warning "Merge-Konflikt"
-    Das passiert, wenn zwei Personen die gleiche Datei geändert haben.  
-    Ruf einen Trainer – das lösen wir gemeinsam.
+??? warning "'Permission denied' beim Push"
+    Du hast wahrscheinlich den Original-Repo geklont statt deinen
+    Fork. Lösung: in `setup.md` nachlesen, wie man den Fork klont.
 
-## Checkliste Git
+??? warning "'Merge conflict'"
+    Im Bootcamp sehr unwahrscheinlich (Einzelarbeit, kein Team).
+    Falls doch: Trainer fragen.
 
-- [ ] Ich kenne die Befehle `status`, `add`, `commit`, `push`, `pull`
-- [ ] Ich weiss, was ein Commit ist
-- [ ] Ich weiss, was ein Repository ist
-- [ ] Ich kann meine Änderungen auf GitHub hochladen
+## Was Git NICHT macht
+
+- ❌ **Branches** – du arbeitest immer auf `main`
+- ❌ **Pull Requests** – du hast keinen Reviewer
+- ❌ **Code-Review** – du bist dein eigener Reviewer
+- ❌ **Rebase** – nicht nötig im Bootcamp
+
+## Zusammenfassung
+
+Drei Befehle reichen:
+
+```bash
+git status    # Was ist geändert?
+git add .     # Alles zum Commit vormerken
+git commit -m "..."   # Speichern
+git push      # Hochladen
+```
+
+Mehr brauchst du nicht.
 
 !!! info "Mehr zu Git"
-    Git ist ein grosses Thema. Fürs Bootcamp reichen diese Basics.  
-    Alles Weitere lernst du nach und nach.
+    Git ist ein riesiges Thema. Fürs Bootcamp reichen diese Basics.
+    Für tieferes Wissen: [Pro Git Buch (kostenlos)](https://git-scm.com/book/de/v2).
