@@ -2,7 +2,7 @@
 
 ## :material-clipboard-check-outline: Tagesabschluss vor der Demo
 
-Der letzte Checkpoint vor der grossen Demo. Seid ihr bereit?
+Der letzte Checkpoint vor der grossen Demo. Bist du bereit?
 
 ## Pflicht-Check
 
@@ -14,26 +14,27 @@ Der letzte Checkpoint vor der grossen Demo. Seid ihr bereit?
 - [ ] Verlaufsliste ist sichtbar
 - [ ] Admin-Seite funktioniert
 - [ ] App ist getestet
-- [ ] Code ist committed und gepusht
+- [ ] Code ist committed und auf deinen Fork gepusht
 
 ## Demo-Check
 
-- [ ] Demo-Skript ist fertig
-- [ ] Jedes Teammitglied weiss, was es zeigt
+- [ ] Demo-Skript ist fertig (Stichwortkarten oder Notizen)
+- [ ] Du weisst, was du in welcher Reihenfolge zeigst
 - [ ] App läuft im Vollbild
-- [ ] Wir haben mindestens 2× durchlaufen
+- [ ] Du hast mindestens 2× durchlaufen (Probe-Demo)
 - [ ] Zeit passt (5–10 Minuten)
 - [ ] Beamer/Projektor ist getestet
+- [ ] Backup-Video aufgenommen (für Notfall)
 
 ## Optionale Features (falls gemacht)
 
 - [ ] Dark Mode
 - [ ] Diagramm
 - [ ] Auto-Refresh
-- [ ] LocalStorage
+- [ ] LocalStorage-Snapshot
 - [ ] Benachrichtigungs-Banner
 - [ ] Präsentationsmodus
-- [ ] Mehrere Räume
+- [ ] Mehrere Sensoren
 
 ## Vor der Demo
 
@@ -56,6 +57,6 @@ Der letzte Checkpoint vor der grossen Demo. Seid ihr bereit?
 - Wo treffen wir uns?
 - Was muss ich mitbringen?
 
-!!! success "Ihr habt es fast geschafft!"
+!!! success "Du hast es fast geschafft!"
     Noch die Demo, dann ist das Bootcamp geschafft.  
-    Ihr könnt stolz auf euch sein!
+    Du kannst stolz auf dich sein!

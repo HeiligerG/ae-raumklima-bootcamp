@@ -1,81 +1,69 @@
-# Retro
+# Reflexion (statt Team-Retro)
 
-## :material-target: Ziel
+!!! info "Wichtigste Änderung"
+    Im vorherigen Bootcamp gab es eine **Team-Retro**: zwei
+    Teams haben sich gegenseitig Feedback gegeben. Da du jetzt
+    **alleine** arbeitest, ersetzen wir die Team-Retro durch
+    eine **Selbst-Reflexion**. Schreibe deine Antworten
+    selbst – sie sind nur für dich und deinen Trainer.
 
-Tauscht euch mit einem anderen Team aus. Gebt und holt Feedback zu euren Apps.
+## Wann?
 
-## Ablauf der Retro (45–60 Min.)
+Mittwoch Vormittag (08:15–09:00) im Tagesplan von Tag 3.
 
-### 1. Begrüssung und Setup (5 Min.)
+## Ablauf (30 Min, alleine)
 
-- Findet ein Partner-Team
-- Setzt euch zusammen
-- Jeweils ein Laptop zum Zeigen der App
+### 1. Zurückblicken (10 Min)
 
-### 2. Team A zeigt, Team B schaut (10 Min.)
+Beantworte für dich (in deinen Notizen oder hier im File):
 
-Team A zeigt:
-
-- App im Browser
-- Was funktioniert?
+- Was lief an Tag 1 und Tag 2 gut?
 - Was war schwierig?
+- Welche Entscheidung würdest du heute anders treffen?
 
-Team B macht Notizen:
+### 2. Heute planen (5 Min)
 
-- Was gefällt mir?
-- Was könnte man anders machen?
-- Habe ich Fragen?
+Schreib auf, was du dir für Tag 3 vornimmst:
 
-### 3. Team B zeigt, Team A schaut (10 Min.)
+- **Backend anbinden:** ja / nein / später
+- **Verlaufsliste einbauen:** ja / nein / später
+- **Statuslogik ändern:** ja / behalte ich
 
-Rollen tauschen.
+### 3. Hilfe planen (5 Min)
 
-### 4. Gemeinsame Diskussion (10 Min.)
+Falls du merkst, dass du nicht weiterkommst:
 
-- Was haben wir gleich gemacht?
-- Was haben wir unterschiedlich gelöst?
-- Was können wir voneinander lernen?
+- Was konkret brauchst du vom Trainer?
+- Eine Code-Zeile, die nicht funktioniert? → vorbereiten
+- Ein Konzept, das du nicht verstehst? → auflisten
+- Eine Entscheidung, bei der du unsicher bist? → aufschreiben
 
-### 5. Aktionspunkte (10 Min.)
+### 4. Selbst-Commitment (10 Min)
 
-Jedes Team schreibt auf:
+Schreib dir **drei konkrete Ziele** für Tag 3:
 
-- 2 Dinge, die wir nach der Retro verbessern wollen
-- 1 Sache, die wir vom anderen Team übernehmen
+1. ________________________________________________
+2. ________________________________________________
+3. ________________________________________________
 
-## Feedback-Regeln
+Beispiele:
+- "Heute schreibe ich die `fetchBundles()`-Funktion und teste
+  sie mit echten Daten"
+- "Heute zeige ich dem Trainer meinen Code nach der Mittagspause,
+  damit ich Feedback hole"
+- "Heute Abend pushe ich mein Dashboard auf meinen Fork"
 
-| Gut :material-check: | Schlecht :material-close: |
-|------|---------|
-| «Die Statusfarben sind sofort verständlich» | «Das Design ist hässlich» |
-| «Ich frage mich, was beim Fehlerfall passiert» | «Das ist falsch programmiert» |
-| «Könnt ihr erklären, wie die API angebunden ist?» | «Warum habt ihr das so gemacht?» |
+!!! tip "Wichtig"
+    Diese Ziele sind **für dich** – nicht für den Trainer.  
+    Du kannst sie am Ende des Tages selbst überprüfen.
 
-!!! tip "Konstruktives Feedback"
-    - Beschreibe, was du siehst – nicht, was du denkst
-    - Sag, was gut ist und was dich verwirrt
-    - Frag, statt zu urteilen
+## Wie geht es weiter?
 
-## Retro-Vorlage
+Nach deiner Selbst-Reflexion geht es direkt mit
+[Tag 3 Theorie: Docker & DB](theorie-docker.md) los
+(09:00–10:00, im Plenum aller Lernenden).
 
-```markdown
-## Retro Team ____ + Team ____
-
-### Was hat uns am anderen Team gefallen?
--
-
-### Was hat uns am anderen Team überrascht?
--
-
-### Was nehmen wir vom anderen Team mit?
--
-
-### Was werden wir nach der Retro verbessern?
-1.
-2.
-```
-
-## Nächster Schritt
-
-Zurück ins eigene Team, Ergebnisse besprechen.  
-Danach: [Projekt: Verlaufsliste](projekt-verlaufsliste.md) bauen.
+!!! tip "Verweis auf Quellen"
+    Falls du nicht weiterkommst, schau in
+    [Quellen und KI-Verbot](../projekt/quellen.md) – W3Schools
+    hat meistens die Antwort.

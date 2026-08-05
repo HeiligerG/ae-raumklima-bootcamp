@@ -4,7 +4,7 @@
     Diese Aufgabe gibt dir **Anforderungen und ein Skelett**, aber nicht den fertigen Code. Du baust das CSS selbst, wählst Farben und entscheidest über das Layout. Der Lerngewinn liegt im Ausprobieren, nicht im Abschreiben.
 
     Wenn du nach 20 Minuten nicht weiterkommst, **frag dein
-    Trainer-Team** – sie zeigen dir live, wo's hakt.
+    Trainer** – sie zeigen dir live, wo's hakt.
 
 ## :material-target: Aufgabe
 
@@ -130,7 +130,7 @@ in der HTML eingebunden sein (`<script src="script.js"></script>`
 
 Nach 20 Min ohne nennenswerten Fortschritt:
 
-1. **Frag dein Trainer-Team.** Sie zeigen dir den nächsten Schritt
+1. **Frag deinen Trainer.** Sie zeigen dir den nächsten Schritt
    live – direkt am Code, mit Erklärungen zu **warum**.
 2. **Pair-Programming mit einem Mitlernenden.** Zwei Augen sehen
    mehr als eine.

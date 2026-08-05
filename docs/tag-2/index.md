@@ -18,7 +18,7 @@ Am Ende des Tages lädt deine App Daten aus dem SuvaSense-Push-Bundle-Format (od
 | 15:15–16:00 | :material-clipboard-check-outline: Checkpoint | Tagesabschluss |
 
 !!! warning "Wichtig: Joint-Session mit PE um 13:00"
-    Von 13:00–15:00 ist eine **gemeinsame Session** mit dem PE-Team (Plattformentwickler). Hier wird der **Datenfluss live durchgespielt**: das PE-Team zeigt die ESP-Firmware, die auf `suva/<serial>/data` publiziert; das Trainer-Team zeigt im Backend (`docker compose logs backend`) wie die Messages ankommen; die Lernenden sehen, dass ihr App-Datenmodell (Push-Bundle) genau dem MQTT-Payload entspricht. So wird der Vertrag aus dem API-Vertrag **empirisch** validiert.
+    Von 13:00–15:00 ist eine **gemeinsame Session** mit dem PE-Team (Plattformentwickler). Hier wird der **Datenfluss live durchgespielt**: das PE-Team zeigt die ESP-Firmware, die auf `suva/<serial>/data` publiziert; das Trainer-Team zeigt im Backend (`docker compose logs backend`) wie die Messages ankommen;     die Lernenden sehen, dass dein App-Datenmodell (Push-Bundle) genau dem MQTT-Payload entspricht. So wird der Vertrag aus dem API-Vertrag **empirisch** validiert.
 
     **Vorbereitung:** bis 13:00 sollten alle Teams Seed-Daten + Statuslogik fertig haben, damit sie an der Datenvertrag-Diskussion teilnehmen können.
 

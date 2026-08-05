@@ -4,7 +4,7 @@
     Diese Aufgabe gibt dir das **Skelett** der Snapshot-Strategie,
     aber nicht die komplette Implementierung. Die Reihenfolge der
     Fallbacks (API → localStorage → Seed) und das Fehler-Handling
-    baust du selbst.     Wenn du nach 20 Min nicht weiterkommst, **frag dein Trainer-Team**.
+    baust du selbst.     Wenn du nach 20 Min nicht weiterkommst, **frag deinen Trainer**.
 
 ## End-to-End-Datenfluss
 

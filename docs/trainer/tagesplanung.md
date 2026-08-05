@@ -16,19 +16,20 @@
 - [ ] Raum vorbereiten, Beamer testen
 - [ ] WLAN-Zugang prüfen
 - [ ] VS Code + Extensions bereit
-- [ ] **Drei Repositories bereit** (Leitfaden, Codebase, SuvaSense für PE-Team) – Lernende klonen beim Setup
+- [ ] **Jede/r Lernende hat einen eigenen Fork** des Codebase-Repos
+- [ ] **KI-Verbot kurz ansagen** (1 Min, mit Verweis auf W3Schools)
 
 ### Während des Tages
 - Theorie (09:00): Klar und langsam erklären, viele Beispiele
 - Übung (10:15): Herumgehen, bei Setup-Problemen helfen
-- Projekt (13:00): Teams beobachten, nur bei Blockaden eingreifen
+- Projekt (13:00): Jede/n einzeln betreuen, nur bei Blockaden eingreifen
 
 ### Worauf achten?
-- Hat jeder VS Code, Live Server, Git?
-- **Hat jeder beide Repositories geklont?** (Leitfaden + Codebase; SuvaSense nur für PE-Team)
-- **Hat jeder den `app/`-Ordner im Codebase-Repo gefunden?**
-- Versteht jeder HTML vs. CSS vs. JavaScript?
-- Erster Commit gemacht?
+- Hat jede/r VS Code, Live Server, Git?
+- **Hat jede/r den Fork erfolgreich geklont?**
+- **Hat jede/r den `app/`-Ordner im Codebase-Repo gefunden?**
+- Versteht jede/r HTML vs. CSS vs. JavaScript?
+- Erster Commit auf main im Fork gemacht?
 
 ## Tag 2 – Daten & Logik
 
@@ -52,7 +53,7 @@
 ## Tag 3 – Integration
 
 ### Vor dem Start
-- [ ] Retro-Partner-Teams festlegen
+- [ ] **Selbst-Reflexion-Material** für die Lernenden vorbereitet (siehe [Retro](retro.md))
 - [ ] **SuvaSense-Stack läuft und ist erreichbar** (`curl http://<host>:8080/health` und `docker compose ps`)
 - [ ] **Demo-Sensor publiziert** (entweder echtes ESP32 oder manueller `mosquitto_pub` – siehe [Demo-Sensor-Setup](demo-sensor.md))
 - [ ] API-URL und Demo-Seriennummer sind an die Lernenden verteilt (am besten schon Tag 2 Nachmittag, spätestens jetzt)
@@ -60,7 +61,7 @@
 
 ### Während des Tages
 - Daily (08:00): Stand-up
-- Retro (08:15): Teams zuweisen, Zeit tracken, Feedback-Regeln erklären
+- Selbst-Reflexion (08:15): Jede/r Lernende für sich, 30 Min
 - **Projekt Verlaufsliste (09:00–10:00)**: kurze Coach-Session, Code aus Tag-2-Anleitung übernehmen
 - **Joint-Session 13:00–15:00 moderieren**: AE testet App gegen API (oder Snapshot-Fallback), PE publiziert via MQTT. Trainer überwacht `mosquitto_sub -t 'suva/+/data' -v` und zeigt den Datenstrom am Beamer.
 
@@ -73,7 +74,7 @@
 ## Tag 4 – Finish & Demo
 
 ### Vor dem Start
-- [ ] Demo-Zeitplan erstellt (welches Team wann, PE- und AE-Slots gemischt)
+- [ ] Demo-Reihenfolge erstellt (welche/r Lernende wann, einzelne Slots)
 - [ ] Beamer für abends prüfen
 - [ ] SuvaSense-Stack läuft stabil
 - [ ] Backup-Demo-Sensor bereit (z. B. zweites ESP32 oder `mosquitto_pub`-Skript)
@@ -86,9 +87,9 @@
 - Demo (14:30): Probe-Demo coachieren, Zeit nehmen (max. 30 min für alle)
 
 ### Abend-Demo (16:30, gemeinsam mit PE)
-- Teams vorstellen lassen (Reihenfolge vorher mit PE-Trainer festlegen)
+- Lernende einzeln vorstellen lassen (Reihenfolge vorher mit PE-Trainer festlegen)
 - Positives Feedback geben
-- Fragen stellen («Wie habt ihr den Snapshot-Fallback gelöst?»)
+- Fragen stellen («Wie hast du den Snapshot-Fallback gelöst?»)
 - **Optional: Live-Sensor-Demo zeigen**, wenn die MQTT-Integration live ist
 - **Snapshot-Demo zeigen**: kurz WLAN trennen → App bleibt funktional → das ist die eigentliche Demo-Heldentat
 
@@ -101,5 +102,5 @@
 
 ### Während des Tages
 - PV-Vorstellung (09:00): Einleiten, vorstellen
-- Präsentation (10:30): Zeit tracken, Teams ankündigen
+- Präsentation (10:30): Zeit tracken, Lernende einzeln ankündigen
 - Ab 12:00: Geniessen und feiern!
