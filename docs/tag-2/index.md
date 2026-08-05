@@ -2,7 +2,7 @@
 
 ## :material-target: Tagesziel
 
-Am Ende des Tages lädt deine App Daten aus dem SuvaSense-Push-Bundle-Format (oder dem `data.json`-Seed), zeigt den korrekten Status an und behandelt Fehler sauber. Du kennst den Datenvertrag zwischen Sensor und App.
+Am Ende des Tages lädt deine App Daten aus dem SuvaSense-Push-Bundle-Format (oder dem `data.json`-Seed), zeigt den korrekten Status an und stellt eine Verlaufsliste dar. Du kennst den Datenvertrag zwischen Sensor und App.
 
 ## :material-clock-outline: Ablauf
 
