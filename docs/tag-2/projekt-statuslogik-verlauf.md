@@ -14,8 +14,8 @@
 Erweitere dein Dashboard um:
 
 1. **Daten aus einer JSON-Datei laden** (im selben `app/`-Ordner)
-2. **Korrekte Statusberechnung** (gut / mittel / kritisch) aus
-   Temperatur und Feuchte
+2. **Korrekte Statusberechnung** (gut / kritisch / schlecht) aus
+   Temperatur und Feuchte (Schwellenwerte von EDB vorgegeben)
 3. **Verlaufsliste** der letzten 10 Messwerte
 4. **Fehlerbehandlung** ("Keine Daten verfügbar")
 

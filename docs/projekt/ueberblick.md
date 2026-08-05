@@ -38,7 +38,7 @@ REST-API.
 ### Was die App können muss (Pflichtumfang)
 
 - [ ] Dashboard mit Seriennummer (oder Raumname), Temperatur, Luftfeuchtigkeit
-- [ ] Status-Anzeige: gut / mittel / kritisch (exakte Schwellwerte werden im Projekt evaluiert)
+- [ ] Status-Anzeige: gut / kritisch / schlecht (Schwellenwerte werden **von EDB vorgegeben**, nicht selbst gewählt – siehe [EDB-Schwellenwerte](edb.md))
 - [ ] Daten vom **SuvaSense-Backend** laden
 - [ ] Snapshot-Fallback aus `localStorage`, wenn das Backend nicht erreichbar ist
 - [ ] Fehlerfall anzeigen (z. B. «Keine Daten verfügbar»)

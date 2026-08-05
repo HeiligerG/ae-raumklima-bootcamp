@@ -22,7 +22,7 @@ Das Backlog enthält alle Aufgaben, die im Projekt umgesetzt werden müssen.
 
 - :material-star: :material-head-cog: `data.json` als Initial-Seed anlegen
 - :material-star: :material-head-cog: Daten mit `fetch()` in die App laden
-- :material-star: :material-head-cog: Statuslogik implementieren (gut/mittel/kritisch)
+- :material-star: :material-head-cog: Statuslogik implementieren (gut/kritisch/schlecht, Werte von EDB)
 - :material-star: :material-head-cog: Verlauf der letzten Push-Bundles anzeigen
 - :material-star: Fehlerfall: «Keine Daten verfügbar» anzeigen, wenn Laden fehlschlägt
 - :material-star-outline: Daten automatisch alle 30 Sekunden aktualisieren
