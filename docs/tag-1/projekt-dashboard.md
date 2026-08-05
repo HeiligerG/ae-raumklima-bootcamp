@@ -25,6 +25,10 @@ auf Desktop und Handy gut aussehen.
       Platzhalter-Text "Lade Daten..."
 - [ ] Der Status hat eine **sichtbare Farbe** (gut = grünlich,
       kritisch = orange, schlecht = rot – genaue Töne wählst du)
+- [ ] Bei Status **"schlecht"** (kritische Temperatur oder
+      Feuchtigkeit) wird automatisch ein **EDB-Alert**
+      ausgelöst – siehe [EDB-Benachrichtigung](#edb-benachrichtigung)
+      weiter unten
 - [ ] Eine Fusszeile mit Copyright-Hinweis
 - [ ] Das Layout funktioniert auf 600 px Bildschirmbreite (Werte
       passen sich an, nichts wird abgeschnitten)
@@ -117,6 +121,44 @@ in der HTML eingebunden sein (`<script src="script.js"></script>`
 - Schriftgrössen nicht in `px`, sondern besser in `rem`, dann
   passen sie sich an die Browser-Einstellung an. Für den Anfang
   reicht aber `px`.
+
+## :material-handshake: EDB-Benachrichtigung
+
+Wenn dein Sensor-Status **"schlecht"** wird (Temperatur ausserhalb
+18–26 °C oder Feuchte ausserhalb 30–70 %), musst du die
+**Entwickler Digital Business (EDB)** informieren.
+
+**Was ist EDB?** Das ist das Plattform-Team, das die Sensoren und
+das Backend betreibt. Wenn deine App "schlecht" anzeigt, ist die
+Plattform möglicherweise kaputt oder die Sensor-Werte stimmen nicht –
+beides muss zeitnah gemeldet werden.
+
+**Wie erreichst du EDB?**
+
+- **Slack:** `#edb-support` (im Schulungs-Slack)
+- **E-Mail:** `edb@bootcamp.local` (vom Trainer zugeteilt)
+- **Persönlich:** Trainer fragen, wer gerade EDB-Schicht hat
+
+**Was du melden sollst:**
+
+| Was | Beispiel |
+|---|---|
+| Welcher Sensor? | `SN12345` |
+| Welcher Status? | `schlecht` |
+| Welche Werte? | `temp_c = 12.0, hum_pct = 85` |
+| Seit wann? | `seit 14:23 (vor ~5 Min)` |
+| Was sagt deine App? | "Dashboard zeigt rot, 'schlecht', seit 5 Min" |
+
+!!! tip "Pflicht-Übung am Tag 2"
+    Im Tag-2-Projekt baust du die `notifyEDB()`-Funktion, die
+    automatisch aufgerufen wird, wenn `getStatus()` "schlecht"
+    zurückgibt. Die Funktion kann vorerst ein `alert()` machen
+    oder in der Konsole loggen – aber sie MUSS da sein.
+
+!!! info "Im Tag-3-Projekt erweitert"
+    Ab Tag 3 wird die EDB-Benachrichtigung über die
+    Backend-API rausgeschickt (kein alert() mehr). Details in
+    [Tag 3 Integration](integration.md).
 
 ## :material-check-all: Definition of Done (Selbst-Check)
 
