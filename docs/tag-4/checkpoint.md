@@ -57,6 +57,6 @@ Der letzte Checkpoint vor der grossen Demo. Bist du bereit?
 - Wo treffen wir uns?
 - Was muss ich mitbringen?
 
-!!! success "Ihr habt es fast geschafft!"
+!!! success "Du hast es fast geschafft!"
     Noch die Demo, dann ist das Bootcamp geschafft.  
-    Ihr könnt stolz auf euch sein!
+    Du kannst stolz auf dich sein!

@@ -130,7 +130,7 @@ in der HTML eingebunden sein (`<script src="script.js"></script>`
 
 Nach 20 Min ohne nennenswerten Fortschritt:
 
-1. **Frag dein Trainer-Team.** Sie zeigen dir den nächsten Schritt
+1. **Frag deinen Trainer.** Sie zeigen dir den nächsten Schritt
    live – direkt am Code, mit Erklärungen zu **warum**.
 2. **Pair-Programming mit einem Mitlernenden.** Zwei Augen sehen
    mehr als eine.
