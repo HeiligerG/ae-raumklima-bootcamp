@@ -141,11 +141,9 @@ nicht das Plattform-Team (das ist PE). EDB ist verantwortlich für:
 
 Eine vollständige Übersicht findest du in [projekt/edb.md](../projekt/edb.md).
 
-**Wie erreichst du EDB?**
-
-- **Slack:** `#edb-support` (im Schulungs-Slack)
-- **E-Mail:** `edb@bootcamp.local` (vom Trainer zugeteilt)
-- **Persönlich:** Trainer fragen, wer gerade EDB-Schicht hat
+**Wie erreichst du EDB?** Ganz einfach: die **EDB-Lernenden
+sind im Raum** – du gehst zu ihnen hin und fragst. Kein Slack,
+keine E-Mail, kein Ticketsystem. EDB ist vor Ort.
 
 **Was du melden sollst:**
 
@@ -156,6 +154,12 @@ Eine vollständige Übersicht findest du in [projekt/edb.md](../projekt/edb.md).
 | Welche Werte? | `temp_c = 12.0, hum_pct = 85` |
 | Seit wann? | `seit 14:23 (vor ~5 Min)` |
 | Was sagt deine App? | "Dashboard zeigt rot, 'schlecht', seit 5 Min" |
+
+!!! info "Read-only-Doku"
+    Diese Doku ist auf GitHub Pages gehostet. Es gibt hier kein
+    Formular, kein Issue-Tracker, keine Benachrichtigung – du
+    kannst hier nichts eintragen. Alles Interaktive läuft direkt
+    im Raum.
 
 !!! tip "Pflicht-Übung am Tag 2"
     Im Tag-2-Projekt baust du die `notifyEDB()`-Funktion, die

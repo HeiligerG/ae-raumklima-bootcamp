@@ -71,18 +71,15 @@ Probleme (Schimmel-Risiko oder Elektrostatik).
 
 ## EDB kontaktieren
 
+**Wie?** Ganz einfach: **EDB-Lernende sind im Raum** – du
+gehst zu ihnen hin und fragst. Kein Slack, keine E-Mail, kein
+Ticketsystem. EDB macht mit, ist vor Ort, und antwortet direkt.
+
 **Wann?**
 
-- Wenn der Status **"schlecht"** wird (siehe Tabelle oben)
+- Wenn dein Status **"schlecht"** wird
 - Wenn die Plattform nicht reagiert und du nicht weiterkommst
 - Wenn du eine Frage zur Demo-Show hast
-
-**Wie?**
-
-- **Slack:** `#edb-support` (im Schulungs-Slack)
-- **E-Mail:** `edb@bootcamp.local` (vom Trainer zugeteilt)
-- **Persönlich:** Trainer fragen, wer gerade EDB-Schicht hat
-- **Im Raum:** EDB-Vertreter sind in der Regel vor Ort
 
 **Was du melden sollst:**
 
@@ -94,6 +91,12 @@ Probleme (Schimmel-Risiko oder Elektrostatik).
 | Seit wann? | `seit 14:23 (vor ~5 Min)` |
 | Was sagt deine App? | "Dashboard zeigt rot, 'schlecht', seit 5 Min" |
 | Was hast du probiert? | "Browser-Refresh, snapshot aus localStorage" |
+
+!!! info "Diese Doku ist read-only"
+    Diese Seite ist auf GitHub Pages gehostet (read-only). Es
+    gibt kein Formular, kein Ticket-System, kein Issue-Tracker
+    hier. Für alles Interaktive: direkt mit den EDB-Lernenden
+    sprechen.
 
 ## EDB bei der Demo-Show (Tag 4 Nachmittag)
 
