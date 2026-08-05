@@ -1,7 +1,10 @@
 # Projekt: Statuslogik
 
 !!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
-    Diese Aufgabe gibt dir **Anforderungen und ein Skelett**, aber nicht den fertigen Code. Die Schwellwerte für die Statuslogik, die Fetch-Logik und das Error-Handling wählst du selbst. Der Lerngewinn liegt im Ausprobieren, nicht im Abschreiben.
+    Diese Aufgabe gibt dir **Anforderungen und ein Skelett**, aber nicht den fertigen Code. Die Fetch-Logik und das Error-Handling wählst du selbst. Der Lerngewinn liegt im Ausprobieren, nicht im Abschreiben.
+
+    **Wichtig:** Die **Schwellenwerte** (gut/kritisch/schlecht) sind **von EDB vorgegeben** – du wählst sie nicht selbst, sondern übernimmst sie aus
+    [projekt/edb.md](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben).
 
     Wenn du nach 20 Minuten nicht weiterkommst, **frag dein
     Trainer-Team** – sie zeigen dir live, wo's hakt.
@@ -28,7 +31,8 @@ Die Datenstruktur ist ein **Push-Bundle-Array** (siehe
 - [ ] `loadDashboard()` lädt die Datei per `fetch()` und befüllt
       das Dashboard mit den Werten des **neuesten** Eintrags
 - [ ] `getStatus(tempC, humPct)` gibt einen von drei Werten zurück:
-      `gut`, `kritisch`, `schlecht`
+      `gut`, `kritisch`, `schlecht` (Werte sind von EDB
+      vorgegeben – siehe [EDB-Schwellenwerte](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben))
 - [ ] `getStatusText(status)` liefert den deutschen Text dazu
 - [ ] Die Status-Farbe der `.status`-Klasse passt zum berechneten
       Wert (`gut` → grün, `kritisch` → orange, `schlecht` → rot)
@@ -101,18 +105,22 @@ wählst du selbst):
 
 ## :material-lightbulb-on: Hinweise (verbal, kein Code)
 
-### Schwellwerte für die Statuslogik
+### Schwellenwerte für die Statuslogik
 
-Sinnvolle Startwerte (alle in °C bzw. %):
+Diese Schwellenwerte sind **fix von EDB vorgegeben** – du
+übernimmst sie aus
+[EDB-Schwellenwerte](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben):
 
-| Status | Temperatur | Feuchte |
-|---|---|---|
-| gut | 20–24 | 40–60 |
-| kritisch | 18–26 | 30–70 |
-| schlecht | alles ausserhalb | alles ausserhalb |
+| Status | Temperatur (°C) | Feuchte (%) | Verhalten |
+|---|---|---|---|
+| `gut` | 20 – 24 | 40 – 60 | Anzeige: grün |
+| `kritisch` | 18 – 26 | 30 – 70 | Anzeige: orange |
+| `schlecht` | < 18 oder > 26 | < 30 oder > 70 | Anzeige: rot + EDB-Benachrichtigung |
 
-Du kannst die Werte selbst anpassen – diskutiere sie danach im
-Team. Begründe, **warum** du andere Schwellwerte gewählt hast.
+!!! warning "Werte NICHT ändern"
+    Diese Schwellenwerte kommen direkt von EDB. Wenn du sie
+    abänderst, ist deine App **nicht EDB-konform** und kann bei der
+    Demo-Show nicht mit den anderen Apps verglichen werden.
 
 ### Zeit-Format
 
