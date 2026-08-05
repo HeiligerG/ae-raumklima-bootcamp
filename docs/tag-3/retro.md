@@ -1,69 +1,132 @@
-# Reflexion (statt Team-Retro)
+# Cross-funktionale Retro (AE + PE + EDB)
 
 !!! info "Wichtigste Änderung"
-    Im vorherigen Bootcamp gab es eine **Team-Retro**: zwei
-    Teams haben sich gegenseitig Feedback gegeben. Da du jetzt
-    **alleine** arbeitest, ersetzen wir die Team-Retro durch
-    eine **Selbst-Reflexion**. Schreibe deine Antworten
-    selbst – sie sind nur für dich und deinen Trainer.
+    Im aktuellen Bootcamp findet die Retro **im grossen Team** statt
+    – **AE-Lernende + PE-Team + EDB zusammen** (alle ~10–15
+    Personen). Das ist ein **cross-funktionales Retro**.
+
+    Ziel: Nicht nur "was lief gut/schlecht bei mir", sondern
+    **"was waren die grössten Probleme, Schwierigkeiten und Blocker
+    – über die Team-Grenzen hinweg"**. AE-Probleme betreffen oft
+    PE (API nicht erreichbar, falsches Topic). PE-Probleme betreffen
+    oft EDB (Docker-Stack, Snapshot-Lifecycle). Blocker müssen
+    sichtbar werden.
 
 ## Wann?
 
 Mittwoch Vormittag (08:15–09:00) im Tagesplan von Tag 3.
 
-## Ablauf (30 Min, alleine)
+## Was du davor machst (5 Min alleine)
 
-### 1. Zurückblicken (10 Min)
+Bevor die Retro startet, **reflektierst du kurz allein**:
 
-Beantworte für dich (in deinen Notizen oder hier im File):
+1. **Was lief gestern und vorgestern gut?**
+2. **Was lief nicht so gut?** (privat für dich, nicht teilen)
+3. **Was war die grösste Schwierigkeit / der grösste Blocker?**
+   - Konkret: "Ich konnte X nicht, weil Y"
+   - Wer könnte das lösen? (AE, PE, EDB, du selbst)
+4. **Eine konkrete Bitte an ein anderes Team** (optional)
 
-- Was lief an Tag 1 und Tag 2 gut?
-- Was war schwierig?
-- Welche Entscheidung würdest du heute anders treffen?
+Schreib deine Antworten auf eine Karteikarte oder in dein
+Notizbuch. Du wirst sie gleich verwenden.
 
-### 2. Heute planen (5 Min)
+## Ablauf (45 Min, alle zusammen)
 
-Schreib auf, was du dir für Tag 3 vornimmst:
+### 1. Geteilte Highlights (10 Min)
 
-- **Backend anbinden:** ja / nein / später
-- **Verlaufsliste einbauen:** ja / nein / später
-- **Statuslogik ändern:** ja / behalte ich
+Im Kreis, jede Person 30 Sekunden:
 
-### 3. Hilfe planen (5 Min)
+> **"Was lief gut – was war mein Highlight?"**
 
-Falls du merkst, dass du nicht weiterkommst:
+Kurze Statements, kein Detail. Trainer moderiert und schreibt
+die Highlights auf ein Whiteboard oder Padlet.
 
-- Was konkret brauchst du vom Trainer?
-- Eine Code-Zeile, die nicht funktioniert? → vorbereiten
-- Ein Konzept, das du nicht verstehst? → auflisten
-- Eine Entscheidung, bei der du unsicher bist? → aufschreiben
+### 2. Probleme und Blocker sammeln (15 Min) — **der Kern**
 
-### 4. Selbst-Commitment (10 Min)
+Immer noch im Kreis. Jetzt mit **Struktur**:
 
-Schreib dir **drei konkrete Ziele** für Tag 3:
+| Kategorie | Beispiele |
+|---|---|
+| **Eigene Probleme** (im eigenen Code/Setup) | "Mein CSS-Grid bricht bei 600 px", "Mein fetch() wirft CORS-Fehler" |
+| **Team-Grenzen-Probleme** | "Die API antwortet 500 wegen PE-Stack-Crash", "EDB hat keine Snapshots" |
+| **Werkzeug-Probleme** | "VS Code Live Server hängt", "WLAN reisst ab" |
+| **Konzept-Lücken** | "Ich verstehe `async/await` nicht", "Was ist JSONB?" |
 
-1. ________________________________________________
-2. ________________________________________________
-3. ________________________________________________
+**Regeln für diesen Block:**
 
-Beispiele:
-- "Heute schreibe ich die `fetchBundles()`-Funktion und teste
-  sie mit echten Daten"
-- "Heute zeige ich dem Trainer meinen Code nach der Mittagspause,
-  damit ich Feedback hole"
-- "Heute Abend pushe ich mein Dashboard auf meinen Fork"
+- **Konkret sein** – nicht "Backend war down", sondern "Backend
+  war von 14:00–14:30 down, ich habe in der Zeit nichts machen
+  können"
+- **Blocker markieren** – wenn dich etwas **aktiv aufhält**, sag es
+  explizit: "Das ist ein Blocker, ich komme nicht weiter"
+- **Andere fragen, nicht nur beschweren** – "Hat jemand das auch
+  gesehen?" aktiviert die cross-funktionale Hilfe
 
-!!! tip "Wichtig"
-    Diese Ziele sind **für dich** – nicht für den Trainer.  
-    Du kannst sie am Ende des Tages selbst überprüfen.
+### 3. Blocker im Detail (10 Min)
 
-## Wie geht es weiter?
+Die **drei wichtigsten Blocker** (vom Trainer priorisiert) werden
+im Detail diskutiert:
 
-Nach deiner Selbst-Reflexion geht es direkt mit
-[Tag 3 Theorie: Docker & DB](theorie-docker.md) los
-(09:00–10:00, im Plenum aller Lernenden).
+- **Was ist der Blocker genau?**
+- **Welches Team ist betroffen?** (AE-Lernende, PE-Team, EDB-Team)
+- **Wer kann helfen?** (Selbsthilfe, Team-Hilfe, oder muss EDB ran?)
+- **Bis wann?** (10 Min? Bis Mittag? Bis morgen?)
 
-!!! tip "Verweis auf Quellen"
-    Falls du nicht weiterkommst, schau in
-    [Quellen und KI-Verbot](../projekt/quellen.md) – W3Schools
-    hat meistens die Antwort.
+Der Trainer oder ein EDB-Vertreter moderiert. Pro Blocker wird
+ein **Owner** bestimmt, der sich bis zum nächsten Tag drum kümmert.
+
+### 4. Was hat gut funktioniert? (5 Min)
+
+Nicht nur Probleme – auch positive Dinge sichtbar machen:
+
+- "Das Snapshot-Fallback funktioniert super, gestern beim
+  Backend-Crash hat die App weitergerendert"
+- "Die Joint-Session mit PE gestern war super, wir haben den
+  Datenvertrag sofort geklärt"
+
+### 5. Verabschiedung und Verantwortlichkeiten (5 Min)
+
+Der Trainer fasst zusammen:
+
+- **Top 3 Blocker** mit Owner und Frist
+- **Was funktioniert** (soll erhalten bleiben)
+- **Was ändern wir für Tag 4** (z. B. zusätzliche Test-Zeit,
+  frühere Sensor-Konfiguration)
+
+## Format: Was du als Lernende/r beiträgst
+
+Du bist in der Retro **aktiv**:
+
+- Bring deine **3 Antworten** mit (was lief gut, was lief nicht,
+  was war der grösste Blocker)
+- Wenn du einen Blocker hast: **sag es laut** – Trainer und EDB
+  können nur helfen, wenn sie es wissen
+- Wenn ein anderer Lernender ein Problem hat und du die Lösung
+  kennst: **biet deine Hilfe an**
+- Wenn PE oder EDB etwas fragt: **antworte ehrlich**
+
+!!! tip "Blocker-Beispiele für die Diskussion"
+    - "Mein fetch() schlägt fehl, weil ich die falsche API-URL
+      habe → PE-Team, wer hat sie?"
+    - "Mein CSS ist nicht responsive bei 600 px → hat jemand
+      einen Tipp?" (Lernende helfen Lernende)
+    - "Der Sensor liefert seit heute morgen keine Daten → EDB,
+      ist der Sensor kaputt?"
+    - "Ich verstehe `async/await` nicht → Trainer, kurze Erklärung
+      in 5 Min?"
+
+## Was nach der Retro passiert
+
+- **Trainer hängt die Top-Blöcker** mit Owner + Frist an ein
+  sichtbares Board (oder ins Wiki)
+- **EDB-Vertreter** meldet sich bei Lernenden mit Blocker direkt
+- **Vor Tag 4** (Stresstest-Tag) sollten die Top-Blöcker gelöst sein
+- **In der Tag-4-Reflexion** (Checkpoint) wird nachgeprüft, was
+  gelöst wurde
+
+!!! info "Verwandte Seiten"
+    - [tag-3/index.md](index.md) – wo die Retro im Tagesplan liegt
+    - [tag-3/integration.md](integration.md) – die Probleme aus
+      der End-to-End-Integration können hier diskutiert werden
+    - [Definition of Done](../projekt/definition-of-done.md) – was
+      muss erfüllt sein, damit wir Retro überspringen können
