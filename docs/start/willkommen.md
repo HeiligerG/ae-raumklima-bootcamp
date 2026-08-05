@@ -1,6 +1,6 @@
 # Willkommen
 
-## :material-no-ai: KI ist komplett verboten
+## :material-robot-off: KI ist komplett verboten
 
 !!! danger "Wichtigste Regel des Bootcamps"
     Du darfst während des gesamten Bootcamps **keine KI-Tools** verwenden – nicht für Fragen, nicht für Code, nicht für Erklärungen, nicht für "kleine Hilfen". Das gilt für **alle** KI-Tools:

@@ -1,6 +1,6 @@
 # Setup & Tools
 
-## :material-no-ai: Vor dem Loslegen: KI ist verboten
+## :material-robot-off: Vor dem Loslegen: KI ist verboten
 
 !!! danger "Erinnerung"
     Du darfst während des Bootcamps **keine KI-Tools** verwenden – nicht für Fragen, nicht für Code, nicht für Erklärungen. Siehe [Quellen und KI-Verbot](../projekt/quellen.md) für die erlaubten Alternativen.

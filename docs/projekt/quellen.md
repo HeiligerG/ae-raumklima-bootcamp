@@ -1,6 +1,6 @@
 # Quellen und KI-Verbot
 
-## :material-no-ai: KI ist komplett verboten
+## :material-robot-off: KI ist komplett verboten
 
 Während dieses Bootcamps darfst du **keine KI-Tools** verwenden – nicht
 für Fragen, nicht für Code, nicht für Erklärungen, nicht für
