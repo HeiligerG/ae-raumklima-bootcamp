@@ -14,7 +14,7 @@ Der letzte Checkpoint vor der grossen Demo. Bist du bereit?
 - [ ] Verlaufsliste ist sichtbar
 - [ ] Admin-Seite funktioniert
 - [ ] App ist getestet
-- [ ] Code ist committed und auf deinen Fork gepusht
+- [ ] Code ist committed und auf deinen Branch gepusht
 
 ## Demo-Check
 

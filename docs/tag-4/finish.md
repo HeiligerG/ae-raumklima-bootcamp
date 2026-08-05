@@ -39,11 +39,11 @@ Geh diese Liste Punkt für Punkt durch. Alles muss abgehakt sein.
 
 Notiere, was noch fehlt, und arbeite es ab:
 
-| Aufgabe | Status | Wer? |
-|---------|--------|------|
-| | :material-circle-outline: | |
-| | :material-circle-outline: | |
-| | :material-circle-outline: | |
+| Aufgabe | Status |
+|---------|--------|
+| | :material-circle-outline: |
+| | :material-circle-outline: |
+| | :material-circle-outline: |
 
 ## Typische Lücken
 
@@ -64,5 +64,5 @@ Notiere, was noch fehlt, und arbeite es ab:
 Wenn alles grün ist:
 
 1. Nochmal alle Tests durchlaufen (siehe [Testen](testen.md))
-2. Code committen und pushen
+2. Code committen und auf deinen Branch pushen
 3. Ab zu den [optionalen Features](optionale-features.md) oder direkt zur Demo!

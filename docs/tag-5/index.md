@@ -10,7 +10,7 @@ Heute präsentierst du deine App und feierst den Abschluss des Bootcamps!
 |------|-------|--------|
 | 09:00–10:00 | :material-account-tie: PV Vorstellung | Praxisverantwortliche stellen sich und die Firma vor |
 | 10:00–10:30 | :material-coffee: Pause | |
-| 10:30–11:30 | :material-presentation: Projektpräsentation | Alle Teams zeigen ihre Apps |
+| 10:30–11:30 | :material-presentation: Projektpräsentation | Alle Lernenden zeigen ihre Apps |
 | 11:30–12:00 | :material-video: Video | Gemeinsames Abschluss-Video |
 | 12:00–16:00 | :material-grill: Grill Party | Abschluss und Feier |
 
@@ -28,7 +28,7 @@ Die Projektpräsentation um 10:30 ist **gemeinsam mit dem PE-Team**. AE-Lernende
 
 | Dauer | Inhalt |
 |-------|--------|
-| 1 Min. | Team & App vorstellen |
+| 1 Min. | App kurz vorstellen |
 | 3–5 Min. | Live-Demo der App |
 | 1–2 Min. | Learnings & Highlights |
 

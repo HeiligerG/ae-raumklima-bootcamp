@@ -30,7 +30,7 @@ Am Ende der Woche hast du:
 - [ ] HTML, CSS und JavaScript gelernt
 - [ ] Daten aus einem JSON-File oder einer API geladen
 - [ ] Eine Demo deiner App vorbereitet und vorgestellt
-- [ ] Im Team zusammengearbeitet
+- [ ] Selbststaendig an einer eigenen App gearbeitet
 
 ## Keine Vorkenntnisse?
 

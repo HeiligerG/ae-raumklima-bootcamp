@@ -29,7 +29,7 @@
 - **Hat jede/r den Fork erfolgreich geklont?**
 - **Hat jede/r den `app/`-Ordner im Codebase-Repo gefunden?**
 - Versteht jede/r HTML vs. CSS vs. JavaScript?
-- Erster Commit auf main im Fork gemacht?
+- Erster Commit auf eigenem Branch im Fork gemacht?
 
 ## Tag 2 – Daten & Logik
 
@@ -53,7 +53,7 @@
 ## Tag 3 – Integration
 
 ### Vor dem Start
-- [ ] **Selbst-Reflexion-Material** für die Lernenden vorbereitet (siehe [Retro](retro.md))
+- [ ] **Selbst-Reflexion-Material** für die Lernenden vorbereitet (siehe [Retro](../tag-3/retro.md))
 - [ ] **SuvaSense-Stack läuft und ist erreichbar** (`curl http://<host>:8080/health` und `docker compose ps`)
 - [ ] **Demo-Sensor publiziert** (entweder echtes ESP32 oder manueller `mosquitto_pub` – siehe [Demo-Sensor-Setup](demo-sensor.md))
 - [ ] API-URL und Demo-Seriennummer sind an die Lernenden verteilt (am besten schon Tag 2 Nachmittag, spätestens jetzt)

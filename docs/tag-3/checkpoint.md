@@ -25,7 +25,7 @@ Heute war Integrationstag. Prüf deinen Fortschritt.
 - [ ] Fallback funktioniert (wenn API aus, dann Mock)
 - [ ] Admin-Seite ist funktionsfähig
 - [ ] Keine offensichtlichen Bugs
-- [ ] Code ist committed und gepusht
+- [ ] Code ist committed und auf deinen Branch gepusht
 
 ## Demo-Vorbereitung
 

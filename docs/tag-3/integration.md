@@ -218,7 +218,7 @@ befüllen. Das ist **Bonus**, nicht Pflicht.
       zeigt Fehlermeldung
 - [ ] Sensor-Wechsel im Dropdown funktioniert
 - [ ] Konsole (F12) zeigt keine roten Fehler
-- [ ] Code ist committed und gepusht
+- [ ] Code ist committed und auf deinen Branch gepusht
 
 ## Nächster Schritt
 

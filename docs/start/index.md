@@ -7,7 +7,7 @@ Hier beginnt deine Reise! In diesem Kapitel bereitest du dich auf das Bootcamp v
 | Seite | Inhalt |
 |-------|--------|
 | [Willkommen](willkommen.md) | Begrüssung, was du brauchst und was nicht |
-| [Arbeitsweise](arbeitsweise.md) | Tagesablauf, Teamarbeit, Definition of Done |
+| [Arbeitsweise](arbeitsweise.md) | Tagesablauf, Einzelarbeit, Definition of Done |
 | [Setup & Tools](setup.md) | VS Code, Git, Live Server installieren und einrichten |
 | [Git Basics](git-basics.md) | Repository, Commit, Push, Pull – die Grundbefehle |
 
