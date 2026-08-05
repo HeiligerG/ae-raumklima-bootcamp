@@ -138,17 +138,35 @@ async function loadData() {
 Die Logik bleibt dieselbe wie immer – sie bekommt nur neue Eingabewerte:
 
 ```javascript
+// Werte stammen von EDB (siehe ../projekt/edb.md#schwellenwerte-von-edb-vorgegeben)
+// NICHT selbst waehlen!
+const EDB_TEMP_GUT_MIN     = 20;
+const EDB_TEMP_GUT_MAX     = 24;
+const EDB_TEMP_KRITISCH_MIN = 18;
+const EDB_TEMP_KRITISCH_MAX = 26;
+const EDB_HUM_GUT_MIN       = 40;
+const EDB_HUM_GUT_MAX       = 60;
+const EDB_HUM_KRITISCH_MIN  = 30;
+const EDB_HUM_KRITISCH_MAX  = 70;
+
 function getStatus(tempC, humPct) {
-  const tempOk = tempC >= 20 && tempC <= 24;
-  const humOk  = humPct >= 40 && humPct <= 60;
-  const tempWarn = tempC >= 18 && tempC <= 26;
-  const humWarn  = humPct >= 30 && humPct <= 70;
+  const tempOk   = tempC >= EDB_TEMP_GUT_MIN     && tempC <= EDB_TEMP_GUT_MAX;
+  const humOk    = humPct  >= EDB_HUM_GUT_MIN    && humPct  <= EDB_HUM_GUT_MAX;
+  const tempWarn = tempC >= EDB_TEMP_KRITISCH_MIN && tempC <= EDB_TEMP_KRITISCH_MAX;
+  const humWarn  = humPct  >= EDB_HUM_KRITISCH_MIN && humPct <= EDB_HUM_KRITISCH_MAX;
 
   if (tempOk && humOk) return 'gut';
   if (tempWarn || humWarn) return 'kritisch';
   return 'schlecht';
 }
 ```
+
+!!! important "Werte kommen von EDB"
+    Die Konstanten oben (`EDB_TEMP_GUT_MIN` etc.) sind **fix von EDB
+    vorgegeben**. Du übernimmst sie aus der
+    [EDB-Schwellenwerte-Tabelle](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben)
+    in deinen Code. **Wähle sie nicht selbst** – sonst ist deine App
+    nicht EDB-konform.
 
 Die App ruft die Funktion mit den **BME680-Werten** auf:
 
