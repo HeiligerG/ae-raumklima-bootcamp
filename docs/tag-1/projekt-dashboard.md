@@ -25,10 +25,12 @@ auf Desktop und Handy gut aussehen.
       Platzhalter-Text "Lade Daten..."
 - [ ] Der Status hat eine **sichtbare Farbe** (gut = grünlich,
       kritisch = orange, schlecht = rot – genaue Töne wählst du)
-- [ ] Bei Status **"schlecht"** (kritische Temperatur oder
-      Feuchtigkeit) wird automatisch ein **EDB-Alert**
+- [ ] Bei Status **"schlecht"** wird automatisch ein **EDB-Alert**
       ausgelöst – siehe [EDB-Benachrichtigung](#edb-benachrichtigung)
       weiter unten
+- [ ] Die **Schwellenwerte** (gut/kritisch/schlecht) werden
+      **von EDB vorgegeben**, nicht von dir gewählt – siehe
+      [EDB – Schwellenwerte](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben)
 - [ ] Eine Fusszeile mit Copyright-Hinweis
 - [ ] Das Layout funktioniert auf 600 px Bildschirmbreite (Werte
       passen sich an, nichts wird abgeschnitten)
@@ -124,14 +126,20 @@ in der HTML eingebunden sein (`<script src="script.js"></script>`
 
 ## :material-handshake: EDB-Benachrichtigung
 
-Wenn dein Sensor-Status **"schlecht"** wird (Temperatur ausserhalb
-18–26 °C oder Feuchte ausserhalb 30–70 %), musst du die
-**Entwickler Digital Business (EDB)** informieren.
+Wenn dein Sensor-Status **"schlecht"** wird (gemäss den von EDB
+vorgegebenen Schwellenwerten in
+[projekt/edb.md](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben)),
+musst du die **Entwickler Digital Business (EDB)** informieren.
 
-**Was ist EDB?** Das ist das Plattform-Team, das die Sensoren und
-das Backend betreibt. Wenn deine App "schlecht" anzeigt, ist die
-Plattform möglicherweise kaputt oder die Sensor-Werte stimmen nicht –
-beides muss zeitnah gemeldet werden.
+**Was ist EDB?** Das **EDB**-Team (Entwickler Digital Business) ist
+nicht das Plattform-Team (das ist PE). EDB ist verantwortlich für:
+
+- Die **Schwellenwerte** (gut/kritisch/schlecht) – kommen
+  zentral von EDB, du übernimmst sie in dein Code
+- Die **Demo-Show** am Tag 4 Abend
+- Die **übergreifende Koordination** zwischen AE, PE und Trainer
+
+Eine vollständige Übersicht findest du in [projekt/edb.md](../projekt/edb.md).
 
 **Wie erreichst du EDB?**
 
