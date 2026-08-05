@@ -9,8 +9,14 @@
     **"was waren die grössten Probleme, Schwierigkeiten und Blocker
     – über die Team-Grenzen hinweg"**. AE-Probleme betreffen oft
     PE (API nicht erreichbar, falsches Topic). PE-Probleme betreffen
-    oft EDB (Docker-Stack, Snapshot-Lifecycle). Blocker müssen
-    sichtbar werden.
+    oft EDB (Schwellenwerte unklar, Demo-Show-Vorbereitung).
+    Blocker müssen sichtbar werden.
+
+!!! info "Wer ist EDB nochmal?"
+    EDB = **Entwickler Digital Business**. Verantwortlich für
+    **Schwellenwerte** (gut/kritisch/schlecht), die **Demo-Show**
+    am Tag 4, und **übergreifende Koordination**. EDB ist **nicht
+    PE** (das ist das Plattform-Team). Siehe [projekt/edb.md](../projekt/edb.md).
 
 ## Wann?
 
