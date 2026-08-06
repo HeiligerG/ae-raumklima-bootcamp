@@ -29,6 +29,11 @@ Diese Quellen unten sind deine Nachschlagewerke. Sie sind
 **schneller als KI** (keine Wartezeit), **kostenlos** und
 **akkurat** (im Gegensatz zu KI, die halluziniert).
 
+Auch die Übungen sind eine gute Quelle, weil man dort oft schon
+Beispiele und Lösungsansätze findet. Man kann sich daran orientieren
+und teilweise auch Dinge für das eigene Projekt übernehmen, wenn man
+sie verstanden hat.
+
 ## :material-link-variant: W3Schools – deine Hauptquelle
 
 **W3Schools** (https://www.w3schools.com/) ist deine

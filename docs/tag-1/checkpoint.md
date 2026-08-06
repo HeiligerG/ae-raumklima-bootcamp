@@ -67,5 +67,5 @@ Schreib hier auf, was noch nicht fertig ist:
     Bis dann – gleicher Raum, gleiche Zeit :material-clock-outline: 08:00.
 
 !!! tip "Morgen"
-    - [Tag 2 Theorie: JSON / API / Fetch](theorie-json-api-fetch.md)
+    - [Tag 2 Theorie: JSON / API / Fetch](../tag-2/theorie-json-api-fetch.md)
     - [Quellen und KI-Verbot](../projekt/quellen.md) – falls du nochmal W3Schools-Links brauchst

@@ -8,7 +8,7 @@ Am Ende des Tages ist der Pflichtumfang komplett, getestet, und die Demo sitzt. 
 
 | Zeit | Phase | Inhalt |
 |------|-------|--------|
-| 08:00–08:15 | :material-weather-sunny: Daily | Stand-up im Team |
+| 08:00–08:15 | :material-weather-sunny: Daily | Kurzer Tagesstart |
 | 08:15–10:00 | :material-hammer-wrench: Projekt | Pflichtumfang fertigstellen |
 | 10:00–10:15 | :material-coffee: Pause | |
 | 10:15–12:00 | :material-bug: Testen | Bugs finden und fixen |
@@ -22,7 +22,7 @@ Am Ende des Tages ist der Pflichtumfang komplett, getestet, und die Demo sitzt. 
     Wenn am Ende des Testens um 12:00 noch Bugs offen sind, **frisst die Bugfix-Phase den Optional-Block auf**, nicht die Demo-Vorbereitung. Lieber eine App ohne optionale Features, die sauber läuft, als eine mit Features, die im Demo crasht.
 
 !!! note "Joint-Demo mit PE um 16:30"
-    Die Demo-Show am Abend ist eine **gemeinsame Veranstaltung** mit dem PE-Team. Beide Teams präsentieren ihre Ergebnisse. AE-Teams zeigen die App live, PE-Teams zeigen die Sensoren und das Backend-Setup. Gesamtdauer: ca. 60 Minuten (5–10 Min pro Team).
+    Die Demo-Show am Abend ist eine **gemeinsame Veranstaltung** mit dem PE-Team. AE-Lernende zeigen ihre App einzeln, PE zeigt Sensoren und Backend-Setup. Gesamtdauer: ca. 60 Minuten.
 
 ## :material-school: Was lernst du heute?
 
@@ -45,7 +45,7 @@ Am Ende des Tages ist der Pflichtumfang komplett, getestet, und die Demo sitzt. 
 - [ ] Alle bekannten Bugs sind behoben
 - [ ] Demo sitzt (2–3 mal durchlaufen)
 - [ ] Optional: Zusatz-Features eingebaut
-- [ ] Code ist committed und gepusht
+- [ ] Code ist committed und auf deinen Branch gepusht
 
 ## :material-arrow-right: Weiter
 

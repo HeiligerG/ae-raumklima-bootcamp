@@ -14,7 +14,7 @@ Jede Aufgabe ist erst fertig, wenn **alle** Punkte zutreffen:
 - [ ] **Code gepusht** – Der Code ist mit `git push` auf GitHub
 - [ ] **Funktioniert** – Die Funktion wurde manuell getestet – **idealerweise auch gegen die SuvaSense-API, nicht nur gegen `data.json`**
 - [ ] **Fehlerfrei** – Es gibt keine bekannten Bugs in der Aufgabe
-- [ ] **Team-Review** – Mindestens ein Teammitglied hat den Code gesehen
+- [ ] **Selbst geprüft** – Du hast den Code bewusst selbst überprüft
 - [ ] **Kein kaputter Code** – Bestehende Funktionen funktionieren immer noch
 
 ## Beispiele
@@ -25,7 +25,7 @@ Jede Aufgabe ist erst fertig, wenn **alle** Punkte zutreffen:
     - [x] Code ist committed und gepusht
     - [x] Manuell mit verschiedenen Werten getestet
     - [x] Status-Farben ändern sich korrekt
-    - [x] Kollege hat Code angeschaut
+    - [x] Ich habe meinen Code selbst geprüft
     - [x] Live mit SuvaSense-Backend verifiziert (Snapshot aus localStorage sichtbar)
     ```
 

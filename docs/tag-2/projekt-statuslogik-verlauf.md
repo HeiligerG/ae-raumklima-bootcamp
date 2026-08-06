@@ -158,7 +158,7 @@ wenn `data.json` fehlt.
 
 Nach 20 Min ohne nennenswerten Fortschritt:
 
-1. **Frag dein Trainer-Team.** Sie zeigen dir den nächsten Schritt
+1. **Frag deinen Trainer.** Sie zeigen dir den nächsten Schritt
    live und helfen beim Debugging.
 2. **Pair-Programming mit einem Mitlernenden.**
 3. **Browser DevTools (F12) → Console** – die meisten Fehler

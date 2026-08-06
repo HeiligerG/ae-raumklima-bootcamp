@@ -1,13 +1,14 @@
 # Git Basics
 
-!!! info "Wichtig: Im Bootcamp kein Branch-Workflow"
-    Du arbeitest **alleine** in deinem **eigenen Fork**. Es gibt
-    keinen Branch-Workflow, keine Pull Requests, keine Code-Reviews.
+!!! info "Wichtig: Einzelarbeit, aber mit Branches"
+    Du arbeitest **alleine** in deinem **eigenen Fork**. Trotzdem
+    nutzt du einen einfachen Branch-Workflow, weil das auch in echten
+    Projekten Standard ist.
 
-    **Nur 3 Git-Befehle brauchst du:**
-    `git add`, `git commit`, `git push`.
+    **Was du nicht brauchst:** keine Pull Requests, keine Reviews,
+    kein kompliziertes Git.
 
-    That's it.
+    **Was du brauchst:** Branch erstellen, committen, pushen.
 
 ## Was ist Git?
 
@@ -37,7 +38,16 @@ git commit -m "Was ich gemacht habe"
 - Der Commit ist ein "Schnappschuss" mit einer Beschreibung
 - Die Commit-Message beschreibt, was du gemacht hast
 
-### 3. Auf deinen Fork hochladen
+### 3. Branch erstellen
+
+```bash
+git switch -c tag-1-dashboard
+```
+
+Damit arbeitest du nicht direkt auf `main`, sondern auf deinem
+eigenen Arbeits-Branch.
+
+### 4. Auf deinen Fork hochladen
 
 ```bash
 git push
@@ -51,20 +61,23 @@ Lädt deine Commits auf GitHub (in deinen Fork).
 # 1. Im app/-Ordner arbeiten
 code app/
 
-# 2. Wenn du etwas fertig hast:
+# 2. Im Repo arbeiten
 cd /pfad/zu/ae-raumklima-bootcamp-codebase
 
-# 3. Status anschauen
+# 3. Eigenen Branch anlegen
+git switch -c tag-1-dashboard
+
+# 4. Status anschauen
 git status
 
-# 4. Änderungen speichern
+# 5. Änderungen speichern
 git add .
 git commit -m "Mein Dashboard Tag 1 fertig"
 
-# 5. Hochladen (auf deinen Fork)
-git push
+# 6. Hochladen (auf deinen Fork)
+git push -u origin tag-1-dashboard
 
-# 6. Browser: dein Fork auf GitHub zeigt jetzt den neuen Commit
+# 7. Browser: dein Fork auf GitHub zeigt jetzt den neuen Commit
 ```
 
 ## Gute Commit-Messages
@@ -82,7 +95,7 @@ Schreibe, **was** du geändert hast (nicht wie).
 ??? warning "'git push' geht nicht – 'no upstream'"
     Beim ersten Push fragt Git nach dem Remote. Lösung:
     ```bash
-    git push -u origin main
+    git push -u origin <dein-branch-name>
     ```
     Beim zweiten Push reicht dann `git push`.
 
@@ -91,28 +104,28 @@ Schreibe, **was** du geändert hast (nicht wie).
     Fork. Lösung: in `setup.md` nachlesen, wie man den Fork klont.
 
 ??? warning "'Merge conflict'"
-    Im Bootcamp sehr unwahrscheinlich (Einzelarbeit, kein Team).
+    Im Bootcamp eher selten (Einzelarbeit, eigener Fork).
     Falls doch: Trainer fragen.
 
 ## Was Git NICHT macht
 
-- ❌ **Branches** – du arbeitest immer auf `main`
 - ❌ **Pull Requests** – du hast keinen Reviewer
 - ❌ **Code-Review** – du bist dein eigener Reviewer
 - ❌ **Rebase** – nicht nötig im Bootcamp
 
 ## Zusammenfassung
 
-Drei Befehle reichen:
+Für das Bootcamp reichen diese Schritte:
 
 ```bash
-git status    # Was ist geändert?
-git add .     # Alles zum Commit vormerken
-git commit -m "..."   # Speichern
-git push      # Hochladen
+git switch -c mein-branch   # Eigenen Branch anlegen
+git status                  # Was ist geändert?
+git add .                   # Alles zum Commit vormerken
+git commit -m "..."        # Speichern
+git push -u origin mein-branch
 ```
 
-Mehr brauchst du nicht.
+Mehr brauchst du im Bootcamp nicht.
 
 !!! info "Mehr zu Git"
     Git ist ein riesiges Thema. Fürs Bootcamp reichen diese Basics.

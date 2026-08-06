@@ -2,25 +2,24 @@
 
 ## Ziel der Demo
 
-Ihr zeigt am Ende der Woche eure App vor allen anderen Teams und Trainern.
+Du zeigst am Ende der Woche deine App vor allen anderen Lernenden und Trainern.
 
-- Dauer: ca. 5–10 Minuten pro Team
+- Dauer: ca. 5 Minuten pro Person
 - Format: Live-Demo der App + kurze Erklärung
-- Jedes Teammitglied zeigt einen Teil
+- Du zeigst deinen eigenen Ablauf
 
 ## Demo-Ablauf auf einen Blick
 
 ```mermaid
 flowchart TD
-    V[15:15<br/>Probe-Demo<br/>alleine/im Team] --> Q{Backup<br/>fertig?}
+    V[15:15<br/>Probe-Demo<br/>alleine] --> Q{Backup<br/>fertig?}
     Q -->|Nein| V2[Backup-Video<br/>aufnehmen<br/>30-60 s]
     V2 --> Q
     Q -->|Ja| D[16:30<br/>Live-Demo]
-    D --> T1[Person A:<br/>App starten,<br/>Daten erklaeren]
-    T1 --> T2[Person B:<br/>Verlauf zeigen,<br/>Snapshot-Fallback]
-    T2 --> T3[Person C:<br/>Admin-Panel,<br/>Sensor-Wechsel]
-    T3 --> T4[Person D:<br/>Technik-Intro<br/>optional]
-    T4 --> Q2[Q&A]
+    D --> T1[Demo:<br/>App starten,<br/>Daten erklaeren]
+    T1 --> T2[Demo:<br/>Verlauf zeigen,<br/>Snapshot-Fallback]
+    T2 --> T3[Demo:<br/>Admin-Panel,<br/>Sensor-Wechsel]
+    T3 --> Q2[Q&A]
 
     style V fill:#e1f5ff
     style V2 fill:#fff4e1
@@ -36,15 +35,15 @@ flowchart TD
 
 | Zeit | Phase | Wer | Inhalt |
 |---|---|---|---|
-| 15:15 | Probe-Demo | Alle | Backup-Video aufnehmen |
-| 16:30 | Live-Demo startet | Alle | Backup-Video bereit, Ruhe |
-| 16:30–16:31 | Begruessung | Person A | "Wir sind AE-Team XY, wir zeigen ..." |
-| 16:31–16:35 | App + Live-Daten | Person A | App im Browser, Dashboard zeigen |
-| 16:35–16:38 | Verlauf + Snapshot | Person B | 10 letzte Messungen, dann WLAN kurz trennen, Snapshot zeigt sich |
-| 16:38–16:40 | Admin-Panel | Person C | Sensor-Wechsel demonstrieren |
-| 16:40–16:45 | Q&A | Alle | Fragen beantworten |
+| 15:15 | Probe-Demo | Du | Backup-Video aufnehmen |
+| 16:30 | Live-Demo startet | Du | Backup-Video bereit, Ruhe |
+| 16:30–16:31 | Begruessung | Du | "Ich zeige meine App ..." |
+| 16:31–16:35 | App + Live-Daten | Du | App im Browser, Dashboard zeigen |
+| 16:35–16:38 | Verlauf + Snapshot | Du | 10 letzte Messungen, dann WLAN kurz trennen, Snapshot zeigt sich |
+| 16:38–16:40 | Admin-Panel | Du | Sensor-Wechsel demonstrieren |
+| 16:40–16:45 | Q&A | Du | Fragen beantworten |
 
-**Total: ~7-10 Min pro Team.** Nicht überziehen, das Publikum wird unruhig.
+**Total: ~5 Min pro Person.** Nicht überziehen, das Publikum wird unruhig.
 
 ## Checkliste für die Demo
 
@@ -57,14 +56,14 @@ flowchart TD
 - [ ] Die App wurde mit verschiedenen Werten getestet (gut, kritisch, schlecht)
 - [ ] Der Browser ist im Vollbild-Modus
 - [ ] Die Schrift ist gross genug für den Beamer
-- [ ] Teammitglieder wissen, wer was zeigt
+- [ ] Ich weiss, was ich in welcher Reihenfolge zeige
 - [ ] **Trainer hat den SuvaSense-Stack laufen** (oder ihr habt Backup-Daten im `localStorage`)
 
 ### Ablauf der Demo
 
 1. **Einleitung (1 Min.)**
-    - Wer sind wir?
-    - Was zeigt unsere App?
+    - Wer bin ich?
+    - Was zeigt meine App?
     - Welche Sensoren sind im Schulungsraum verteilt? (Seriennummern)
 
 2. **Live-Demo (3–5 Min.)**
@@ -84,27 +83,23 @@ flowchart TD
 ### Demo-Skript (Vorlage)
 
 ```markdown
-## Demo-Skript Team XY
+## Demo-Skript
 
-### Person A – Dashboard
+### Einstieg
 - Seite öffnen
-- Sensor-Auswahl: "Wir zeigen den Sensor SN12345, der im Raum B101 steht"
+- Sensor-Auswahl oder Raum kurz erklären
 - Temperatur und Luftfeuchtigkeit zeigen
 - Auf Status-Farbe hinweisen (gut / kritisch / schlecht)
 
-### Person B – Verlauf & Logik
+### Verlauf & Logik
 - Verlauf einblenden
 - Erklären, wie sich der Status aus temp_c / hum_pct berechnet
-- Zeigen, was bei kritischen Werten passiert (Notification-Banner)
+- Zeigen, was bei kritischen Werten passiert
 
-### Person C – Live-Integration & Snapshot
+### Live-Integration & Snapshot
 - WLAN kurz trennen → App fällt automatisch auf localStorage-Snapshot zurück
 - Wieder verbinden → Live-Daten sind zurück
-- Optional: pgAdmin zeigen (http://localhost:5050), wo die Daten in Postgres landen
-
-### Person D – Technik (optional)
-- Kurz erklären, wie die App das Push-Bundle rendert
-- Zeigen, wo der Snapshot im Browser gespeichert wird (DevTools → Application → LocalStorage)
+- Optional: Bonus-Feature zeigen
 ```
 
 ## Tipps für die Präsentation
@@ -114,19 +109,19 @@ flowchart TD
     - Langsam und deutlich sprechen
     - Blickkontakt zum Publikum
     - Bei Fehlern: ruhig bleiben, weitermachen
-    - Alle Teammitglieder kommen zu Wort
+    - Ruhig und in deinem eigenen Tempo erklären
 
 !!! warning "Don'ts"
     - Nicht den Code vorlesen
     - Nicht nur auf den Bildschirm schauen
     - Nicht zu schnell klicken
     - Keine Entschuldigungen («ist noch nicht fertig…»)
-    - Nicht nur eine Person reden lassen
+    - Nicht hektisch durch die Demo springen
 
 ## Bewertung (falls zutreffend)
 
 - Funktioniert die App? (Pflichtumfang inkl. Live-Integration oder Fallback)
 - Ist die App verständlich?
 - Wurden eigene Ideen umgesetzt?
-- Teamarbeit sichtbar?
+- Ist die Lösung nachvollziehbar erklärt?
 - Präsentation klar und strukturiert?

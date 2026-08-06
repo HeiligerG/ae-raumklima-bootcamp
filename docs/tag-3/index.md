@@ -2,14 +2,14 @@
 
 ## :material-target: Tagesziel
 
-Am Ende des Tages kommuniziert deine App mit dem SuvaSense-Backend, du hast Feedback von anderen Teams erhalten und die Demo-Vorbereitung gestartet. Die Live-Integration mit echten Sensordaten ist im Browser sichtbar – oder der Snapshot-Fallback greift sauber.
+Am Ende des Tages kommuniziert deine App mit dem SuvaSense-Backend, du hast Feedback aus der gemeinsamen Retro erhalten und die Demo-Vorbereitung gestartet. Die Live-Integration mit echten Sensordaten ist im Browser sichtbar – oder der Snapshot-Fallback greift sauber.
 
 ## :material-clock-outline: Ablauf
 
 | Zeit | Phase | Inhalt |
 |------|-------|--------|
-| 08:00–08:15 | :material-weather-sunny: Daily | Stand-up im Team |
-| 08:15–09:00 | :material-account-group: Retro | Austausch mit anderen Teams (45 min) |
+| 08:00–08:15 | :material-weather-sunny: Daily | Kurzer Tagesstart |
+| 08:15–09:00 | :material-account-group: Retro | Gemeinsame Retro mit AE, PE und EDB (45 min) |
 | 09:00–10:00 | :material-hammer-wrench: Projekt | Verlaufsliste bauen |
 | 10:00–10:15 | :material-coffee: Pause | |
 | 10:15–12:00 | :material-hammer-wrench: Projekt | API-Integration + Snapshot-Fallback |
@@ -24,16 +24,16 @@ Am Ende des Tages kommuniziert deine App mit dem SuvaSense-Backend, du hast Feed
 
 ## :material-school: Was lernst du heute?
 
-- Wie hole ich konstruktives Feedback von anderen Teams?
+- Wie hole ich konstruktives Feedback aus einer gemeinsamen Retro?
 - Wie integriere ich eine echte API?
 - Was ist eine Fallback-Strategie (API → localStorage → Seed)?
-- Wie funktioniert Integration mit anderen Teams?
+- Wie funktioniert Integration mit anderen Gruppen?
 - Wie bereite ich meine App für die Demo auf?
 
 ## :material-hammer-wrench: Was baust du heute?
 
 - Verlaufsliste (aus Tag 2 verschoben)
-- Feedback von anderen Teams einarbeiten
+- Feedback aus der Retro einarbeiten
 - API-Integration inkl. Snapshot-Fallback
 - Admin-Seite für Sensor-Auswahl (optional)
 - Layout-Feinschliff
@@ -41,7 +41,7 @@ Am Ende des Tages kommuniziert deine App mit dem SuvaSense-Backend, du hast Feed
 
 ## :material-check-all: Definition of Done
 
-- [ ] Retro mit mindestens einem anderen Team durchgeführt
+- [ ] An der gemeinsamen Retro teilgenommen
 - [ ] Verlaufsliste zeigt mehrere Push-Bundles
 - [ ] App lädt Daten zuverlässig (mit Snapshot-Fallback aus `localStorage`)
 - [ ] (Optional) Admin-Seite existiert

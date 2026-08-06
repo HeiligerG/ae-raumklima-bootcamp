@@ -77,6 +77,17 @@ Siehe [Quellen und KI-Verbot](../projekt/quellen.md) für Details.
 - KI für Fragen oder Code (verboten)
 - Andere Lernende um Code abschreiben (Einzelarbeit!)
 
+## :material-source-branch: Git-Workflow
+
+Auch in der Einzelarbeit nutzt du einen einfachen Standard-Workflow:
+
+1. eigenen Branch anlegen
+2. dort arbeiten
+3. committen
+4. in deinen Fork pushen
+
+Du arbeitest also **alleine**, aber **nicht direkt auf `main`**.
+
 ## :material-book-multiple: Definition of Done (für dich)
 
 Eine Aufgabe gilt als erledigt, wenn:
