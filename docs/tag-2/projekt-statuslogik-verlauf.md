@@ -36,10 +36,6 @@ Die Datenstruktur ist ein **Push-Bundle-Array** (siehe
 - [ ] `getStatusText(status)` liefert den deutschen Text dazu
 - [ ] Die Status-Farbe der `.status`-Klasse passt zum berechneten
       Wert (`gut` → grün, `kritisch` → orange, `schlecht` → rot)
-- [ ] Wenn der Status **"schlecht"** ist, wird die
-      [EDB-Benachrichtigung](../tag-1/projekt-dashboard.md#edb-benachrichtigung)
-      ausgelöst (z. B. via `alert()` oder `console.warn()` – die
-      echte API-Integration kommt am Tag 3)
 - [ ] Die Verlaufsliste zeigt bis zu 10 Einträge, neueste zuerst
 - [ ] Bei fehlender Datei oder Fehler erscheint "Keine Daten
       verfügbar" und die Werte sind Platzhalter (`-- °C`, `-- %`)
@@ -115,7 +111,7 @@ Diese Schwellenwerte sind **fix von EDB vorgegeben** – du
 |---|---|---|---|
 | `gut` | 20 – 24 | 40 – 60 | Anzeige: grün |
 | `kritisch` | 18 – 26 | 30 – 70 | Anzeige: orange |
-| `schlecht` | < 18 oder > 26 | < 30 oder > 70 | Anzeige: rot + EDB-Benachrichtigung |
+| `schlecht` | < 18 oder > 26 | < 30 oder > 70 | Anzeige: rot |
 
 !!! warning "Werte NICHT ändern"
     Diese Schwellenwerte kommen direkt von EDB. Wenn du sie
