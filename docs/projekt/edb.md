@@ -26,7 +26,7 @@ verwendest sie in deiner `getStatus()`-Funktion ohne Änderung.
 |---|---|---|---|
 | :material-check-circle: **gut** | 20 – 24 | 40 – 60 | Normalzustand, nichts tun |
 | :material-alert: **kritisch** | 18 – 26 | 30 – 70 | Achtung, an Monitor bleiben, ggf. lüften |
-| :material-close-circle: **schlecht** | < 18 oder > 26 | < 30 oder > 70 | **EDB benachrichtigen**, sofort |
+| :material-close-circle: **schlecht** | < 18 oder > 26 | < 30 oder > 70 | Anzeige: rot (in deiner App) |
 
 ### Erklärung der Schwellen
 
@@ -77,20 +77,19 @@ Ticketsystem. EDB macht mit, ist vor Ort, und antwortet direkt.
 
 **Wann?**
 
-- Wenn dein Status **"schlecht"** wird
-- Wenn die Plattform nicht reagiert und du nicht weiterkommst
-- Wenn du eine Frage zur Demo-Show hast
+- **Vor dem Coden:** Du brauchst die Schwellenwerte? Frag die
+  EDB-Lernenden – sie geben dir die exakten Werte
+- **Während der Entwicklung:** Du bist unsicher, wie ein Sensor-Wert
+  zu interpretieren ist? Frag EDB
+- **Für die Demo-Show:** Du willst wissen, wie die Schwellen visuell
+  dargestellt werden sollen? Frag EDB
 
-**Was du melden sollst:**
-
-| Was | Beispiel |
-|---|---|
-| Welcher Sensor? | `SN12345` |
-| Welcher Status? | `schlecht` |
-| Welche Werte? | `temp_c = 12.0, hum_pct = 85` |
-| Seit wann? | `seit 14:23 (vor ~5 Min)` |
-| Was sagt deine App? | "Dashboard zeigt rot, 'schlecht', seit 5 Min" |
-| Was hast du probiert? | "Browser-Refresh, snapshot aus localStorage" |
+!!! info "EDB ist KEIN Notifikations-Service"
+    EDB ist **kein** Monitoring- oder Alerting-Tool. Du musst EDB
+    **nicht informieren**, wenn dein Sensor-Status "schlecht"
+    wird – die App zeigt das einfach rot an, das ist genug. EDB
+    ist die **Quelle der Schwellenwerte**, nicht der Empfänger
+    von Alarmen.
 
 !!! info "Diese Doku ist read-only"
     Diese Seite ist auf GitHub Pages gehostet (read-only). Es
@@ -109,7 +108,7 @@ Ticketsystem. EDB macht mit, ist vor Ort, und antwortet direkt.
 
 ## Verwandte Seiten
 
-- [tag-1/projekt-dashboard.md – EDB-Benachrichtigung](../tag-1/projekt-dashboard.md#edb-benachrichtigung)
+- [tag-1/projekt-dashboard.md – EDB-Schwellenwerte](../tag-1/projekt-dashboard.md#edb-schwellenwerte)
 - [tag-2/projekt-statuslogik-verlauf.md – Statuslogik mit EDB-Werten](../tag-2/projekt-statuslogik-verlauf.md)
 - [tag-3/retro.md – Cross-funktionale Retro mit EDB](../tag-3/retro.md)
 - [Definition of Done](definition-of-done.md) – was EDB bei
