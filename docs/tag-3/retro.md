@@ -54,7 +54,7 @@ Immer noch im Kreis. Jetzt mit **Struktur**:
 | Kategorie | Beispiele |
 |---|---|
 | **Eigene Probleme** (im eigenen Code/Setup) | "Mein CSS-Grid bricht bei 600 px", "Mein fetch() wirft CORS-Fehler" |
-| **Team-Grenzen-Probleme** | "Die API antwortet 500 wegen PE-Stack-Crash", "EDB hat keine Snapshots" |
+| **Team-Grenzen-Probleme** | "Die API antwortet 500 wegen PE-Stack-Crash", "EDB-Schwellenwerte sind nicht klar dokumentiert" |
 | **Werkzeug-Probleme** | "VS Code Live Server hängt", "WLAN reisst ab" |
 | **Konzept-Lücken** | "Ich verstehe `async/await` nicht", "Was ist JSONB?" |
 
@@ -74,7 +74,7 @@ Die **drei wichtigsten Blocker** (vom Trainer priorisiert) werden
 im Detail diskutiert:
 
 - **Was ist der Blocker genau?**
-- **Welches Team ist betroffen?** (AE-Lernende, PE-Team, EDB-Team)
+- **Welches Team ist betroffen?** (AE-Lernende, PE-Team, EDB)
 - **Wer kann helfen?** (Selbsthilfe, Team-Hilfe, oder muss EDB ran?)
 - **Bis wann?** (10 Min? Bis Mittag? Bis morgen?)
 
@@ -105,8 +105,8 @@ Du bist in der Retro **aktiv**:
 
 - Bring deine **3 Antworten** mit (was lief gut, was lief nicht,
   was war der grösste Blocker)
-- Wenn du einen Blocker hast: **sag es laut** – Trainer und EDB
-  können nur helfen, wenn sie es wissen
+- Wenn du einen Blocker hast: **sag es laut** – Trainer, PE
+  und EDB können nur helfen, wenn sie es wissen
 - Wenn ein anderer Lernender ein Problem hat und du die Lösung
   kennst: **biet deine Hilfe an**
 - Wenn PE oder EDB etwas fragt: **antworte ehrlich**
@@ -116,7 +116,7 @@ Du bist in der Retro **aktiv**:
       habe → PE-Team, wer hat sie?"
     - "Mein CSS ist nicht responsive bei 600 px → hat jemand
       einen Tipp?" (Lernende helfen Lernende)
-    - "Der Sensor liefert seit heute morgen keine Daten → EDB,
+    - "Der Sensor liefert seit heute morgen keine Daten → PE,
       ist der Sensor kaputt?"
     - "Ich verstehe `async/await` nicht → Trainer, kurze Erklärung
       in 5 Min?"
@@ -126,6 +126,7 @@ Du bist in der Retro **aktiv**:
 - **Trainer hängt die Top-Blöcker** mit Owner + Frist an ein
   sichtbares Board (oder ins Wiki)
 - **EDB-Vertreter** meldet sich bei Lernenden mit Blocker direkt
+  (insbesondere zu Schwellenwerten und Demo-Show-Vorbereitung)
 - **Vor Tag 4** (Stresstest-Tag) sollten die Top-Blöcker gelöst sein
 - **In der Tag-4-Reflexion** (Checkpoint) wird nachgeprüft, was
   gelöst wurde
