@@ -25,12 +25,10 @@ auf Desktop und Handy gut aussehen.
       Platzhalter-Text "Lade Daten..."
 - [ ] Der Status hat eine **sichtbare Farbe** (gut = grünlich,
       kritisch = orange, schlecht = rot – genaue Töne wählst du)
-- [ ] Bei Status **"schlecht"** wird automatisch ein **EDB-Alert**
-      ausgelöst – siehe [EDB-Benachrichtigung](#edb-benachrichtigung)
-      weiter unten
 - [ ] Die **Schwellenwerte** (gut/kritisch/schlecht) werden
       **von EDB vorgegeben**, nicht von dir gewählt – siehe
       [EDB – Schwellenwerte](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben)
+      (frag die EDB-Lernenden im Raum nach den Werten)
 - [ ] Eine Fusszeile mit Copyright-Hinweis
 - [ ] Das Layout funktioniert auf 600 px Bildschirmbreite (Werte
       passen sich an, nichts wird abgeschnitten)
