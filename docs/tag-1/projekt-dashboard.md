@@ -124,53 +124,25 @@ in der HTML eingebunden sein (`<script src="script.js"></script>`
   passen sie sich an die Browser-Einstellung an. Für den Anfang
   reicht aber `px`.
 
-## :material-handshake: EDB-Benachrichtigung
+## :material-handshake: EDB-Schwellenwerte
 
-Wenn dein Sensor-Status **"schlecht"** wird (gemäss den von EDB
-vorgegebenen Schwellenwerten in
-[projekt/edb.md](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben)),
-musst du die **Entwickler Digital Business (EDB)** informieren.
+Die **Schwellenwerte** (gut/kritisch/schlecht) kommen **von EDB**
+(Entwickler Digital Business), nicht von dir. Du übernimmst sie
+aus [projekt/edb.md](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben)
+in deinen Code.
 
-**Was ist EDB?** Das **EDB**-Team (Entwickler Digital Business) ist
-nicht das Plattform-Team (das ist PE). EDB ist verantwortlich für:
+**Wie bekommst du die Schwellenwerte von EDB?** Ganz einfach: die
+**EDB-Lernenden sind im Raum** – du gehst zu ihnen hin und
+fragst. Kein Slack, keine E-Mail, kein Ticketsystem. EDB ist
+vor Ort. Frag sie **bevor** du die Statuslogik implementierst,
+damit du die richtigen Werte hast.
 
-- Die **Schwellenwerte** (gut/kritisch/schlecht) – kommen
-  zentral von EDB, du übernimmst sie in dein Code
-- Die **Demo-Show** am Tag 4 Abend
-- Die **übergreifende Koordination** zwischen AE, PE und Trainer
-
-Eine vollständige Übersicht findest du in [projekt/edb.md](../projekt/edb.md).
-
-**Wie erreichst du EDB?** Ganz einfach: die **EDB-Lernenden
-sind im Raum** – du gehst zu ihnen hin und fragst. Kein Slack,
-keine E-Mail, kein Ticketsystem. EDB ist vor Ort.
-
-**Was du melden sollst:**
-
-| Was | Beispiel |
-|---|---|
-| Welcher Sensor? | `SN12345` |
-| Welcher Status? | `schlecht` |
-| Welche Werte? | `temp_c = 12.0, hum_pct = 85` |
-| Seit wann? | `seit 14:23 (vor ~5 Min)` |
-| Was sagt deine App? | "Dashboard zeigt rot, 'schlecht', seit 5 Min" |
-
-!!! info "Read-only-Doku"
-    Diese Doku ist auf GitHub Pages gehostet. Es gibt hier kein
-    Formular, kein Issue-Tracker, keine Benachrichtigung – du
-    kannst hier nichts eintragen. Alles Interaktive läuft direkt
-    im Raum.
-
-!!! tip "Pflicht-Übung am Tag 2"
-    Im Tag-2-Projekt baust du die `notifyEDB()`-Funktion, die
-    automatisch aufgerufen wird, wenn `getStatus()` "schlecht"
-    zurückgibt. Die Funktion kann vorerst ein `alert()` machen
-    oder in der Konsole loggen – aber sie MUSS da sein.
-
-!!! info "Im Tag-3-Projekt erweitert"
-    Ab Tag 3 wird die EDB-Benachrichtigung über die
-    Backend-API rausgeschickt (kein alert() mehr). Details in
-    [Tag 3 Integration](integration.md).
+!!! important "EDB ist KEIN Notifikations-Service"
+    Wenn deine App später "schlecht" anzeigt, musst du EDB
+    **nicht informieren**. Die App zeigt das einfach rot an – das
+    reicht. EDB ist die **Quelle der Schwellenwerte**, nicht der
+    Empfänger von Alarmen. Du holst dir die Werte **einmal vorab**,
+    nicht bei jedem "schlecht"-Event.
 
 ## :material-check-all: Definition of Done (Selbst-Check)
 
