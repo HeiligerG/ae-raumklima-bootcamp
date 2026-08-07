@@ -11,9 +11,9 @@ fliegt durch den Stack).
 
 ```mermaid
 sequenceDiagram
-    participant PE as PE-Team<br/>(Plattformentwickler)
-    participant TR as Trainer<br/>(Moderator)
-    participant AE as AE-Teams<br/>(Lernende)
+    participant PE as PE-Team (Plattformentwickler)
+    participant TR as Trainer (Moderator)
+    participant AE as AE-Teams (Lernende)
 
     Note over PE,TR,AE: Phase 1 - PE-Team präsentiert (20 Min)
 
