@@ -12,9 +12,10 @@
     }
     var blocks = document.querySelectorAll('pre.mermaid');
     if (blocks.length === 0) {
-      return;  // keine Mermaid-Diagramme auf dieser Seite
+      return;
     }
     try {
+      // mermaid 10: zuerst initialize() mit config, dann run()
       mermaid.initialize({
         startOnLoad: true,
         theme: 'default',
@@ -23,16 +24,21 @@
         sequence: { useMaxWidth: true, htmlLabels: true },
         classDiagram: { useMaxWidth: true }
       });
-      // run() ist implizit durch startOnLoad: true
+      // startOnLoad: true macht den render automatisch
     } catch (err) {
       console.error('Mermaid-Initialisierung fehlgeschlagen:', err);
+      // Fallback: manuelles Rendering
+      try {
+        mermaid.run();
+      } catch (e2) {
+        console.error('Mermaid-Fallback fehlgeschlagen:', e2);
+      }
     }
   }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMermaid);
   } else {
-    // DOM bereits fertig, sofort initialisieren
     initMermaid();
   }
 })();
