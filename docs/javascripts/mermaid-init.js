@@ -1,26 +1,38 @@
 // Mermaid.js Initialisierung
-// Wird von mkdocs-material automatisch geladen, weil es in
-// extra_javascript eingebunden ist.
-// Fuehrt mermaid.run() aus, um alle <pre class="mermaid">
-// Elemente in SVG umzuwandeln.
+// Wird von mkdocs-material automatisch geladen (extra_javascript).
+// Konvertiert alle <pre class="mermaid"> zu SVG-Diagrammen.
 
-(function() {
+(function () {
+  'use strict';
+
   function initMermaid() {
-    if (typeof mermaid === 'undefined') return;
-    if (document.querySelectorAll('pre.mermaid').length === 0) return;
-    mermaid.run({
-      startOnLoad: true,
-      theme: 'default',
-      securityLevel: 'loose',
-      flowchart: { useMaxWidth: true },
-      sequence: { useMaxWidth: true },
-      classDiagram: { useMaxWidth: true }
-    });
+    if (typeof mermaid === 'undefined') {
+      console.warn('Mermaid: mermaid.js nicht geladen');
+      return;
+    }
+    var blocks = document.querySelectorAll('pre.mermaid');
+    if (blocks.length === 0) {
+      return;  // keine Mermaid-Diagramme auf dieser Seite
+    }
+    try {
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        securityLevel: 'loose',
+        flowchart: { useMaxWidth: true, htmlLabels: true },
+        sequence: { useMaxWidth: true, htmlLabels: true },
+        classDiagram: { useMaxWidth: true }
+      });
+      // run() ist implizit durch startOnLoad: true
+    } catch (err) {
+      console.error('Mermaid-Initialisierung fehlgeschlagen:', err);
+    }
   }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMermaid);
   } else {
+    // DOM bereits fertig, sofort initialisieren
     initMermaid();
   }
 })();
