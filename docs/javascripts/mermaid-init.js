@@ -15,7 +15,7 @@
       return;
     }
     try {
-      // mermaid 10: zuerst initialize() mit config, dann run()
+      // mermaid 10.9: initialize() + run() sind beide noetig
       mermaid.initialize({
         startOnLoad: true,
         theme: 'default',
@@ -24,15 +24,19 @@
         sequence: { useMaxWidth: true, htmlLabels: true },
         classDiagram: { useMaxWidth: true }
       });
-      // startOnLoad: true macht den render automatisch
+
+      // Explizit run() aufrufen (manche Versionen brauchen das)
+      // Versuche es mit allen pre.mermaid Elementen
+      if (typeof mermaid.run === 'function') {
+        mermaid.run({
+          nodes: Array.from(blocks)
+        }).catch(function (err) {
+          // Wenn das fehlschlaegt, fallback: startOnLoad macht es
+          console.warn('Mermaid run() Fallback:', err.message);
+        });
+      }
     } catch (err) {
       console.error('Mermaid-Initialisierung fehlgeschlagen:', err);
-      // Fallback: manuelles Rendering
-      try {
-        mermaid.run();
-      } catch (e2) {
-        console.error('Mermaid-Fallback fehlgeschlagen:', e2);
-      }
     }
   }
 
