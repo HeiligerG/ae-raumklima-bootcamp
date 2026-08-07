@@ -23,16 +23,16 @@ sequenceDiagram
     loop Alle 10 Sekunden
         R->>ESP: Sensor misst
         ESP->>BR: PUBLISH suva/SN12345/data
-        Note over BR: Message im RAM,<br/>QoS 1 mit Retry
+        Note over BR: "Message im RAM<br/>QoS 1 mit Retry"
         BR->>BE: notify (Subscriber)
         BE->>DB: INSERT INTO readings
         DB-->>BE: OK
     end
 
-    Note over APP: Deine App kommuniziert nur mit BE<br/>(über REST), nicht mit BR oder DB
+    Note over APP: "Deine App kommuniziert nur mit BE<br/>(über REST) - nicht mit BR oder DB"
 
     rect rgb(240, 248, 255)
-        Note over APP: Tag 3 Joint-Session:<br/>PE-Team publiziert,<br/>ihr holt aktiv ab
+        Note over APP: "Tag 3 Joint-Session:<br/>PE-Team publiziert<br/>ihr holt aktiv ab"
         APP->>BE: GET /api/v1/sensors/SN12345/readings?page_size=10
         BE->>DB: SELECT readings
         DB-->>BE: Push-Bundles
@@ -40,7 +40,7 @@ sequenceDiagram
         APP->>APP: snapshot:{serial} in localStorage
     end
 
-    Note over APP,BE: Später, wenn BE down:<br/>App nutzt snapshot aus localStorage
+    Note over APP,BE: "Später wenn BE down<br/>App nutzt snapshot aus localStorage"
 ```
 
 **Drei Beobachtungen:**
