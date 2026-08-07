@@ -76,6 +76,16 @@ markdown_extensions:
       permalink: true
       toc_depth: 3
 
+# Mermaid.js manuell laden (mkdocs-material 9.7 hat keine
+# native Mermaid-Unterstützung mehr, der Code-Block wird
+# nur als <pre class="mermaid"> gerendert, nicht als SVG)
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
+
+extra_css:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.css
+
 plugins:
   - search:
       lang: de
