@@ -83,8 +83,10 @@ extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
   - javascripts/mermaid-init.js
 
-extra_css:
-  - https://unpkg.com/mermaid@10/dist/mermaid.min.css
+# Mermaid.min.css NICHT als extra_css laden, weil:
+# - 404 Fehler auf unpkg (existiert nicht als separate Datei)
+# - Mermaid injected die noetigen Styles inline in jedes SVG
+# - Theme-eigene CSS reicht fuer die Standard-Darstellung
 
 plugins:
   - search:
