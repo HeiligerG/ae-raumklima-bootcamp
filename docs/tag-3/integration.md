@@ -13,26 +13,26 @@ Datenfluss von der Realität bis in deinen Browser:
 
 ```mermaid
 sequenceDiagram
-    participant R as Realität<br/>(Temperatur)
-    participant ESP as ESP32<br/>(Sensor-Board)
-    participant BR as Mosquitto<br/>(MQTT-Broker)
-    participant BE as Backend<br/>(Go-Service)
-    participant DB as Postgres<br/>(Datenbank)
-    participant APP as Deine App<br/>(Browser)
+    participant R as Realität (Temperatur)
+    participant ESP as ESP32 (Sensor-Board)
+    participant BR as Mosquitto (MQTT-Broker)
+    participant BE as Backend (Go-Service)
+    participant DB as Postgres (Datenbank)
+    participant APP as Deine App (Browser)
 
     loop Alle 10 Sekunden
         R->>ESP: Sensor misst
         ESP->>BR: PUBLISH suva/SN12345/data
-        Note over BR: "Message im RAM<br/>QoS 1 mit Retry"
+        Note over BR: "Message im RAM - QoS 1 mit Retry"
         BR->>BE: notify (Subscriber)
         BE->>DB: INSERT INTO readings
         DB-->>BE: OK
     end
 
-    Note over APP: "Deine App kommuniziert nur mit BE<br/>(über REST) - nicht mit BR oder DB"
+    Note over APP: "Deine App kommuniziert nur mit BE (über REST) - nicht mit BR oder DB"
 
     rect rgb(240, 248, 255)
-        Note over APP: "Tag 3 Joint-Session:<br/>PE-Team publiziert<br/>ihr holt aktiv ab"
+        Note over APP: "Tag 3 Joint-Session - PE-Team publiziert - ihr holt aktiv ab"
         APP->>BE: GET /api/v1/sensors/SN12345/readings?page_size=10
         BE->>DB: SELECT readings
         DB-->>BE: Push-Bundles
@@ -40,7 +40,7 @@ sequenceDiagram
         APP->>APP: snapshot:{serial} in localStorage
     end
 
-    Note over APP,BE: "Später wenn BE down<br/>App nutzt snapshot aus localStorage"
+    Note over APP,BE: "Später wenn BE down - App nutzt snapshot aus localStorage"
 ```
 
 **Drei Beobachtungen:**
