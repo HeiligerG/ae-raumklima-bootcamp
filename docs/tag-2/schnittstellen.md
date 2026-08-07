@@ -15,39 +15,40 @@ sequenceDiagram
     participant TR as Trainer (Moderator)
     participant AE as AE-Teams (Lernende)
 
-    Note over PE,TR,AE: Phase 1 - PE-Team präsentiert (20 Min)
+    Note over PE,AE: Phase 1 – PE-Team präsentiert (20 Min.)
 
     PE->>TR: Zeigt ESP-Firmware und Seriennummer
     PE->>TR: Zeigt Live-Serial-Monitor
     PE->>AE: Erklärt MQTT-Topic-Format
     PE->>AE: Zeigt JSON-Payload-Format
 
-    Note over PE,TR,AE: Phase 2 - AE-Teams zeigen Anforderungen (20 Min)
+    Note over PE,AE: Phase 2 – AE-Teams präsentieren Anforderungen (20 Min.)
 
-    AE->>TR: Was brauchen wir?
-    AE->>TR: "Liste der Sensoren - aktueller Wert - Verlauf"
-    AE->>PE: "Wir wollen 10 letzte Messungen anzeigen"
+    AE->>TR: Welche Informationen benötigen wir?
+    AE->>TR: Liste der Sensoren, aktueller Wert und Verlauf
+    AE->>PE: Wir wollen die letzten 10 Messungen anzeigen.
 
-    Note over PE,TR,AE: Phase 3 - Verhandlung offener Fragen (30 Min)
+    Note over PE,AE: Phase 3 – Offene Fragen klären (30 Min.)
 
-    PE->>AE: Welche Sensor-Typen sind Pflicht?
-    AE->>PE: Wie heissen die Felder im JSON?
-    PE->>AE: Was passiert bei Sensorausfall?
-    TR->>TR,PE,AE: Authentifizierung nötig?
+    PE->>AE: Welche Sensortypen sind Pflicht?
+    AE->>PE: Wie heißen die Felder im JSON?
+    PE->>AE: Was passiert bei einem Sensorausfall?
+    TR->>PE: Ist eine Authentifizierung erforderlich?
+    TR->>AE: Ist eine Authentifizierung erforderlich?
 
-    Note over PE,TR,AE: Phase 4 - Vertrag festhalten (20 Min)
+    Note over PE,AE: Phase 4 – Vertrag festhalten (20 Min.)
 
-    AE->>TR: Schreibt Vertrag mit
-    PE->>TR: - Topic-Format
-    AE->>TR: - Payload-Felder
-    TR->>AE: - REST-Endpoints
-    TR->>PE: - Demo-Seriennummer
+    AE->>TR: Dokumentiert den vereinbarten Vertrag
+    PE->>TR: Topic-Format
+    AE->>TR: Payload-Felder
+    TR->>AE: REST-Endpunkte
+    TR->>PE: Demo-Seriennummer
 
-    Note over PE,TR,AE: Phase 5 - Empirische Validierung (10 Min)
+    Note over PE,AE: Phase 5 – Empirische Validierung (10 Min.)
 
-    PE->>PE: Publish mit mosquitto_pub
+    PE->>PE: Test-Publish mit mosquitto_pub
     AE->>PE: GET /api/v1/sensors/SN12345/readings
-    AE->>AE: Daten sind da - Vertrag gilt
+    AE->>AE: Daten sind verfügbar – Vertrag ist validiert.
 ```
 
 **Was jede Phase macht:**
