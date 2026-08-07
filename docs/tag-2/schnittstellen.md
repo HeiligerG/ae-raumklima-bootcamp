@@ -15,27 +15,27 @@ sequenceDiagram
     participant TR as Trainer<br/>(Moderator)
     participant AE as AE-Teams<br/>(Lernende)
 
-    Note over PE,TR,AE: "Phase 1: PE-Team präsentiert (20 Min)"
+    Note over PE,TR,AE: Phase 1 - PE-Team präsentiert (20 Min)
 
-    PE->>TR: Zeigt ESP-Firmware, Seriennummer
+    PE->>TR: Zeigt ESP-Firmware und Seriennummer
     PE->>TR: Zeigt Live-Serial-Monitor
     PE->>AE: Erklärt MQTT-Topic-Format
     PE->>AE: Zeigt JSON-Payload-Format
 
-    Note over PE,TR,AE: "Phase 2: AE-Teams zeigen Anforderungen (20 Min)"
+    Note over PE,TR,AE: Phase 2 - AE-Teams zeigen Anforderungen (20 Min)
 
     AE->>TR: Was brauchen wir?
-    AE->>TR: "Liste der Sensoren, aktueller Wert, Verlauf"
+    AE->>TR: "Liste der Sensoren - aktueller Wert - Verlauf"
     AE->>PE: "Wir wollen 10 letzte Messungen anzeigen"
 
-    Note over PE,TR,AE: "Phase 3: Verhandlung offener Fragen (30 Min)"
+    Note over PE,TR,AE: Phase 3 - Verhandlung offener Fragen (30 Min)
 
     PE->>AE: Welche Sensor-Typen sind Pflicht?
     AE->>PE: Wie heissen die Felder im JSON?
     PE->>AE: Was passiert bei Sensorausfall?
     TR->>TR,PE,AE: Authentifizierung nötig?
 
-    Note over PE,TR,AE: "Phase 4: Vertrag festhalten (20 Min)"
+    Note over PE,TR,AE: Phase 4 - Vertrag festhalten (20 Min)
 
     AE->>TR: Schreibt Vertrag mit
     PE->>TR: - Topic-Format
@@ -43,11 +43,11 @@ sequenceDiagram
     TR->>AE: - REST-Endpoints
     TR->>PE: - Demo-Seriennummer
 
-    Note over PE,TR,AE: "Phase 5: Empirische Validierung (10 Min)"
+    Note over PE,TR,AE: Phase 5 - Empirische Validierung (10 Min)
 
     PE->>PE: Publish mit mosquitto_pub
     AE->>PE: GET /api/v1/sensors/SN12345/readings
-    AE->>AE: Daten sind da – Vertrag gilt
+    AE->>AE: Daten sind da - Vertrag gilt
 ```
 
 **Was jede Phase macht:**
