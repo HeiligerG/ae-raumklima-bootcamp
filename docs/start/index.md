@@ -23,4 +23,4 @@ Hier beginnt deine Reise! In diesem Kapitel bereitest du dich auf das Bootcamp v
 
 ## Nächster Schritt
 
-Sobald du bereit bist: [Tag 1 – 06. August](../tag-1/index.md)
+Sobald du bereit bist: [Tag 1](../tag-1/index.md)

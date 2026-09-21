@@ -1,46 +1,61 @@
-# Tag 5 – 12. August
+# Tag 5
 
-## :material-target: Tagesziel
+> **V2-Tag.** Datumsangaben wurden bewusst entfernt
+> (Q8). Heute **keine Theorie, keine Übung, kein Projekt** – siehe
+> [`theorie.md`](theorie.md).
 
-Heute präsentierst du deine App und feierst den Abschluss des Bootcamps!
+## Tagesziel
 
-## :material-clock-outline: Ablauf
+Heute präsentierst du deine App und feierst den Abschluss des
+Bootcamps.
 
-| Zeit | Phase | Inhalt |
-|------|-------|--------|
-| 09:00–10:00 | :material-account-tie: PV Vorstellung | Praxisverantwortliche stellen sich und die Firma vor |
-| 10:00–10:30 | :material-coffee: Pause | |
-| 10:30–11:30 | :material-presentation: Projektpräsentation | Alle Lernenden zeigen ihre Apps |
-| 11:30–12:00 | :material-video: Video | Gemeinsames Abschluss-Video |
-| 12:00–16:00 | :material-grill: Grill Party | Abschluss und Feier |
+## Ablauf
 
-## :material-school: Keine Projektarbeit mehr!
+| Block | Dauer | Was passiert |
+|---|---|---|
+| Probe-Demo | ~30 min | Lernende allein. Trainer im Hintergrund. |
+| Backup-Videos / Pause | ~15 min | |
+| Live-Demos | ~5 min pro Person | Vor allen. App vorstellen, Fragen beantworten. |
+| Q&A | ~15 min | |
+| Reflexion & Abschluss | Rest | "Was habe ich gelernt?" |
+
+## Was heute nicht passiert
+
+- **Keine Theorie**. Wenn du noch Fragen zu JavaScript / CSS /
+  fetch hast, blättere in den Happen Tag 1–3 oder frag den
+  Trainer direkt.
+- **Keine Übung**.
+- **Kein Projekt**.
 
 Heute wird nicht mehr programmiert. Nutze den Morgen für:
 
-- Letzte Demo-Vorbereitung (wenn nötig)
-- Entspannt ankommen
-- Auf die Präsentation freuen
+- Letzte Demo-Vorbereitung (wenn nötig).
+- Entspannt ankommen.
+- Auf die Präsentation freuen.
 
-## :material-microphone: Präsentation
+## Live-Demo
 
-Die Projektpräsentation um 10:30 ist **gemeinsam mit dem PE-Team**. AE-Lernende zeigen ihre Apps einzeln (5–10 Min pro Person), PE präsentiert die Plattform. Vor gemischtem Publikum (alle Lernenden + Trainer + Gäste).
+Jede/r Lernende zeigt ihre App live vor allen.
 
 | Dauer | Inhalt |
-|-------|--------|
-| 1 Min. | App kurz vorstellen |
-| 3–5 Min. | Live-Demo der App |
-| 1–2 Min. | Learnings & Highlights |
+|---|---|
+| ~30 s | Begrüssung |
+| ~3 min | Live-Vorführung der App |
+| ~1 min | Eine Sache, die du besonders gelernt hast |
+| ~30 s | Eine Frage ans Publikum oder an den Trainer |
 
-## :material-party-popper: Grill Party
+Trainer moderiert. Du redest. Trainer leitet Fragen weiter.
 
-Ab 12:00 feiern wir den Abschluss!  
-Ort: [wird noch bekannt gegeben]
+## Vorbereitung am Morgen
 
-!!! success "Du hast es geschafft!"
-    Fünf Tage Bootcamp, eine funktionierende Web-App,  
-    neue Freunde und eine Menge gelernt.
+Siehe [Projekt Tag 5 – Demo-Vorbereitung](projekt-tag-5.md).
 
-## :material-arrow-right: Weiter
+## Backup-Video
 
+Falls die App im Demo crasht: **immer** ein Backup-Video
+vorhanden (gestern aufgenommen). Trainer zeigt es.
+
+## Weiter
+
+- [Demo-Vorbereitung](projekt-tag-5.md)
 - [Demo & Abschluss](demo-abschluss.md)

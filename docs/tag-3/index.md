@@ -1,56 +1,70 @@
-# Tag 3 – 10. August
+# Tag 3
 
-## :material-target: Tagesziel
+> **V2-Tag.** Datumsangaben wurden bewusst entfernt
+> (Q8). Die einzelnen Happen findest du weiter unten.
 
-Am Ende des Tages kommuniziert deine App mit dem SuvaSense-Backend, du hast Feedback aus der gemeinsamen Retro erhalten und die Demo-Vorbereitung gestartet. Die Live-Integration mit echten Sensordaten ist im Browser sichtbar – oder der Snapshot-Fallback greift sauber.
+## Tagesziel
 
-## :material-clock-outline: Ablauf
+Am Ende des Tages kommuniziert deine App mit dem
+**SuvaSense-Backend**. Du hast den **2-stufigen Fallback**
+(API → `data.json`) **aktiv getestet**. Die Live-Integration
+mit echten Sensordaten ist im Browser sichtbar – oder der
+Fallback greift sauber.
 
-| Zeit | Phase | Inhalt |
-|------|-------|--------|
-| 08:00–08:15 | :material-weather-sunny: Daily | Kurzer Tagesstart |
-| 08:15–09:00 | :material-account-group: Retro | Gemeinsame Retro mit AE, PE und EDB (45 min) |
-| 09:00–10:00 | :material-hammer-wrench: Projekt | Verlaufsliste bauen |
-| 10:00–10:15 | :material-coffee: Pause | |
-| 10:15–12:00 | :material-hammer-wrench: Projekt | API-Integration + Snapshot-Fallback |
-| 12:00–13:00 | :material-food: Mittag | |
-| **13:00–15:00** | **:material-connection: Live-Integration** | **Gemeinsame Session mit PE-Team: App ↔ API ↔ Sensor live testen** |
-| 15:15–16:00 | :material-clipboard-check-outline: Checkpoint | Tagesabschluss & Demo-Vorbereitung |
+> **Kein `localStorage`** in V2. Der Fallback ist 2-stufig,
+> siehe [`../projekt/fallback-strategie.md`](../projekt/fallback-strategie.md).
 
-!!! warning "Wichtig: Joint-Session mit PE um 13:00"
-    Von 13:00–15:00 ist eine **gemeinsame Integrations-Session** mit dem PE-Team. Die AE-Lernenden testen ihre App gegen das SuvaSense-Backend (oder Snapshot-Fallback), das PE-Team publiziert Messwerte über MQTT. So wird der Datenvertrag aus Tag 2 live validiert.
+## Ablauf
 
-    **Was du zur Integration mitbringst:** deine App muss soweit sein, dass sie Daten per `fetch()` lädt. Snapshot-Fallback ist Pflicht; Admin-Seite (Sensor-Auswahl) ist ein nice-to-have, kein Muss für die Session.
+| Block | Was passiert |
+|---|---|
+| Theorie-Block (~2 h) | 6 Happen mit Live-Coding |
+| Pause (~15 min) | |
+| Übung (~2 h) | WOW-Effekt im `uebungen/tag-3/`-Ordner |
+| Projekt (~2–3 h) | Eigenständig im Hauptprojekt `app/` |
+| Trainer Live-Coding (~1 h) | Trainer co-det die Tag-3-Lösung |
 
-## :material-school: Was lernst du heute?
+## Theorie-Happen
 
-- Wie hole ich konstruktives Feedback aus einer gemeinsamen Retro?
+| Happen | Thema | Dauer |
+|---|---|---|
+| 1 | [API-Endpunkt](theorie-1-api-endpunkt.md) | ~10 min |
+| 2 | [Fallback-Strategie](theorie-2-fallback.md) | ~10 min |
+| 3 | [Admin-Panel](theorie-3-admin-panel.md) | ~10 min |
+| 4 | [Fehlerbehandlung](theorie-4-fehlerbehandlung.md) | ~10 min |
+| 5 | [Layout](theorie-5-layout.md) | ~10 min |
+| 6 | [Integration (Stretch)](theorie-6-integration.md) | ~10 min |
+
+## Was lernst du heute?
+
 - Wie integriere ich eine echte API?
-- Was ist eine Fallback-Strategie (API → localStorage → Seed)?
-- Wie funktioniert Integration mit anderen Gruppen?
-- Wie bereite ich meine App für die Demo auf?
+- Wie funktioniert die 2-stufige Fallback-Strategie?
+- Wie baue ich ein Admin-Panel mit Sensor-Dropdown?
+- Wie behandle ich Fehler mit `try/catch`?
+- Wie teste ich den Fallback aktiv?
 
-## :material-hammer-wrench: Was baust du heute?
+## Was baust du heute?
 
-- Verlaufsliste (aus Tag 2 verschoben)
-- Feedback aus der Retro einarbeiten
-- API-Integration inkl. Snapshot-Fallback
-- Admin-Seite für Sensor-Auswahl (optional)
-- Layout-Feinschliff
-- Demo-Skript vorbereiten
+- [Übung: Statuslogik ohne `localStorage`](../../docs/uebungen/tag-3/aufgabe.md).
+- [Projekt: Sensor-Dropdown und API-Fallback](integration.md).
 
-## :material-check-all: Definition of Done
+## Definition of Done
 
-- [ ] An der gemeinsamen Retro teilgenommen
-- [ ] Verlaufsliste zeigt mehrere Push-Bundles
-- [ ] App lädt Daten zuverlässig (mit Snapshot-Fallback aus `localStorage`)
-- [ ] (Optional) Admin-Seite existiert
-- [ ] Live-Integration mit SuvaSense ist getestet (oder Fallback demonstriert)
-- [ ] Demo-Skript ist geschrieben
+- [ ] App lädt Daten vom API oder Fallback (`data.json`).
+- [ ] Dropdown für Sensoren ist da.
+- [ ] **Fallback aktiv getestet** mit einer der zwei Varianten
+      dokumentiert (Server killen **oder** DevTools-Offline).
+- [ ] **Kein `localStorage`** im Code.
+- [ ] Layout funktioniert auf Mobile und Desktop.
+- [ ] Code committed und gepusht.
 
-## :material-arrow-right: Weiter
+## Weiter
 
 - [Retro](retro.md)
-- [Projekt: Verlaufsliste](projekt-verlaufsliste.md)
 - [Projekt: Integration](integration.md)
 - [Checkpoint Tag 3](checkpoint.md)
+
+## Querverweise
+
+- [Curriculum V2](../curriculum-v2.md).
+- [Fallback-Strategie](../projekt/fallback-strategie.md).

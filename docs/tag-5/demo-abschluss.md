@@ -5,15 +5,17 @@
     ist heute **Zeit für Präsentieren und Feiern**. Kein neues
     Material.
 
-## Ablauf (12.08.)
+## Ablauf
 
-| Zeit | Phase | Inhalt |
-|------|-------|--------|
-| 09:00–10:00 | :material-presentation: PV-Vorstellung | Trainer + PE-Vertreter zeigen die Plattform-Übersicht |
-| 10:00–10:30 | :material-coffee: Pause | Vorbereitung Projektpräsentation |
-| 10:30–11:30 | :material-account: Projektpräsentation | Jede/r Lernende zeigt 5–10 Min ihre App (einzeln!) |
-| 11:30–12:00 | :material-video: Abschluss-Video | Kurze Statements aller |
-| 12:00–16:00 | :material-party-popper: Grill Party | Entspannen, essen, quatschen |
+| Block | Was passiert |
+|---|---|
+| Probe-Demo (~30 min) | Lernende allein, Trainer im Hintergrund |
+| Pause / Backup-Videos (~15 min) | |
+| Live-Demos (~5 min pro Person) | Vor allen, 5 min Slots |
+| Q&A (~15 min) | |
+| Reflexion & Abschluss (Rest) | |
+
+> Konkrete Uhrzeiten werden im Kurs festgelegt.
 
 ## :material-account: Deine Projektpräsentation (5–10 Min)
 

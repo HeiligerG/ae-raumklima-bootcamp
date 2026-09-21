@@ -1,55 +1,62 @@
-# Tag 4 – 11. August
+# Tag 4
 
-## :material-target: Tagesziel
+> **V2-Tag.** Datumsangaben wurden bewusst entfernt
+> (Q8). Heute **keine Pflicht-Theorie** – siehe
+> [`theorie.md`](theorie.md).
 
-Am Ende des Tages ist der Pflichtumfang komplett, getestet, und die Demo sitzt. Optional kannst du deine App mit Zusatzfunktionen erweitern.
+## Tagesziel
 
-## :material-clock-outline: Ablauf
+Am Ende des Tages ist der Pflichtumfang **komplett**, **getestet**,
+und die Demo sitzt. Optional kannst du deine App mit Zusatzfunktionen
+erweitern.
 
-| Zeit | Phase | Inhalt |
-|------|-------|--------|
-| 08:00–08:15 | :material-weather-sunny: Daily | Kurzer Tagesstart |
-| 08:15–10:00 | :material-hammer-wrench: Projekt | Pflichtumfang fertigstellen |
-| 10:00–10:15 | :material-coffee: Pause | |
-| 10:15–12:00 | :material-bug: Testen | Bugs finden und fixen |
-| 12:00–13:00 | :material-food: Mittag | |
-| 13:00–14:30 | :material-star-outline: Optional | Optionale Features *(nur wenn Pflicht fertig)* |
-| 14:30–15:00 | :material-presentation: Demo | Demo vorbereiten |
-| 15:15–16:00 | :material-check-all: Abschluss | Letzter Checkpoint |
-| **16:30–17:30** | **:material-presentation: Demo-Show** | **Gemeinsam mit PE-Team: alle Apps live vorstellen** |
+**Heute gibt es keine Pflicht-Theorie und keine Pflicht-Übung.**
+Du arbeitest selbstständig an Polish und optionalen Features. Der
+Trainer bietet mehrere **freiwillige Auswahl-Kurzpräsentationen**
+(siehe Trainer-Repo) und ist für 1:1-Hilfe verfügbar.
 
-!!! warning "Bugfix-Phase hat Vorrang"
-    Wenn am Ende des Testens um 12:00 noch Bugs offen sind, **frisst die Bugfix-Phase den Optional-Block auf**, nicht die Demo-Vorbereitung. Lieber eine App ohne optionale Features, die sauber läuft, als eine mit Features, die im Demo crasht.
+## Ablauf
 
-!!! note "Joint-Demo mit PE um 16:30"
-    Die Demo-Show am Abend ist eine **gemeinsame Veranstaltung** mit dem PE-Team. AE-Lernende zeigen ihre App einzeln, PE zeigt Sensoren und Backend-Setup. Gesamtdauer: ca. 60 Minuten.
+| Block | Was passiert |
+|---|---|
+| Eigenständige Arbeit (den ganzen Tag) | Polish, optionale Features, Demo-Vorbereitung |
+| Freiwillige Auswahl-Slots (~10–15 min pro Slot) | Dark Mode, Chart.js, Animationen, Auto-Refresh |
+| Trainer Live-Coding (optional, ~1 h) | Polish und ein Optional-Feature live |
 
-## :material-school: Was lernst du heute?
+## Was lernst du heute?
 
 - Wie teste ich meine App systematisch?
 - Wie finde und behebe ich Bugs?
-- Wie erstelle ich optionale Features?
+- Wie baue ich optionale Features ein?
 - Wie präsentiere ich meine Arbeit?
 
-## :material-hammer-wrench: Was baust du heute?
+## Was baust du heute?
 
-- Pflichtumfang fertigstellen und prüfen
-- Testen mit verschiedenen Werten
-- Optional: Dark Mode, Diagramm, Auto-Refresh, weitere Sensoren, etc.
-- Demo vorbereiten (Skript, Demo-Daten, Präsentations-Modus)
+- [Projekt: Polish + optionale Features](projekt-tag-4.md).
+- Demo-Vorbereitung (Skript, Backup-Video, Test-Routine).
 
-## :material-check-all: Definition of Done
+## Definition of Done
 
-- [ ] Alle Pflichtfeatures funktionieren
-- [ ] App ist manuell getestet
-- [ ] Alle bekannten Bugs sind behoben
-- [ ] Demo sitzt (2–3 mal durchlaufen)
-- [ ] Optional: Zusatz-Features eingebaut
-- [ ] Code ist committed und auf deinen Branch gepusht
+- [ ] Alle Pflichtfeatures funktionieren.
+- [ ] App ist manuell getestet.
+- [ ] Alle bekannten Bugs sind behoben.
+- [ ] Backup-Video ist aufgenommen (für Tag 5).
+- [ ] Optional: Zusatz-Features eingebaut.
+- [ ] Code committed und auf Branch gepusht.
 
-## :material-arrow-right: Weiter
+## Auswahl-Slots Tag 4 (freiwillig)
 
-- [Pflichtumfang fertigstellen](finish.md)
-- [Testen & Bugs fixen](testen.md)
-- [Optionale Features](optionale-features.md)
+Siehe
+[Trainer-Repo, Tag-4-Auswahl-Slots](https://github.com/HeiligerG/ae-trainer-briefing/blob/bootcamp-v2/docs/praesentationen/tag-4-kurz/index.md):
+
+| Slot | Thema |
+|---|---|
+| 1 | Dark Mode |
+| 2 | Chart.js |
+| 3 | Animationen |
+| 4 | Auto-Refresh |
+
+## Weiter
+
+- [Projekt Tag 4](projekt-tag-4.md)
 - [Checkpoint Tag 4](checkpoint.md)
