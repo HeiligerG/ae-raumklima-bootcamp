@@ -39,7 +39,7 @@ Der Server liefert **JSON**:
   "total": 42,
   "items": [
     {
-      "timestamp": "2026-08-06T08:30:00Z",
+      "timestamp": "2024-01-01T08:30:00Z",
       "temperature": 23.4,
       "humidity": 42.0
     }
@@ -49,6 +49,9 @@ Der Server liefert **JSON**:
 
 - `page`, `page_size`, `total` sind Meta-Daten.
 - `items` ist die **Liste** der Messwerte.
+
+> Hinweis: Das Datum oben ist ein **technisches Beispiel** für die
+> ISO-8601-Form. Es ist **kein** Bootcamp-Datum.
 
 ## In JavaScript: URL bauen
 

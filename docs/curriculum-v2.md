@@ -157,7 +157,7 @@ Theorie, Übung und Projekt gibt es an Tag 5 **nicht**.
 | Übungs-Skeletons | Vorbereitete Files im Repo | Leerer Ordner (WOW-Effekt) |
 | Übungs-Pfad | `app/`-nah (Vermischung mit Projekt) | Separater `uebungen/tag-N/`-Ordner |
 | Fallback-Strategie | 3-stufig (API → `localStorage` → `data.json`) | 2-stufig (API → `data.json`) |
-| Datumsangaben | 06.08., 07.08., … | Nur "Tag 1, Tag 2, …" |
+| Datumsangaben | Konkrete Daten | Nur "Tag 1, Tag 2, …" |
 | Pflichtstruktur Tag 4 | Polish + Theorie gemischt | Reine Eigenarbeit + Auswahl-Slots |
 | Pflichtstruktur Tag 5 | Demo + Abschluss | Nur Demo + Abschluss |
 

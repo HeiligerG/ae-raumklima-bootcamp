@@ -38,18 +38,22 @@ Unser Server liefert eine **Liste** von Messwerten:
 {
   "items": [
     {
-      "timestamp": "2026-08-06T08:30:00Z",
+      "timestamp": "2024-01-01T08:30:00Z",
       "temperature": 23.4,
       "humidity": 42.0
     },
     {
-      "timestamp": "2026-08-06T08:25:00Z",
+      "timestamp": "2024-01-01T08:25:00Z",
       "temperature": 23.2,
       "humidity": 42.1
     }
   ]
 }
 ```
+
+> Hinweis: Das Datum oben ist ein **technisches Beispiel** für die
+> ISO-8601-Form (`JJJJ-MM-THH:MM:SSZ`). Es ist **kein**
+> Bootcamp-Datum.
 
 - Ganz oben ist ein **Objekt** mit einem Schlüssel `items`.
 - `items` ist eine **Liste** von Objekten.
