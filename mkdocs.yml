@@ -161,8 +161,5 @@ nav:
       - tag-5/index.md
       - "Theorie (Stub)": tag-5/theorie.md
       - "Demo & Abschluss": tag-5/demo-abschluss.md
-  - "Für Trainer":
-      - trainer/hinweise.md
-      - "Tagesplanung": trainer/tagesplanung.md
-      - "Demo-Sensor-Setup": trainer/demo-sensor.md
-      - "Risiken & Fallbacks": trainer/risiken-und-fallbacks.md
+  - "Für Trainer (ausgelagert)":
+      - trainer/index.md
