@@ -45,12 +45,17 @@
   (Projekt-Schritt-Schema: 6 Pflicht-Bestandteile, optionale, Negativ-
   + Positiv-Beispiel, Selbst-Check vor Commit, Querverweise auf
   sprachstil-v2, T14, T70-T75).
+- ✅ **T14**: `docs/uebungen/uebung-schritt-template.md` geschrieben
+  (Übungs-Schritt-Schema für WOW-Effekt: Unterschied zu Projekt
+  betont, 8 Pflicht-Bestandteile inkl. Vorbereitung + Lücken + separater
+  Lücken-Hinweis, aufklappbare Lösungs-Box, 3 WOW-Bedingungen,
+  Negativ+Positiv-Beispiel, 11-Punkte-Selbst-Check, Querverweise).
 
 ## Aktuell offen / wartend
 
 - 🟡 **Auf dein "go" zum Commit** der Planungs-Files + der T10/T11-Dokus auf `bootcamp-v2`
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Phase 1 verbleibend**: T14 (Übungs-Template)
+- ⬜ **Phase 2 bereit**: T20-T27 (Theorie-Stoff neu strukturieren)
 - ⬜ **Alle anderen Phasen** (2–8): bereit zum Starten
 
 ## Was bewusst NICHT gemacht wurde
