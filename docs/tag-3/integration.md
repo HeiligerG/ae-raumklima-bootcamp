@@ -1,225 +1,368 @@
-# Projekt: Integration (Joint-Session mit PE-Team)
+# Projekt Tag 3 – Sensor-Dropdown und API-Fallback
 
-!!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
-    Diese Aufgabe gibt dir das **Skelett** der Snapshot-Strategie,
-    aber nicht die komplette Implementierung. Die Reihenfolge der
-    Fallbacks (API → localStorage → Seed) und das Fehler-Handling
-    baust du selbst.     Wenn du nach 20 Min nicht weiterkommst, **frag deinen Trainer**.
+> Folgt [`projekt-anleitung-template.md`](../projekt/projekt-anleitung-template.md).
 
-## End-to-End-Datenfluss
+## Tagesziel
 
-Deine App ist Teil einer grösseren Kette. Hier der gesamte
-Datenfluss von der Realität bis in deinen Browser:
+Am Ende des Tages hast du:
 
-```mermaid
-sequenceDiagram
-    participant R as Realität (Temperatur)
-    participant ESP as ESP32 (Sensor-Board)
-    participant BR as Mosquitto (MQTT-Broker)
-    participant BE as Backend (Go-Service)
-    participant DB as Postgres (Datenbank)
-    participant APP as Deine App (Browser)
+- Ein **Admin-Panel** mit Dropdown zur Sensor-Auswahl.
+- Die echte **API-URL** als Ziel (nicht mehr `../api/`).
+- Den **V2-Fallback** aktiv getestet (Server killen,
+  Offline-Modus).
+- Das **Layout finalisiert** – passt für die Demo am Tag 5.
 
-    loop Alle 10 Sekunden
-        R->>ESP: Sensor misst
-        ESP->>BR: PUBLISH suva/SN12345/data
-        Note over BR: "Message im RAM - QoS 1 mit Retry"
-        BR->>BE: notify (Subscriber)
-        BE->>DB: INSERT INTO readings
-        DB-->>BE: OK
-    end
+Du arbeitest im **Hauptprojekt** `app/` weiter.
 
-    Note over APP: "Deine App kommuniziert nur mit BE (über REST) - nicht mit BR oder DB"
+## Voraussetzungen
 
-    rect rgb(240, 248, 255)
-        Note over APP: "Tag 3 Joint-Session - PE-Team publiziert - ihr holt aktiv ab"
-        APP->>BE: GET /api/v1/sensors/SN12345/readings?page_size=10
-        BE->>DB: SELECT readings
-        DB-->>BE: Push-Bundles
-        BE-->>APP: 200 OK + JSON
-        APP->>APP: snapshot:{serial} in localStorage
-    end
+- Stand von Projekt Tag 2 ist fertig (Daten aus `data.json`
+  oder API, Status, Verlauf).
+- Die **API-URL** (vom Trainer aus dem
+  [Trainer-Briefing](https://github.com/HeiligerG/ae-trainer-briefing))
+  ist dir bekannt, z. B.
+  `http://<trainer-box>:3000`.
+- Eine **Seriennummer** zum Testen (z. B. `DEMO-001`).
+- Browser-Konsole offen (F12).
 
-    Note over APP,BE: "Später wenn BE down - App nutzt snapshot aus localStorage"
-```
+## Schritte
 
-**Drei Beobachtungen:**
+1. [Sensor-Dropdown im HTML](#schritt-1-sensor-dropdown-im-html)
+2. [API-URL als Konstante](#schritt-2-api-url-als-konstante)
+3. [Sensor-Liste dynamisch laden](#schritt-3-sensor-liste-dynamisch-laden)
+4. [`change`-Event anbinden](#schritt-4-change-event-anbinden)
+5. [Fallback aktiv testen](#schritt-5-fallback-aktiv-testen)
+6. [Layout finalisieren](#schritt-6-layout-finalisieren)
 
-1. **Du siehst nur die rechte Seite** – alles links ist PE-Verantwortung.
-2. **Deine App ist Pull-basiert** – sie macht HTTP GETs, sie wartet nicht
-   auf Push vom Backend. Das ist klassisches HTTP.
-3. **Snapshot-Fallback ist deine Verantwortung** – wenn dein `fetch()`
-   fehlschlägt, musst du auf `localStorage` zurückfallen.
+---
 
-## :material-target: Aufgabe
+## Schritt 1 – Sensor-Dropdown im HTML
 
-Integriere deine App mit dem **SuvaSense-Backend** und sorge dafür,
-dass sie auch dann funktioniert, wenn das Backend nicht erreichbar
-ist. Das ist die **Snapshot-Fallback-Strategie**.
+**Lernziel**: Du kannst ein `<select>` mit einer Default-
+**leeren** Option anlegen.
 
-## :material-book-open-outline: Anforderungen
+**Was passiert**: Über den beiden Karten erscheint ein
+Dropdown mit "Sensor wählen".
 
-- [ ] Deine App versucht **zuerst** die SuvaSense-API
-      (`GET /api/v1/sensors/{serial}/readings?page=1&page_size=10`)
-- [ ] Bei Erfolg: die Daten werden im `localStorage` unter
-      `snapshot:{serial}` gespeichert
-- [ ] Bei API-Fehler: die App greift auf den Snapshot zurück
-- [ ] Falls auch kein Snapshot existiert: `data.json` als
-      Initial-Seed
-- [ ] Im Admin-Panel kann der Nutzer den Sensor wechseln
-- [ ] Bei Sensor-Wechsel werden die **richtigen** Bundles
-      angezeigt (nicht die vom alten Sensor)
+### Datei
 
-## :material-hammer-wrench: Skelett
-
-### Konfiguration (oben in `script.js`)
-
-```javascript
-const API_BASE = 'http://<vom-trainer-bekanntgegeben>:8080/api/v1';
-let currentSerial = 'SN12345';   // Demo-Seriennummer vom Trainer
-
-function snapshotKey(serial) { return `snapshot:${serial}`; }
-```
-
-### Drei Phasen in eigenen Worten
-
-**Phase 1 – Live-API:**
-
-```
-URL = API_BASE + '/sensors/' + serial + '/readings?page=1&page_size=10'
-fetch(URL) → response
-wenn response.ok:
-    data = response.json()
-    items = data.items
-    localStorage.setItem(snapshotKey(serial), JSON.stringify(items))
-    return items
-sonst: wirf einen Fehler
-```
-
-**Phase 2 – Snapshot (nur wenn Phase 1 fehlschlägt):**
-
-```
-cached = localStorage.getItem(snapshotKey(serial))
-wenn cached:
-    return JSON.parse(cached)
-```
-
-**Phase 3 – Initial-Seed (nur wenn 1 und 2 scheitern):**
-
-```
-fetch('data.json') → items
-return items
-```
-
-### Funktions-Signaturen
-
-| Funktion | Aufgabe |
-|---|---|
-| `getBundles(serial, limit)` | Die dreistufige Fallback-Funktion |
-| `getLatestBundle(serial)` | Ruft `getBundles` auf, gibt `items[0]` zurück |
-| `onSensorChange()` | Liest neuen Sensor aus Dropdown, ruft `loadDashboard` |
-| `loadDashboard()` | Hauptfunktion: lädt, rendert Dashboard + Verlauf |
-
-### HTML-Erweiterung (Admin-Panel)
-
-In `index.html` unter `<main>` einfügen:
+In `index.html`, **vor** `<main>` (oder oben in `<main>`):
 
 ```html
-<section class="admin-panel">
-    <details>
-        <summary>Einstellungen</summary>
-        <div class="admin-content">
-            <label>
-                Sensor:
-                <select id="sensor-select" onchange="onSensorChange()">
-                    <option value="SN12345">SN12345</option>
-                    <option value="SN67890">SN67890</option>
-                    <option value="DEMO-001">DEMO-001</option>
-                </select>
-            </label>
-            <button onclick="loadDashboard()">Aktualisieren</button>
-        </div>
-    </details>
-</section>
+<header>
+  <select id="sensor-select">
+    <option value="">Sensor wählen</option>
+  </select>
+</header>
 ```
 
-### CSS-Selektoren (Admin-Panel)
+### Probier es aus
 
-- `.admin-panel`
-- `.admin-panel summary`
-- `.admin-content`
-- `.admin-content select`
-- `.admin-content button`
-- `.admin-content button:hover`
+Speichern, Browser neu laden. Über den Karten ist ein
+Dropdown mit genau einer Option.
 
-(Werte wählst du selbst – Farbe passt zum Rest der App.)
+### Was schiefgehen kann
 
-## :material-lightbulb-on: Hinweise (verbal, kein Code)
+- **Dropdown erscheint nicht**. Das `<header>` ist ausserhalb
+  von `<main>` und es gibt noch kein CSS dafür. Wir stylen es
+  gleich in Schritt 6.
 
-### try/catch um jede Phase
+---
 
-Jede der drei Phasen braucht ein eigenes `try/catch`. Wenn die
-API wirft, fängst du den Fehler in Phase 1 ab und gehst zu
-Phase 2 über. Phase 2 braucht ein `try` für `JSON.parse()`
-(kann kaputt sein). Phase 3 braucht ein `try` für `fetch` auf
-`data.json`.
+## Schritt 2 – API-URL als Konstante
 
-### Reihenfolge im Code
+**Lernziel**: Du kannst eine Konfiguration aus dem Code in
+eine **Konstante oben** ziehen.
 
-Pseudocode:
+**Was passiert**: Die Konstante `API_BASE` ist da, und
+`getBundles` benutzt sie.
 
-```text
-async function getBundles(serial, limit):
-    try:    # Phase 1
-        ... API holen, Snapshot speichern
-        return items
-    catch:  # API fehlgeschlagen
-        pass
+### Datei
 
-    try:    # Phase 2
-        cached = localStorage.getItem(...)
-        if cached: return JSON.parse(cached)
-    catch:
-        pass
+In `script.js`, **ganz oben**:
 
-    try:    # Phase 3
-        return await fetch('data.json').then(r => r.json())
-    catch:
-        return []    # Komplett gescheitert, leere Liste
+```javascript
+const API_BASE = 'http://<trainer-box>:3000';
 ```
 
-### getLatestBundle als Wrapper
+> Ersetze `<trainer-box>` durch die echte URL, die der Trainer
+> dir gibt.
 
-```text
-async function getLatestBundle(serial):
-    bundles = await getBundles(serial, 10)
-    if (bundles.length == 0): throw new Error('Keine Daten')
-    return bundles[0]
+Im bestehenden `getBundles`, ersetze die URL-Zeile:
+
+```javascript
+const url = `${API_BASE}/sensors/${serial}/readings?page=1&page_size=10`;
 ```
 
-### Sensor-Wechsel
+### Probier es aus
 
-`onSensorChange` liest den neuen Wert aus dem `<select>` und
-startet `loadDashboard()` neu. **Wichtig:** der Snapshot
-wechselt mit, weil `snapshotKey` den Serial enthält.
+Konsole:
 
-### Optional-Fortgeschritten: dynamisches Dropdown
+```javascript
+getBundles('DEMO-001').then(items => console.log(items.length));
+```
 
-Statt der festen drei Optionen kannst du `GET /api/v1/sensors`
-aufrufen und das Dropdown mit allen verfügbaren Sensoren
-befüllen. Das ist **Bonus**, nicht Pflicht.
+Wenn der Server läuft, kommt eine Zahl (10 oder so). Wenn der
+Server down ist, kommt die gewohnte Fallback-Warnung.
 
-## :material-check-all: Definition of Done (Selbst-Check)
+---
 
-- [ ] Alle 6 Anforderungen erfüllt
-- [ ] Snapshot-Fallback funktioniert: Backend stoppen → App
-      zeigt weiterhin Werte aus `localStorage`
-- [ ] `localStorage.clear()` + `data.json` umbenennen → App
-      zeigt Fehlermeldung
-- [ ] Sensor-Wechsel im Dropdown funktioniert
-- [ ] Konsole (F12) zeigt keine roten Fehler
-- [ ] Code ist committed und auf deinen Branch gepusht
+## Schritt 3 – Sensor-Liste dynamisch laden
 
-## Nächster Schritt
+**Lernziel**: Du kannst mit `fetch` eine Liste holen und in
+ein Dropdown einfügen.
 
-[Checkpoint Tag 3](checkpoint.md)
+**Was passiert**: Das Dropdown zeigt jetzt eine Liste echter
+Sensoren vom Server (oder zumindest die Default-Option, wenn
+der Server down ist).
+
+### Datei
+
+In `script.js`:
+
+```javascript
+async function fillSensors() {
+  try {
+    const response = await fetch(`${API_BASE}/sensors`);
+    if (!response.ok) throw new Error('Sensors API ' + response.status);
+    const sensors = await response.json();
+
+    const select = document.getElementById('sensor-select');
+    select.replaceChildren();
+
+    sensors.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.serial;
+      opt.textContent = s.room || s.serial;
+      select.appendChild(opt);
+    });
+  } catch (e) {
+    console.warn('Sensor-Liste nicht ladbar:', e);
+  }
+}
+
+fillSensors();
+```
+
+### Probier es aus
+
+Speichern, Browser neu laden. Wenn der Trainer-Server läuft:
+das Dropdown zeigt Einträge wie "Büro 3.04 / DEMO-001". Wenn
+nicht: nur die "Sensor wählen"-Default-Option.
+
+### Was schiefgehen kann
+
+- **Dropdown bleibt leer**. Server nicht erreichbar –
+  erwartetes Verhalten bei Tag 2-Fallback.
+- **`replaceChildren is not a function`**. Browser zu alt.
+
+---
+
+## Schritt 4 – `change`-Event anbinden
+
+**Lernziel**: Du kannst auf eine Dropdown-Auswahl reagieren
+und Daten neu laden.
+
+**Was passiert**: Wenn du einen Sensor im Dropdown wählst,
+laden die Karten und der Verlauf neu.
+
+### Datei
+
+In `script.js`, **ersetze** den Haupt-Aufruf am Ende:
+
+```javascript
+const select = document.getElementById('sensor-select');
+
+select.addEventListener('change', () => {
+  const serial = select.value;
+  if (!serial) return;
+  getBundles(serial).then(items => {
+    showCurrent(items);
+    renderHistory(items);
+    showStatus(items);
+  });
+});
+```
+
+### Probier es aus
+
+Im Dropdown einen Sensor wählen. Karten und Verlauf
+aktualisieren sich.
+
+### Was schiefgehen kann
+
+- **`change` wird nicht ausgelöst**. Browser hat den Tab nicht
+  neu geladen. **`F5` drücken**.
+- **`Cannot read property 'value' of null`**. Dropdown hat
+  noch keine `option`s – Server ist down.
+
+---
+
+## Schritt 5 – Fallback aktiv testen
+
+**Lernziel**: Du kannst **selber prüfen**, dass der Fallback
+wirklich greift.
+
+**Was passiert**: Du weisst, **wie** du den Fallback siehst.
+
+### Test-Variante A: Server killen
+
+1. App ist offen, Daten kommen vom Server, Konsole zeigt
+   **keine** Warnung.
+2. Frage den Trainer, ob er den Server kurz stoppen darf.
+3. Browser-Tab mit der App neu laden.
+4. Konsolen-Warnung erscheint:
+   `API nicht erreichbar, fallback auf data.json: …`.
+5. Daten kommen aus `data.json`.
+
+### Test-Variante B: DevTools-Offline
+
+1. App ist offen.
+2. F12 → Tab **Network** → Dropdown **"Online"** → wähle
+   **"Offline"**.
+3. Browser-Tab neu laden.
+4. Konsolen-Warnung erscheint. Daten aus `data.json`.
+
+### Was du dokumentierst
+
+Notiere dir kurz:
+
+- Welche Seriennummer du verwendet hast.
+- Welche Variante du getestet hast (A oder B).
+- Ob der Status nach dem Fallback noch stimmt.
+
+---
+
+## Schritt 6 – Layout finalisieren
+
+**Lernziel**: Du kannst die App so stylen, dass sie für die
+Demo **gut aussieht**.
+
+**Was passiert**: Header, Karten, Verlauf sind ordentlich
+angeordnet.
+
+### Datei
+
+In `style.css`:
+
+```css
+body {
+  font-family: system-ui, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+  margin: 0;
+}
+
+header {
+  background: #00695c;
+  color: white;
+  padding: 16px;
+}
+
+header select {
+  font-size: 1rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+}
+
+main {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.card {
+  flex: 1 1 280px;
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h1 {
+  font-size: 1rem;
+  color: #555;
+  margin: 0 0 8px;
+}
+
+.card p {
+  font-size: 2rem;
+  color: #222;
+  margin: 0;
+}
+
+#history-card {
+  flex-basis: 100%;
+}
+
+#history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#history-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.status.gut      { background: #e8f5e9; color: #2e7d32; }
+.status.kritisch { background: #fff3e0; color: #e65100; }
+.status.schlecht { background: #ffebee; color: #c62828; }
+
+@media (max-width: 600px) {
+  main {
+    flex-direction: column;
+  }
+
+  .card p {
+    font-size: 1.5rem;
+  }
+}
+```
+
+### Probier es aus
+
+Speichern, Browser neu laden. Die App sieht jetzt **poliert**
+aus – Header in Teal, Karten weiss, Status-Pille mit Farbe.
+
+---
+
+## Definition of Done
+
+- [ ] `<select>` mit Dropdown für Sensoren sichtbar.
+- [ ] Sensor-Liste wird dynamisch vom Server geladen
+      (oder Default, wenn Server down).
+- [ ] Bei Sensor-Wechsel laden alle Karten + Verlauf + Status.
+- [ ] Fallback ist **aktiv getestet** mit einer der beiden
+      Varianten dokumentiert.
+- [ ] Layout ist mobile-tauglich (geprüft im DevTools-Modus).
+- [ ] **Kein `localStorage`**.
+- [ ] Code committed und gepusht.
+
+## Wie weiter?
+
+Im **Projekt Tag 4** (freiwillig): Polish, Bugs fixen,
+optionale Features. Die App ist ab Tag 3 **funktional
+komplett**.
+
+## Wo gibt's Hilfe?
+
+- Trainer (1:1).
+- [Theorie-Happen Tag 3](../tag-3/index.md).
+- [Fallback-Strategie-Doku](../projekt/fallback-strategie.md).
+- [Trainer-Briefing: Demo-Sensor einrichten](https://github.com/HeiligerG/ae-trainer-briefing/blob/bootcamp-v2/docs/demo-sensor.md).

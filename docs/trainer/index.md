@@ -1,23 +1,20 @@
-# Für Trainer
+# Trainer-Material
 
-In diesem Bereich findest du alles, was du als Trainer für das
-**AE-Bootcamp** wissen musst: Haltung, Tagesplanung, Fallbacks
-und das Konzept der Lösungs-Vermittlung.
+> Das Trainer-Material ist **umgezogen** ins eigene Repo
+> [`ae-trainer-briefing`](https://github.com/HeiligerG/ae-trainer-briefing).
 
-!!! info "Konzept: keine Lösungen im Lernrepo"
-    Die Lösungen sind **nicht** im `ae-raumklima-bootcamp`-Repo
-    (siehe `loesungen/`-Diskussion mit dem User). Sie leben nur
-    im **Trainer-Ordner** `Test-Frontend/loesungen/` (lokal auf
-    deinem Laptop, nicht in Git).
+Diese Seite ist absichtlich leer. Alle trainer-spezifischen
+Inhalte leben jetzt im neuen Repo:
 
-    Lernende bekommen sie **nur**, wenn du sie explizit im
-    1:1-Coaching zeigst.
+| Was | Link |
+|---|---|
+| Trainer-Briefing (Übersicht) | [`ae-trainer-briefing`](https://github.com/HeiligerG/ae-trainer-briefing) |
+| Hinweise | [`hinweise.md`](https://heiligerg.github.io/ae-trainer-briefing/hinweise/) |
+| Risiken & Fallbacks | [`risiken-und-fallbacks.md`](https://heiligerg.github.io/ae-trainer-briefing/risiken-und-fallbacks/) |
+| Demo-Sensor-Setup | [`demo-sensor.md`](https://heiligerg.github.io/ae-trainer-briefing/demo-sensor/) |
+| Tagesplanung | [`tagesplanung.md`](https://heiligerg.github.io/ae-trainer-briefing/tagesplanung/) |
+| Präsentationen Tag 1–5 | [`praesentationen/`](https://heiligerg.github.io/ae-trainer-briefing/praesentationen/) |
+| Live-Coding Tag 1–3 | [`live-coding/`](https://heiligerg.github.io/ae-trainer-briefing/live-coding/) |
+| Trainer-Live-Coding Tag 1–5 | [`trainer-live-coding/`](https://heiligerg.github.io/ae-trainer-briefing/trainer-live-coding/) |
 
-- [Hinweise](hinweise.md) – Grundhaltung, Stolpersteine,
-  Frag-Hierarchie
-- [Tagesplanung](tagesplanung.md) – Tag-für-Tag-Schritte für
-  den Trainer
-- [Risiken & Fallbacks](risiken-und-fallbacks.md) – was tun,
-  wenn etwas schiefläuft
-- [Demo-Sensor-Setup](demo-sensor.md) – Sensor für die Joint-
-  Demo-Show vorbereiten
+**Lernende sehen diesen Bereich nicht.**

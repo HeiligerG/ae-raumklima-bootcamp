@@ -1,169 +1,277 @@
-# Projekt: Dashboard Grundlayout
+# Projekt Tag 1 – Dashboard-Grundlayout
 
-!!! warning "Eigenarbeit – Spec + Skelett, kein Copy-Paste"
-    Diese Aufgabe gibt dir **Anforderungen und ein Skelett**, aber nicht den fertigen Code. Du baust das CSS selbst, wählst Farben und entscheidest über das Layout. Der Lerngewinn liegt im Ausprobieren, nicht im Abschreiben.
+> Folgt [`projekt-anleitung-template.md`](../projekt/projekt-anleitung-template.md).
 
-    Wenn du nach 20 Minuten nicht weiterkommst, **frag dein
-    Trainer** – sie zeigen dir live, wo's hakt.
+## Tagesziel
 
-## :material-target: Aufgabe
+Am Ende des Tages hast du ein Dashboard mit zwei Karten
+(Temperatur, Luftfeuchtigkeit), einer einfachen Verlaufsliste
+und einem CSS-Layout, das auf Desktop und Mobile gut aussieht.
 
-Erstelle das Grundlayout für dein Raumklima-Dashboard. Es hat eine
-Kopfzeile, eine Sensorkarte (Name, Temperatur, Feuchte, Status) und
-einen leeren Bereich für den Verlauf (kommt Tag 2). Die Karte soll
-auf Desktop und Handy gut aussehen.
+Du arbeitest im **Hauptprojekt** `app/` (nicht in `uebungen/`).
+Du baust **alleine**.
 
-## :material-book-open-outline: Anforderungen
+## Voraussetzungen
 
-- [ ] Es gibt eine sichtbare Kopfzeile mit dem Titel "Raumklima Monitor"
-- [ ] Eine Karte zeigt vier Werte:
-    - Sensor-Name (z. B. "Sensor SN12345")
-    - Temperatur in Grad Celsius
-    - Luftfeuchtigkeit in Prozent
-    - Status (gut / kritisch / schlecht)
-- [ ] Es gibt einen leeren Bereich für den Verlauf mit dem
-      Platzhalter-Text "Lade Daten..."
-- [ ] Der Status hat eine **sichtbare Farbe** (gut = grünlich,
-      kritisch = orange, schlecht = rot – genaue Töne wählst du)
-- [ ] Die **Schwellenwerte** (gut/kritisch/schlecht) werden
-      **von EDB vorgegeben**, nicht von dir gewählt – siehe
-      [EDB – Schwellenwerte](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben)
-      (frag die EDB-Lernenden im Raum nach den Werten)
-- [ ] Eine Fusszeile mit Copyright-Hinweis
-- [ ] Das Layout funktioniert auf 600 px Bildschirmbreite (Werte
-      passen sich an, nichts wird abgeschnitten)
-- [ ] Code ist committed und auf einen eigenen Feature-Branch gepusht
-      (siehe `CODE_OF_CONDUCT.md`)
+- VS Code ist offen im Ordner `app/` deines ae-codebase-Forks.
+- Live-Server-Extension installiert.
+- Browser ist offen.
 
-## :material-hammer-wrench: Skelett (das musst du anlegen)
+## Schritte
 
-Drei Dateien in `app/`: `index.html`, `style.css`, `script.js` (leer).
+1. [Temperatur im DOM anzeigen](#schritt-1-temperatur-im-dom-anzeigen)
+2. [Luftfeuchtigkeit daneben anzeigen](#schritt-2-luftfeuchtigkeit-daneben-anzeigen)
+3. [Karten stylen](#schritt-3-karten-stylen)
+4. [Verlaufsliste anlegen](#schritt-4-verlaufsliste-anlegen)
+5. [Mobile-Anpassung](#schritt-5-mobile-anpassung)
 
-### `index.html`
+---
 
-Die HTML muss diese **fünf IDs** enthalten – Tag 2 wird sie per
-JavaScript befüllen, also müssen sie exakt so heissen:
+## Schritt 1 – Temperatur im DOM anzeigen
 
-| ID | Wofür |
-|---|---|
-| `#serial-number` | Sensor-Name in der Karte |
-| `#temp-c` | Temperatur in °C |
-| `#hum-pct` | Luftfeuchtigkeit in % |
-| `#status` | Status-Badge (gut / kritisch / schlecht) |
-| `#history-list` | Container für die Verlaufsliste (Tag 2) |
+**Lernziel**: Du kannst mit JavaScript den Text in einem
+DOM-Element setzen.
 
-Die HTML-Struktur braucht ausserdem diese **drei CSS-Klassen** am
-Status-Element, damit die Farben sichtbar werden:
+**Was passiert**: JavaScript sucht das Element im Browser und
+schreibt den Text rein.
 
-- `class="status"` (Basis-Styling)
-- `class="status gut"` (guter Status, grün)
-- `class="status kritisch"` (kritisch, orange)
-- `class="status schlecht"` (schlecht, rot)
+### Datei
 
-### `style.css`
+Lege `index.html` und `script.js` im Ordner `app/` an.
 
-Du brauchst **kein vollständiges CSS-Framework** – nur diese
-Selektoren (Werte wählst du selbst):
+### Was passiert zuerst
 
-- `body` (Hintergrund, Schriftart, Layout)
-- `header` (Hintergrundfarbe, Innenabstand, Schriftfarbe)
-- `.card` (weisser Hintergrund, runde Ecken, leichter Schatten)
-- `.values` (zwei Werte nebeneinander; auf Mobile untereinander)
-- `.value-item` (einzelner Wert)
-- `.label` (Beschriftung über dem Wert, klein und grau)
-- `.number` (grosser Wert)
-- `.status` (Basis-Styling für die Status-Pille)
-- `.status.gut`, `.status.kritisch`, `.status.schlecht` (Farben)
-- `.history` (Container für die Verlaufsliste)
-- `footer` (Hintergrund wie header, kleinerer Text)
-- `@media (max-width: 600px)` (Mobile-Anpassung)
+In `index.html`:
 
-### `script.js`
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Raumklima Monitor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section class="card" id="temp-card">
+      <h1>Temperatur</h1>
+      <p id="temp-value">–</p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
+```
 
-Leer anlegen – wird ab Tag 2 befüllt. Die Datei muss existieren und
-in der HTML eingebunden sein (`<script src="script.js"></script>`
-**vor** `</body>`).
+In `script.js`:
 
-## :material-lightbulb-on: Hinweise (verbal, kein Code)
+```javascript
+function updateTemp(value) {
+  document.getElementById('temp-value').textContent = value + ' °C';
+}
+```
 
-### Layout
+### Probier es aus
 
-- Eine "Karte" ist im Webdesign ein weisser Block mit etwas
-  Innenabstand (`padding`), abgerundeten Ecken (`border-radius`) und
-  oft einem dezenten Schatten (`box-shadow`).
-- Für die Kopf-zu-Fuss-Struktur eignet sich `display: flex` mit
-  `flex-direction: column` und `min-height: 100vh`. Der `<main>`
-  bekommt `flex: 1`, damit er den verbleibenden Platz füllt.
-- Zwei Werte nebeneinander → `display: grid` mit
-  `grid-template-columns: 1fr 1fr`.
-- **Mobile:** innerhalb von `@media (max-width: 600px)` das
-  Grid auf eine Spalte reduzieren.
+Konsole (F12), tippe `updateTemp(23.4)`. Die Karte zeigt
+jetzt `23.4 °C`.
 
-### Farben
+### Was schiefgehen kann
 
-- Teal (`#00695c`) eignet sich als Hauptfarbe, weil es ruhig und
-  seriös wirkt. Alternativ: ein dunkleres Blau oder Anthrazit.
-- Status-Farben müssen nicht perfekt sein – Hauptsache **semantisch
-  unterscheidbar**: grünlich, orange, rot. Beispiele:
-  - `gut`: Hintergrund `#e8f5e9`, Schrift `#2e7d32`
-  - `kritisch`: Hintergrund `#fff3e0`, Schrift `#e65100`
-  - `schlecht`: Hintergrund `#ffebee`, Schrift `#c62828`
-- Die Status-Pille bekommt `border-radius` und etwas
-  Innenabstand, damit sie wie ein Badge aussieht.
+- **Karte bleibt leer**. Die ID im JavaScript muss
+  **genau gleich** sein wie im HTML.
+- **Konsole zeigt `ReferenceError`**. `script.js` wurde nicht
+  gespeichert oder die Einbindung im HTML stimmt nicht.
 
-### Responsives Design
+---
 
-- Teste im Browser, indem du das Fenster auf 600 px Breite
-  ziehst.
-- Falls Elemente abgeschnitten werden: `padding` reduzieren oder
-  `box-sizing: border-box` global setzen (`* { box-sizing:
-  border-box; }`).
-- Schriftgrössen nicht in `px`, sondern besser in `rem`, dann
-  passen sie sich an die Browser-Einstellung an. Für den Anfang
-  reicht aber `px`.
+## Schritt 2 – Luftfeuchtigkeit daneben anzeigen
 
-## :material-handshake: EDB-Schwellenwerte
+**Lernziel**: Du kannst eine zweite Karte mit eigenem Element
+anlegen und mit JS befüllen.
 
-Die **Schwellenwerte** (gut/kritisch/schlecht) kommen **von EDB**
-(Entwickler Digital Business), nicht von dir. Du übernimmst sie
-aus [projekt/edb.md](../projekt/edb.md#schwellenwerte-von-edb-vorgegeben)
-in deinen Code.
+**Was passiert**: Unter der Temperatur erscheint eine zweite
+Karte. Sie zeigt Platzhalter, bis JS sie füllt.
 
-**Wie bekommst du die Schwellenwerte von EDB?** Ganz einfach: die
-**EDB-Lernenden sind im Raum** – du gehst zu ihnen hin und
-fragst. Kein Slack, keine E-Mail, kein Ticketsystem. EDB ist
-vor Ort. Frag sie **bevor** du die Statuslogik implementierst,
-damit du die richtigen Werte hast.
+### Datei
 
-!!! important "EDB ist KEIN Notifikations-Service"
-    Wenn deine App später "schlecht" anzeigt, musst du EDB
-    **nicht informieren**. Die App zeigt das einfach rot an – das
-    reicht. EDB ist die **Quelle der Schwellenwerte**, nicht der
-    Empfänger von Alarmen. Du holst dir die Werte **einmal vorab**,
-    nicht bei jedem "schlecht"-Event.
+Ersetze den Inhalt von `index.html` durch:
 
-## :material-check-all: Definition of Done (Selbst-Check)
+```html
+<main>
+  <section class="card" id="temp-card">
+    <h1>Temperatur</h1>
+    <p id="temp-value">–</p>
+  </section>
 
-- [ ] Alle 7 Anforderungen erfüllt
-- [ ] IDs und Klassen wie oben spezifiziert vorhanden
-- [ ] Konsole (F12) zeigt keine roten Fehler
-- [ ] Git-Commit und Push auf eigenen Feature-Branch
-- [ ] Commit-Message beschreibt, was du gebaut hast
+  <section class="card" id="hum-card">
+    <h1>Luftfeuchtigkeit</h1>
+    <p id="hum-value">–</p>
+  </section>
+</main>
+```
 
-## :material-help: Wenn du nicht weiterkommst
+In `script.js`, füge unter `updateTemp` ein:
 
-Nach 20 Min ohne nennenswerten Fortschritt:
+```javascript
+function updateHum(value) {
+  document.getElementById('hum-value').textContent = value + ' %';
+}
+```
 
-1. **Frag deinen Trainer.** Sie zeigen dir den nächsten Schritt
-   live – direkt am Code, mit Erklärungen zu **warum**.
-2. **Pair-Programming mit einem Mitlernenden.** Zwei Augen sehen
-   mehr als eine.
-3. **MDN durchsuchen** – `fetch`, `localStorage`, `JSON.parse`
-   haben dort gute Beispiele.
+### Probier es aus
 
-Es gibt **keine Lösungen zum Nachschauen** im Lernmaterial. Das ist
-Absicht: die Auseinandersetzung mit dem Problem ist der Lerngewinn.
+Konsole:
 
-## Nächster Schritt
+```javascript
+updateTemp(23.4);
+updateHum(42);
+```
 
-[Checkpoint Tag 1](checkpoint.md)
+Beide Karten zeigen jetzt Werte.
+
+---
+
+## Schritt 3 – Karten stylen
+
+**Lernziel**: Du kannst mit CSS Karten gestalten und mit
+Flexbox nebeneinander anordnen.
+
+**Was passiert**: Die Karten bekommen weissen Hintergrund,
+runde Ecken, Schatten – und liegen nebeneinander.
+
+### Datei
+
+Lege `style.css` im Ordner `app/` an.
+
+```css
+main {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px;
+}
+
+.card {
+  flex: 1 1 280px;
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h1 {
+  font-size: 1rem;
+  color: #555;
+  margin: 0 0 8px;
+}
+
+.card p {
+  font-size: 2rem;
+  color: #222;
+  margin: 0;
+}
+```
+
+### Probier es aus
+
+Speichern, Browser aktualisieren. Karten liegen nebeneinander.
+
+### Was schiefgehen kann
+
+- **Karten untereinander statt nebeneinander**. `display:
+  flex` fehlt oder Tippfehler.
+- **Stil greift nicht**. Pfad im `<link>` prüfen.
+
+---
+
+## Schritt 4 – Verlaufsliste anlegen
+
+**Lernziel**: Du kannst eine leere Liste anlegen und via JS
+einen Eintrag hinzufügen.
+
+**Was passiert**: Unter den Karten erscheint eine dritte
+Sektion "Verlauf" mit einem hartcodierten Eintrag.
+
+### Datei
+
+In `index.html`, nach `</main>` aber **vor** `<script>`:
+
+```html
+<section class="card" id="history-card">
+  <h1>Verlauf</h1>
+  <ul id="history-list"></ul>
+</section>
+```
+
+In `script.js`, füge hinzu:
+
+```javascript
+function addHistory(temp, time) {
+  const li = document.createElement('li');
+  li.textContent = time + '  ' + temp + ' °C';
+  document.getElementById('history-list').appendChild(li);
+}
+
+addHistory(23.0, '08:00');
+addHistory(22.7, '08:05');
+```
+
+### Probier es aus
+
+Speichern, Browser aktualisieren. Unter den Karten ist die
+Verlaufsliste mit zwei Einträgen.
+
+---
+
+## Schritt 5 – Mobile-Anpassung
+
+**Lernziel**: Du kannst mit `@media` das Layout für mobile
+Bildschirme anpassen.
+
+**Was passiert**: Auf schmalen Bildschirmen stapeln sich die
+Karten automatisch.
+
+### Datei
+
+In `style.css`, am Ende:
+
+```css
+@media (max-width: 600px) {
+  main {
+    flex-direction: column;
+  }
+
+  .card p {
+    font-size: 1.5rem;
+  }
+}
+```
+
+### Probier es aus
+
+Browserfenster schmaler machen (unter 600 px). Karten
+stapeln sich.
+
+---
+
+## Definition of Done
+
+- [ ] Zwei Karten sichtbar: Temperatur und Luftfeuchtigkeit.
+- [ ] Beide Werte werden per JS gesetzt (über Konsole geprüft).
+- [ ] Karten nebeneinander auf Desktop, untereinander auf Mobile.
+- [ ] Verlaufsliste zeigt mindestens 2 Einträge.
+- [ ] CSS verwendet `textContent`, kein `innerHTML`.
+- [ ] Code committed und auf den eigenen Branch gepusht.
+
+## Wie weiter?
+
+Im **Projekt Tag 2** baust du Daten aus `data.json` ein und
+füllst die Werte **automatisch** statt über die Konsole.
+
+## Wo gibt's Hilfe?
+
+- Trainer: 1:1-Fragen direkt im Raum.
+- Lernleitfaden:
+  [Theorie-Happen Tag 1](../tag-1/index.md).
+- [Projekt-Schritt-Template](../projekt/projekt-schritt-template.md).

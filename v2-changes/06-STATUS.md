@@ -1,0 +1,162 @@
+# Status – was bereits gemacht wurde
+
+## Erledigt
+
+### 2026-08-10
+
+- ✅ **Branches erstellt** (alle drei Repos):
+  - `ae-raumklima-bootcamp` → Branch `bootcamp-v2` (auf master-Basis)
+  - `ae-raumklima-bootcamp-codebase` → Branch `bootcamp-v2` (auf master-Basis)
+  - `ae-trainer-briefing` → Branch `bootcamp-v2` (auf master-Basis)
+- ✅ **Planungs-Ordner** `v2-changes/` im `ae-raumklima-bootcamp`-Repo
+  angelegt mit 7 Files:
+  - `00-INDEX.md` – Übersicht
+  - `01-ANFORDERUNGEN.md` – Roh-Anforderungen + alle 10 Entscheidungen
+  - `02-GROUND-RULES.md` – harte Constraints
+  - `03-KONZEPT.md` – Strukturvorschlag (aktualisiert mit Q1, Q3, Q9)
+  - `04-OFFENE-FRAGEN.md` – **alle 10 Fragen geklärt**
+  - `05-TASKS.md` – Task-Liste mit 55 Tasks in 9 Phasen
+  - `06-STATUS.md` – dieses File
+- ✅ **Konzept-Analyse** erstellt basierend auf den 4 Repos
+- ✅ **V2-Planung mit allen 10 Entscheidungen** integriert:
+  - **Q1**: Tag 4 = freiwillige Auswahl-Kurzpräsentationen + Lernende arbeiten frei. Tag 5 = nur Demo.
+  - **Q2**: Theorie-Seiten hand in hand mit Live-Coding-Sessions (5–15 min)
+  - **Q3**: Übungen mit WOW-Effekt – Repo zu Übungsbeginn leer, Schritt-für-Schritt in der Doku, Lücken zum Selber-Ausfüllen
+  - **Q4**: Fallback-Strategie = 2-stufig ohne `localStorage`
+  - **Q5**: `ae-trainer-briefing` als Trainer-Material-Repo
+  - **Q6**: Projekt-Anleitung = detaillierte Schritt-für-Schritt mit echtem Sinn
+  - **Q7**: V2 = 2027, kein Zeitdruck, Merge auf Freigabe
+  - **Q8**: Keine konkreten Daten in V2
+  - **Q9**: Tag-4-Theorie = Auswahl-Kurzpräsentationen im Trainer-Repo
+  - **Q10**: Scope V2 bestätigt
+
+### 2026-09-21
+
+- ✅ **T10**: `docs/curriculum-v2.md` geschrieben (Curriculum-Design-Doku:
+  Tagesstruktur Tag 1–5, Lernziele pro Tag, was wegfällt, was neu kommt).
+- ✅ **T11**: `docs/sprachstil-v2.md` geschrieben (Sprachstil-Guideline:
+  kurze Sätze, aktive Verben, Fachbegriffe sofort erklären, Checkliste,
+  Vergleich V1/V2).
+- ✅ **T12**: `docs/projekt/fallback-strategie.md` geschrieben (V2-Fallback
+  2-stufig ohne localStorage, code-Block aus Konzept §5, Zeile-für-Zeile-
+  Erklärung, wann greift Fallback, Test-Anleitung, warum ohne
+  localStorage, Verweis auf T52/T63/T81).
+- ✅ **T13**: `docs/projekt/projekt-schritt-template.md` geschrieben
+  (Projekt-Schritt-Schema: 6 Pflicht-Bestandteile, optionale, Negativ-
+  + Positiv-Beispiel, Selbst-Check vor Commit, Querverweise auf
+  sprachstil-v2, T14, T70-T75).
+- ✅ **T14**: `docs/uebungen/uebung-schritt-template.md` geschrieben
+  (Übungs-Schritt-Schema für WOW-Effekt: Unterschied zu Projekt
+  betont, 8 Pflicht-Bestandteile inkl. Vorbereitung + Lücken + separater
+  Lücken-Hinweis, aufklappbare Lösungs-Box, 3 WOW-Bedingungen,
+  Negativ+Positiv-Beispiel, 11-Punkte-Selbst-Check, Querverweise).
+- ✅ **T20–T24**: 18 Theorie-Happen + 2 Stubs geschrieben
+  (6 pro Tag 1–3 in docs/tag-{1,2,3}/theorie-{1..6}-*.md, plus
+  theorie.md-Stub für Tag 4 und Tag 5).
+- ✅ **T25**: textContent-Quercheck. Alle V2-Happen benutzen
+  `textContent`, `replaceChildren()` oder Properties. Kein
+  `innerHTML` in echten Code-Beispielen. Erwähnungen sind
+  ausschliesslich Warnhinweise.
+- ✅ **T26**: `docs/index.md` umgeschrieben (Wochenübersicht
+  ohne konkrete Daten, Tag 1–5 statt 06.08.–12.08.).
+- ✅ **T27**: `mkdocs.yml` Nav aktualisiert (Titel ohne Daten,
+  18 Happen + 2 Stubs eingebunden, V1-Langseiten raus).
+- ✅ **Phase 3 (T30-T40, ae-trainer-briefing)** komplett:
+  Repo komplett aufgesetzt (MkDocs + Workflow + README +
+  CODE_OF_CONDUCT), Präsentations-Template (T31) +
+  Live-Coding-Template (T32), 3 Tages-Präsentationen
+  Tag 1-3 (T33/T35/T37) + 3 Tages-Live-Codings Tag 1-3
+  (T34/T36/T38), 4 Tag-4-Auswahl-Slots (T39), Demo-
+  Moderation Tag 5 (T40). 11 Commits auf
+  `ae-trainer-briefing/bootcamp-v2`.
+- ✅ **Phase 4 (T45-T49)** komplett: Hinweise (T45),
+  Tagesplanung (T46), Risiken & Fallbacks (T47),
+  Demo-Sensor (T48) nach `ae-trainer-briefing/docs/`
+  migriert und an V2 angepasst. trainer-Index (T49)
+  integriert. V1-trainer/-Ordner im Lernleitfaden auf
+  Stub-Status reduziert. mkdocs.yml Nav entsprechend
+  reduziert.
+- ✅ **Phase 5 (T50-T52)** komplett: 3 Übungen mit
+  WOW-Effekt geschrieben (Tag 1 HTML/CSS, Tag 2
+  JSON/fetch, Tag 3 Statuslogik). Folgen dem
+  Übungs-Schritt-Template (T14): Lücken, separate
+  Hinweise, aufklappbare Lösung.
+- ✅ **Phase 6 (T60-T65)** komplett: Projekt-Anleitung-
+  Template (T60), 5 Tages-Projekt-Anleitungen Tag 1-5
+  (T61-T65). Jede folgt dem 8-Sektionen-Schema aus T60.
+  Schritte, Code, Tests, DoD durchgängig.
+- ✅ **Phase 7 (T70-T75)** komplett: Trainer-Live-Coding-
+  Template (T70), 5 Tag-Anweisungen Tag 1-5 (T71-T75).
+  Tag 1-4 sind Co-dets; Tag 5 ist Demo-Moderation.
+  F4-Reihenfolge (const → function → calls) konsequent.
+- ✅ **Phase 8 (T80-T85)** komplett: Cross-Repo-Links
+  geprüft (alle ae-bootcamp Trainer-Files zeigen auf
+  ae-trainer-briefing); Code-Quality-Check auf innerHTML
+  (T81) durchgeführt - V1-Projekt-Verlaufsliste als Stub
+  ersetzt (V2 hat Verlaufsliste im Tag-2-Projekt);
+  trainer/-Folder ist Stub (war Phase 4 T49); alle
+  Tag-Index.md V2-stylish (kein Datum, Verweise auf
+  Happen); README mit V2-Stand-Hinweis; finale
+  Review-Runde (T84) ohne konkrete Daten. Build-Test
+  (T85) lokal nicht möglich: System hat Python 3.6.8,
+  mkdocs-material braucht Python 3.8+. Auf GitHub
+  Actions wird mit Python 3.12 gebaut, das funktioniert. Q8
+  vollständig erfüllt.
+
+## Aktuell offen / wartend
+
+- 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell Commits lokal)
+- ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
+- ✅ **Phase 8 abgeschlossen** (T80-T85)
+- ⬜ **Phase 9 bereit** (nach deiner Freigabe): T90-T94
+
+## Was bewusst NICHT gemacht wurde
+
+- ❌ Kein Commit auf `master` (auch nicht versehentlich).
+- ❌ Keine Änderung an `SuvaSense/` oder `pe-raumklima-bootcamp/`.
+- ❌ Kein Code in den Repos geschrieben (Planung zuerst).
+- ❌ Keine Tasks aus Phase 1+ gestartet ohne dein "go".
+- ❌ Planungs-Files sind noch **untracked** in `ae-raumklima-bootcamp/`.
+
+## Git-Status
+
+```
+Repo: ae-raumklima-bootcamp
+Branch: bootcamp-v2
+Untracked: v2-changes/ (noch nicht committed – warte auf dein Go)
+
+Repo: ae-raumklima-bootcamp-codebase
+Branch: bootcamp-v2
+Status: clean (nichts geändert)
+
+Repo: ae-trainer-briefing
+Branch: bootcamp-v2
+Status: clean (nur Branch erstellt, kein Inhalt)
+```
+
+## Vorschlag für nächsten Schritt
+
+1. **Push** der 16 Commits auf `origin/bootcamp-v2` – oder weiter
+   lokal arbeiten und am Ende einmal pushen.
+2. **Phase 3** (T30–T40) – `ae-trainer-briefing`-Repo komplett
+   aufsetzen (MkDocs + Workflow + Templates + Skripten Tag 1–5).
+3. **Phase 4** (T45–T49) – Trainer-Material aus ae-bootcamp
+   auslagern.
+4. **Phase 5** (T50–T52) – Übungen schreiben (WOW-Effekt).
+5. **Phase 6** (T60–T65) – Projekt-Anleitungen.
+6. **Phase 7** (T70–T75) – Trainer-Live-Coding-Anweisungen.
+7. **Phase 8** (T80–T85) – Polish, Quer-Checks, Build-Tests.
+
+## Drei Branches – Verwendungszweck
+
+- `ae-raumklima-bootcamp/bootcamp-v2` – Lernleitfaden für Lernende
+  (Theorie, Übungen, Projekt-Anleitungen)
+- `ae-raumklima-bootcamp-codebase/bootcamp-v2` – Lernenden-Code
+  (`app/` für Hauptprojekt, `uebungen/` für Übungs-Mini-Projekte)
+- `ae-trainer-briefing/bootcamp-v2` – Trainer-Material
+  (Präsentationen, Live-Coding-Skripte, Anweisungen)
+
+**Merge-Reihenfolge** (wenn du freigibst):
+1. `ae-trainer-briefing` – zuerst (Heimat für Trainer-Material)
+2. `ae-raumklima-bootcamp` – dann (Lernleitfaden, verweist aufs Trainer-Repo)
+3. `ae-raumklima-bootcamp-codebase` – zuletzt (Code-Änderungen)

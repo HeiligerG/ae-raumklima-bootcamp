@@ -1,60 +1,63 @@
-# Tag 2 – 07. August
+# Tag 2
 
-## :material-target: Tagesziel
+> **V2-Tag.** Datumsangaben wurden bewusst entfernt
+> (Q8). Die einzelnen Happen findest du weiter unten.
 
-Am Ende des Tages lädt deine App Daten aus dem SuvaSense-Push-Bundle-Format (oder dem `data.json`-Seed), zeigt den korrekten Status an und stellt eine Verlaufsliste dar. Du kennst den Datenvertrag zwischen Sensor und App.
+## Tagesziel
 
-## :material-clock-outline: Ablauf
+Am Ende des Tages lädt deine App Daten aus `data.json`, zeigt
+den korrekten Status an und stellt eine Verlaufsliste dar.
+Du kennst die Bausteine für die API-Anbindung, die Tag 3 kommt.
 
-| Zeit | Phase | Inhalt |
-|------|-------|--------|
-| 08:00–08:15 | :material-weather-sunny: Daily | Kurzer Tagesstart |
-| 08:15–09:00 | :material-book-open-outline: Theorie | JSON, API, Fetch |
-| 09:00–10:00 | :material-pencil-outline: Übung | Daten laden |
-| 10:00–10:15 | :material-coffee: Pause | |
-| 10:15–12:00 | :material-hammer-wrench: Projekt | Seed-Daten + Statuslogik |
-| 12:00–13:00 | :material-food: Mittag | |
-| **13:00–15:00** | **:material-handshake: Datenvertrag klären** | **Gemeinsame Session mit PE-Team: Sensor → MQTT → Backend → App live durchspielen** |
-| 15:15–16:00 | :material-clipboard-check-outline: Checkpoint | Tagesabschluss |
+## Ablauf
 
-!!! warning "Wichtig: Joint-Session mit PE um 13:00"
-    Von 13:00–15:00 ist eine **gemeinsame Session** mit dem PE-Team (Plattformentwickler). Hier wird der **Datenfluss live durchgespielt**: das PE-Team zeigt die ESP-Firmware, die auf `suva/<serial>/data` publiziert; das Trainer-Team zeigt im Backend (`docker compose logs backend`) wie die Messages ankommen;     die Lernenden sehen, dass dein App-Datenmodell (Push-Bundle) genau dem MQTT-Payload entspricht. So wird der Vertrag aus dem API-Vertrag **empirisch** validiert.
+| Block | Was passiert |
+|---|---|
+| Theorie-Block (~2 h) | 6 Happen mit Live-Coding |
+| Pause (~15 min) | |
+| Übung (~2 h) | WOW-Effekt im `uebungen/tag-2/`-Ordner |
+| Projekt (~2–3 h) | Eigenständig im Hauptprojekt `app/` |
+| Trainer Live-Coding (~1 h) | Trainer co-det die Tag-2-Lösung |
 
-    **Vorbereitung:** bis 13:00 sollten alle Lernenden Seed-Daten + Statuslogik fertig haben, damit sie an der Datenvertrag-Diskussion teilnehmen können.
+## Theorie-Happen
 
-## :material-school: Was lernst du heute?
+| Happen | Thema | Dauer |
+|---|---|---|
+| 1 | [JavaScript-Grundlagen](theorie-1-javascript-grundlagen.md) | ~10 min |
+| 2 | [DOM + textContent](theorie-2-dom-textcontent.md) | ~10 min |
+| 3 | [JSON](theorie-3-json.md) | ~10 min |
+| 4 | [fetch + async/await](theorie-4-fetch-async.md) | ~10 min |
+| 5 | [Statuslogik](theorie-5-statuslogik.md) | ~10 min |
+| 6 | [Verlaufsliste](theorie-6-verlaufsliste.md) | ~10 min |
+
+## Was lernst du heute?
 
 - Was ist JSON?
-- Wie funktioniert eine REST-API?
-- Wie lade ich Daten mit `fetch()`?
-- Was sind Promises und `async/await`?
+- Wie funktioniert `fetch` mit `async/await`?
 - Wie zeige ich Daten dynamisch im HTML an?
 - Wie schreibe ich eine Statuslogik?
+- Wie baue ich eine Verlaufsliste mit `createElement`?
 
-## :material-hammer-wrench: Was baust du heute?
+## Was baust du heute?
 
-- `data.json` als Initial-Seed (gleiches Schema wie API-Push-Bundle)
-- Daten per `fetch()` laden
-- Dynamische Anzeige von `readings.bme680.temp_c` und `hum_pct`
-- Statuslogik: gut / kritisch / schlecht (Schwellenwerte von EDB vorgegeben)
-- Fehlerfall: «Keine Daten verfügbar»
+- [Übung: Daten laden](../../docs/uebungen/tag-2/aufgabe.md) – WOW-Effekt.
+- [Projekt: Statuslogik + Verlauf](projekt-statuslogik-verlauf.md) – Schritt-für-Schritt.
 
-!!! note "Verlaufsliste verschoben auf Tag 3"
-    Die Verlaufsliste bauen wir **erst am Tag 3 morgens** (09:00–10:00). So bleibt der Tag 2 Nachmittag frei für die wichtige Datenvertrag-Diskussion mit dem PE-Team.
+## Definition of Done
 
-## :material-check-all: Definition of Done
+- [ ] `data.json` mit Push-Bundles existiert.
+- [ ] Daten werden mit `fetch` geladen und angezeigt.
+- [ ] Status (gut / kritisch / schlecht) wird korrekt berechnet.
+- [ ] Verlaufsliste zeigt die Items aus `data.json`.
+- [ ] **Kein `localStorage`** im Code.
+- [ ] Code committed und gepusht.
 
-- [ ] `data.json` mit Seed-Push-Bundles existiert
-- [ ] Daten werden mit `fetch()` geladen und angezeigt
-- [ ] Der Status wird korrekt berechnet
-- [ ] Bei fehlenden Daten wird eine Fehlermeldung angezeigt
-- [ ] Datenvertrag mit PE-Team ist durchgespielt
-- [ ] Code ist committed und auf deinen Branch gepusht
+## Weiter
 
-## :material-arrow-right: Weiter
-
-- [Theorie: JSON / API / Fetch](theorie-json-api-fetch.md)
-- [Übung: Daten laden](uebung-daten-laden.md)
 - [Projekt: Statuslogik](projekt-statuslogik-verlauf.md)
-- [Datenvertrag klären](schnittstellen.md)
 - [Checkpoint Tag 2](checkpoint.md)
+
+## Querverweise
+
+- [Curriculum V2](../curriculum-v2.md) – Gesamtüberblick.
+- [Fallback-Strategie-Doku](../projekt/fallback-strategie.md).

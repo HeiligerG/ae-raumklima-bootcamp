@@ -38,32 +38,39 @@ Kein Problem! Das Bootcamp startet bei null. Alles wird Schritt für Schritt erk
 
 ## Ablaufmodell
 
-Jeder Tag folgt dem gleichen Rhythmus:
+Jeder Tag (Tag 1–3) folgt dem gleichen Rhythmus:
 
 ```mermaid
 graph LR
-    A[Theorie] --> B[Übung]
+    A[Theorie-Happen] --> B[Übung]
     B --> C[Projekt]
-    C --> D[Checkpoint]
+    C --> D[Trainer Live-Coding]
 ```
 
 | Phase | Dauer | Was passiert? |
 |-------|-------|---------------|
-| :material-book-open-outline: Theorie | ~1 Std. | Neues Wissen als Input |
-| :material-pencil-outline: Übung | ~1 Std. | Geführte Aufgabe zum Ausprobieren |
-| :material-hammer-wrench: Projekt | ~2–3 Std. | Am eigenen Projekt arbeiten |
-| :material-clipboard-check-outline: Checkpoint | ~45 Min. | Tagesabschluss, Rückblick, Fragen |
+| :material-book-open-outline: Theorie-Happen | ~2 Std. | 5–6 kurze Happen à ~10 min, dazwischen Live-Coding |
+| :material-pencil-outline: Übung | ~2 Std. | WOW-Effekt: leeres Repo, Schritt für Schritt mit Lücken |
+| :material-hammer-wrench: Projekt | ~2–3 Std. | Am eigenen Hauptprojekt arbeiten (`app/`) |
+| :material-code-braces: Trainer Live-Coding | ~1 Std. | Trainer zeigt die exakte Projekt-Lösung des Tages |
+
+Tag 4: **freies Austoben** (Polish + optionale Features). Tag 5: **nur Demo**.
 
 ## Wochenübersicht
 
-| Tag | Datum | Fokus |
-|-----|-------|-------|
-| Tag 1 | 06.08. | Einstieg, Web-App Basics, erste Oberfläche |
-| Tag 2 | 07.08. | JSON, API, Fetch, Statuslogik, Verlauf |
-| Tag 3 | 10.08. | Retro, Schnittstellen, Integration, Demo-Vorbereitung |
-| Tag 4 | 11.08. | Finish, Testen, optionale Features, Demo finalisieren |
-| Tag 5 | 12.08. | Präsentation & Abschluss |
+| Tag | Fokus |
+|-----|-------|
+| Tag 1 | Einstieg, Web-App Basics, erste Oberfläche |
+| Tag 2 | JSON, API, Fetch, Statuslogik, Verlauf |
+| Tag 3 | API-Anbindung mit vereinfachtem Fallback, Layout final |
+| Tag 4 | Polish + optionale Features (Dark Mode, Chart.js, Auto-Refresh, …) |
+| Tag 5 | Demo & Abschluss |
+
+> **Hinweis**: Diese Übersicht verwendet bewusst **keine konkreten
+> Datumsangaben**. Die aktuelle Woche gilt, der genaue Tag wird
+> im Kurs bekannt gegeben.
 
 ## Los geht's
 
-Starte mit [Tag 1](tag-1/index.md) oder lies zuerst die [Projektübersicht](projekt/ueberblick.md).
+Starte mit [Tag 1](tag-1/index.md) oder lies zuerst das
+[Curriculum V2](curriculum-v2.md) für den Gesamtüberblick.
