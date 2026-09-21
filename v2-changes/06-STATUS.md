@@ -84,15 +84,19 @@
 - ✅ **Phase 6 (T60-T65)** komplett: Projekt-Anleitung-
   Template (T60), 5 Tages-Projekt-Anleitungen Tag 1-5
   (T61-T65). Jede folgt dem 8-Sektionen-Schema aus T60.
-  Schritte, Code, Tests, DoD durchgängig. Q8
+  Schritte, Code, Tests, DoD durchgängig.
+- ✅ **Phase 7 (T70-T75)** komplett: Trainer-Live-Coding-
+  Template (T70), 5 Tag-Anweisungen Tag 1-5 (T71-T75).
+  Tag 1-4 sind Co-dets; Tag 5 ist Demo-Moderation.
+  F4-Reihenfolge (const → function → calls) konsequent. Q8
   vollständig erfüllt.
 
 ## Aktuell offen / wartend
 
 - 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell Commits lokal)
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Phase 7 bereit**: T70–T75 (Trainer-Live-Coding-Anweisungen, im ae-trainer-briefing)
-- ⬜ **Alle weiteren Phasen** (8): bereit zum Starten
+- ⬜ **Phase 8 bereit**: T80–T85 (Integration & Polish)
+- ⬜ Phase 9 nach Freigabe
 
 ## Was bewusst NICHT gemacht wurde
 

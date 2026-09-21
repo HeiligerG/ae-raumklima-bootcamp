@@ -126,12 +126,12 @@ Vorbedingung: T13, T30.
 
 | ID | Task | Status | Notes |
 |---|---|---|---|
-| T70 | Template für Trainer-Live-Coding-Anweisung erstellen | ⬜ | Datei → Konfig → Funktion1 → Funktion2 → … → Erklärungen → Andeutungen |
-| T71 | Trainer-Anweisung Tag 1 (Projekt-Lösung) | ⬜ | |
-| T72 | Trainer-Anweisung Tag 2 | ⬜ | |
-| T73 | Trainer-Anweisung Tag 3 | ⬜ | |
-| T74 | Trainer-Anweisung Tag 4 (Optional Features / Polish) | ⬜ | |
-| T75 | Trainer-Anweisung Tag 5 (Demo-Moderation) | ⬜ | |
+| T70 | Template für Trainer-Live-Coding-Anweisung erstellen | ✅ | Datei → Konfig → Funktion1 → Funktion2 → … → Erklärungen → Andeutungen |
+| T71 | Trainer-Anweisung Tag 1 (Projekt-Lösung) | ✅ | |
+| T72 | Trainer-Anweisung Tag 2 | ✅ | |
+| T73 | Trainer-Anweisung Tag 3 | ✅ | |
+| T74 | Trainer-Anweisung Tag 4 (Optional Features / Polish) | ✅ | |
+| T75 | Trainer-Anweisung Tag 5 (Demo-Moderation) | ✅ | |
 
 ---
 
