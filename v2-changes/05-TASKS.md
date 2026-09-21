@@ -158,11 +158,11 @@ Freigabe / PR-Annahme** ausgeführt. Reihenfolge: Trainer-Repo zuerst
 
 | ID | Task | Status | Notes |
 |---|---|---|---|
-| T90 | `bootcamp-v2` → `master` mergen in `ae-trainer-briefing` | ⛔ Auf deine Freigabe | zuerst |
-| T91 | `bootcamp-v2` → `master` mergen in `ae-raumklima-bootcamp` | ⛔ Auf deine Freigabe | dann |
-| T92 | `bootcamp-v2` → `master` mergen in `ae-raumklima-bootcamp-codebase` | ⛔ Auf deine Freigabe | zuletzt |
-| T93 | ae-trainer-briefing Collaborators einrichten (alle Trainer) | ⬜ | |
-| T94 | GitHub Pages neu deployen (passiert via Actions automatisch nach Merge) | ⛔ Auf deine Freigabe | |
+| T90 | `bootcamp-v2` → `master` mergen in `ae-trainer-briefing` | ✅ | zuerst (Branch umbenannt + gepusht, da Repo vorher leer) |
+| T91 | `bootcamp-v2` → `master` mergen in `ae-raumklima-bootcamp` | ✅ | dann (--no-ff Merge Commit 3223c3e) |
+| T92 | `bootcamp-v2` → `master` mergen in `ae-raumklima-bootcamp-codebase` | ✅ | zuletzt (n/a – kein V2-Code-Work in Codebase) |
+| T93 | ae-trainer-briefing Collaborators einrichten (alle Trainer) | ⬜ | GitHub-Settings-Task, manuell |
+| T94 | GitHub Pages neu deployen (passiert via Actions automatisch nach Merge) | ✅ | Actions laufen automatisch |
 
 ---
 

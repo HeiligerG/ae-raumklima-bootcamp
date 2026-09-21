@@ -1,5 +1,9 @@
 # Status – was bereits gemacht wurde
 
+> **Stand Phase 9**: V2 ist gemerged und gepusht! Phase 9 ist
+> abgeschlossen (T90, T91, T92, T94). T93 (Collaborators) ist
+> ein GitHub-Settings-Task und bleibt manuell.
+
 ## Erledigt
 
 ### 2026-08-10
@@ -105,10 +109,9 @@
 
 ## Aktuell offen / wartend
 
-- 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell Commits lokal)
-- ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ✅ **Phase 8 abgeschlossen** (T80-T85)
-- ⬜ **Phase 9 bereit** (nach deiner Freigabe): T90-T94
+- ⬜ **T93** (ae-trainer-briefing Collaborators) – GitHub-Settings, manuell durch dich.
+- ✅ **Phase 9 abgeschlossen** (T90, T91, T92, T94)
+- ✅ **V1 → V2 Übergang**: alle Branches gemerged + gepusht auf `master`
 
 ## Was bewusst NICHT gemacht wurde
 
