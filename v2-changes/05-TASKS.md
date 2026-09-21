@@ -60,17 +60,17 @@ Vorbedingung: T00–T02 erledigt.
 
 | ID | Task | Status | Notes |
 |---|---|---|---|
-| T30 | `ae-trainer-briefing/` auf `bootcamp-v2` komplett aufsetzen: MkDocs (`mkdocs.yml`), GitHub Actions Workflow (`.github/workflows/deploy.yml`), `requirements.txt`, `.gitignore`, `CODE_OF_CONDUCT.md` (Trainer-Verhaltenskodex), `README.md`, `docs/index.md` | ⬜ | Repo existiert leer, Branch erstellt |
-| T31 | Template für Präsentations-Folien-Skript erstellen | ⬜ | |
-| T32 | Template für Live-Coding-Skript pro Happen (5–15 min) erstellen | ⬜ | |
-| T33 | Präsentations-Skript Tag 1 schreiben | ⬜ | |
-| T34 | Live-Coding-Skript(e) Tag 1 schreiben (1 pro Happen = ~6 Stück) | ⬜ | |
-| T35 | Präsentations-Skript Tag 2 schreiben | ⬜ | |
-| T36 | Live-Coding-Skript(e) Tag 2 schreiben | ⬜ | |
-| T37 | Präsentations-Skript Tag 3 schreiben | ⬜ | |
-| T38 | Live-Coding-Skript(e) Tag 3 schreiben | ⬜ | |
-| T39 | Auswahl-Kurzpräsentationen Tag 4 schreiben (mehrere Slots à 10–15 min): Dark Mode, Chart.js, Animationen, Auto-Refresh | ⬜ | im Trainer-Repo unter `docs/praesentationen/tag-4-kurz/` |
-| T40 | Demo-Moderations-Skript Tag 5 schreiben | ⬜ | |
+| T30 | `ae-trainer-briefing/` auf `bootcamp-v2` komplett aufsetzen: MkDocs (`mkdocs.yml`), GitHub Actions Workflow (`.github/workflows/deploy.yml`), `requirements.txt`, `.gitignore`, `CODE_OF_CONDUCT.md` (Trainer-Verhaltenskodex), `README.md`, `docs/index.md` | ✅ | Repo existiert leer, Branch erstellt |
+| T31 | Template für Präsentations-Folien-Skript erstellen | ✅ | |
+| T32 | Template für Live-Coding-Skript pro Happen (5–15 min) erstellen | ✅ | |
+| T33 | Präsentations-Skript Tag 1 schreiben | ✅ | |
+| T34 | Live-Coding-Skript(e) Tag 1 schreiben (1 pro Happen = ~6 Stück) | ✅ | |
+| T35 | Präsentations-Skript Tag 2 schreiben | ✅ | |
+| T36 | Live-Coding-Skript(e) Tag 2 schreiben | ✅ | |
+| T37 | Präsentations-Skript Tag 3 schreiben | ✅ | |
+| T38 | Live-Coding-Skript(e) Tag 3 schreiben | ✅ | |
+| T39 | Auswahl-Kurzpräsentationen Tag 4 schreiben (mehrere Slots à 10–15 min): Dark Mode, Chart.js, Animationen, Auto-Refresh | ✅ | im Trainer-Repo unter `docs/praesentationen/tag-4-kurz/` |
+| T40 | Demo-Moderations-Skript Tag 5 schreiben | ✅ | |
 
 ---
 

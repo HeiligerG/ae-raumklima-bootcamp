@@ -60,15 +60,23 @@
 - ✅ **T26**: `docs/index.md` umgeschrieben (Wochenübersicht
   ohne konkrete Daten, Tag 1–5 statt 06.08.–12.08.).
 - ✅ **T27**: `mkdocs.yml` Nav aktualisiert (Titel ohne Daten,
-  18 Happen + 2 Stubs eingebunden, V1-Langseiten raus). Q8
+  18 Happen + 2 Stubs eingebunden, V1-Langseiten raus).
+- ✅ **Phase 3 (T30-T40, ae-trainer-briefing)** komplett:
+  Repo komplett aufgesetzt (MkDocs + Workflow + README +
+  CODE_OF_CONDUCT), Präsentations-Template (T31) +
+  Live-Coding-Template (T32), 3 Tages-Präsentationen
+  Tag 1-3 (T33/T35/T37) + 3 Tages-Live-Codings Tag 1-3
+  (T34/T36/T38), 4 Tag-4-Auswahl-Slots (T39), Demo-
+  Moderation Tag 5 (T40). 11 Commits auf
+  `ae-trainer-briefing/bootcamp-v2`. Q8
   vollständig erfüllt.
 
 ## Aktuell offen / wartend
 
 - 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell 16 Commits lokal)
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Phase 3 bereit**: T30–T40 (Trainer-Repo `ae-trainer-briefing`)
-- ⬜ **Alle weiteren Phasen** (4–8): bereit zum Starten
+- ⬜ **Phase 4 bereit**: T45–T49 (Trainer-Material aus ae-bootcamp auslagern)
+- ⬜ **Alle weiteren Phasen** (5–8): bereit zum Starten
 
 ## Was bewusst NICHT gemacht wurde
 
