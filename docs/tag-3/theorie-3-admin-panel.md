@@ -67,7 +67,7 @@ async function fillSensorDropdown() {
   const sensors = await response.json();
 
   const select = document.getElementById('sensor-select');
-  select.innerHTML = '';   // alte Optionen entfernen – siehe unten
+  select.replaceChildren();   // alte Optionen entfernen – kein innerHTML
 
   for (const sensor of sensors) {
     const option = document.createElement('option');
@@ -78,11 +78,9 @@ async function fillSensorDropdown() {
 }
 ```
 
-**Wichtig – kein innerHTML-Drift**: Die Zeile
-`select.innerHTML = ''` ist hier **erlaubt**, weil wir **nichts**
-vom Nutzer dort reinschreiben. Wir leeren nur den Container.
-Trotzdem: für die **einzelnen Optionen** setzen wir `value` und
-`textContent` über Properties – **nicht** über innerHTML.
+**Wichtig**: Wir benutzen **`replaceChildren()`** zum Leeren, nicht
+`innerHTML = ''`. Für die einzelnen Optionen setzen wir `value` und
+`textContent` über Properties. **Niemals** `innerHTML` mit Daten.
 
 ## Probier es aus
 
