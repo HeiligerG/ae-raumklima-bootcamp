@@ -50,13 +50,25 @@
   betont, 8 Pflicht-Bestandteile inkl. Vorbereitung + Lücken + separater
   Lücken-Hinweis, aufklappbare Lösungs-Box, 3 WOW-Bedingungen,
   Negativ+Positiv-Beispiel, 11-Punkte-Selbst-Check, Querverweise).
+- ✅ **T20–T24**: 18 Theorie-Happen + 2 Stubs geschrieben
+  (6 pro Tag 1–3 in docs/tag-{1,2,3}/theorie-{1..6}-*.md, plus
+  theorie.md-Stub für Tag 4 und Tag 5).
+- ✅ **T25**: textContent-Quercheck. Alle V2-Happen benutzen
+  `textContent`, `replaceChildren()` oder Properties. Kein
+  `innerHTML` in echten Code-Beispielen. Erwähnungen sind
+  ausschliesslich Warnhinweise.
+- ✅ **T26**: `docs/index.md` umgeschrieben (Wochenübersicht
+  ohne konkrete Daten, Tag 1–5 statt 06.08.–12.08.).
+- ✅ **T27**: `mkdocs.yml` Nav aktualisiert (Titel ohne Daten,
+  18 Happen + 2 Stubs eingebunden, V1-Langseiten raus). Q8
+  vollständig erfüllt.
 
 ## Aktuell offen / wartend
 
-- 🟡 **Auf dein "go" zum Commit** der Planungs-Files + der T10/T11-Dokus auf `bootcamp-v2`
+- 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell 16 Commits lokal)
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Phase 2 bereit**: T20-T27 (Theorie-Stoff neu strukturieren)
-- ⬜ **Alle anderen Phasen** (2–8): bereit zum Starten
+- ⬜ **Phase 3 bereit**: T30–T40 (Trainer-Repo `ae-trainer-briefing`)
+- ⬜ **Alle weiteren Phasen** (4–8): bereit zum Starten
 
 ## Was bewusst NICHT gemacht wurde
 
@@ -84,11 +96,16 @@ Status: clean (nur Branch erstellt, kein Inhalt)
 
 ## Vorschlag für nächsten Schritt
 
-1. **Commit** der 7 Planungs-Files + der zwei Dokus (`docs/curriculum-v2.md`,
-   `docs/sprachstil-v2.md`) auf `bootcamp-v2` im ae-bootcamp-Repo
-   (sage einfach "commit" und ich mach's).
-2. Wir setzen **Phase 1** fort mit T12 (Fallback-Strategie-Doku).
-3. Danach **Phase 3** (T30) – `ae-trainer-briefing` komplett aufsetzen.
+1. **Push** der 16 Commits auf `origin/bootcamp-v2` – oder weiter
+   lokal arbeiten und am Ende einmal pushen.
+2. **Phase 3** (T30–T40) – `ae-trainer-briefing`-Repo komplett
+   aufsetzen (MkDocs + Workflow + Templates + Skripten Tag 1–5).
+3. **Phase 4** (T45–T49) – Trainer-Material aus ae-bootcamp
+   auslagern.
+4. **Phase 5** (T50–T52) – Übungen schreiben (WOW-Effekt).
+5. **Phase 6** (T60–T65) – Projekt-Anleitungen.
+6. **Phase 7** (T70–T75) – Trainer-Live-Coding-Anweisungen.
+7. **Phase 8** (T80–T85) – Polish, Quer-Checks, Build-Tests.
 
 ## Drei Branches – Verwendungszweck
 

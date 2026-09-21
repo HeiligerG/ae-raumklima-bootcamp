@@ -43,14 +43,14 @@ Vorbedingung: T10, T13 erledigt.
 
 | ID | Task | Status | Notes |
 |---|---|---|---|
-| T20 | Tag 1: 5–6 Theorie-Happen erstellen (HTML/CSS, ohne JS); bestehende `theorie-webapp-basics.md` restrukturieren oder ersetzen | ⬜ | ohne Datums-Zusatz |
-| T21 | Tag 2: 5–6 Theorie-Happen + `theorie-json-api-fetch.md` restrukturieren | ⬜ | ohne Datums-Zusatz |
-| T22 | Tag 3: 5–6 Theorie-Happen + Theorie für Integration (2-stufig-Fallback ohne localStorage) | ⬜ | ohne Datums-Zusatz |
-| T23 | Tag 4: KEINE Pflicht-Theorie. Nur Stub-Seite mit Hinweis auf Auswahl-Kurzpräsentationen im Trainer-Repo | ⬜ | |
-| T24 | Tag 5: KEINE Theorie. Nur Stub-Seite mit Hinweis auf Demo-Material | ⬜ | |
-| T25 | Alle Theorie-Seiten auf `textContent`/best practices prüfen (`innerHTML` rigoros eliminieren) | ⬜ | Quer-Check |
-| T26 | `index.md` (Startseite) und Wochenübersicht **ohne konkrete Daten** umschreiben | ⬜ | "Tag 1, Tag 2, …" statt "06.08., 07.08., …" |
-| T27 | `mkdocs.yml` Nav anpassen: `Tag 1 – Datum` → `Tag 1` (alle 5 Tage) | ⬜ | |
+| T20 | Tag 1: 5–6 Theorie-Happen erstellen (HTML/CSS, ohne JS); bestehende `theorie-webapp-basics.md` restrukturieren oder ersetzen | ✅ | ohne Datums-Zusatz |
+| T21 | Tag 2: 5–6 Theorie-Happen + `theorie-json-api-fetch.md` restrukturieren | ✅ | ohne Datums-Zusatz |
+| T22 | Tag 3: 5–6 Theorie-Happen + Theorie für Integration (2-stufig-Fallback ohne localStorage) | ✅ | ohne Datums-Zusatz |
+| T23 | Tag 4: KEINE Pflicht-Theorie. Nur Stub-Seite mit Hinweis auf Auswahl-Kurzpräsentationen im Trainer-Repo | ✅ | |
+| T24 | Tag 5: KEINE Theorie. Nur Stub-Seite mit Hinweis auf Demo-Material | ✅ | |
+| T25 | Alle Theorie-Seiten auf `textContent`/best practices prüfen (`innerHTML` rigoros eliminieren) | ✅ | Quer-Check |
+| T26 | `index.md` (Startseite) und Wochenübersicht **ohne konkrete Daten** umschreiben | ✅ | "Tag 1, Tag 2, …" statt "06.08., 07.08., …" |
+| T27 | `mkdocs.yml` Nav anpassen: `Tag 1 – Datum` → `Tag 1` (alle 5 Tage) | ✅ | |
 
 ---
 
