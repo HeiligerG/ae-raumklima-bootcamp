@@ -80,11 +80,11 @@ Vorbedingung: T30 erledigt.
 
 | ID | Task | Status | Notes |
 |---|---|---|---|
-| T45 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/hinweise.md` nach `ae-trainer-briefing/docs/hinweise.md` übernehmen / neu schreiben | ⬜ | |
-| T46 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/tagesplanung.md` aufteilen und in `ae-trainer-briefing/docs/praesentationen/tag-1.md`, `tag-2.md`, `tag-3.md` integrieren | ⬜ | |
-| T47 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/risiken-und-fallbacks.md` nach `ae-trainer-briefing/docs/risiken-und-fallbacks.md` übernehmen | ⬜ | |
-| T48 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/demo-sensor.md` nach `ae-trainer-briefing/docs/demo-sensor.md` übernehmen | ⬜ | |
-| T49 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/index.md` in `ae-trainer-briefing/docs/index.md` integrieren | ⬜ | |
+| T45 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/hinweise.md` nach `ae-trainer-briefing/docs/hinweise.md` übernehmen / neu schreiben | ✅ | |
+| T46 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/tagesplanung.md` aufteilen und in `ae-trainer-briefing/docs/praesentationen/tag-1.md`, `tag-2.md`, `tag-3.md` integrieren | ✅ | |
+| T47 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/risiken-und-fallbacks.md` nach `ae-trainer-briefing/docs/risiken-und-fallbacks.md` übernehmen | ✅ | |
+| T48 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/demo-sensor.md` nach `ae-trainer-briefing/docs/demo-sensor.md` übernehmen | ✅ | |
+| T49 | Inhalt aus `ae-raumklima-bootcamp/docs/trainer/index.md` in `ae-trainer-briefing/docs/index.md` integrieren | ✅ | |
 
 ---
 

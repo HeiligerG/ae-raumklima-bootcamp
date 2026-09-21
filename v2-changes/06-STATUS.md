@@ -68,15 +68,22 @@
   Tag 1-3 (T33/T35/T37) + 3 Tages-Live-Codings Tag 1-3
   (T34/T36/T38), 4 Tag-4-Auswahl-Slots (T39), Demo-
   Moderation Tag 5 (T40). 11 Commits auf
-  `ae-trainer-briefing/bootcamp-v2`. Q8
+  `ae-trainer-briefing/bootcamp-v2`.
+- ✅ **Phase 4 (T45-T49)** komplett: Hinweise (T45),
+  Tagesplanung (T46), Risiken & Fallbacks (T47),
+  Demo-Sensor (T48) nach `ae-trainer-briefing/docs/`
+  migriert und an V2 angepasst. trainer-Index (T49)
+  integriert. V1-trainer/-Ordner im Lernleitfaden auf
+  Stub-Status reduziert. mkdocs.yml Nav entsprechend
+  reduziert. Q8
   vollständig erfüllt.
 
 ## Aktuell offen / wartend
 
-- 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell 16 Commits lokal)
+- 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell Commits lokal)
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Phase 4 bereit**: T45–T49 (Trainer-Material aus ae-bootcamp auslagern)
-- ⬜ **Alle weiteren Phasen** (5–8): bereit zum Starten
+- ⬜ **Phase 5 bereit**: T50–T52 (Übungen WOW-Effekt, in ae-bootcamp/docs/uebungen/)
+- ⬜ **Alle weiteren Phasen** (6–8): bereit zum Starten
 
 ## Was bewusst NICHT gemacht wurde
 
