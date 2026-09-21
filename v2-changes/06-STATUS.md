@@ -41,12 +41,16 @@
   2-stufig ohne localStorage, code-Block aus Konzept §5, Zeile-für-Zeile-
   Erklärung, wann greift Fallback, Test-Anleitung, warum ohne
   localStorage, Verweis auf T52/T63/T81).
+- ✅ **T13**: `docs/projekt/projekt-schritt-template.md` geschrieben
+  (Projekt-Schritt-Schema: 6 Pflicht-Bestandteile, optionale, Negativ-
+  + Positiv-Beispiel, Selbst-Check vor Commit, Querverweise auf
+  sprachstil-v2, T14, T70-T75).
 
 ## Aktuell offen / wartend
 
 - 🟡 **Auf dein "go" zum Commit** der Planungs-Files + der T10/T11-Dokus auf `bootcamp-v2`
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Phase 1 verbleibend**: T13 (Projekt-Template), T14 (Übungs-Template)
+- ⬜ **Phase 1 verbleibend**: T14 (Übungs-Template)
 - ⬜ **Alle anderen Phasen** (2–8): bereit zum Starten
 
 ## Was bewusst NICHT gemacht wurde

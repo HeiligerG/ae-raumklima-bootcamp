@@ -32,7 +32,7 @@ Vorbedingung: T00–T02 erledigt.
 | T10 | Curriculum-Design-Doku schreiben (`docs/curriculum-v2.md` im ae-bootcamp-Repo): Tagesstruktur Tag 1–5, Lernziele pro Tag, was wegfällt, was neu kommt | ✅ | baut auf `03-KONZEPT.md` auf |
 | T11 | Sprachniveau-Check der Theorie-Texte: bestimmen wo Vereinfachungen nötig sind | ✅ | pro Theorie-Seite einzeln |
 | T12 | Fallback-Strategie (2-stufig ohne `localStorage`) in `docs/projekt/fallback-strategie.md` dokumentieren | ✅ | baut auf `03-KONZEPT.md` §5 |
-| T13 | Projekt-Schritt-Anleitungs-Template erstellen: das Schema, nach dem alle Projekt-Schritte gebaut werden (siehe `03-KONZEPT.md` §4) | ⬜ | |
+| T13 | Projekt-Schritt-Anleitungs-Template erstellen: das Schema, nach dem alle Projekt-Schritte gebaut werden (siehe `03-KONZEPT.md` §4) | ✅ | |
 | T14 | Übungs-Schritt-Anleitungs-Template erstellen: Schema für WOW-Effekt-Übungen (siehe `03-KONZEPT.md` §3) | ⬜ | |
 
 ---
