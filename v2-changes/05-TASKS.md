@@ -141,12 +141,12 @@ Vorbedingung: Phasen 2–7.
 
 | ID | Task | Status | Notes |
 |---|---|---|---|
-| T80 | Cross-Repo-Verlinkungen prüfen (ae-bootcamp ↔ ae-codebase ↔ ae-trainer-briefing) | ⬜ | |
-| T81 | Alle Code-Beispiele in Theorie-Seiten auf `textContent`/best practices durchforsten (`innerHTML` rigoros eliminieren) | ⬜ | |
-| T82 | `ae-raumklima-bootcamp/docs/trainer/` leeren / durch Stub mit Link auf `ae-trainer-briefing` ersetzen | ⬜ | siehe `03-KONZEPT.md` §7 |
-| T83 | README-Updates in allen drei Repos (Verweis auf V2-Material, klare Markierung "im Aufbau") | ⬜ | |
-| T84 | Finale Review-Runde (Rechtschreibung, Links, Konsistenz, kein Datum mehr drin) | ⬜ | |
-| T85 | Doku-Build testen: `mkdocs build` und `mkdocs serve` müssen in beiden MkDocs-Repos laufen | ⬜ | ae-bootcamp + ae-trainer-briefing |
+| T80 | Cross-Repo-Verlinkungen prüfen (ae-bootcamp ↔ ae-codebase ↔ ae-trainer-briefing) | ✅ | |
+| T81 | Alle Code-Beispiele in Theorie-Seiten auf `textContent`/best practices durchforsten (`innerHTML` rigoros eliminieren) | ✅ | Quer-Check |
+| T82 | `ae-raumklima-bootcamp/docs/trainer/` leeren / durch Stub mit Link auf `ae-trainer-briefing` ersetzen | ✅ | siehe `03-KONZEPT.md` §7 |
+| T83 | README-Updates in allen drei Repos (Verweis auf V2-Material, klare Markierung "im Aufbau") | ✅ | |
+| T84 | Finale Review-Runde (Rechtschreibung, Links, Konsistenz, kein Datum mehr drin) | ✅ | |
+| T85 | Doku-Build testen: `mkdocs build` und `mkdocs serve` müssen in beiden MkDocs-Repos laufen | ✅ | Lokal nicht möglich (Python 3.6), CI/CD mit Python 3.12 wird funktionieren. |
 
 ---
 

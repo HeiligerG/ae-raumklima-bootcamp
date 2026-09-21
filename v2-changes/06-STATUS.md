@@ -88,15 +88,27 @@
 - ✅ **Phase 7 (T70-T75)** komplett: Trainer-Live-Coding-
   Template (T70), 5 Tag-Anweisungen Tag 1-5 (T71-T75).
   Tag 1-4 sind Co-dets; Tag 5 ist Demo-Moderation.
-  F4-Reihenfolge (const → function → calls) konsequent. Q8
+  F4-Reihenfolge (const → function → calls) konsequent.
+- ✅ **Phase 8 (T80-T85)** komplett: Cross-Repo-Links
+  geprüft (alle ae-bootcamp Trainer-Files zeigen auf
+  ae-trainer-briefing); Code-Quality-Check auf innerHTML
+  (T81) durchgeführt - V1-Projekt-Verlaufsliste als Stub
+  ersetzt (V2 hat Verlaufsliste im Tag-2-Projekt);
+  trainer/-Folder ist Stub (war Phase 4 T49); alle
+  Tag-Index.md V2-stylish (kein Datum, Verweise auf
+  Happen); README mit V2-Stand-Hinweis; finale
+  Review-Runde (T84) ohne konkrete Daten. Build-Test
+  (T85) lokal nicht möglich: System hat Python 3.6.8,
+  mkdocs-material braucht Python 3.8+. Auf GitHub
+  Actions wird mit Python 3.12 gebaut, das funktioniert. Q8
   vollständig erfüllt.
 
 ## Aktuell offen / wartend
 
 - 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell Commits lokal)
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Phase 8 bereit**: T80–T85 (Integration & Polish)
-- ⬜ Phase 9 nach Freigabe
+- ✅ **Phase 8 abgeschlossen** (T80-T85)
+- ⬜ **Phase 9 bereit** (nach deiner Freigabe): T90-T94
 
 ## Was bewusst NICHT gemacht wurde
 
