@@ -111,12 +111,12 @@ Vorbedingung: T13 erledigt.
 
 | ID | Task | Status | Notes |
 |---|---|---|---|
-| T60 | Projekt-Schritt-Template finalisieren und in `ae-bootcamp/docs/projekt/projekt-anleitung-template.md` ablegen als Referenz | ⬜ | |
-| T61 | Projekt Tag 1 als Schritt-Anleitung: Dashboard-Grundlayout (HTML + CSS, kein JS) | ⬜ | |
-| T62 | Projekt Tag 2: Daten aus `data.json` laden, Statuslogik, Verlauf | ⬜ | |
-| T63 | Projekt Tag 3: API-Anbindung (2-stufig-Fallback ohne localStorage) | ⬜ | |
-| T64 | Projekt Tag 4: Polish, Testen, optional Features – Schritt-Anleitung für "freies Austoben" | ⬜ | |
-| T65 | Projekt Tag 5: Demo-Vorbereitung (Anleitung für Demo-Skript) | ⬜ | |
+| T60 | Projekt-Schritt-Template finalisieren und in `ae-bootcamp/docs/projekt/projekt-anleitung-template.md` ablegen als Referenz | ✅ | |
+| T61 | Projekt Tag 1 als Schritt-Anleitung: Dashboard-Grundlayout (HTML + CSS, kein JS) | ✅ | |
+| T62 | Projekt Tag 2: Daten aus `data.json` laden, Statuslogik, Verlauf | ✅ | |
+| T63 | Projekt Tag 3: API-Anbindung (2-stufig-Fallback ohne localStorage) | ✅ | |
+| T64 | Projekt Tag 4: Polish, Testen, optional Features – Schritt-Anleitung für "freies Austoben" | ✅ | |
+| T65 | Projekt Tag 5: Demo-Vorbereitung (Anleitung für Demo-Skript) | ✅ | |
 
 ---
 

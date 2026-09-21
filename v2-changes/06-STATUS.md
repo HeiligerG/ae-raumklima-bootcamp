@@ -80,15 +80,19 @@
   WOW-Effekt geschrieben (Tag 1 HTML/CSS, Tag 2
   JSON/fetch, Tag 3 Statuslogik). Folgen dem
   Übungs-Schritt-Template (T14): Lücken, separate
-  Hinweise, aufklappbare Lösung. Q8
+  Hinweise, aufklappbare Lösung.
+- ✅ **Phase 6 (T60-T65)** komplett: Projekt-Anleitung-
+  Template (T60), 5 Tages-Projekt-Anleitungen Tag 1-5
+  (T61-T65). Jede folgt dem 8-Sektionen-Schema aus T60.
+  Schritte, Code, Tests, DoD durchgängig. Q8
   vollständig erfüllt.
 
 ## Aktuell offen / wartend
 
 - 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell Commits lokal)
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Phase 6 bereit**: T60–T65 (Projekt-Anleitungen)
-- ⬜ **Alle weiteren Phasen** (7–8): bereit zum Starten
+- ⬜ **Phase 7 bereit**: T70–T75 (Trainer-Live-Coding-Anweisungen, im ae-trainer-briefing)
+- ⬜ **Alle weiteren Phasen** (8): bereit zum Starten
 
 ## Was bewusst NICHT gemacht wurde
 
