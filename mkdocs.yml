@@ -115,7 +115,12 @@ nav:
       - "EDB (Entwickler Digital Business)": projekt/edb.md
       - "Quellen & KI-Verbot": projekt/quellen.md
       - "Projekt-Schritt-Template (V2)": projekt/projekt-schritt-template.md
+      - "Projekt-Anleitung-Template (V2)": projekt/projekt-anleitung-template.md
       - "Übungs-Schritt-Template (V2)": uebungen/uebung-schritt-template.md
+  - Übungen:
+      - "Übung Tag 1": uebungen/tag-1/aufgabe.md
+      - "Übung Tag 2": uebungen/tag-2/aufgabe.md
+      - "Übung Tag 3": uebungen/tag-3/aufgabe.md
   - "Tag 1":
       - tag-1/index.md
       - "Theorie: Web-App": tag-1/theorie-1-was-ist-eine-webapp.md
@@ -137,6 +142,7 @@ nav:
       - "Theorie: Verlaufsliste": tag-2/theorie-6-verlaufsliste.md
       - "Übung: Daten laden": tag-2/uebung-daten-laden.md
       - "Projekt: Statuslogik & Verlauf": tag-2/projekt-statuslogik-verlauf.md
+      - "Schnittstellen (Joint-Session)": tag-2/schnittstellen.md
       - "Checkpoint": tag-2/checkpoint.md
   - "Tag 3":
       - tag-3/index.md
@@ -156,10 +162,12 @@ nav:
       - "Pflichtumfang fertigstellen": tag-4/finish.md
       - "Testen & Bugs fixen": tag-4/testen.md
       - "Optionale Features": tag-4/optionale-features.md
+      - "Projekt Tag 4 (V2)": tag-4/projekt-tag-4.md
       - "Checkpoint": tag-4/checkpoint.md
   - "Tag 5":
       - tag-5/index.md
       - "Theorie (Stub)": tag-5/theorie.md
       - "Demo & Abschluss": tag-5/demo-abschluss.md
+      - "Projekt Tag 5 (V2)": tag-5/projekt-tag-5.md
   - "Für Trainer (ausgelagert)":
       - trainer/index.md
