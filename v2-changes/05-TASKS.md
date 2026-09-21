@@ -94,9 +94,9 @@ Vorbedingung: T14 erledigt.
 
 | ID | Task | Status | Notes |
 |---|---|---|---|
-| T50 | Übung Tag 1: WOW-Effekt-Übung in `ae-bootcamp/docs/uebungen/tag-1/aufgabe.md` schreiben (HTML/CSS, kleines Projekt, Schritt-für-Schritt) | ⬜ | baut auf `03-KONZEPT.md` §3 |
-| T51 | Übung Tag 2: WOW-Effekt-Übung (JS-Grundlagen + fetch auf data.json) | ⬜ | |
-| T52 | Übung Tag 3: WOW-Effekt-Übung (Datenkonsum + Statuslogik ohne localStorage) | ⬜ | |
+| T50 | Übung Tag 1: WOW-Effekt-Übung in `ae-bootcamp/docs/uebungen/tag-1/aufgabe.md` schreiben (HTML/CSS, kleines Projekt, Schritt-für-Schritt) | ✅ | baut auf `03-KONZEPT.md` §3 |
+| T51 | Übung Tag 2: WOW-Effekt-Übung (JS-Grundlagen + fetch auf data.json) | ✅ | |
+| T52 | Übung Tag 3: WOW-Effekt-Übung (Datenkonsum + Statuslogik ohne localStorage) | ✅ | |
 | T53 | Übung Tag 4: NICHT im Lernleitfaden – gehört zu Phase 3 (Auswahl-Kurzpräsentationen im Trainer-Repo) | n/a | siehe T39 |
 | T54 | Übung Tag 5: NICHT vorhanden | n/a | Demo-Tag |
 

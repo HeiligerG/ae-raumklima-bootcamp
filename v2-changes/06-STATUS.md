@@ -75,15 +75,20 @@
   migriert und an V2 angepasst. trainer-Index (T49)
   integriert. V1-trainer/-Ordner im Lernleitfaden auf
   Stub-Status reduziert. mkdocs.yml Nav entsprechend
-  reduziert. Q8
+  reduziert.
+- ✅ **Phase 5 (T50-T52)** komplett: 3 Übungen mit
+  WOW-Effekt geschrieben (Tag 1 HTML/CSS, Tag 2
+  JSON/fetch, Tag 3 Statuslogik). Folgen dem
+  Übungs-Schritt-Template (T14): Lücken, separate
+  Hinweise, aufklappbare Lösung. Q8
   vollständig erfüllt.
 
 ## Aktuell offen / wartend
 
 - 🟡 **Push** auf `origin/bootcamp-v2` (auf deine Freigabe – aktuell Commits lokal)
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Phase 5 bereit**: T50–T52 (Übungen WOW-Effekt, in ae-bootcamp/docs/uebungen/)
-- ⬜ **Alle weiteren Phasen** (6–8): bereit zum Starten
+- ⬜ **Phase 6 bereit**: T60–T65 (Projekt-Anleitungen)
+- ⬜ **Alle weiteren Phasen** (7–8): bereit zum Starten
 
 ## Was bewusst NICHT gemacht wurde
 
