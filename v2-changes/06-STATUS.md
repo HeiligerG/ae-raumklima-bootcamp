@@ -9,7 +9,7 @@
   - `ae-raumklima-bootcamp-codebase` → Branch `bootcamp-v2` (auf master-Basis)
   - `ae-trainer-briefing` → Branch `bootcamp-v2` (auf master-Basis)
 - ✅ **Planungs-Ordner** `v2-changes/` im `ae-raumklima-bootcamp`-Repo
-  angelegt mit 6 Files:
+  angelegt mit 7 Files:
   - `00-INDEX.md` – Übersicht
   - `01-ANFORDERUNGEN.md` – Roh-Anforderungen + alle 10 Entscheidungen
   - `02-GROUND-RULES.md` – harte Constraints
@@ -30,11 +30,20 @@
   - **Q9**: Tag-4-Theorie = Auswahl-Kurzpräsentationen im Trainer-Repo
   - **Q10**: Scope V2 bestätigt
 
+### 2026-09-21
+
+- ✅ **T10**: `docs/curriculum-v2.md` geschrieben (Curriculum-Design-Doku:
+  Tagesstruktur Tag 1–5, Lernziele pro Tag, was wegfällt, was neu kommt).
+- ✅ **T11**: `docs/sprachstil-v2.md` geschrieben (Sprachstil-Guideline:
+  kurze Sätze, aktive Verben, Fachbegriffe sofort erklären, Checkliste,
+  Vergleich V1/V2).
+
 ## Aktuell offen / wartend
 
-- 🟡 **Auf dein "go" zum Commit** der Planungs-Files
+- 🟡 **Auf dein "go" zum Commit** der Planungs-Files + der T10/T11-Dokus auf `bootcamp-v2`
 - ⛔ **Phase 9** (Deployment): wartet auf deine Freigabe
-- ⬜ **Alle anderen Phasen** (1–8): bereit zum Starten
+- ⬜ **Phase 1 verbleibend**: T12 (Fallback-Doku), T13 (Projekt-Template), T14 (Übungs-Template)
+- ⬜ **Alle anderen Phasen** (2–8): bereit zum Starten
 
 ## Was bewusst NICHT gemacht wurde
 
@@ -62,11 +71,10 @@ Status: clean (nur Branch erstellt, kein Inhalt)
 
 ## Vorschlag für nächsten Schritt
 
-Wenn du mit dem aktualisierten Plan einverstanden bist:
-
-1. **Commit** der 7 Planungs-Files auf `bootcamp-v2` im ae-bootcamp-Repo
+1. **Commit** der 7 Planungs-Files + der zwei Dokus (`docs/curriculum-v2.md`,
+   `docs/sprachstil-v2.md`) auf `bootcamp-v2` im ae-bootcamp-Repo
    (sage einfach "commit" und ich mach's).
-2. Wir starten **Phase 1** (T10–T14) – die pädagogische Neuausrichtung.
+2. Wir setzen **Phase 1** fort mit T12 (Fallback-Strategie-Doku).
 3. Danach **Phase 3** (T30) – `ae-trainer-briefing` komplett aufsetzen.
 
 ## Drei Branches – Verwendungszweck
